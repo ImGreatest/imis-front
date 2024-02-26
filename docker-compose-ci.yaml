@@ -3,6 +3,8 @@ services:
 
   app:
     image: $DOCKER_TAG
+    build:
+      dockerfile: ./Dockerfile.build
     container_name: SH-b-site-$CI_COMMIT_BRANCH
     restart: always
     env_file:
