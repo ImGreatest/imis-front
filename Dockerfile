@@ -1,6 +1,7 @@
 # Stage 1: Build Angular App
-FROM node:20-alpine AS build
+FROM node:20-alpine
 WORKDIR /app
 COPY . .
 RUN yarn install
-RUN yarn start
+RUN yarn build
+
