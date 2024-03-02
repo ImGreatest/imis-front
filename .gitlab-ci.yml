@@ -29,7 +29,7 @@ push-docker-job:
   before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY # Логинимся в GitLab Container Registry
   script:
-    - docker build -t $DOCKER_TAG .
+    - docker build -t $DOCKER_TAG .Dockerfile.build
     - docker push $DOCKER_TAG
 
 deploy-job:
@@ -43,7 +43,8 @@ deploy-job:
       when: manual
     - if: $CI_COMMIT_BRANCH == "stage"
       when: always
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY # Логинимся в GitLab Container Registry
   script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker-compose -f docker-compose-ci.yaml pull 
     - docker-compose -f docker-compose-ci.yaml up -d
