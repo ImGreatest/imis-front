@@ -6,13 +6,7 @@ stages:
 variables:
   DOCKER_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
 
-test-job:
-  stage: test
-  tags:
-    - build
-  script:
-    - docker build -t test_front .
-    - docker rmi test_front
+
 
 push-docker-job:
   stage: push image
