@@ -11,8 +11,8 @@ test-job:
   tags:
     - build
   script:
-    - docker build -t test .
-    - docker rmi test
+    - docker build -t test_front .
+    - docker rmi test_front
 
 push-docker-job:
   stage: push image
