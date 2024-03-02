@@ -6,7 +6,14 @@ stages:
 variables:
   DOCKER_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
 
-
+test-job:
+  stage: test
+  image: node:18-alpine
+  tags:
+    - build
+  script:
+    - docker build -t test_front .
+    - docker rmi test_front
 
 push-docker-job:
   stage: push image
@@ -17,8 +24,11 @@ push-docker-job:
       when: manual
     - if: $CI_COMMIT_BRANCH == "stage"
       when: always
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY # Логинимся в GitLab Container Registry
   script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker build -t $DOCKER_TAG .
     - docker push $DOCKER_TAG
 
