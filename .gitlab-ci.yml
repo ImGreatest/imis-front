@@ -28,7 +28,7 @@ push-docker-job:
   before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY # Логинимся в GitLab Container Registry
   script:
-    - docker build -t $DOCKER_TAG .Dockerfile.build
+    - docker build -t $DOCKER_TAG Dockerfile.build
     - docker push $DOCKER_TAG
 
 deploy-job:
