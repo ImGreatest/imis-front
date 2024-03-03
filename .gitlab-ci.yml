@@ -9,6 +9,8 @@ variables:
 test-job:
   stage: test
   image: node:18-alpine
+  services:
+    - docker:dind
   tags:
     - build
   script:
