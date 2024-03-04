@@ -13,6 +13,7 @@ test-job:
   script:
     - docker build -t test_front .
     - docker rmi test_front
+    - docker system prune -f
 
 push-docker-job:
   stage: push image
@@ -30,6 +31,7 @@ push-docker-job:
   script:
     - docker build -t $DOCKER_TAG -f Dockerfile.build .
     - docker push $DOCKER_TAG
+    - docker system prune -f
 
 deploy-job:
   stage: deploy
@@ -47,3 +49,4 @@ deploy-job:
   script:
     - docker-compose -f docker-compose-ci.yaml pull 
     - docker-compose -f docker-compose-ci.yaml up -d
+    - docker system prune -f
