@@ -9,4 +9,4 @@ services:
     restart: always
     ports:
       - "7000:80"
-    command: nginx -g daemon off;
+    command: nginx -g "daemon off;"
