@@ -21,6 +21,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "styles": [
+              "src/styles.less"
+            ],
             "outputPath": "dist/imis-front",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -31,10 +34,12 @@
             "inlineStyleLanguage": "less",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.less"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "node_modules/@taiga-ui/icons/src",
+                "output": "assets/taiga-ui/icons"
+              }
             ],
             "scripts": []
           },
