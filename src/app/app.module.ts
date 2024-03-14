@@ -19,11 +19,12 @@ import {OverviewModule} from "./overview/overview.module";
 import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
 import {
   TuiAppearanceModule,
-  TuiBadgeNotificationModule, TuiCardModule, TuiFadeModule, TuiHeaderModule,
+  TuiBadgeNotificationModule, TuiButtonCloseModule, TuiCardModule, TuiFadeModule, TuiHeaderModule,
   TuiIconModule, TuiIconsModule,
   TuiNavigationModule, TuiSurfaceModule, TuiTitleModule
 } from "@taiga-ui/experimental";
 import {TuiRepeatTimesModule} from "@taiga-ui/cdk";
+import {POLYMORPHEUS_CONTEXT} from "@tinkoff/ng-polymorpheus";
 
 
 
@@ -60,12 +61,17 @@ import {TuiRepeatTimesModule} from "@taiga-ui/cdk";
     TuiSurfaceModule,
     TuiTitleModule,
     TuiRepeatTimesModule,
+    TuiButtonCloseModule,
     OverviewModule,
   ],
   providers: [
     {
       provide: TUI_SANITIZER,
       useClass: NgDompurifySanitizer
+    },
+    {
+      provide: POLYMORPHEUS_CONTEXT,
+      useValue: {}
     }
   ],
   bootstrap: [AppComponent],

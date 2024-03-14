@@ -1,0 +1,45 @@
+@icon-color: #333;
+
+
+[tuiWrapper][data-appearance='sidebar-menu-button'] {
+  background-color: #ededed;
+  color: #595959;
+  width: 200px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar {
+  display: flex;
+}
+
+.sidebar-content {
+  .column();
+  height: 100%;
+  //background-color: rgba(106, 147, 176, 0.2393);
+  background-color: rgba(236, 246, 255, 0.2393);
+}
+
+.sidebar-menu {
+  .column();
+  margin: 4rem 0 5rem 0;
+}
+
+.sidebar-button-icon {
+  color: @icon-color;
+  height: 1.25rem;
+  width: 1.25rem;
+  margin-right: 1rem;
+  margin-left: -1rem;
+}
+
+.close-icon {
+  margin-top: 15px;
+  flex-direction: row;
+  justify-content: end;
+  align-items: end;
+}
