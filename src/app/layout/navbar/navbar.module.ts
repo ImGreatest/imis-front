@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {OverviewComponent} from "./overview.component";
+import {NavbarComponent} from "./navbar.component";
 import {
   TUI_SANITIZER,
   TuiButtonModule,
@@ -26,7 +26,7 @@ import {RouterModule} from "@angular/router";
   imports: [
     CommonModule,
     RouterModule.forChild([
-      {path: '', component: OverviewComponent}
+      {path: '', component: NavbarComponent}
     ]),
     TuiIconModule,
     TuiSvgModule,
@@ -52,7 +52,7 @@ import {RouterModule} from "@angular/router";
       useClass: NgDompurifySanitizer
     },
   ],
-  declarations: [OverviewComponent],
-  exports: [OverviewComponent],
+  declarations: [NavbarComponent],
+  exports: [NavbarComponent],
 })
-export class OverviewModule {}
+export class NavbarModule {}

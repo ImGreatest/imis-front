@@ -1,13 +1,13 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import {TuiAppearance} from "@taiga-ui/core";
-import {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
+import {EMonthRedact} from "../../common/enum/datas-date";
 
 
 
 @Component({
-  selector: 'app-overview',
-  templateUrl: './overview.component.html',
-  styleUrl: './overview.component.less',
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrl: './navbar.component.less',
   providers: [
     {
       provide: 'TUI_BUTTON_OPTIONS',
@@ -21,9 +21,13 @@ import {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OverviewComponent {
+export class NavbarComponent {
   protected statusSideBar: boolean = false;
-  protected notifications = false;
+
+  convertDate(date: Date): string {
+    const month: { [key: string]: EMonthRedact } = EMonthRedact;
+    return `${date.getDay()} ${month[date.getMonth()]} ${date.getFullYear()}`;
+  }
 
   openSideBar(): void {
     this.statusSideBar = true;
@@ -34,13 +38,4 @@ export class OverviewComponent {
       this.statusSideBar = false;
     }
   }
-
-  openNotifications() {
-    this.notifications = true
-  }
-
-  closeNotifications() {
-    this.notifications = false
-  }
-
 }
