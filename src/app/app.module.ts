@@ -25,6 +25,7 @@ import {
 } from "@taiga-ui/experimental";
 import {TuiRepeatTimesModule} from "@taiga-ui/cdk";
 import {POLYMORPHEUS_CONTEXT} from "@tinkoff/ng-polymorpheus";
+import {TuiBarModule} from "@taiga-ui/addon-charts";
 
 
 
@@ -62,6 +63,7 @@ import {POLYMORPHEUS_CONTEXT} from "@tinkoff/ng-polymorpheus";
     TuiTitleModule,
     TuiRepeatTimesModule,
     TuiButtonCloseModule,
+    TuiBarModule,
     NavbarModule,
   ],
   providers: [

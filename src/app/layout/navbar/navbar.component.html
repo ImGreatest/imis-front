@@ -2,23 +2,29 @@
   <nav>
     <div class="navbar">
       <div class="navigation-section">
-        <button
-          tuiButton
-          type="button"
-          appearance="navbar-navigation-button"
-          (click)="openSideBar()"
-        >
+        <div class="cell-container">
+          <button
+            tuiButton
+            type="button"
+            appearance="navbar-navigation-button"
+            (click)="openSideBar()"
+            (mouseover)="showNavBar()"
+            (mouseout)="closeNavBar()"
+          >
           <tui-icon class="sidebar-button-icon" icon="tuiIconMenuLarge"></tui-icon>
           Навигация</button>
+          <div *ngIf="barNav" class="hover-bar navigation-bar"></div>
+        </div>
       </div>
       <div class="links-section">
-        <tui-badged-content
-          colorTop="var(--tui-error-fill)"
-          [contentTop]="5"
-          size="l"
-          class="tui-space_right-5"
-          [rounded]="true"
-        >
+        <div (mouseout)="closeBellBar()" (mouseover)="showBellBar()">
+          <tui-badged-content
+            colorTop="var(--tui-error-fill)"
+            [contentTop]="5"
+            size="l"
+            class="tui-space_right-5 count-notification-select"
+            [rounded]="true"
+          >
           <a
             tuiMarkerIcon
             mode="link"
@@ -26,20 +32,26 @@
             src="tuiIconBellLarge"
             [style.color]="'rgba(0, 0, 0, 0.48)'"
           ></a>
-        </tui-badged-content>
-        <tui-avatar
-          class="avatar"
-          [style.width.px]="64"
-          [style.height.px]="64"
-          src="tuiIconUserLarge"
-        ></tui-avatar>
+          <div *ngIf="barBell" class="hover-bar bell-bar"></div>
+          </tui-badged-content>
+        </div>
+        <div class="cell-container" (mouseover)="showProfileBar()" (mouseout)="closeProfileBar()">
+          <tui-avatar
+            class="avatar"
+            [style.width.px]="64"
+            [style.height.px]="64"
+            src="tuiIconUserLarge"
+          ></tui-avatar>
+          <div *ngIf="barProfile" class="hover-bar"></div>
+        </div>
       </div>
     </div>
   </nav>
 
   <div [style.display]="'flex'">
     <aside
-      *tuiSidebar="statusSideBar; direction: 'left'; autoWidth: false"
+      [style.width.rem]="20"
+      *tuiSidebar="statusSideBar; direction: 'left'; autoWidth: true"
       class="active-zone"
     >
       <section>
@@ -60,8 +72,9 @@
           <button
             tuiButton
             size="xl"
+            shape="rounded"
             appearance="floating"
-            class="offset-button"
+            class="offset-button sidebar-button"
           >
             <tui-icon
               icon="tuiIconHome"
@@ -71,8 +84,10 @@
           <button
             tuiButton
             size="xl"
+            [style.width.px]="200"
+            shape="rounded"
             appearance="floating"
-            class="offset-button"
+            class="offset-button sidebar-button"
           >
             <tui-icon
               icon="tuiIconBarChartLarge"
@@ -83,8 +98,9 @@
           <button
             tuiButton
             size="xl"
+            shape="rounded"
             appearance="floating"
-            class="offset-button"
+            class="offset-button sidebar-button"
           >
             <tui-icon
               icon="tuiIconBookLarge"
@@ -95,8 +111,9 @@
           <button
             tuiButton
             size="xl"
+            shape="rounded"
             appearance="floating"
-            class="offset-button"
+            class="offset-button sidebar-button"
           >
             <tui-icon
               icon="tuiIconCalendarLarge"
@@ -107,7 +124,9 @@
           <button
             tuiButton
             size="xl"
+            shape="rounded"
             appearance="floating"
+            class="sidebar-button"
           >
             <tui-icon
               icon="tuiIconBriefcaseLarge"

@@ -19,6 +19,9 @@ import {TuiAccordionModule, TuiBadgedContentModule, TuiMarkerIconModule} from "@
 import {TuiActiveZoneModule} from "@taiga-ui/cdk";
 import {CommonModule, NgIf} from "@angular/common";
 import {RouterModule} from "@angular/router";
+import {TuiBarModule} from "@taiga-ui/addon-charts";
+import {ProjectsModule} from "../../pages/projects/projects.module";
+import {RatingModule} from "../../pages/rating/rating.module";
 
 
 
@@ -45,6 +48,9 @@ import {RouterModule} from "@angular/router";
     TuiFallbackSrcModule,
     TuiBadgedContentModule,
     TuiBadgedContentModule,
+    TuiBarModule,
+    RatingModule,
+    ProjectsModule,
   ],
   providers: [
     {
