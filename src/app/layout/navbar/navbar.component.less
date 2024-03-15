@@ -1,0 +1,98 @@
+@icon-color: #333;
+@icon-size: 1.25rem;
+
+
+
+[tuiWrapper][data-appearance='sidebar-menu-closebutton'] {
+  background-color: var(--tui-secondary);
+  color: @icon-color;
+  font-family: "Crimson Pro", serif;
+  border: 1px solid;
+  border-color: var(--tui-base-07);
+}
+
+[tuiWrapper][data-appearance='navbar-navigation-button'] {
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.64);
+  font-family: "Crimson Pro", serif;
+  font-style: normal;
+  font-size: 20px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar {
+  display: flex;
+}
+
+.sidebar-content {
+  height: 100%;
+  background-color: rgba(106, 147, 176, 0.2393);
+  //background-color: rgba(236, 246, 255, 0.2393);
+}
+
+.sidebar-menu {
+  .column();
+  align-items: center;
+  margin: 2.75rem 0 5rem 0;
+}
+
+.sidebar-button-icon {
+  color: @icon-color;
+  height: @icon-size;
+  width: @icon-size;
+  margin-right: 1rem;
+  margin-left: -1rem;
+}
+
+.close-icon {
+  margin-top: 15px;
+  margin-right: 15px;
+  .row();
+  justify-content: end;
+}
+
+.offset-button {
+  margin-bottom: 2rem;
+}
+
+.navbar {
+  width: 100%;
+  margin-top: 1.5rem;
+  .row();
+  align-content: center
+}
+
+.navigation-section {
+  margin-right: auto;
+  margin-left: 5rem;
+}
+
+.links-section {
+  .row();
+  justify-content: center;
+  margin-left: auto;
+  margin-right: 5rem
+}
+
+.notification-bell {
+  color: black;
+}
+
+.avatar {
+  margin-right: 2rem;
+  margin-left: 2rem;
+  box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.12);
+
+  &:hover {
+    box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.2);
+  }
+}

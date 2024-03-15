@@ -1,0 +1,122 @@
+<div (tuiActiveZoneChange)="closeSideBar($event)">
+  <nav>
+    <div class="navbar">
+      <div class="navigation-section">
+        <button
+          tuiButton
+          type="button"
+          appearance="navbar-navigation-button"
+          (click)="openSideBar()"
+        >
+          <tui-icon class="sidebar-button-icon" icon="tuiIconMenuLarge"></tui-icon>
+          Навигация</button>
+      </div>
+      <div class="links-section">
+        <tui-badged-content
+          colorTop="var(--tui-error-fill)"
+          [contentTop]="5"
+          size="l"
+          class="tui-space_right-5"
+          [rounded]="true"
+        >
+          <a
+            tuiMarkerIcon
+            mode="link"
+            size="m"
+            src="tuiIconBellLarge"
+            [style.color]="'rgba(0, 0, 0, 0.48)'"
+          ></a>
+        </tui-badged-content>
+        <tui-avatar
+          class="avatar"
+          [style.width.px]="64"
+          [style.height.px]="64"
+          src="tuiIconUserLarge"
+        ></tui-avatar>
+      </div>
+    </div>
+  </nav>
+
+  <div [style.display]="'flex'">
+    <aside
+      *tuiSidebar="statusSideBar; direction: 'left'; autoWidth: false"
+      class="active-zone"
+    >
+      <section>
+        <div class="close-icon">
+          <button
+            appearance="sidebar-menu-closebutton"
+            tuiIconButton
+            size="s"
+            class="close-button"
+            (click)="closeSideBar()"
+            >
+            <tui-icon icon="tuiIconCloseLarge"></tui-icon>
+          </button>
+        </div>
+      </section>
+      <section>
+        <div class="sidebar-menu">
+          <button
+            tuiButton
+            size="xl"
+            appearance="floating"
+            class="offset-button"
+          >
+            <tui-icon
+              icon="tuiIconHome"
+              class="sidebar-button-icon"
+            ></tui-icon>
+          Главная</button>
+          <button
+            tuiButton
+            size="xl"
+            appearance="floating"
+            class="offset-button"
+          >
+            <tui-icon
+              icon="tuiIconBarChartLarge"
+              class="sidebar-button-icon"
+            ></tui-icon>
+            Рейтинг
+          </button>
+          <button
+            tuiButton
+            size="xl"
+            appearance="floating"
+            class="offset-button"
+          >
+            <tui-icon
+              icon="tuiIconBookLarge"
+              class="sidebar-button-icon"
+            ></tui-icon>
+            Проекты
+          </button>
+          <button
+            tuiButton
+            size="xl"
+            appearance="floating"
+            class="offset-button"
+          >
+            <tui-icon
+              icon="tuiIconCalendarLarge"
+              class="sidebar-button-icon"
+            ></tui-icon>
+            События
+          </button>
+          <button
+            tuiButton
+            size="xl"
+            appearance="floating"
+          >
+            <tui-icon
+              icon="tuiIconBriefcaseLarge"
+              class="sidebar-button-icon"
+            ></tui-icon>
+            Компании
+          </button>
+        </div>
+      </section>
+    </aside>
+  </div>
+</div>

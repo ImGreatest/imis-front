@@ -1,9 +1,13 @@
 import { Routes } from '@angular/router';
-import {OverviewComponent} from "./overview/overview.component";
 
 
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/overview', pathMatch: 'full' },
-  { path: 'overview', component: OverviewComponent }
+  { path: '', redirectTo: '/navbar', pathMatch: 'full' },
+  { path: 'navbar', loadChildren: () => import('./layout/navbar/navbar.module').then(m => m.NavbarModule) },
+
+  // { path: 'rating', loadChildren: () => import().then(m => m) }
+  // { path: 'projects', loadChildren: () => import().then(m => m) }
+  // { path: 'events', loadChildren: () => import().then(m => m) }
+  // { path: 'company', loadChildren: () => import().then(m => m) }
 ];
