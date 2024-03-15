@@ -49,8 +49,6 @@ import {RatingModule} from "../../pages/rating/rating.module";
     TuiBadgedContentModule,
     TuiBadgedContentModule,
     TuiBarModule,
-    RatingModule,
-    ProjectsModule,
   ],
   providers: [
     {
