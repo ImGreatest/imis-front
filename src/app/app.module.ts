@@ -15,7 +15,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {CommonModule} from "@angular/common";
 import {TuiAvatarModule, TuiBadgeModule, TuiInputModule, TuiTabsModule} from "@taiga-ui/kit";
 import {TuiMobileDialogModule} from "@taiga-ui/addon-mobile";
-import {OverviewModule} from "./overview/overview.module";
+import {OverviewModule} from "./pages/overview/overview.module";
 import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
 import {
   TuiAppearanceModule,
