@@ -22,6 +22,7 @@ import {RouterModule} from "@angular/router";
 import {TuiBarModule} from "@taiga-ui/addon-charts";
 import {ProjectsModule} from "../../pages/projects/projects.module";
 import {RatingModule} from "../../pages/rating/rating.module";
+import {NotificationsModule} from "../../pages/notifications/notifications.module";
 
 
 
@@ -49,6 +50,9 @@ import {RatingModule} from "../../pages/rating/rating.module";
     TuiBadgedContentModule,
     TuiBadgedContentModule,
     TuiBarModule,
+    RatingModule,
+    ProjectsModule,
+    NotificationsModule,
   ],
   providers: [
     {
