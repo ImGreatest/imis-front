@@ -11,9 +11,16 @@ import {tuiFadeIn} from "@taiga-ui/core";
   animations: [tuiFadeIn],
 })
 export class OverviewComponent {
-  searchControl = new FormControl('', {
+  protected length: number = 64;
+  protected index: number = 0;
+  dataTable: Array<Record<string, number | string>> = this.tableDatas;
+  searchProjectControl = new FormControl('', {
     nonNullable: true,
   });
+
+  searchRatingControl = new FormControl('', {
+    nonNullable: true,
+  })
 
   constructor() {}
 
@@ -30,9 +37,20 @@ export class OverviewComponent {
     ]
   ]
 
-  expanded = false;
-
-  toggle(): void {
-    this.expanded = !this.expanded;
+  get tableDatas() {
+    let data = [];
+    for (let i = 0; i<12; i++) {
+      data.push({id: i + 1, name: 'name', rating: i + 100})
+    }
+    return data
   }
+
+  get columns(): string[] {
+    return Object.keys(this.dataTable[0])
+  }
+
+  goToPage(index: number): void {
+    this.index = index
+  }
+
 }

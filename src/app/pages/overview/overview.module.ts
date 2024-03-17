@@ -12,9 +12,11 @@ import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
 import {CommonModule} from "@angular/common";
 import {OverviewComponent} from "./overview.component";
 import {RouterModule} from "@angular/router";
-import {TuiInputModule, TuiTagModule} from "@taiga-ui/kit";
+import {TuiInputModule, TuiPaginationModule, TuiTagModule} from "@taiga-ui/kit";
 import {ReactiveFormsModule} from "@angular/forms";
 import {TuiAvatarModule, TuiAvatarStackModule, TuiFadeModule, TuiIconModule} from "@taiga-ui/experimental";
+import {TuiTableModule} from "@taiga-ui/addon-table";
+import {TuiLetModule} from "@taiga-ui/cdk";
 
 
 
@@ -39,6 +41,9 @@ import {TuiAvatarModule, TuiAvatarStackModule, TuiFadeModule, TuiIconModule} fro
     TuiAvatarModule,
     TuiLinkModule,
     TuiFadeModule,
+    TuiTableModule,
+    TuiLetModule,
+    TuiPaginationModule,
   ],
   providers: [
     {
