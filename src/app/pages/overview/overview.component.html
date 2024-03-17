@@ -1,0 +1,173 @@
+<div id="page-container" class="content-page-container">
+  <div id="project-container" class="container container-projects">
+    <div id="project-container-label-row" class="row">
+      <p id="project-container-label-text" class="container-label-text">Проекты</p>
+      <div id="project-container-label-div-search" class="project-container-label-widgets">
+        <tui-input
+          id="project-container-label-search"
+          [tuiTextfieldCleaner]="true"
+          tuiTextfieldSize="s"
+          tuiTextfieldIconLeft="tuiIconSearch"
+          [formControl]="searchProjectControl"
+          [style.width.px]="200"
+        >
+          Поиск
+        </tui-input>
+      </div>
+      <div id="project-container-label-div-filters" class="project-container-label-filters">
+        <button
+          id="project-container-label-div-filter"
+          tuiButton
+          appearance="secondary"
+          tuiMode="onLight"
+          size="m"
+          class="filter-button"
+        >
+          <tui-icon icon="tuiIconFilterLarge"></tui-icon>
+          Filter
+        </button>
+        <button
+          id="project-container-label-div-align"
+          tuiIconButton
+          appearance="secondary"
+          tuiMode="onLight"
+          size="m"
+        >
+          <tui-icon icon="tuiIconAlignJustifyLarge"></tui-icon>
+        </button>
+      </div>
+    </div>
+    <div>
+      <tui-scrollbar class="projects-scroll">
+        <div *ngFor="let project of projectsList" class="row">
+          <div *ngFor="let prj of project" class="project-cell">
+            <div class="row">
+              <tui-avatar
+                class="avatar"
+                size="l"
+                [src]="prj.avatar"
+                [style.margin-right.rem]="2"
+                [style.margin-top.rem]="1"
+              ></tui-avatar>
+              <div class="project-cell-label-icons">
+                <button
+                  tuiIconButton
+                  appearance="secondary"
+                  tuiMode="onLight"
+                  size="m"
+                  class="project-cell-star-icon"
+                >
+                  <tui-icon icon="tuiIconStar"></tui-icon>
+                </button>
+                <button
+                  tuiIconButton
+                  appearance="secondary"
+                  tuiMode="onLight"
+                  size="m"
+                  class="project-cell-more-icon"
+                >
+                  <tui-icon icon="tuiIconMoreHorizontal"></tui-icon>
+                </button>
+              </div>
+            </div>
+            <p class="project-cell-project-label" tuiMode="onLight">{{ prj.name }}</p>
+            <p class="project-cell-project-desc" tuiMode="onLight">{{ prj.description }}</p>
+            <div class="project-cell-tags-container">
+              <tui-tag
+                *ngFor="let tag of prj.tags"
+                class="project-cell-tag-cell"
+                [value]="tag"
+                [style.background]="'#3572A5'"
+              ></tui-tag>
+            </div>
+            <div class="project-cell-additional">
+              <div class="project-cell-additional-icons">
+                <a
+                  icon="tuiIconLink2Large"
+                  tuiLink
+                  class="project-cell-link-icon"
+                ></a>
+                <a
+                  icon="tuiIconGithubLarge"
+                  tuiLink
+                  class="project-cell-git-icon"
+                ></a>
+              </div>
+              <div class="project-cell-contr-stack">
+                <tui-avatar-stack direction="left">
+                  <tui-avatar
+                    *ngFor="let avatars of prj.cotr_avatar"
+                    size="m"
+                    [src]="avatars"
+                    [style.background]="'tuiAutoColor'"
+                  ></tui-avatar>
+                </tui-avatar-stack>
+              </div>
+            </div>
+          </div>
+        </div>
+      </tui-scrollbar>
+    </div>
+  </div>
+  <div class="rating-cell">
+    <div style="display: flex; flex-direction: column; margin: 0 2rem 2rem;">
+      <div class="rating-cell-label">
+        <p class="label">Рейтинг</p>
+        <div class="rating-cell-label-widgets">
+          <tui-input
+            [tuiTextfieldCleaner]="true"
+            tuiTextfieldSize="s"
+            tuiTextfieldIconLeft="tuiIconSearch"
+            [formControl]="searchRatingControl"
+            [style.width.px]="200"
+          >
+            Поиск
+          </tui-input>
+        </div>
+      </div>
+      <table
+        tuiTable
+        [columns]="columns"
+      >
+        <thead>
+          <tr tuiThGroup>
+            <ng-container *ngFor="let col of columns">
+              <th
+                *tuiHead="col"
+                tuiTh
+              >
+                {{ col }}
+              </th>
+            </ng-container>
+          </tr>
+        </thead>
+        <tbody
+          tuiTbody
+          [data]="dataTable"
+          *tuiLet="dataTable | tuiTableSort as sortedData"
+        >
+          <tr
+            *ngFor="let item of sortedData"
+            tuiTr
+          >
+            <ng-container *ngFor="let col of columns">
+              <td
+                *tuiCell="col"
+                tuiTd
+              >
+                {{ item[col] }}
+              </td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top: 2rem">
+        <tui-pagination
+          [index]="index"
+          [length]="length"
+          (indexChange)="goToPage($event)"
+        ></tui-pagination>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-export enum EMonthRedact{
+export enum EMonthRedact {
   January = "Янв.",
   February = "Февр.",
   March = "Март",
