@@ -3,7 +3,7 @@ import {NavbarComponent} from "./navbar.component";
 import {
   TUI_SANITIZER,
   TuiButtonModule,
-  TuiDialogModule,
+  TuiDialogModule, TuiModeModule,
   TuiSvgModule
 } from "@taiga-ui/core";
 import {
@@ -20,10 +20,6 @@ import {TuiActiveZoneModule} from "@taiga-ui/cdk";
 import {CommonModule, NgIf} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {TuiBarModule} from "@taiga-ui/addon-charts";
-import {ProjectsModule} from "../../pages/projects/projects.module";
-import {RatingModule} from "../../pages/rating/rating.module";
-import {NotificationsModule} from "../../pages/notifications/notifications.module";
-
 
 
 @NgModule({
@@ -50,9 +46,7 @@ import {NotificationsModule} from "../../pages/notifications/notifications.modul
     TuiBadgedContentModule,
     TuiBadgedContentModule,
     TuiBarModule,
-    RatingModule,
-    ProjectsModule,
-    NotificationsModule,
+    TuiModeModule,
   ],
   providers: [
     {

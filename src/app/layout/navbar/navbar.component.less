@@ -4,20 +4,21 @@
 
 
 
-[tuiWrapper][data-appearance='sidebar-menu-closebutton'] {
-  background-color: var(--tui-secondary);
-  color: @icon-color;
-  font-family: "Crimson Pro", serif;
-  border: 1px solid;
-  border-color: var(--tui-base-07);
-}
-
 [tuiWrapper][data-appearance='navbar-navigation-button'] {
   background-color: transparent;
   color: rgba(0, 0, 0, 0.64);
   font-family: "Crimson Pro", serif;
   font-style: normal;
   font-size: 20px;
+}
+
+nav {
+  top: 0;
+  left: 0;
+  height: 12.5vh;
+  z-index: 1000;
+  border-bottom: thin solid;
+  border-bottom-color: #D7D7D7;
 }
 
 .column {
@@ -123,6 +124,7 @@
 .navigation-bar {
   width: 73.5%;
   margin-right: 0.65rem;
+  margin-top: 1.1rem;
 }
 
 .bell-bar {
