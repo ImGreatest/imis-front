@@ -2,8 +2,8 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {TUI_SANITIZER} from "@taiga-ui/core";
 import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
-import {RatingComponent} from "./rating.component";
 import {RouterModule} from "@angular/router";
+import {UserProfileComponent} from "./user-profile.component";
 
 
 
@@ -11,7 +11,7 @@ import {RouterModule} from "@angular/router";
   imports: [
     CommonModule,
     RouterModule.forChild([
-      {path: '', component: RatingComponent}
+      {path: '', component: UserProfileComponent}
     ]),
   ],
   providers: [
@@ -20,7 +20,7 @@ import {RouterModule} from "@angular/router";
       useClass: NgDompurifySanitizer
     },
   ],
-  declarations: [RatingComponent],
-  exports: [RatingComponent],
+  declarations: [UserProfileComponent],
+  exports: [UserProfileComponent],
 })
-export class RatingModule {}
+export class UserProfileModule {}
