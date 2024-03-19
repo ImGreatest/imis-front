@@ -17,12 +17,32 @@
         </div>
       </div>
       <div class="links-section">
+        <div (mouseout)="closeBellBar()" (mouseover)="showBellBar()">
+          <tui-badged-content
+            colorTop="var(--tui-error-fill)"
+            [contentTop]="5"
+            size="l"
+            class="tui-space_right-5 count-notification-select"
+            [rounded]="true"
+            routerLink="/notice"
+          >
+          <a
+            tuiMarkerIcon
+            mode="link"
+            size="m"
+            src="tuiIconBellLarge"
+            [style.color]="'rgba(0, 0, 0, 0.48)'"
+          ></a>
+          <div *ngIf="barBell" class="hover-bar bell-bar"></div>
+          </tui-badged-content>
+        </div>
         <div class="cell-container" (mouseover)="showProfileBar()" (mouseout)="closeProfileBar()">
           <tui-avatar
             class="avatar"
             [style.width.px]="64"
             [style.height.px]="64"
             src="tuiIconUserLarge"
+            routerLink="/profile"
           ></tui-avatar>
           <div *ngIf="barProfile" class="hover-bar"></div>
         </div>
@@ -59,6 +79,8 @@
             appearance="floating"
             tuiMode="onLight"
             class="offset-button sidebar-button"
+            (click)="closeSideBar()"
+            routerLink="/overview"
           >
             <tui-icon
               icon="tuiIconHome"
@@ -73,6 +95,8 @@
             appearance="floating"
             tuiMode="onLight"
             class="offset-button sidebar-button"
+            (click)="closeSideBar()"
+            routerLink="/rating"
           >
             <tui-icon
               icon="tuiIconBarChartLarge"
@@ -87,6 +111,8 @@
             appearance="floating"
             tuiMode="onLight"
             class="offset-button sidebar-button"
+            (click)="closeSideBar()"
+            routerLink="/projects"
           >
             <tui-icon
               icon="tuiIconBookLarge"
@@ -101,6 +127,8 @@
             appearance="floating"
             tuiMode="onLight"
             class="offset-button sidebar-button"
+            (click)="closeSideBar()"
+            routerLink="/events"
           >
             <tui-icon
               icon="tuiIconCalendarLarge"
@@ -115,6 +143,8 @@
             appearance="floating"
             tuiMode="onLight"
             class="sidebar-button"
+            (click)="closeSideBar()"
+            routerLink="/company"
           >
             <tui-icon
               icon="tuiIconBriefcaseLarge"
