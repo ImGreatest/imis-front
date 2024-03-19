@@ -11,6 +11,7 @@ import {tuiFadeIn} from "@taiga-ui/core";
   animations: [tuiFadeIn],
 })
 export class OverviewComponent {
+  favoritePrj: any[] = [];
   protected length: number = 64;
   protected index: number = 0;
   dataTable: Array<Record<string, number | string>> = this.tableDatas;
@@ -26,14 +27,14 @@ export class OverviewComponent {
 
   protected projectsList = [
     [
-      { avatar: 'https://avatars.githubusercontent.com/u/11832552', name: "Aseprite", description: "Aseprite is a proprietary, source-available image editor designed primarily for pixel art drawing and animation.", tags: ["python", "typescript", "sass"], cotr_avatar: ['https://avatars.githubusercontent.com/u/11832552', 'https://avatars.githubusercontent.com/u/11832552']},
-      { avatar: 'https://avatars.githubusercontent.com/u/11832552', name: "Swift", description: "Aseprite is a proprietary, source-available image editor designed primarily for pixel art drawing and animation.", tags: ["C++", "python"], cotr_avatar: ['https://avatars.githubusercontent.com/u/11832552'] },
-      { avatar: 'https://avatars.githubusercontent.com/u/11832552', name: "HyprLand", description: "Aseprite is a proprietary, source-available image editor designed primarily for pixel art drawing and animation.", tags: ["html", "python"], cotr_avatar: ['https://avatars.githubusercontent.com/u/11832552'], }
+      { id: 1, avatar: 'https://avatars.githubusercontent.com/u/11832552', websiteLink: '', githubLink: '', name: "Aseprite", description: "Aseprite is a proprietary, source-available image editor designed primarily for pixel art drawing and animation.", tags: [{value: "python", color: "blue"}, {value: "typescript", color: "darkblue"}], cotr_avatar: ['https://avatars.githubusercontent.com/u/11832552', 'https://avatars.githubusercontent.com/u/11832552'], favorite: false},
+      { id: 2, avatar: 'https://avatars.githubusercontent.com/u/11832552', websiteLink: '', githubLink: '', name: "Swift", description: "Aseprite is a proprietary, source-available image editor designed primarily for pixel art drawing and animation.", tags: [{value: "C++", color: "pink"}, {value: "python", color: "darkblue"}], cotr_avatar: ['https://avatars.githubusercontent.com/u/11832552'], favorite: false },
+      { id: 3, avatar: 'https://avatars.githubusercontent.com/u/11832552', websiteLink: '', githubLink: '', name: "HyprLand", description: "Aseprite is a proprietary, source-available image editor designed primarily for pixel art drawing and animation.", tags: [{value: "Html", color: "lightpink"}, {value: "python", color: "blue"}], cotr_avatar: ['https://avatars.githubusercontent.com/u/11832552'], favorite: false }
     ],
     [
-      { avatar: 'https://avatars.githubusercontent.com/u/11832552', name: "Aseprite", description: "Aseprite is a proprietary, source-available image editor designed primarily for pixel art drawing and animation.", tags: ["python", "typescript", "sass"], cotr_avatar: ['https://avatars.githubusercontent.com/u/11832552'],},
-      { avatar: 'https://avatars.githubusercontent.com/u/11832552', name: "Swift", description: "Aseprite is a proprietary, source-available image editor designed primarily for pixel art drawing and animation.", tags: ["C++", "python"], cotr_avatar: ['https://avatars.githubusercontent.com/u/11832552'], },
-      { avatar: 'https://avatars.githubusercontent.com/u/11832552', name: "HyprLand", description: "Aseprite is a proprietary, source-available image editor designed primarily for pixel art drawing and animation.", tags: ["html", "python"], cotr_avatar: ['https://avatars.githubusercontent.com/u/11832552'], }
+      { id: 4, avatar: 'https://avatars.githubusercontent.com/u/11832552', websiteLink: '', githubLink: '', name: "Aseprite", description: "Aseprite is a proprietary, source-available image editor designed primarily for pixel art drawing and animation.", tags: [{value: "python", color: "blue"}, {value: "typescript", color: "darkblue"}], cotr_avatar: ['https://avatars.githubusercontent.com/u/11832552'], favorite: false},
+      { id: 5, avatar: 'https://avatars.githubusercontent.com/u/11832552', websiteLink: '', githubLink: '', name: "Swift", description: "Aseprite is a proprietary, source-available image editor designed primarily for pixel art drawing and animation.", tags: [{value: "C++", color: "pink"}, {value: "python", color: "darkblue"}], cotr_avatar: ['https://avatars.githubusercontent.com/u/11832552'], favorite: false },
+      { id: 6, avatar: 'https://avatars.githubusercontent.com/u/11832552', websiteLink: '', githubLink: '', name: "HyprLand", description: "Aseprite is a proprietary, source-available image editor designed primarily for pixel art drawing and animation.", tags: [{value: "Html", color: "lightpink"}, {value: "python", color: "blue"}], cotr_avatar: ['https://avatars.githubusercontent.com/u/11832552'], favorite: false }
     ]
   ]
 
@@ -51,6 +52,17 @@ export class OverviewComponent {
 
   goToPage(index: number): void {
     this.index = index
+  }
+
+  subscribePrj(prjId: number): void {
+    this.favoritePrj.push(prjId);
+  }
+
+  unsubscribePrj(prjId: number): void {
+    const index: number = this.favoritePrj.findIndex(value => value === prjId);
+    if (index > -1) {
+      this.favoritePrj.splice(index, 1);
+    }
   }
 
 }
