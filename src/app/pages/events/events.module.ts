@@ -5,12 +5,17 @@ import {
 import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
 import {CommonModule} from "@angular/common";
 import {EventsComponent} from "./events.component";
+import {RouterModule} from "@angular/router";
+import {ProjectsComponent} from "../projects/projects.component";
 
 
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule.forChild([
+      {path: '', component: EventsComponent}
+    ]),
   ],
   providers: [
     {

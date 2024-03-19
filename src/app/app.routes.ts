@@ -34,6 +34,14 @@ export const routes: Routes = [
       {
         path: 'company',
         loadChildren: () => import('./pages/company/company.module').then(m => m.CompanyModule),
+      },
+      {
+        path: 'notice',
+        loadChildren: () => import('./pages/notifications/notifications.module').then(m => m.NotificationsModule),
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('./pages/user-profile/user-profile.module').then(m => m.UserProfileModule),
       }
     ],
   },
