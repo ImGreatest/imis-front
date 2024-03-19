@@ -2,6 +2,8 @@
 
 
 
+@max-width: 315px;
+
 .row {
   display: flex;
   flex-direction: row;
@@ -92,7 +94,7 @@
   margin-left: 2rem;
 
   @media only screen and (max-device-width: 1920px) {
-    max-width: 400px;
+    max-width: @max-width;
   }
 
   @media only screen and (max-width: 1280px) {
@@ -117,7 +119,7 @@
   user-select: none;
 
   @media only screen and (max-device-width: 1920px) {
-    max-width: 315px;
+    max-width: @max-width;
   }
 
   @media only screen and (max-width: 1919px) {
@@ -143,6 +145,7 @@
 
 .project-cell-tag-cell {
   margin-left: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .project-cell-label-icons {
@@ -180,9 +183,11 @@
 
 .project-cell-tags-container {
   .row();
-  align-items: center;
+  flex-wrap: wrap;
+  max-width: @max-width;
+  align-items: flex-start;
   margin-left: 1.5rem;
-  margin-top: 3rem;
+  margin-top: 1rem;
   user-select: none;
 }
 

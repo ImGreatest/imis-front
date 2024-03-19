@@ -56,8 +56,12 @@
                   tuiMode="onLight"
                   size="m"
                   class="project-cell-star-icon"
+                  (click)="favoritePrj.includes(prj['id']) ? unsubscribePrj(prj['id']) : subscribePrj(prj['id'])"
                 >
-                  <tui-icon icon="tuiIconStar"></tui-icon>
+                  <tui-svg
+                    src="tuiIconStarLarge"
+                    [style.fill]="favoritePrj.includes(prj['id']) ? 'var(--tui-support-07)': 'transparent'"
+                  ></tui-svg>
                 </button>
                 <button
                   tuiIconButton
@@ -76,8 +80,8 @@
               <tui-tag
                 *ngFor="let tag of prj.tags"
                 class="project-cell-tag-cell"
-                [value]="tag"
-                [style.background]="'#3572A5'"
+                [value]="tag.value"
+                [style.background]="tag.color"
               ></tui-tag>
             </div>
             <div class="project-cell-additional">
@@ -85,11 +89,13 @@
                 <a
                   icon="tuiIconLink2Large"
                   tuiLink
+                  [href]="prj.githubLink"
                   class="project-cell-link-icon"
                 ></a>
                 <a
                   icon="tuiIconGithubLarge"
                   tuiLink
+                  [href]="prj.githubLink"
                   class="project-cell-git-icon"
                 ></a>
               </div>
