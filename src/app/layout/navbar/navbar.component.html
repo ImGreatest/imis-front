@@ -17,24 +17,6 @@
         </div>
       </div>
       <div class="links-section">
-        <div (mouseout)="closeBellBar()" (mouseover)="showBellBar()">
-          <tui-badged-content
-            colorTop="var(--tui-error-fill)"
-            [contentTop]="5"
-            size="l"
-            class="tui-space_right-5 count-notification-select"
-            [rounded]="true"
-          >
-          <a
-            tuiMarkerIcon
-            mode="link"
-            size="m"
-            src="tuiIconBellLarge"
-            [style.color]="'rgba(0, 0, 0, 0.48)'"
-          ></a>
-          <div *ngIf="barBell" class="hover-bar bell-bar"></div>
-          </tui-badged-content>
-        </div>
         <div class="cell-container" (mouseover)="showProfileBar()" (mouseout)="closeProfileBar()">
           <tui-avatar
             class="avatar"
@@ -143,6 +125,28 @@
         </div>
       </section>
     </aside>
+  </div>
+</div>
+
+<div class="notice-button-layout">
+  <div class="notice-button-container">
+    <tui-badged-content
+      colorTop="var(--tui-primary)"
+      [contentTop]="5"
+      size="l"
+      class="tui-space_right-5 count-notification-select"
+      [rounded]="true"
+    >
+    <a
+      tuiMarkerIcon
+      mode="secondary"
+      tuiMode="onLight"
+      size="m"
+      src="tuiIconBellLarge"
+      [style.color]="'rgba(0, 0, 0, 0.48)'"
+    ></a>
+      <div *ngIf="barBell" class="hover-bar bell-bar"></div>
+    </tui-badged-content>
   </div>
 </div>
 
