@@ -1,7 +1,6 @@
-import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
-import {TuiAppearance, TuiDurationOptions, tuiScaleIn} from "@taiga-ui/core";
+import {ChangeDetectionStrategy, Component, Output, ViewEncapsulation} from '@angular/core';
+import {TuiAppearance, tuiScaleIn} from "@taiga-ui/core";
 import {EMonthRedact} from "../../common/enum/datas-date";
-import {tuiPure} from "@taiga-ui/cdk";
 
 
 
@@ -24,22 +23,12 @@ import {tuiPure} from "@taiga-ui/cdk";
   animations: [tuiScaleIn],
 })
 export class NavbarComponent {
-  protected statusSideBar: boolean = false;
-  protected statusNotice: boolean = false;
+  statusSideBar: boolean = false;
+  @Output()
+  statusNotice: boolean = false;
   protected barNav: boolean = false
   protected barProfile: boolean = false;
   protected isHoveredBell: boolean = false;
-
-  convertDate(date: Date): string {
-    const month: { [key: string]: EMonthRedact } = EMonthRedact;
-    return `${date.getDay()} ${month[date.getMonth()]} ${date.getFullYear()}`;
-  }
-
-  readonly todoTasks = [
-    {title: 'Install Angular', completed: true},
-    {title: 'Install Taiga UI', completed: false},
-    {title: 'Look into "Getting Started"', completed: false},
-  ];
 
   readonly buttonList = [
     {title: 'Главная', routing: '/', icon: 'tuiIconHome', onHover: false},
@@ -49,9 +38,17 @@ export class NavbarComponent {
     {title: 'Компании', routing: '/company', icon: 'tuiIconBriefcaseLarge', onHover: false}
   ]
 
-  @tuiPure
-  getAnimation(duration: number): TuiDurationOptions {
-    return {value: '', params: {duration}};
+  @Output()
+  noticeList = [
+    {date: "13 марта 2024", content: [{title: "Внимание", text: "Ваш проект отслеживается - 15 пользователями"}, {title: "Внимание2", text: "Ваш проект отслеживается - 15 пользователями"}]},
+    {date: "12 марта 2024", content: [{title: "Важная новость", text: "Ваш проект отслеживается - 151 пользователями"}]},
+  ]
+
+  constructor() {}
+
+  convertDate(date: Date): string {
+    const month: { [key: string]: EMonthRedact } = EMonthRedact;
+    return `${date.getDay()} ${month[date.getMonth()]} ${date.getFullYear()}`;
   }
 
   showNavBar(): void {
@@ -63,7 +60,7 @@ export class NavbarComponent {
   }
 
   showProfileBar(): void {
-    this.barProfile = !this.barProfile;
+    this.barProfile = true;
   }
 
   closeProfileBar(): void {
@@ -75,10 +72,9 @@ export class NavbarComponent {
   }
 
   closeSideBar(active?: boolean): void {
+    console.log(active)
     if (active === undefined || !active) {
-      setTimeout(() => {
-        this.statusSideBar = false;
-      }, 25 / 2)
+      this.statusSideBar = false;
     }
   }
 
@@ -87,7 +83,6 @@ export class NavbarComponent {
   }
 
   closeNotice(active?: boolean): void {
-    console.log(active)
     if (active === undefined || !active) {
       this.statusNotice = false;
     }
