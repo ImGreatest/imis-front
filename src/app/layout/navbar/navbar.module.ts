@@ -3,7 +3,7 @@ import {NavbarComponent} from "./navbar.component";
 import {
   TUI_SANITIZER,
   TuiButtonModule,
-  TuiDialogModule, TuiModeModule,
+  TuiDialogModule, TuiModeModule, TuiScrollbarModule,
   TuiSvgModule
 } from "@taiga-ui/core";
 import {
@@ -47,6 +47,7 @@ import {TuiBarModule} from "@taiga-ui/addon-charts";
     TuiBadgedContentModule,
     TuiBarModule,
     TuiModeModule,
+    TuiScrollbarModule,
   ],
   providers: [
     {

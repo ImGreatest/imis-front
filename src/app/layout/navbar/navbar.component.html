@@ -17,25 +17,6 @@
         </div>
       </div>
       <div class="links-section">
-        <div (mouseout)="closeBellBar()" (mouseover)="showBellBar()">
-          <tui-badged-content
-            colorTop="var(--tui-error-fill)"
-            [contentTop]="5"
-            size="l"
-            class="tui-space_right-5 count-notification-select"
-            [rounded]="true"
-            routerLink="/notice"
-          >
-          <a
-            tuiMarkerIcon
-            mode="link"
-            size="m"
-            src="tuiIconBellLarge"
-            [style.color]="'rgba(0, 0, 0, 0.48)'"
-          ></a>
-          <div *ngIf="barBell" class="hover-bar bell-bar"></div>
-          </tui-badged-content>
-        </div>
         <div class="cell-container" (mouseover)="showProfileBar()" (mouseout)="closeProfileBar()">
           <tui-avatar
             class="avatar"
@@ -158,25 +139,57 @@
   </div>
 </div>
 
-<div class="notice-button-layout">
+<div class="notice-button-layout" (tuiActiveZoneChange)="closeNotice($event)">
+  <div *ngIf="statusNotice" class="notice-page-container">
+    <div class="notice-content-container">
+      <div style="width: 100%; margin: 0 15px 15px; display: flex; flex-direction: column">
+        <div style="display: flex; flex-direction: row; align-items: center">
+          <p class="notice-content-label">Уведомления</p>
+          <div style="margin-left: auto">
+            <button
+              appearance="secondary"
+              tuiMode="onLight"
+              tuiIconButton
+              size="s"
+              class="close-button"
+              (click)="closeSideBar()"
+            >
+            <tui-icon icon="tuiIconCloseLarge"></tui-icon>
+            </button>
+          </div>
+        </div>
+        <div style="margin: 5px; border: 1px solid #D7D7D7; border-radius: 24px; height: 100%; display: flex; flex-direction: column">
+          <div id="notice-list">
+            <tui-scrollbar>
+              <div style="margin: 5px 15px 10px; display: flex; flex-direction: column">
+                <div style="display: flex; flex-direction: row; align-items: center">
+                    <p class="notice-card-date-label">13 марта 2024</p>
+                    <tui-icon
+                      style="margin-left: auto"
+                      tuiMode="onLight"
+                      icon="tuiIconTrash2Large"
+                      class="trash-icon-hover"
+                    ></tui-icon>
+                </div>
+                <div>
+
+                </div>
+              </div>
+            </tui-scrollbar>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="notice-button-container">
-    <tui-badged-content
-      colorTop="var(--tui-primary)"
-      [contentTop]="5"
-      size="l"
-      class="tui-space_right-5 count-notification-select"
-      [rounded]="true"
-    >
-    <a
-      tuiMarkerIcon
-      mode="secondary"
-      tuiMode="onLight"
+    <tui-marker-icon
       size="m"
       src="tuiIconBellLarge"
-      [style.color]="'rgba(0, 0, 0, 0.48)'"
-    ></a>
-      <div *ngIf="barBell" class="hover-bar bell-bar"></div>
-    </tui-badged-content>
+      (mouseover)="isHoveredBell = true"
+      (mouseout)="isHoveredBell = false"
+      [ngStyle]="{ 'color': isHoveredBell ? 'var(--tui-base-02)' : 'var(--tui-base-01)', 'background': isHoveredBell ? 'var(--tui-primary-hover)' : 'var(--tui-primary)'}"
+      (click)="openNotice()"
+    ></tui-marker-icon>
   </div>
 </div>
 

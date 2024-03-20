@@ -23,9 +23,10 @@ import {EMonthRedact} from "../../common/enum/datas-date";
 })
 export class NavbarComponent {
   protected statusSideBar: boolean = false;
+  protected statusNotice: boolean = false;
   protected barNav: boolean = false
-  protected barBell: boolean = false;
   protected barProfile: boolean = false;
+  protected isHoveredBell: boolean = false;
 
   convertDate(date: Date): string {
     const month: { [key: string]: EMonthRedact } = EMonthRedact;
@@ -38,14 +39,6 @@ export class NavbarComponent {
 
   closeNavBar(): void {
     this.barNav = false;
-  }
-
-  showBellBar(): void {
-    this.barBell = true;
-  }
-
-  closeBellBar(): void {
-    this.barBell = false;
   }
 
   showProfileBar(): void {
@@ -63,6 +56,17 @@ export class NavbarComponent {
   closeSideBar(active?: boolean): void {
     if (active === undefined || !active) {
       this.statusSideBar = false;
+    }
+  }
+
+  openNotice(): void {
+    this.statusNotice = !this.statusNotice;
+  }
+
+  closeNotice(active?: boolean): void {
+    console.log(active)
+    if (active === undefined || !active) {
+      this.statusNotice = false;
     }
   }
 }
