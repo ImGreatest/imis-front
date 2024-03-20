@@ -54,85 +54,24 @@
       <section>
         <div class="sidebar-menu">
           <button
+            *ngFor="let button of buttonList"
             tuiButton
             size="xl"
             shape="rounded"
             appearance="floating"
             tuiMode="onLight"
             class="offset-button sidebar-button"
+            [class.sidebar-button-hover]="button.onHover"
+            (mouseenter)="button.onHover = true"
+            (mouseleave)="button.onHover = false"
             (click)="closeSideBar()"
-            routerLink="/overview"
+            [routerLink]="button.routing"
           >
             <tui-icon
-              icon="tuiIconHome"
+              [icon]="button.icon"
               class="sidebar-button-icon"
             ></tui-icon>
-          Главная</button>
-          <button
-            tuiButton
-            size="xl"
-            [style.width.px]="200"
-            shape="rounded"
-            appearance="floating"
-            tuiMode="onLight"
-            class="offset-button sidebar-button"
-            (click)="closeSideBar()"
-            routerLink="/rating"
-          >
-            <tui-icon
-              icon="tuiIconBarChartLarge"
-              class="sidebar-button-icon"
-            ></tui-icon>
-            Рейтинг
-          </button>
-          <button
-            tuiButton
-            size="xl"
-            shape="rounded"
-            appearance="floating"
-            tuiMode="onLight"
-            class="offset-button sidebar-button"
-            (click)="closeSideBar()"
-            routerLink="/projects"
-          >
-            <tui-icon
-              icon="tuiIconBookLarge"
-              class="sidebar-button-icon"
-            ></tui-icon>
-            Проекты
-          </button>
-          <button
-            tuiButton
-            size="xl"
-            shape="rounded"
-            appearance="floating"
-            tuiMode="onLight"
-            class="offset-button sidebar-button"
-            (click)="closeSideBar()"
-            routerLink="/events"
-          >
-            <tui-icon
-              icon="tuiIconCalendarLarge"
-              class="sidebar-button-icon"
-            ></tui-icon>
-            События
-          </button>
-          <button
-            tuiButton
-            size="xl"
-            shape="rounded"
-            appearance="floating"
-            tuiMode="onLight"
-            class="sidebar-button"
-            (click)="closeSideBar()"
-            routerLink="/company"
-          >
-            <tui-icon
-              icon="tuiIconBriefcaseLarge"
-              class="sidebar-button-icon"
-            ></tui-icon>
-            Компании
-          </button>
+          {{ button.title }}</button>
         </div>
       </section>
     </aside>
@@ -165,13 +104,12 @@
                 <div style="display: flex; flex-direction: row; align-items: center">
                     <p class="notice-card-date-label">13 марта 2024</p>
                     <tui-icon
-                      style="margin-left: auto"
                       tuiMode="onLight"
                       icon="tuiIconTrash2Large"
                       class="trash-icon-hover"
                     ></tui-icon>
                 </div>
-                <div>
+                <div style="width: 100%; margin: 0.5rem">
 
                 </div>
               </div>

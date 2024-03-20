@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
-import {TuiAppearance} from "@taiga-ui/core";
+import {TuiAppearance, TuiDurationOptions, tuiScaleIn} from "@taiga-ui/core";
 import {EMonthRedact} from "../../common/enum/datas-date";
+import {tuiPure} from "@taiga-ui/cdk";
 
 
 
@@ -20,6 +21,7 @@ import {EMonthRedact} from "../../common/enum/datas-date";
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [tuiScaleIn],
 })
 export class NavbarComponent {
   protected statusSideBar: boolean = false;
@@ -31,6 +33,25 @@ export class NavbarComponent {
   convertDate(date: Date): string {
     const month: { [key: string]: EMonthRedact } = EMonthRedact;
     return `${date.getDay()} ${month[date.getMonth()]} ${date.getFullYear()}`;
+  }
+
+  readonly todoTasks = [
+    {title: 'Install Angular', completed: true},
+    {title: 'Install Taiga UI', completed: false},
+    {title: 'Look into "Getting Started"', completed: false},
+  ];
+
+  readonly buttonList = [
+    {title: 'Главная', routing: '/', icon: 'tuiIconHome', onHover: false},
+    {title: 'Рейтинг', routing: '/rating', icon: 'tuiIconBarChartLarge', onHover: false},
+    {title: 'Проекты', routing: '/projects', icon: 'tuiIconBookLarge', onHover: false},
+    {title: 'События', routing: '/events', icon: 'tuiIconCalendarLarge', onHover: false},
+    {title: 'Компании', routing: '/company', icon: 'tuiIconBriefcaseLarge', onHover: false}
+  ]
+
+  @tuiPure
+  getAnimation(duration: number): TuiDurationOptions {
+    return {value: '', params: {duration}};
   }
 
   showNavBar(): void {
@@ -55,7 +76,9 @@ export class NavbarComponent {
 
   closeSideBar(active?: boolean): void {
     if (active === undefined || !active) {
-      this.statusSideBar = false;
+      setTimeout(() => {
+        this.statusSideBar = false;
+      }, 25 / 2)
     }
   }
 

@@ -16,7 +16,7 @@ import {
 import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
 import {TuiSidebarModule} from "@taiga-ui/addon-mobile";
 import {TuiAccordionModule, TuiBadgedContentModule, TuiMarkerIconModule} from "@taiga-ui/kit";
-import {TuiActiveZoneModule} from "@taiga-ui/cdk";
+import {TuiActiveZoneModule, TuiForModule, TuiHoveredModule} from "@taiga-ui/cdk";
 import {CommonModule, NgIf} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {TuiBarModule} from "@taiga-ui/addon-charts";
@@ -48,6 +48,8 @@ import {TuiBarModule} from "@taiga-ui/addon-charts";
     TuiBarModule,
     TuiModeModule,
     TuiScrollbarModule,
+    TuiHoveredModule,
+    TuiForModule,
   ],
   providers: [
     {

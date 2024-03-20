@@ -6,8 +6,6 @@
 @bar-color: var(--tui-primary-hover);
 
 
-
-
 [tuiWrapper][data-appearance='navbar-navigation-button'] {
   background-color: transparent;
   color: rgba(0, 0, 0, 0.64);
@@ -66,6 +64,44 @@ nav {
 
 .sidebar-button {
   width: 200px;
+
+  :active {
+    animation: button-tap 0.3s ease;
+  }
+}
+
+.sidebar-button-hover {
+  transform: scale(1.05);
+  animation: button-grow-up 0.3s ease-in-out;
+}
+
+
+@keyframes button-grow-up {
+  0% {
+    transform: scale(1.05);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes button-tap {
+  0% {
+    transform: scale(1.05);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1.05);
+  }
 }
 
 .close-icon {
@@ -167,8 +203,8 @@ nav {
   position: absolute;
   z-index: 999;
   margin-right: 15px;
-  width: 275px;
-  height: 425px;
+  width: 300px;
+  height: 475px;
   display: flex;
 }
 
@@ -196,12 +232,14 @@ nav {
 
 .trash-icon-hover {
   .transition(color);
+  margin-left: auto;
   color: var(--tui-base-05);
 
   &:hover {
     color: var(--tui-base-06);
   }
+
   &:active {
-    color: var(--tui-base-08)
+    color: var(--tui-base-08);
   }
 }
