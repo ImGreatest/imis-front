@@ -16,7 +16,7 @@
       </button>
       <div id="nav-navigation-button" [ngStyle]="{ 'background': barNav ? 'var(--tui-primary-hover)' : 'transparent'}" class="hover-bar"></div>
     </div>
-    <div id="nav-avatar-stack">
+    <div id="nav-avatar-stack" *ngIf="checkRouterUrl()">
       <tui-avatar
         class="profile-avatar"
         [style.width.px]="64"
@@ -44,7 +44,7 @@
             tuiIconButton
             size="s"
             class="close-button"
-            (click)="statusSideBar = false"
+            (click)="closeSideBar()"
             >
             <tui-icon icon="tuiIconCloseLarge"></tui-icon>
           </button>

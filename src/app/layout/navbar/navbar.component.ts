@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, Output, ViewEncapsulation} from '@angular/core';
 import {TuiAppearance, tuiScaleIn} from "@taiga-ui/core";
 import {EMonthRedact} from "../../common/enum/datas-date";
+import {Router} from "@angular/router";
 
 
 
@@ -23,7 +24,7 @@ import {EMonthRedact} from "../../common/enum/datas-date";
   animations: [tuiScaleIn],
 })
 export class NavbarComponent {
-  statusSideBar: boolean = false;
+  protected statusSideBar: boolean = false;
   @Output()
   statusNotice: boolean = false;
   protected barNav: boolean = false
@@ -44,7 +45,7 @@ export class NavbarComponent {
     {date: "12 марта 2024", content: [{title: "Важная новость", text: "Ваш проект отслеживается - 151 пользователями"}]},
   ]
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   convertDate(date: Date): string {
     const month: { [key: string]: EMonthRedact } = EMonthRedact;
@@ -72,7 +73,6 @@ export class NavbarComponent {
   }
 
   closeSideBar(active?: boolean): void {
-    console.log(active)
     if (active === undefined || !active) {
       this.statusSideBar = false;
     }
@@ -86,5 +86,13 @@ export class NavbarComponent {
     if (active === undefined || !active) {
       this.statusNotice = false;
     }
+  }
+
+  checkRouterUrl() {
+    if (this.router.url !== '/profile') {
+      return true
+    }
+    this.closeProfileBar()
+    return false;
   }
 }
