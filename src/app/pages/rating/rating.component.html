@@ -1,9 +1,47 @@
-<p>rating works!</p>
 <div id="page">
   <div id="rating-filters">
-
+    <tui-input
+      tuiTextfieldSize="m"
+      tuiTextfieldIconLeft="tuiIconSearch"
+      [style.width.px]="200"
+    >Поиск</tui-input>
   </div>
-  <div id="rating-table">
-
+  <div id="rating-table" style="background: grey; margin-right: 7.5%">
+    <table
+      tuiTable
+      [columns]="columns"
+    >
+      <thead>
+        <tr *ngFor="let col of columns" tuiThGroup>
+          <ng-container *ngFor="let col of columns">
+            <th
+              *tuiHead="col"
+              tuiTh
+            >
+              {{ col }}
+            </th>
+          </ng-container>
+        </tr>
+      </thead>
+      <tbody
+        tuiTbody
+        *tuiLet="data | tuiTableSort as sortedData"
+        [data]="sortedData"
+      >
+        <tr
+          tuiTr
+          *ngFor="let item of sortedData"
+        >
+          <ng-container *ngFor="let col of columns">
+            <td
+              *tuiCell="col"
+              tuiTd
+            >
+              {{ item[col] }}
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
