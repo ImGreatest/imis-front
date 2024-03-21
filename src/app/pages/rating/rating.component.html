@@ -1,47 +1,127 @@
 <div id="page">
   <div id="rating-filters">
-    <tui-input
-      tuiTextfieldSize="m"
-      tuiTextfieldIconLeft="tuiIconSearch"
-      [style.width.px]="200"
-    >Поиск</tui-input>
+    <div style="margin: 1rem">
+      <tui-input
+        [tuiTextfieldCleaner]="true"
+        tuiTextfieldSize="m"
+        tuiTextfieldIconLeft="tuiIconSearch"
+        [style.width.px]="200"
+      >Поиск</tui-input>
+    </div>
   </div>
-  <div id="rating-table" style="background: grey; margin-right: 7.5%">
+  <div style="display: flex; flex-direction: column; align-items: center; margin: 1.5rem 20% 1.5rem 1.5rem; width: 100%;">
     <table
+      style="margin: 1rem; width: 100%"
       tuiTable
       [columns]="columns"
     >
       <thead>
-        <tr *ngFor="let col of columns" tuiThGroup>
-          <ng-container *ngFor="let col of columns">
-            <th
-              *tuiHead="col"
-              tuiTh
-            >
-              {{ col }}
-            </th>
-          </ng-container>
+        <tr tuiThGroup>
+          <th
+            *tuiHead="'number'"
+            tuiTh
+            [sorter]="null"
+          ></th>
+          <th
+            *tuiHead="'name'"
+            tuiTh
+          >
+            Name
+          </th>
+          <th
+            *tuiHead="'email'"
+            tuiTh
+          >
+            E-mail
+          </th>
+          <th
+            *tuiHead="'status'"
+            tuiTh
+          >
+            Status
+          </th>
+          <th
+            *tuiHead="'tags'"
+            tuiTh
+            [sorter]="null"
+          >
+            Tags
+          </th>
+          <th
+            *tuiHead="'actions'"
+            tuiTh
+            [sorter]="null"
+          ></th>
         </tr>
       </thead>
       <tbody
+        *tuiLet="users | tuiTableSort as sortedUsers"
         tuiTbody
-        *tuiLet="data | tuiTableSort as sortedData"
-        [data]="sortedData"
+        [data]="sortedUsers"
       >
         <tr
+          *ngFor="let item of sortedUsers; let index = index"
           tuiTr
-          *ngFor="let item of sortedData"
         >
-          <ng-container *ngFor="let col of columns">
-            <td
-              *tuiCell="col"
+          <td
+            *tuiCell="'number'"
+            tuiTd
+          >
+            {{ index + 1 }}
+          </td>
+          <td
+            *tuiCell="'name'"
+            tuiTd
+          >
+            {{ item.name }}
+          </td>
+          <td
+              *tuiCell="'email'"
               tuiTd
             >
-              {{ item[col] }}
+              <a
+                  *ngIf="item.email"
+                  tuiLink
+                  [href]="'mailto:' + item.email"
+              >
+                  {{ item.email }}
+              </a>
+          </td>
+          <td
+            *tuiCell="'tags'"
+            tuiTd
+            >
+              <tui-tag
+                  *ngFor="let tag of item.tags"
+                  class="tui-space_right-1"
+                  [autoColor]="true"
+                  [value]="tag"
+              ></tui-tag>
             </td>
-          </ng-container>
+          <td
+            *tuiCell="'actions'"
+            tuiTd
+          >
+            <button
+              tuiIconButton
+              appearance="flat"
+              tuiMode="onLight"
+              icon="tuiIconMoreHorizontalLarge"
+              shape="rounded"
+              size="s"
+              title="more"
+              class="more-icon"
+            ></button>
+          </td>
         </tr>
       </tbody>
     </table>
+    <div class="pagination-offset">
+      <tui-pagination
+        [index]="index"
+        [length]="length"
+        (indexChange)="goToPage($event)"
+      ></tui-pagination>
+    </div>
   </div>
 </div>
