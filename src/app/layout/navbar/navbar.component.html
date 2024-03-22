@@ -1,52 +1,32 @@
 <div (tuiActiveZoneChange)="closeSideBar($event)">
   <nav>
-    <div class="navbar">
-      <div class="navigation-section">
-        <div class="cell-container">
-          <button
-            tuiButton
-            type="button"
-            appearance="navbar-navigation-button"
-            (click)="openSideBar()"
-            (mouseover)="showNavBar()"
-            (mouseout)="closeNavBar()"
-          >
-          <tui-icon class="sidebar-button-icon" icon="tuiIconMenuLarge"></tui-icon>
-          Навигация</button>
-          <div *ngIf="barNav" class="hover-bar navigation-bar"></div>
-        </div>
-      </div>
-      <div class="links-section">
-        <div (mouseout)="closeBellBar()" (mouseover)="showBellBar()">
-          <tui-badged-content
-            colorTop="var(--tui-error-fill)"
-            [contentTop]="5"
-            size="l"
-            class="tui-space_right-5 count-notification-select"
-            [rounded]="true"
-            routerLink="/notice"
-          >
-          <a
-            tuiMarkerIcon
-            mode="link"
-            size="m"
-            src="tuiIconBellLarge"
-            [style.color]="'rgba(0, 0, 0, 0.48)'"
-          ></a>
-          <div *ngIf="barBell" class="hover-bar bell-bar"></div>
-          </tui-badged-content>
-        </div>
-        <div class="cell-container" (mouseover)="showProfileBar()" (mouseout)="closeProfileBar()">
-          <tui-avatar
-            class="avatar"
-            [style.width.px]="64"
-            [style.height.px]="64"
-            src="tuiIconUserLarge"
-            routerLink="/profile"
-          ></tui-avatar>
-          <div *ngIf="barProfile" class="hover-bar"></div>
-        </div>
-      </div>
+    <div id="nav-navigation-stack">
+      <button
+        tuiButton
+        type="button"
+        size="l"
+        [style.align-items]="'top'"
+        appearance="navbar-navigation-button"
+        (mouseenter)="showNavBar()"
+        (mouseleave)="closeNavBar()"
+        (click)="openSideBar()"
+      >
+        <tui-icon class="sidebar-button-icon" icon="tuiIconMenuLarge"></tui-icon>
+        Навигация
+      </button>
+      <div id="nav-navigation-button" [ngStyle]="{ 'background': barNav ? 'var(--tui-primary-hover)' : 'transparent'}" class="hover-bar"></div>
+    </div>
+    <div id="nav-avatar-stack" *ngIf="checkRouterUrl()">
+      <tui-avatar
+        class="profile-avatar"
+        [style.width.px]="64"
+        [style.height.px]="64"
+        (mouseenter)="showProfileBar()"
+        (mouseleave)="closeProfileBar()"
+        src="tuiIconUserLarge"
+        routerLink="/profile"
+      ></tui-avatar>
+      <div [ngStyle]="{ 'background': barProfile ? 'var(--tui-primary-hover)' : 'transparent'}" class="hover-bar"></div>
     </div>
   </nav>
 
@@ -73,111 +53,42 @@
       <section>
         <div class="sidebar-menu">
           <button
+            *ngFor="let button of buttonList"
             tuiButton
             size="xl"
             shape="rounded"
             appearance="floating"
             tuiMode="onLight"
             class="offset-button sidebar-button"
-            (click)="closeSideBar()"
-            routerLink="/overview"
+            [class.sidebar-button-hover]="button.onHover"
+            (mouseenter)="button.onHover = true"
+            (mouseleave)="button.onHover = false"
+            (click)="statusSideBar = false"
+            [routerLink]="button.routing"
           >
             <tui-icon
-              icon="tuiIconHome"
+              [icon]="button.icon"
               class="sidebar-button-icon"
             ></tui-icon>
-          Главная</button>
-          <button
-            tuiButton
-            size="xl"
-            [style.width.px]="200"
-            shape="rounded"
-            appearance="floating"
-            tuiMode="onLight"
-            class="offset-button sidebar-button"
-            (click)="closeSideBar()"
-            routerLink="/rating"
-          >
-            <tui-icon
-              icon="tuiIconBarChartLarge"
-              class="sidebar-button-icon"
-            ></tui-icon>
-            Рейтинг
-          </button>
-          <button
-            tuiButton
-            size="xl"
-            shape="rounded"
-            appearance="floating"
-            tuiMode="onLight"
-            class="offset-button sidebar-button"
-            (click)="closeSideBar()"
-            routerLink="/projects"
-          >
-            <tui-icon
-              icon="tuiIconBookLarge"
-              class="sidebar-button-icon"
-            ></tui-icon>
-            Проекты
-          </button>
-          <button
-            tuiButton
-            size="xl"
-            shape="rounded"
-            appearance="floating"
-            tuiMode="onLight"
-            class="offset-button sidebar-button"
-            (click)="closeSideBar()"
-            routerLink="/events"
-          >
-            <tui-icon
-              icon="tuiIconCalendarLarge"
-              class="sidebar-button-icon"
-            ></tui-icon>
-            События
-          </button>
-          <button
-            tuiButton
-            size="xl"
-            shape="rounded"
-            appearance="floating"
-            tuiMode="onLight"
-            class="sidebar-button"
-            (click)="closeSideBar()"
-            routerLink="/company"
-          >
-            <tui-icon
-              icon="tuiIconBriefcaseLarge"
-              class="sidebar-button-icon"
-            ></tui-icon>
-            Компании
-          </button>
+          {{ button.title }}</button>
         </div>
       </section>
     </aside>
   </div>
 </div>
 
-<div class="notice-button-layout">
+<router-outlet></router-outlet>
+
+<div class="notice-button-layout" (tuiActiveZoneChange)="closeNotice($event)">
+  <app-notice [statusNotice]="statusNotice" [noticeList]="noticeList"></app-notice>
   <div class="notice-button-container">
-    <tui-badged-content
-      colorTop="var(--tui-primary)"
-      [contentTop]="5"
-      size="l"
-      class="tui-space_right-5 count-notification-select"
-      [rounded]="true"
-    >
-    <a
-      tuiMarkerIcon
-      mode="secondary"
-      tuiMode="onLight"
+    <tui-marker-icon
       size="m"
       src="tuiIconBellLarge"
-      [style.color]="'rgba(0, 0, 0, 0.48)'"
-    ></a>
-      <div *ngIf="barBell" class="hover-bar bell-bar"></div>
-    </tui-badged-content>
+      (mouseover)="isHoveredBell = true"
+      (mouseout)="isHoveredBell = false"
+      [ngStyle]="{ 'color': isHoveredBell ? 'var(--tui-base-02)' : 'var(--tui-base-01)', 'background': isHoveredBell ? 'var(--tui-primary-hover)' : 'var(--tui-primary)'}"
+      (click)="openNotice()"
+    ></tui-marker-icon>
   </div>
 </div>
-
-<router-outlet></router-outlet>

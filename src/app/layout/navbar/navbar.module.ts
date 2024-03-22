@@ -1,25 +1,26 @@
 import {NgModule} from "@angular/core";
 import {NavbarComponent} from "./navbar.component";
 import {
-  TUI_SANITIZER,
-  TuiButtonModule,
-  TuiDialogModule, TuiModeModule,
+  TUI_SANITIZER, TuiButtonModule,
+  TuiDialogModule, TuiLinkModule, TuiModeModule, TuiScrollbarModule,
   TuiSvgModule
 } from "@taiga-ui/core";
 import {
   TuiAppearanceModule, TuiAvatarModule,
   TuiBadgeModule,
-  TuiButtonCloseModule, TuiFallbackSrcModule,
+  TuiButtonCloseModule, TuiFadeModule, TuiFallbackSrcModule,
   TuiIconModule,
   TuiNavigationModule
 } from '@taiga-ui/experimental';
 import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
 import {TuiSidebarModule} from "@taiga-ui/addon-mobile";
 import {TuiAccordionModule, TuiBadgedContentModule, TuiMarkerIconModule} from "@taiga-ui/kit";
-import {TuiActiveZoneModule} from "@taiga-ui/cdk";
+import {TuiActiveZoneModule, TuiForModule, TuiHoveredModule} from "@taiga-ui/cdk";
 import {CommonModule, NgIf} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {TuiBarModule} from "@taiga-ui/addon-charts";
+import {NoticeComponent} from "./notice/notice.component";
+
 
 
 @NgModule({
@@ -47,6 +48,13 @@ import {TuiBarModule} from "@taiga-ui/addon-charts";
     TuiBadgedContentModule,
     TuiBarModule,
     TuiModeModule,
+    TuiScrollbarModule,
+    TuiHoveredModule,
+    TuiForModule,
+    TuiFadeModule,
+    TuiLinkModule,
+    TuiButtonModule,
+    TuiButtonModule,
   ],
   providers: [
     {
@@ -54,7 +62,7 @@ import {TuiBarModule} from "@taiga-ui/addon-charts";
       useClass: NgDompurifySanitizer
     },
   ],
-  declarations: [NavbarComponent],
+  declarations: [NoticeComponent, NavbarComponent],
   exports: [NavbarComponent],
 })
 export class NavbarModule {}

@@ -1,0 +1,57 @@
+<div *ngIf="statusNotice" class="notice-page-container">
+  <div class="notice-content-container">
+    <div class="notice-column-structure">
+      <div class="notice-container-upper-label">
+        <p class="notice-content-label">Уведомления</p>
+        <div [style.margin-left]="'auto'">
+          <button
+            appearance="flat"
+            tuiMode="onLight"
+            tuiIconButton
+            size="s"
+            class="close-button"
+            (click)="closeNotice()"
+          >
+          <tui-icon icon="tuiIconXCircleLarge"></tui-icon>
+          </button>
+        </div>
+      </div>
+      <div class="notice-container">
+        <div id="notice-list">
+          <tui-scrollbar style="max-height: 380px">
+            <div tuiFade="vertical" tuiScrollable class="scrollbar-fade">
+              <div *ngFor="let noticeInfo of noticeList" class="notice-card-main-container">
+                <div class="notice-card-container-label">
+                  <p class="notice-card-date-label">{{ noticeInfo.date }}</p>
+                  <tui-icon
+                    tuiMode="onLight"
+                    icon="tuiIconTrash2Large"
+                    class="trash-icon-hover"
+                  ></tui-icon>
+                </div>
+                <div *ngFor="let notice of noticeInfo.content" class="notice-card">
+                  <div class="notice-card-container">
+                    <div tuiFade class="fade">
+                      <p tuiMode="onLight" class="notice-card-label">{{ notice.title }}</p>
+                    </div>
+                    <button
+                      appearance="secondary"
+                      tuiMode="onLight"
+                      tuiIconButton
+                      size="xs"
+                      class="close-button"
+                      [style.margin-left]="'auto'"
+                    >
+                      <tui-icon id="notice-card-close-icon" icon="tuiIconXCircle"></tui-icon>
+                    </button>
+                  </div>
+                  <p tuiMode="onLight" class="notice-card-text">{{ notice.text }}</p>
+                </div>
+              </div>
+            </div>
+          </tui-scrollbar>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

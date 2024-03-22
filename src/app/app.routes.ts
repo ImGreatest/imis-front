@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import {NavbarComponent} from "./layout/navbar/navbar.component";
 import {Error404Component} from "./pages/error-404/error-404.component";
-import {EventsComponent} from "./pages/events/events.component";
 
 
 
@@ -34,10 +33,6 @@ export const routes: Routes = [
       {
         path: 'company',
         loadChildren: () => import('./pages/company/company.module').then(m => m.CompanyModule),
-      },
-      {
-        path: 'notice',
-        loadChildren: () => import('./pages/notifications/notifications.module').then(m => m.NotificationsModule),
       },
       {
         path: 'profile',

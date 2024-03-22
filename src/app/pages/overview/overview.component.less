@@ -2,7 +2,7 @@
 
 
 
-@max-width: 315px;
+@max-width: 290px;
 
 .row {
   display: flex;
@@ -43,11 +43,11 @@
 }
 
 .container-page-projects {
-  width: 100%;
+  width: 65%;
 }
 
 .container-projects {
-  width: 100%;
+  width: 65%;
   .column();
   margin: 2rem;
 }
@@ -85,8 +85,7 @@
 }
 
 .project-cell-project-label {
-  width: 100%;
-  max-width: 300px;
+  max-width: @max-width;
   color: var(tui-clear-hover);
   font-family: "Crimson Pro", serif;
   font-weight: bold;
@@ -98,17 +97,16 @@
   }
 
   @media only screen and (max-width: 1280px) {
-    max-width: 325px;
+    max-width: @max-width - 25px;
   }
 
   @media only screen and (max-width: 1000px) {
-    max-width: 275px;
+    max-width: 175px;
   }
 }
 
 .project-cell-project-desc {
   display: block;
-  width: 100%;
   color: var(--tui-focus);
   font-family: "Crimson Pro", serif;
   font-weight: 300;
@@ -123,15 +121,15 @@
   }
 
   @media only screen and (max-width: 1919px) {
-    max-width: 300px;
+    max-width: @max-width - 25px;
   }
 
   @media only screen and (max-device-width: 1600px) {
-    max-width: 275px;
+    max-width: 225px;
   }
 
     @media only screen and (max-width: 1500px) {
-    max-width: 225px;
+    max-width: 200px;
   }
 
   @media only screen and (max-width: 1366px) {
@@ -198,8 +196,8 @@
 
 .rating-cell {
   .container();
-  width: 40%;
-  margin: 2rem 2rem 2rem 0;
+  width: 25%;
+  margin: 2rem 12.5rem 2rem 0;
 }
 
 .rating-container-cell {
