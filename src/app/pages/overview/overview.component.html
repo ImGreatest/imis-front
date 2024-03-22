@@ -52,9 +52,9 @@
               <div class="project-cell-label-icons">
                 <button
                   tuiIconButton
-                  appearance="secondary"
+                  appearance="flat"
                   tuiMode="onLight"
-                  size="m"
+                  size="s"
                   class="project-cell-star-icon"
                   (click)="favoritePrj.includes(prj['id']) ? unsubscribePrj(prj['id']) : subscribePrj(prj['id'])"
                 >
@@ -67,7 +67,7 @@
                   tuiIconButton
                   appearance="secondary"
                   tuiMode="onLight"
-                  size="m"
+                  size="s"
                   class="project-cell-more-icon"
                 >
                   <tui-icon icon="tuiIconMoreHorizontal"></tui-icon>
@@ -167,7 +167,7 @@
           </tr>
         </tbody>
       </table>
-      <div style="margin-top: 2rem">
+      <div class="pagination-offset">
         <tui-pagination
           [index]="index"
           [length]="length"
