@@ -59,7 +59,7 @@ export class RatingComponent implements OnInit {
     size: number
   ): Observable<any> {
     return this.ratingService
-      .getScoreById(2, {
+      .getScoreById(1, {
         column: key,
         sortDirection: direction === 1 ? 'asc' : 'desc',
         page: page + 1,
