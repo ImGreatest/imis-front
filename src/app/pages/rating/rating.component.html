@@ -6,40 +6,38 @@
         tuiTextfieldSize="m"
         tuiTextfieldIconLeft="tuiIconSearch"
         [style.width.px]="200"
-      >Поиск</tui-input>
+        >Поиск</tui-input
+      >
     </div>
-  </div>
-  <div style="display: flex; flex-direction: column; align-items: center; margin: 1.5rem 20% 1.5rem 1.5rem; width: 100%;">
+  </div>  <tui-loader
+  [overlay]="true"
+  [showLoader]="!!(loading$ | async)"
+  style="
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1.5rem 20% 1.5rem 1.5rem;
+  width: 100%;
+"
+>
+
     <table
       style="margin: 1rem; width: 100%"
       tuiTable
       [columns]="columns"
+      [direction]="(direction$ | async) || 1"
+      [tuiSortBy]="sorter$ | async"
+      (directionChange)="direction$.next($event)"
+      (tuiSortByChange)="sorter$.next($event!.toString())"
     >
       <thead>
         <tr tuiThGroup>
-          <th
-            *tuiHead="'number'"
-            tuiTh
-            [sorter]="null"
-          ></th>
-          <th
-            *tuiHead="'name'"
-            tuiTh
-          >
-            Name
-          </th>
-          <th
-            *tuiHead="'email'"
-            tuiTh
-          >
-            E-mail
-          </th>
-       
-          <th
-            *tuiHead="'actions'"
-            tuiTh
-            [sorter]="null"
-          ></th>
+          <th *tuiHead="'Place'" tuiSortable tuiTh [sorter]="null"></th>
+          <th *tuiHead="'Name'" tuiSortable tuiTh>Имя</th>
+          <th *tuiHead="'Surname'" tuiSortable tuiTh>Фамилия</th>
+          <th *tuiHead="'Course'" tuiSortable tuiTh>Курс</th>
+          <th *tuiHead="'ratingScore'" tuiSortable tuiTh>Баллы</th>
+          <th *tuiHead="'actions'" tuiTh [sorter]="null"></th>
         </tr>
       </thead>
       <tbody
@@ -47,38 +45,23 @@
         tuiTbody
         [data]="sortedUsers"
       >
-        <tr
-          *ngFor="let item of sortedUsers; let index = index"
-          tuiTr
-        >
-          <td
-            *tuiCell="'number'"
-            tuiTd
-          >
+        <tr *ngFor="let item of sortedUsers; let index = index" tuiTr>
+          <td *tuiCell="'Place'" tuiTd>
             {{ index + 1 }}
           </td>
-          <td
-            *tuiCell="'name'"
-            tuiTd
-          >
+          <td *tuiCell="'Name'" tuiTd>
             {{ item.name }}
           </td>
-          <td
-              *tuiCell="'email'"
-              tuiTd
-            >
-              <a
-                  *ngIf="item.email"
-                  tuiLink
-                  [href]="'mailto:' + item.email"
-              >
-                  {{ item.email }}
-              </a>
+          <td *tuiCell="'Surname'" tuiTd>
+            {{ item.surname }}
           </td>
-          <td
-            *tuiCell="'actions'"
-            tuiTd
-          >
+          <td *tuiCell="'Course'" tuiTd>
+            {{ item.group }} {{ item.direction }}
+          </td>
+          <td *tuiCell="'ratingScore'" tuiTd>
+            {{ item.ratingScore }}
+          </td>
+          <td *tuiCell="'actions'" tuiTd>
             <button
               tuiIconButton
               appearance="flat"
@@ -95,10 +78,9 @@
     </table>
     <div class="pagination-offset">
       <tui-pagination
-        [index]="index"
-        [length]="length"
+        [index]="page$.getValue()"
+        [length]="pageCount$.getValue()"
         (indexChange)="goToPage($event)"
       ></tui-pagination>
-    </div>
-  </div>
+  </div></tui-loader>
 </div>

@@ -6,3 +6,10 @@ export interface IScope{
         }
       ]
 }
+
+export interface IGetScore {
+  page: number,
+  pageSize: number,
+  sortDirection: string,
+  column: string
+}

@@ -26,12 +26,14 @@ import {
 import {TuiRepeatTimesModule} from "@taiga-ui/cdk";
 import {POLYMORPHEUS_CONTEXT} from "@tinkoff/ng-polymorpheus";
 import {TuiBarModule} from "@taiga-ui/addon-charts";
+import { HttpClientModule } from '@angular/common/http';
 
 
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    HttpClientModule,
     CommonModule,
     BrowserAnimationsModule,
     BrowserModule,

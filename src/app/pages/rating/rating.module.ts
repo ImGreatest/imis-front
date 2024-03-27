@@ -4,6 +4,7 @@ import {
   TUI_SANITIZER,
   TuiButtonModule,
   TuiLinkModule,
+  TuiLoaderModule,
   TuiModeModule,
   TuiTextfieldControllerModule
 } from "@taiga-ui/core";
@@ -22,6 +23,7 @@ import {TuiLetModule} from "@taiga-ui/cdk";
         RouterModule.forChild([
             {path: '', component: RatingComponent}
         ]),
+        TuiLoaderModule,
         TuiInputModule,
         TuiTextfieldControllerModule,
         TuiModeModule,
