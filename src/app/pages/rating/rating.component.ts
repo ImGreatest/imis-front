@@ -5,8 +5,6 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 interface User {
     readonly email: string;
     readonly name: string;
-    readonly status: 'alive' | 'deceased';
-    readonly tags: readonly string[];
 }
 
 
@@ -18,7 +16,7 @@ interface User {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RatingComponent {
-  readonly columns = ['number', 'name', 'email', 'status', 'tags', 'actions'];
+  readonly columns = ['number', 'name', 'email', 'actions'];
   readonly length: number = 64;
   protected index: number = 0;
 
@@ -26,80 +24,54 @@ export class RatingComponent {
     {
       name: 'Michael Palin',
       email: 'm.palin@montypython.com',
-      status: 'alive',
-      tags: ['Funny'],
     },
     {
       name: 'Michael Palin',
       email: 'm.palin@montypython.com',
-      status: 'alive',
-      tags: ['Funny'],
     },
     {
       name: 'Michael Palin',
       email: 'm.palin@montypython.com',
-      status: 'alive',
-      tags: ['Funny'],
     },
     {
       name: 'Michael Palin',
       email: 'm.palin@montypython.com',
-      status: 'alive',
-      tags: ['Funny'],
     },
     {
       name: 'Michael Palin',
       email: 'm.palin@montypython.com',
-      status: 'alive',
-      tags: ['Funny'],
     },
     {
       name: 'Michael Palin',
       email: 'm.palin@montypython.com',
-      status: 'alive',
-      tags: ['Funny'],
     },
     {
       name: 'Michael Palin',
       email: 'm.palin@montypython.com',
-      status: 'alive',
-      tags: ['Funny'],
     },
     {
       name: 'Michael Palin',
       email: 'm.palin@montypython.com',
-      status: 'alive',
-      tags: ['Funny'],
     },
     {
       name: 'Michael Palin',
       email: 'm.palin@montypython.com',
-      status: 'alive',
-      tags: ['Funny'],
     },
     {
       name: 'Michael Palin',
       email: 'm.palin@montypython.com',
-      status: 'alive',
-      tags: ['Funny'],
     },
     {
       name: 'Michael Palin',
       email: 'm.palin@montypython.com',
-      status: 'alive',
-      tags: ['Funny'],
     },
     {
       name: 'Michael Palin',
       email: 'm.palin@montypython.com',
-      status: 'alive',
-      tags: ['Funny'],
     },
     {
       name: 'Michael Palin',
       email: 'm.palin@montypython.com',
-      status: 'alive',
-      tags: ['Funny'],
     },
   ];
 
