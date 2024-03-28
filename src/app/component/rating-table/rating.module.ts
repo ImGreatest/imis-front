@@ -9,22 +9,16 @@ import {
   TuiTextfieldControllerModule
 } from "@taiga-ui/core";
 import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
-import {RatingComponent} from "./rating.component";
-import {RouterModule} from "@angular/router";
+import { RatingTableComponent} from "./rating.component";
 import {TuiInputModule, TuiPaginationModule, TuiTagModule} from "@taiga-ui/kit";
 import {TuiTableModule} from "@taiga-ui/addon-table";
 import {TuiLetModule} from "@taiga-ui/cdk";
-import { RatingTableModule } from "../../component/rating-table/rating.module";
 
 
 
 @NgModule({
     imports: [
-        RatingTableModule,
         CommonModule,
-        RouterModule.forChild([
-            {path: '', component: RatingComponent}
-        ]),
         TuiLoaderModule,
         TuiInputModule,
         TuiTextfieldControllerModule,
@@ -42,7 +36,7 @@ import { RatingTableModule } from "../../component/rating-table/rating.module";
       useClass: NgDompurifySanitizer
     },
   ],
-  declarations: [RatingComponent],
-  exports: [RatingComponent],
+  declarations: [RatingTableComponent],
+  exports: [RatingTableComponent],
 })
-export class RatingModule {}
+export class RatingTableModule {}

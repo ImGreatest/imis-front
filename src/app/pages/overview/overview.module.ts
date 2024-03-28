@@ -17,11 +17,13 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {TuiAvatarModule, TuiAvatarStackModule, TuiFadeModule, TuiIconModule} from "@taiga-ui/experimental";
 import {TuiTableModule} from "@taiga-ui/addon-table";
 import {TuiLetModule} from "@taiga-ui/cdk";
+import { RatingTableModule } from "../../component/rating-table/rating.module";
 
 
 
 @NgModule({
   imports: [
+    RatingTableModule,
     CommonModule,
     RouterModule.forChild([
       {path: '', component: OverviewComponent}

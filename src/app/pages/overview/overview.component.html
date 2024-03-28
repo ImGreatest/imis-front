@@ -119,61 +119,8 @@
     <div class="rating-container-cell">
       <div class="rating-cell-label">
         <p class="label">Рейтинг</p>
-        <div class="rating-cell-label-widgets">
-          <tui-input
-            [tuiTextfieldCleaner]="true"
-            tuiTextfieldSize="s"
-            tuiTextfieldIconLeft="tuiIconSearch"
-            [formControl]="searchRatingControl"
-            [style.width.px]="200"
-          >
-            Поиск
-          </tui-input>
-        </div>
-      </div>
-      <table
-        tuiTable
-        [columns]="columns"
-      >
-        <thead>
-          <tr tuiThGroup>
-            <ng-container *ngFor="let col of columns">
-              <th
-                *tuiHead="col"
-                tuiTh
-              >
-                {{ col }}
-              </th>
-            </ng-container>
-          </tr>
-        </thead>
-        <tbody
-          tuiTbody
-          [data]="dataTable"
-          *tuiLet="dataTable | tuiTableSort as sortedData"
-        >
-          <tr
-            *ngFor="let item of sortedData"
-            tuiTr
-          >
-            <ng-container *ngFor="let col of columns">
-              <td
-                *tuiCell="col"
-                tuiTd
-              >
-                {{ item[col] }}
-              </td>
-            </ng-container>
-          </tr>
-        </tbody>
-      </table>
-      <div class="pagination-offset">
-        <tui-pagination
-          [index]="index"
-          [length]="length"
-          (indexChange)="goToPage($event)"
-        ></tui-pagination>
-      </div>
+        <ratingTable></ratingTable>
+     
     </div>
   </div>
 </div>
