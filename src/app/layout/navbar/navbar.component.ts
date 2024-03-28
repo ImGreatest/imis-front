@@ -36,7 +36,8 @@ export class NavbarComponent {
     {title: 'Рейтинг', routing: '/rating', icon: 'tuiIconBarChartLarge', onHover: false},
     {title: 'Проекты', routing: '/projects', icon: 'tuiIconBookLarge', onHover: false},
     {title: 'События', routing: '/events', icon: 'tuiIconCalendarLarge', onHover: false},
-    {title: 'Компании', routing: '/company', icon: 'tuiIconBriefcaseLarge', onHover: false}
+    {title: 'Компании', routing: '/company', icon: 'tuiIconBriefcaseLarge', onHover: false},
+    {title: 'Создание рейтинга', routing: '/createRating', icon: 'tuiIconCpuLarge', onHover: false}
   ]
 
   @Output()
