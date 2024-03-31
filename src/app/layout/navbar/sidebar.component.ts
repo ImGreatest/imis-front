@@ -7,8 +7,8 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.less',
+  templateUrl: './sidebar.component.html',
+  styleUrl: './sidebar.component.less',
   providers: [
     {
       provide: 'TUI_BUTTON_OPTIONS',
@@ -23,12 +23,11 @@ import {Router} from "@angular/router";
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [tuiScaleIn],
 })
-export class NavbarComponent {
-  protected statusSideBar: boolean = false;
+export class SidebarComponent {
+  @Output()
+  statusSideBar: boolean = false;
   @Output()
   statusNotice: boolean = false;
-  protected barNav: boolean = false
-  protected barProfile: boolean = false;
   protected isHoveredBell: boolean = false;
 
   readonly buttonList = [
@@ -52,30 +51,8 @@ export class NavbarComponent {
     return `${date.getDay()} ${month[date.getMonth()]} ${date.getFullYear()}`;
   }
 
-  showNavBar(): void {
-    this.barNav = true;
-  }
-
-  closeNavBar(): void {
-    this.barNav = false;
-  }
-
-  showProfileBar(): void {
-    this.barProfile = true;
-  }
-
-  closeProfileBar(): void {
-    this.barProfile = false;
-  }
-
-  openSideBar(): void {
-    this.statusSideBar = true;
-  }
-
-  closeSideBar(active?: boolean): void {
-    if (active === undefined || !active) {
-      this.statusSideBar = false;
-    }
+  sidebarToggle(): void {
+    this.statusSideBar = !this.statusSideBar;
   }
 
   openNotice(): void {
@@ -86,13 +63,5 @@ export class NavbarComponent {
     if (active === undefined || !active) {
       this.statusNotice = false;
     }
-  }
-
-  checkRouterUrl() {
-    if (this.router.url !== '/profile') {
-      return true
-    }
-    this.closeProfileBar()
-    return false;
   }
 }

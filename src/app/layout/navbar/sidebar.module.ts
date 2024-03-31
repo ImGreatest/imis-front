@@ -1,12 +1,12 @@
 import {NgModule} from "@angular/core";
-import {NavbarComponent} from "./navbar.component";
+import {SidebarComponent} from "./sidebar.component";
 import {
   TUI_SANITIZER, TuiButtonModule,
   TuiDialogModule, TuiLinkModule, TuiModeModule, TuiScrollbarModule,
   TuiSvgModule
 } from "@taiga-ui/core";
 import {
-  TuiAppearanceModule, TuiAvatarModule,
+  TuiAppearanceModule,
   TuiBadgeModule,
   TuiButtonCloseModule, TuiFadeModule, TuiFallbackSrcModule,
   TuiIconModule,
@@ -14,12 +14,14 @@ import {
 } from '@taiga-ui/experimental';
 import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
 import {TuiSidebarModule} from "@taiga-ui/addon-mobile";
-import {TuiAccordionModule, TuiBadgedContentModule, TuiMarkerIconModule} from "@taiga-ui/kit";
+import {TuiAccordionModule, TuiAvatarModule, TuiBadgedContentModule, TuiMarkerIconModule} from "@taiga-ui/kit";
 import {TuiActiveZoneModule, TuiForModule, TuiHoveredModule} from "@taiga-ui/cdk";
 import {CommonModule, NgIf} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {TuiBarModule} from "@taiga-ui/addon-charts";
 import {NoticeComponent} from "./notice/notice.component";
+import {BlockProfileComponent} from "./block-profile/block-profile.component";
+import {BlockHeaderComponent} from "./block-header/block-header.component";
 
 
 
@@ -27,7 +29,7 @@ import {NoticeComponent} from "./notice/notice.component";
   imports: [
     CommonModule,
     RouterModule.forChild([
-      {path: '', component: NavbarComponent}
+      {path: '', component: SidebarComponent}
     ]),
     TuiIconModule,
     TuiSvgModule,
@@ -55,6 +57,7 @@ import {NoticeComponent} from "./notice/notice.component";
     TuiLinkModule,
     TuiButtonModule,
     TuiButtonModule,
+    TuiAvatarModule,
   ],
   providers: [
     {
@@ -62,7 +65,7 @@ import {NoticeComponent} from "./notice/notice.component";
       useClass: NgDompurifySanitizer
     },
   ],
-  declarations: [NoticeComponent, NavbarComponent],
-  exports: [NavbarComponent],
+  declarations: [BlockHeaderComponent, BlockProfileComponent, NoticeComponent, SidebarComponent],
+  exports: [SidebarComponent],
 })
-export class NavbarModule {}
+export class SidebarModule {}
