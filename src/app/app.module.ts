@@ -15,7 +15,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {CommonModule} from "@angular/common";
 import {TuiAvatarModule, TuiBadgeModule, TuiInputModule, TuiTabsModule} from "@taiga-ui/kit";
 import {TuiMobileDialogModule} from "@taiga-ui/addon-mobile";
-import {NavbarModule} from "./layout/navbar/navbar.module";
+import {SidebarModule} from "./layout/sidebar/sidebar.module";
 import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
 import {
   TuiAppearanceModule,
@@ -66,7 +66,7 @@ import { HttpClientModule } from '@angular/common/http';
     TuiRepeatTimesModule,
     TuiButtonCloseModule,
     TuiBarModule,
-    NavbarModule,
+    SidebarModule,
   ],
   providers: [
     {

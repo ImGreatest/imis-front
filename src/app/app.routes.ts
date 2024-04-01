@@ -1,11 +1,13 @@
 import { Routes } from '@angular/router';
-import { NavbarComponent } from './layout/navbar/navbar.component';
-import { Error404Component } from './pages/error-404/error-404.component';
+import {SidebarComponent} from "./layout/sidebar/sidebar.component";
+import {Error404Component} from "./pages/error-404/error-404.component";
+
+
 
 export const routes: Routes = [
   {
     path: '',
-    component: NavbarComponent,
+    component: SidebarComponent,
     children: [
       {
         path: '',
