@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import {SidebarComponent} from "./layout/navbar/sidebar.component";
+import {SidebarComponent} from "./layout/sidebar/sidebar.component";
 import {Error404Component} from "./pages/error-404/error-404.component";
 
 

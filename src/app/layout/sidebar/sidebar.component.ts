@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
 
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.less',
   providers: [
@@ -24,12 +24,13 @@ import {Router} from "@angular/router";
   animations: [tuiScaleIn],
 })
 export class SidebarComponent {
+
+  statusTheme: boolean = false;
   @Output()
   statusSideBar: boolean = false;
   @Output()
   statusNotice: boolean = false;
-  protected isHoveredBell: boolean = false;
-
+  @Output()
   readonly buttonList = [
     {title: 'Главная', routing: '/', icon: 'tuiIconHome', onHover: false},
     {title: 'Рейтинг', routing: '/rating', icon: 'tuiIconBarChartLarge', onHover: false},
@@ -37,12 +38,12 @@ export class SidebarComponent {
     {title: 'События', routing: '/events', icon: 'tuiIconCalendarLarge', onHover: false},
     {title: 'Компании', routing: '/company', icon: 'tuiIconBriefcaseLarge', onHover: false}
   ]
-
   @Output()
   noticeList = [
     {date: "13 марта 2024", content: [{title: "Внимание", text: "Ваш проект отслеживается - 15 пользователями"}, {title: "Внимание2", text: "Ваш проект отслеживается - 15 пользователями"}]},
     {date: "12 марта 2024", content: [{title: "Важная новость", text: "Ваш проект отслеживается - 151 пользователями"}]},
   ]
+  protected isHoveredBell: boolean = false;
 
   constructor(private router: Router) {}
 

@@ -6,7 +6,7 @@
 <!--        type="button"-->
 <!--        size="l"-->
 <!--        [style.align-items]="'top'"-->
-<!--        appearance="navbar-navigation-button"-->
+<!--        appearance="sidebar-navigation-button"-->
 <!--        (mouseenter)="showNavBar()"-->
 <!--        (mouseleave)="closeNavBar()"-->
 <!--        (click)="openSideBar()"-->
@@ -77,6 +77,24 @@
 <!--  </div>-->
 <!--</div>-->
 
+<section>
+  <aside class="sidebar animate-width" [style.width.px]="statusSideBar ? 192 : 96">
+    <button
+      class="sidebar-close-button animate-left"
+      [style.left.px]="statusSideBar ? 182 : 86"
+      tuiIconButton
+      tuiButtonClose
+      appearance="glass"
+      [icon]="statusSideBar ? 'tuiIconArrowLeftLarge' : 'tuiIconArrowRightLarge'"
+      size="s"
+      (click)="sidebarToggle()"
+    ></button>
+    <block-header class="header-block animate-width" [statusSideBar]="statusSideBar" [statusTheme]="statusTheme"></block-header>
+    <block-content [blocks]="buttonList" [statusSideBar]="statusSideBar"></block-content>
+    <block-profile class="profile-block" [statusSideBar]="statusSideBar"></block-profile>
+  </aside>
+</section>
+
 <!--<router-outlet></router-outlet>-->
 
 <!--<div class="notice-button-layout" (tuiActiveZoneChange)="closeNotice($event)">-->
@@ -92,36 +110,3 @@
 <!--    ></tui-marker-icon>-->
 <!--  </div>-->
 <!--</div>-->
-
-<section>
-  <aside class="sidebar" [style.width.px]="statusSideBar ? 192 : 96">
-    <button
-      class="sidebar-close-button"
-      [style.left.px]="statusSideBar ? 182 : 86"
-      tuiIconButton
-      tuiButtonClose
-      appearance="glass"
-      [icon]="statusSideBar ? 'tuiIconArrowLeftLarge' : 'tuiIconArrowRightLarge'"
-      size="s"
-      (click)="sidebarToggle()"
-    ></button>
-    <section style="display: flex; justify-content: center">
-      <block-header [statusSideBar]="statusSideBar"></block-header>
-    </section>
-    <block-profile style="margin: auto 0.5rem 1.5rem" [statusSideBar]="statusSideBar"></block-profile>
-  </aside>
-</section>
-
-<div class="notice-button-layout" (tuiActiveZoneChange)="closeNotice($event)">
-  <app-notice [statusNotice]="statusNotice" [noticeList]="noticeList"></app-notice>
-  <div class="notice-button-container">
-    <tui-marker-icon
-      size="m"
-      src="tuiIconBellLarge"
-      (mouseover)="isHoveredBell = true"
-      (mouseout)="isHoveredBell = false"
-      [ngStyle]="{ 'color': isHoveredBell ? 'var(&#45;&#45;tui-base-02)' : 'var(&#45;&#45;tui-base-01)', 'background': isHoveredBell ? 'var(&#45;&#45;tui-primary-hover)' : 'var(&#45;&#45;tui-primary)'}"
-      (click)="openNotice()"
-    ></tui-marker-icon>
-  </div>
-</div>

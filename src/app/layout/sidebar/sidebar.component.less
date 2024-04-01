@@ -142,18 +142,58 @@ nav {
 @icon-color: #333;
 @icon-size: 1.25rem;
 
-.sidebar {
+.sidebar.animate-width {
   display: flex;
   flex-direction: column;
   height: 100vh;
   background-color: lightgray;
   float: left;
+  width: 96px;
+  transition: width 0.3s ease-in;
 }
 
-.sidebar-close-button {
+@keyframes animationOpenSidebar {
+  0% {
+    width: 96px;
+  }
+  25% {
+    width: 120px;
+  }
+  50% {
+    width: 144px;
+  }
+  75% {
+    width: 168px;
+  }
+  100% {
+    width: 192px
+  }
+}
+
+.sidebar-close-button.animate-left {
   position: absolute;
   z-index: 999;
   margin-top: 2rem;
+  left: 86px;
+  transition: left 0.3s ease-in;
+}
+
+@keyframes animateCloseButtonSideBar {
+  0% {
+    left: 86px;
+  }
+  25% {
+    left: 107.5px;
+  }
+  50% {
+    left: 129px;
+  }
+  75% {
+    left: 150.5px;
+  }
+  100% {
+    left: 182px;
+  }
 }
 
 .sidebar-content {
@@ -221,4 +261,13 @@ nav {
   100% {
     transform: scale(1.05);
   }
+}
+
+.header-block.animate-width {
+  display: flex;
+  justify-content: center;
+}
+
+.profile-block {
+  margin: auto 0.5rem 1.5rem;
 }

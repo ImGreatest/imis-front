@@ -6,22 +6,29 @@ import {
   TuiSvgModule
 } from "@taiga-ui/core";
 import {
-  TuiAppearanceModule,
+  TuiAppearanceModule, TuiAvatarLabeledModule,
   TuiBadgeModule,
-  TuiButtonCloseModule, TuiFadeModule, TuiFallbackSrcModule,
+  TuiButtonCloseModule, TuiButtonVerticalModule, TuiFadeModule, TuiFallbackSrcModule,
   TuiIconModule,
   TuiNavigationModule
 } from '@taiga-ui/experimental';
 import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
 import {TuiSidebarModule} from "@taiga-ui/addon-mobile";
-import {TuiAccordionModule, TuiAvatarModule, TuiBadgedContentModule, TuiMarkerIconModule} from "@taiga-ui/kit";
+import {
+  TuiAccordionModule,
+  TuiAvatarModule,
+  TuiBadgedContentModule,
+  TuiMarkerIconModule,
+  TuiToggleModule
+} from "@taiga-ui/kit";
 import {TuiActiveZoneModule, TuiForModule, TuiHoveredModule} from "@taiga-ui/cdk";
 import {CommonModule, NgIf} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {TuiBarModule} from "@taiga-ui/addon-charts";
 import {NoticeComponent} from "./notice/notice.component";
 import {BlockProfileComponent} from "./block-profile/block-profile.component";
-import {BlockHeaderComponent} from "./block-header/block-header.component";
+import {BlockContentModule} from "./block-content/block-content.module";
+import {BlockHeaderModule} from "./block-header/block-header.module";
 
 
 
@@ -55,9 +62,12 @@ import {BlockHeaderComponent} from "./block-header/block-header.component";
     TuiForModule,
     TuiFadeModule,
     TuiLinkModule,
-    TuiButtonModule,
-    TuiButtonModule,
     TuiAvatarModule,
+    TuiAvatarLabeledModule,
+    TuiButtonVerticalModule,
+    TuiToggleModule,
+    BlockHeaderModule,
+    BlockContentModule,
   ],
   providers: [
     {
@@ -65,7 +75,7 @@ import {BlockHeaderComponent} from "./block-header/block-header.component";
       useClass: NgDompurifySanitizer
     },
   ],
-  declarations: [BlockHeaderComponent, BlockProfileComponent, NoticeComponent, SidebarComponent],
+  declarations: [BlockProfileComponent, NoticeComponent, SidebarComponent],
   exports: [SidebarComponent],
 })
 export class SidebarModule {}
