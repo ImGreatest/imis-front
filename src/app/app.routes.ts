@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import {SidebarComponent} from "./layout/sidebar/sidebar.component";
 import {Error404Component} from "./pages/error-404/error-404.component";
+import {AuthModule} from "./pages/auth/auth.module";
 
 
 
@@ -16,53 +17,38 @@ export const routes: Routes = [
       },
       {
         path: 'overview',
-        loadChildren: () =>
-          import('./pages/overview/overview.module').then(
-            (m) => m.OverviewModule
-          ),
+        loadChildren: () => import('./pages/overview/overview.module').then((m) => m.OverviewModule),
       },
       {
         path: 'rating',
-        loadChildren: () =>
-          import('./pages/rating/rating.module').then((m) => m.RatingModule),
+        loadChildren: () => import('./pages/rating/rating.module').then((m) => m.RatingModule),
       },
       {
         path: 'projects',
-        loadChildren: () =>
-          import('./pages/projects/projects.module').then(
-            (m) => m.ProjectsModule
-          ),
+        loadChildren: () => import('./pages/projects/projects.module').then((m) => m.ProjectsModule),
       },
       {
         path: 'events',
-        loadChildren: () =>
-          import('./pages/events/events.module').then((m) => m.EventsModule),
+        loadChildren: () => import('./pages/events/events.module').then((m) => m.EventsModule),
       },
       {
         path: 'company',
-        loadChildren: () =>
-          import('./pages/company/company.module').then((m) => m.CompanyModule),
+        loadChildren: () => import('./pages/company/company.module').then((m) => m.CompanyModule),
       },
       {
         path: 'profile',
-        loadChildren: () =>
-          import('./pages/user-profile/user-profile.module').then(
-            (m) => m.UserProfileModule
-          ),
+        loadChildren: () => import('./pages/user-profile/user-profile.module').then((m) => m.UserProfileModule),
       },
       {
         path: 'createRating',
-        loadChildren: () =>
-          import('./pages/createRating/create-rating.module').then(
-            (m) => m.CreateRatingModule
-          ),
+        loadChildren: () => import('./pages/createRating/create-rating.module').then((m) => m.CreateRatingModule),
       },
     ],
   },
-  // {
-  //   path: 'auth',
-  //   //loadChildren: () => import().then(m => m)
-  // },
+  {
+    path: 'auth',
+    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule),
+  },
   {
     path: '**',
     component: Error404Component,

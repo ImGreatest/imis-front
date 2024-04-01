@@ -1,24 +1,14 @@
-<div *ngFor="let block of blocks" style="display: flex; flex-direction: column; align-items: center; justify-content: center">
+<div *ngFor="let button of blocks">
   <button
-    [style.opacity]="statusSideBar ? 1 : 0"
-    (click)="changeOpacity()"
     appearance="flat"
-    [iconLeft]="block.icon"
+    [iconLeft]="button.icon"
     tuiButton
-    *ngIf="statusSideBar; else simpleButton"
+    tuiButtonVertical
     size="xs"
-    [routerLink]="block.routing"
-  >{{ block.title }}</button>
-  <ng-template #simpleButton>
-    <button
-      [style.opacity]="statusSideBar ? 0 : 1"
-      (click)="changeOpacity()"
-      appearance="flat"
-      [iconLeft]="block.icon"
-      tuiButton
-      tuiButtonVertical
-      size="xs"
-      [routerLink]="block.routing"
-    >{{ block.title }}</button>
-  </ng-template>
+    class="sidebar-button"
+    [class.sidebar-button-hover]="button.onHover"
+    (mouseenter)="button.onHover = true"
+    (mouseleave)="button.onHover = false"
+    [routerLink]="button.routing"
+  >{{ button.title }}</button>
 </div>

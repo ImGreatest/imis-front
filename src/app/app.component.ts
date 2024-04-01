@@ -10,10 +10,4 @@ import {TuiBrightness} from "@taiga-ui/core";
   styleUrl: './app.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
-  constructor(@Inject(TuiThemeNightService) readonly night: TuiThemeNightService) {}
-
-  get mode(): TuiBrightness | null {
-    return this.night.value ? 'onLight' : null;
-  }
-}
+export class AppComponent {}

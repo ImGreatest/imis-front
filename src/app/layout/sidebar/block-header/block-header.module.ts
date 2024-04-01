@@ -1,8 +1,8 @@
 import {NgModule} from "@angular/core";
 import {
-  TuiButtonModule
+  TuiButtonModule, TuiButtonVerticalModule
 } from '@taiga-ui/experimental';
-import {TuiToggleModule, tuiToggleOptionsProvider} from "@taiga-ui/kit";
+import {TuiAvatarModule, TuiToggleModule, tuiToggleOptionsProvider} from "@taiga-ui/kit";
 import {CommonModule} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {BlockHeaderComponent} from "./block-header.component";
@@ -10,12 +10,14 @@ import {BlockHeaderComponent} from "./block-header.component";
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    TuiButtonModule,
-    RouterLink,
-    TuiToggleModule,
-  ],
+    imports: [
+        CommonModule,
+        TuiButtonModule,
+        RouterLink,
+        TuiToggleModule,
+        TuiButtonVerticalModule,
+        TuiAvatarModule,
+    ],
   providers: [
     tuiToggleOptionsProvider({
       icons: {

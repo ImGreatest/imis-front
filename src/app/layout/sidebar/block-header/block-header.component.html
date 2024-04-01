@@ -1,16 +1,15 @@
 <div>
-<!--  <h5 *ngIf="statusSideBar">Темная тема</h5>-->
   <button
-    appearance="secondary"
-    iconLeft="tuiIconHeart"
+    *ngFor="let button of blocks"
+    appearance="flat"
+    [iconLeft]="button.icon"
+    tuiButton
+    tuiButtonVertical
+    class="sidebar-button"
+    [class.sidebar-button-hover]="button.onHover"
+    (mouseenter)="button.onHover = true"
+    (mouseleave)="button.onHover = false"
     size="xs"
-    tuiIconButton
-    [style.border-radius.%]="100"
-  >
-    Favorite
-  </button>
-  <tui-toggle
-    (click)="night.toggle()"
-    size="l"
-  ></tui-toggle>
+    [routerLink]="'/auth'"
+  >Настройки</button>
 </div>

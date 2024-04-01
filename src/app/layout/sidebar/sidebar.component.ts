@@ -21,7 +21,6 @@ import {Router} from "@angular/router";
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [tuiScaleIn],
 })
 export class SidebarComponent {
   protected barNav: boolean = false
@@ -33,12 +32,16 @@ export class SidebarComponent {
   @Output()
   statusNotice: boolean = false;
   @Output()
-  readonly buttonList = [
+  readonly buttonContent = [
     {title: 'Главная', routing: '/', icon: 'tuiIconHome', onHover: false},
     {title: 'Рейтинг', routing: '/rating', icon: 'tuiIconBarChartLarge', onHover: false},
     {title: 'Проекты', routing: '/projects', icon: 'tuiIconBookLarge', onHover: false},
     {title: 'События', routing: '/events', icon: 'tuiIconCalendarLarge', onHover: false},
     {title: 'Компании', routing: '/company', icon: 'tuiIconBriefcaseLarge', onHover: false}
+  ]
+  @Output()
+  readonly buttonHeader = [
+    {title: 'Настройки', routing: '/auth', icon: 'tuiIconSettingsLarge', onHover: false}
   ]
   @Output()
   noticeList = [

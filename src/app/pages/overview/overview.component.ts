@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {tuiFadeIn} from "@taiga-ui/core";
 
@@ -8,6 +8,7 @@ import {tuiFadeIn} from "@taiga-ui/core";
   selector: 'app-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [tuiFadeIn],
 })
 export class OverviewComponent {

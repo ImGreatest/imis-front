@@ -1,28 +1,46 @@
-
 div {
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  align-items: center;
-  margin-top: 2.25rem;
-  margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 
-button {
-  margin-right: 1rem;
-  animation: fadeIn 0.5s ease-in-out forwards;
-  animation-delay: 0.5s;
-  opacity: 0;
+.sidebar-button {
+  :active {
+    animation: button-tap 0.3s ease;
+  }
 }
 
-@keyframes fadeIn {
+.sidebar-button-hover {
+  transform: scale(1.05);
+  animation: button-grow-up 0.3s ease-in-out;
+}
+
+
+@keyframes button-grow-up {
   0% {
-    opacity: 0;
-  }
+    transform: scale(1.05);
+}
+
   50% {
-    opacity: 0.5;
-  }
+    transform: scale(1.1);
+}
+
   100% {
-    opacity: 1;
+    transform: scale(1.05);
   }
 }
+
+@keyframes button-tap {
+  0% {
+    transform: scale(1.05);
+}
+
+  50% {
+    transform: scale(1.1);
+}
+
+  100% {
+    transform: scale(1.05);
+  }
+}
+
