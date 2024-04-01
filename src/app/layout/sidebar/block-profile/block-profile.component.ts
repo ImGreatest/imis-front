@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, Input} from '@angular/core';
+import {TuiThemeNightService} from "@taiga-ui/addon-doc";
+import {TuiBrightness} from "@taiga-ui/core";
 
 
 

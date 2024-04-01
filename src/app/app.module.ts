@@ -5,8 +5,8 @@ import {
   TuiAlertModule, TuiButtonModule,
   TuiDataListModule,
   TuiDialogModule, TuiExpandModule,
-  TuiHostedDropdownModule,
-  TuiRootModule
+  TuiHostedDropdownModule, TuiModeModule,
+  TuiRootModule, TuiThemeNightModule
 } from '@taiga-ui/core';
 import {AppComponent} from './app.component';
 import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
@@ -63,10 +63,12 @@ import { HttpClientModule } from '@angular/common/http';
     TuiHeaderModule,
     TuiSurfaceModule,
     TuiTitleModule,
+    TuiThemeNightModule,
     TuiRepeatTimesModule,
     TuiButtonCloseModule,
     TuiBarModule,
     SidebarModule,
+    TuiModeModule,
   ],
   providers: [
     {
@@ -79,5 +81,6 @@ import { HttpClientModule } from '@angular/common/http';
     }
   ],
   bootstrap: [AppComponent],
+  exports: [AppComponent],
 })
 export class AppModule {}
