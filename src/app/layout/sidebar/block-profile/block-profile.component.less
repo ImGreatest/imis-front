@@ -7,11 +7,36 @@
   margin-right: 5px;
 }
 
+tui-avatar-labeled {
+  animation: fadeIn 0.5s ease-in-out forwards;
+  opacity: 0;
+}
+
 .avatar {
   font-family: Manrope, sans-serif;
   letter-spacing: 0.3px;
   text-align: left;
   &__text {
     font-size: 12px;
+    animation: fadeIn 0.5s ease-in-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    25% {
+      opacity: 0.25;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    75% {
+      opacity: 0.75;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 }

@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject} from '@angular/core';
+import {TuiThemeNightService} from "@taiga-ui/addon-doc";
+import {TuiBrightness} from "@taiga-ui/core";
 
 
 
@@ -8,4 +10,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './app.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor(@Inject(TuiThemeNightService) readonly night: TuiThemeNightService) {}
+
+  get mode(): TuiBrightness | null {
+    return this.night.value ? 'onDark' : null;
+  }
+}

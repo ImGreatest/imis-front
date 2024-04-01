@@ -15,7 +15,7 @@ export class NoticeComponent {
   noticeList!: {date: string; content: {title: string, text: string}[]}[];
 
   constructor() {
-    console.log(this.statusNotice)
+    // console.log(this.statusNotice)
   }
 
   closeNotice() {

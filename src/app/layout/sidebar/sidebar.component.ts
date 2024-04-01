@@ -24,8 +24,10 @@ import {Router} from "@angular/router";
   animations: [tuiScaleIn],
 })
 export class SidebarComponent {
+  protected barNav: boolean = false
+  protected barBell: boolean = false;
+  protected barProfile: boolean = false;
 
-  statusTheme: boolean = false;
   @Output()
   statusSideBar: boolean = false;
   @Output()
@@ -65,4 +67,47 @@ export class SidebarComponent {
       this.statusNotice = false;
     }
   }
+  showNavBar(): void {
+    this.barNav = true;
+  }
+
+  closeNavBar(): void {
+    this.barNav = false;
+  }
+
+  showBellBar(): void {
+    this.barBell = true;
+  }
+
+  closeBellBar(): void {
+    this.barBell = false;
+  }
+
+  showProfileBar(): void {
+    this.barProfile = !this.barProfile;
+  }
+
+  closeProfileBar(): void {
+    this.barProfile = false;
+  }
+
+  checkRouterUrl() {
+    if (this.router.url !== '/profile') {
+      return true
+    }
+    this.closeProfileBar()
+    return false;
+  }
+
+
+  openSideBar(): void {
+    this.statusSideBar = true;
+  }
+
+  closeSideBar(active?: boolean): void {
+    if (active === undefined || !active) {
+      this.statusSideBar = false;
+    }
+  }
+
 }
