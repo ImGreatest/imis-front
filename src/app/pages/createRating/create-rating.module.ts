@@ -1,15 +1,21 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
-import {TUI_SANITIZER} from "@taiga-ui/core";
+import {TUI_SANITIZER, TuiRootModule, TuiTextfieldControllerModule} from "@taiga-ui/core";
 import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
 import {RouterModule} from "@angular/router";
 import {CreateRatingComponent } from "./create-rating.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { TuiInputCountModule } from "@taiga-ui/kit";
 
 
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    TuiRootModule,
+    ReactiveFormsModule,TuiTextfieldControllerModule,
+    TuiInputCountModule,
     RouterModule.forChild([
       {path: '', component: CreateRatingComponent}
     ]),

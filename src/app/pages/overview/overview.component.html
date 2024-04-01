@@ -1,8 +1,13 @@
 <div id="page-container" class="content-page-container">
   <div id="project-container" class="container container-projects">
     <div id="project-container-label-row" class="row">
-      <p id="project-container-label-text" class="container-label-text">Проекты</p>
-      <div id="project-container-label-div-search" class="project-container-label-widgets">
+      <p id="project-container-label-text" class="container-label-text">
+        Проекты
+      </p>
+      <div
+        id="project-container-label-div-search"
+        class="project-container-label-widgets"
+      >
         <tui-input
           id="project-container-label-search"
           [tuiTextfieldCleaner]="true"
@@ -14,7 +19,10 @@
           Поиск
         </tui-input>
       </div>
-      <div id="project-container-label-div-filters" class="project-container-label-filters">
+      <div
+        id="project-container-label-div-filters"
+        class="project-container-label-filters"
+      >
         <button
           id="project-container-label-div-filter"
           tuiButton
@@ -56,11 +64,19 @@
                   tuiMode="onLight"
                   size="s"
                   class="project-cell-star-icon"
-                  (click)="favoritePrj.includes(prj['id']) ? unsubscribePrj(prj['id']) : subscribePrj(prj['id'])"
+                  (click)="
+                    favoritePrj.includes(prj['id'])
+                      ? unsubscribePrj(prj['id'])
+                      : subscribePrj(prj['id'])
+                  "
                 >
                   <tui-svg
                     src="tuiIconStarLarge"
-                    [style.fill]="favoritePrj.includes(prj['id']) ? 'var(--tui-support-07)': 'transparent'"
+                    [style.fill]="
+                      favoritePrj.includes(prj['id'])
+                        ? 'var(--tui-support-07)'
+                        : 'transparent'
+                    "
                   ></tui-svg>
                 </button>
                 <button
@@ -74,8 +90,12 @@
                 </button>
               </div>
             </div>
-            <p class="project-cell-project-label" tuiMode="onLight">{{ prj.name }}</p>
-            <p class="project-cell-project-desc" tuiMode="onLight">{{ prj.description }}</p>
+            <p class="project-cell-project-label" tuiMode="onLight">
+              {{ prj.name }}
+            </p>
+            <p class="project-cell-project-desc" tuiMode="onLight">
+              {{ prj.description }}
+            </p>
             <div class="project-cell-tags-container">
               <tui-tag
                 *ngFor="let tag of prj.tags"
@@ -119,8 +139,8 @@
     <div class="rating-container-cell">
       <div class="rating-cell-label">
         <p class="label">Рейтинг</p>
-        <ratingTable></ratingTable>
-     
+        <ratingTable class="overview-rating-table"></ratingTable>
+      </div>
     </div>
   </div>
 </div>

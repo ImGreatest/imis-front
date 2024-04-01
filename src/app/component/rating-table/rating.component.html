@@ -1,28 +1,77 @@
 <div id="rating-table">
   <div id="rating-filters">
-    <div style="margin: 1rem">
-      <tui-input
-        [tuiTextfieldCleaner]="true"
-        tuiTextfieldSize="m"
-        tuiTextfieldIconLeft="tuiIconSearch"
-        [style.width.px]="200"
-        >Поиск</tui-input
+    <tui-input
+      [tuiTextfieldCleaner]="true"
+      tuiTextfieldSize="m"
+      [formControl]="searchProjectControl"
+      tuiTextfieldIconLeft="tuiIconSearch"
+      [style.width.px]="200"
+      >Поиск</tui-input
+    >
+    <div class="filter-container" (tuiActiveZoneChange)="closeFilter($event)">
+      <div class="filter-window" *ngIf="statusFilter">
+        <p class="filter-label">Фильтрация</p>
+        <div style="display: flex;">
+          <div style="display: flex; flex-direction: column;">
+            <tui-input-range
+              class="filter-input"
+              [formControl]="ratingFilterControl"
+              [max]="maxScore"
+              [min]="minScore"
+              [quantum]="0.01"
+              [steps]="maxScore - minScore"
+              [tuiTextfieldLabelOutside]="true"
+              >Выбери рейтинг</tui-input-range
+            >
+            <tui-input-range
+              class="filter-input"
+              [formControl]="courseFilterControl"
+              [max]="5"
+              [min]="0"
+              [quantum]="1"
+              [steps]="5"
+              [tuiTextfieldLabelOutside]="true"
+              >Выбери курс</tui-input-range
+            >
+          </div>
+          <div style="display: flex; flex-direction: column;">
+            <tui-select class="filter-input"> </tui-select>
+            <tui-select class="filter-input"> </tui-select>
+          </div>
+        </div>
+        <div class="filter-buttons-container">
+          <button (click)="clearFilters()" size="xs" tuiButton>Очистить</button>
+          <button (click)="confirmFilters()" size="xs" tuiButton>
+            Применить
+          </button>
+        </div>
+      </div>
+      <button
+        id="project-container-label-div-filter"
+        tuiButton
+        appearance="secondary"
+        tuiMode="onLight"
+        size="m"
+        class="filter-button"
+        (click)="openFilter()"
       >
+        <tui-icon icon="tuiIconFilterLarge"></tui-icon>
+        Filter
+      </button>
     </div>
-  </div>  <tui-loader
-  [overlay]="true"
-  [showLoader]="!!(loading$ | async)"
-  style="
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 1.5rem 20% 1.5rem 1.5rem;
-  width: 100%;
-"
->
-
+  </div>
+  <tui-loader
+    [overlay]="true"
+    [showLoader]="!!(loading$ | async)"
+    style="
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    "
+  >
     <table
-      style="margin: 1rem; width: 100%"
+      style="width: 100%"
       tuiTable
       [columns]="columns"
       [direction]="(direction$ | async) || 1"
@@ -32,10 +81,10 @@
     >
       <thead>
         <tr tuiThGroup>
-          <th *tuiHead="'Place'" tuiSortable tuiTh [sorter]="null"></th>
-          <th *tuiHead="'Name'" tuiSortable tuiTh>Имя</th>
-          <th *tuiHead="'Surname'" tuiSortable tuiTh>Фамилия</th>
-          <th *tuiHead="'Course'" tuiSortable tuiTh>Курс</th>
+          <th *tuiHead="'place'" tuiTh [sorter]="null"></th>
+          <th *tuiHead="'name'" tuiSortable tuiTh>Имя</th>
+          <th *tuiHead="'surname'" tuiSortable tuiTh>Фамилия</th>
+          <th *tuiHead="'group'" tuiSortable tuiTh>Курс</th>
           <th *tuiHead="'ratingScore'" tuiSortable tuiTh>Баллы</th>
           <th *tuiHead="'actions'" tuiTh [sorter]="null"></th>
         </tr>
@@ -46,17 +95,17 @@
         [data]="sortedUsers"
       >
         <tr *ngFor="let item of sortedUsers; let index = index" tuiTr>
-          <td *tuiCell="'Place'" tuiTd>
-            {{ index + 1 }}
+          <td *tuiCell="'place'" tuiTd>
+            {{ page$.getValue() * pageCount$.getValue() + index + 1 }}
           </td>
-          <td *tuiCell="'Name'" tuiTd>
+          <td *tuiCell="'name'" tuiTd>
             {{ item.name }}
           </td>
-          <td *tuiCell="'Surname'" tuiTd>
+          <td *tuiCell="'surname'" tuiTd>
             {{ item.surname }}
           </td>
-          <td *tuiCell="'Course'" tuiTd>
-            {{ item.group }} {{ item.direction }}
+          <td *tuiCell="'group'" tuiTd>
+            {{ item.group }}
           </td>
           <td *tuiCell="'ratingScore'" tuiTd>
             {{ item.ratingScore }}
@@ -81,6 +130,6 @@
         [index]="page$.getValue()"
         [length]="pageCount$.getValue()"
         (indexChange)="goToPage($event)"
-      ></tui-pagination>
-  </div></tui-loader>
+      ></tui-pagination></div
+  ></tui-loader>
 </div>

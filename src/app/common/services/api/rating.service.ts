@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../enviroments/enviroments';
-import { PageRes } from '../../interfaces/page';
+import { PageRes, PageResRating } from '../../interfaces/page';
 import { Observable } from 'rxjs';
 import {
   ICreateRating,
   IRating,
   IUpdateRating,
 } from '../../interfaces/rating/rating';
-import { IGetScore, IScope } from '../../interfaces/rating/scope';
-import { IStudentScore } from '../../interfaces/rating/student.score';
+import { IScope } from '../../interfaces/rating/scope';
+import {
+  IStudentScore,
+  IGetScore,
+} from '../../interfaces/rating/student.score';
 
 @Injectable({ providedIn: 'root' })
 export class RatingService {
@@ -45,8 +48,11 @@ export class RatingService {
       data
     );
   }
-  getScoreById(id: number, data: IGetScore): Observable<PageRes<IStudentScore>> {
-    return this.http.put<PageRes<IStudentScore>>(
+  getScoreById(
+    id: number,
+    data: IGetScore
+  ): Observable<PageResRating<IStudentScore>> {
+    return this.http.put<PageResRating<IStudentScore>>(
       `${environment.apiRatingUrl}/rating/${id}/score`,
       data
     );

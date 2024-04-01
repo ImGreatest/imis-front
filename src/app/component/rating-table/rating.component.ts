@@ -11,8 +11,10 @@ import {
   startWith,
   switchMap,
 } from 'rxjs/operators';
-import { PageRes } from '../../common/interfaces/page';
+import { PageRes, PageResRating } from '../../common/interfaces/page';
 import { tuiIsFalsy } from '@taiga-ui/cdk';
+import { FormControl } from '@angular/forms';
+import { IFilter } from '../../common/interfaces/rating/rating';
 
 @Component({
   selector: 'ratingTable',
@@ -23,58 +25,78 @@ import { tuiIsFalsy } from '@taiga-ui/cdk';
 export class RatingTableComponent implements OnInit {
   constructor(private ratingService: RatingService) {}
   users: IUser[] = [];
+  statusFilter: boolean = false;
+  searchProjectControl = new FormControl('', {
+    nonNullable: true,
+  });
   readonly columns = [
-    'Place',
-    'Name',
-    'Surname',
-    'Course',
+    'place',
+    'name',
+    'surname',
+    'group',
     'ratingScore',
     'actions',
   ];
   readonly direction$ = new BehaviorSubject<-1 | 1>(-1);
   readonly sorter$ = new BehaviorSubject<string>('ratingScore');
   ngOnInit(): void {
-    this.request$.subscribe((users) => (this.users = users));
+    this.request$.subscribe((users) => {
+      this.users = users;
+    });
   }
   readonly size$ = new BehaviorSubject(10);
   readonly pageCount$ = new BehaviorSubject(0);
+  readonly filters$ = new BehaviorSubject<IFilter[]>([]);
   pageCount = 0;
+  minScore = 0;
+  maxScore = 0;
+  readonly ratingFilterControl = new FormControl([
+    this.minScore,
+    this.maxScore,
+  ]);
+  readonly courseFilterControl = new FormControl([0, 5]);
   readonly page$ = new BehaviorSubject(0);
   readonly request$ = combineLatest([
     this.sorter$,
     this.direction$,
     this.page$,
     this.size$,
+    this.filters$,
   ]).pipe(
     debounceTime(0),
-    switchMap(([key, direction, page, size]) =>
-      this.getData(key, direction, page, size)
+    switchMap(([key, direction, page, size, filters]) =>
+      this.getData(key, direction, page, size, filters)
     ),
     share()
   );
+
   private getData(
     key: string,
     direction: -1 | 1,
     page: number,
-    size: number
+    size: number,
+    filters: IFilter[]
   ): Observable<any> {
     return this.ratingService
       .getScoreById(1, {
-        column: key,
+        column: key === 'place' ? 'ratingScore' : key,
         sortDirection: direction === 1 ? 'asc' : 'desc',
         page: page + 1,
         pageSize: size,
+        filters: filters,
       })
       .pipe(
-        map((data: PageRes<IStudentScore>) => {
+        map((data: PageResRating<IStudentScore>) => {
           this.pageCount$.next(data.info.totalPages);
+          this.minScore = data.info.minScores;
+          this.maxScore = data.info.maxScores;
           return data.rows.map((score: IStudentScore) => ({
             id: score.studentId,
             name: score.student.name,
             surname: score.student.surname,
             course: score.student.course,
-            direction: score.student.direction,
-            group: score.student.group,
+            direction: score.student.direction.name,
+            group: score.student.group.name,
             ratingScore: score.ratingScore,
           }));
         })
@@ -88,5 +110,24 @@ export class RatingTableComponent implements OnInit {
 
   goToPage(index: number): void {
     this.page$.next(index);
+  }
+  openFilter() {
+    this.statusFilter = true;
+  }
+  clearFilters() {
+    this.ratingFilterControl.setValue([this.minScore, this.maxScore]);
+    this.courseFilterControl.setValue([0, 5]);
+    this.filters$.next([]);
+  }
+  confirmFilters() {
+    const ratingScoreFilterValue = this.ratingFilterControl.value;
+    const courseFilterFilterValue = this.courseFilterControl.value;
+    console.log(ratingScoreFilterValue);
+    console.log(courseFilterFilterValue);
+  }
+  closeFilter(active?: boolean): void {
+    if (active === undefined || !active) {
+      this.statusFilter = false;
+    }
   }
 }

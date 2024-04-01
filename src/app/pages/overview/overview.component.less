@@ -1,12 +1,11 @@
-@import '@taiga-ui/core/styles/taiga-ui-local.less';
-
-
+@import "@taiga-ui/core/styles/taiga-ui-local.less";
 
 @max-width: 290px;
 
 .row {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
 }
 
 .column {
@@ -28,9 +27,9 @@
 
 .container {
   background-color: #fff;
-  border: thin solid #D7D7D7;
+  border: thin solid #d7d7d7;
   border-radius: 24px;
-  box-shadow: var(--tui-shadow-dropdown)
+  box-shadow: var(--tui-shadow-dropdown);
 }
 
 .projects-scroll {
@@ -43,7 +42,7 @@
 }
 
 .container-page-projects {
-  width: 65%;
+  width: 40%;
 }
 
 .container-projects {
@@ -60,7 +59,7 @@
 .project-container-label-widgets {
   .row();
   align-items: center;
-  margin-left: 5rem
+  margin-left: 5rem;
 }
 
 .project-container-label-filters {
@@ -104,7 +103,11 @@
     max-width: 175px;
   }
 }
-
+.overview-rating-table {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .project-cell-project-desc {
   display: block;
   color: var(--tui-focus);
@@ -128,7 +131,7 @@
     max-width: 225px;
   }
 
-    @media only screen and (max-width: 1500px) {
+  @media only screen and (max-width: 1500px) {
     max-width: 200px;
   }
 
@@ -159,8 +162,8 @@
 }
 
 .project-cell-additional-icons {
-   margin-right: auto;
- }
+  margin-right: auto;
+}
 
 .project-cell-star-icon {
   margin-left: 0.75rem;
@@ -196,8 +199,8 @@
 
 .rating-cell {
   .container();
-  width: 40%;
-  margin: 2rem 12.5rem 2rem 0;
+  width: 35%;
+  margin: 2rem 2rem 2rem 0;
 }
 
 .rating-container-cell {
@@ -206,7 +209,7 @@
 }
 
 .rating-cell-label {
-  .column()
+  .column();
 }
 
 .rating-cell-label-widgets {
@@ -216,5 +219,5 @@
 }
 
 .pagination-offset {
-  margin-top: 2rem
+  margin-top: 2rem;
 }

@@ -1,39 +1,51 @@
-import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
+import { NgModule } from '@angular/core';
+import { CommonModule, NgIf } from '@angular/common';
 import {
   TUI_SANITIZER,
   TuiButtonModule,
   TuiLinkModule,
   TuiLoaderModule,
   TuiModeModule,
-  TuiTextfieldControllerModule
-} from "@taiga-ui/core";
-import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
-import { RatingTableComponent} from "./rating.component";
-import {TuiInputModule, TuiPaginationModule, TuiTagModule} from "@taiga-ui/kit";
-import {TuiTableModule} from "@taiga-ui/addon-table";
-import {TuiLetModule} from "@taiga-ui/cdk";
-
-
+  TuiTextfieldControllerModule,
+} from '@taiga-ui/core';
+import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
+import { RatingTableComponent } from './rating.component';
+import {
+  TuiInputModule,
+  TuiInputRangeModule,
+  TuiPaginationModule,
+  TuiSelectModule,
+  TuiTagModule,
+} from '@taiga-ui/kit';
+import { TuiTableModule } from '@taiga-ui/addon-table';
+import { TuiActiveZoneModule, TuiLetModule } from '@taiga-ui/cdk';
+import { TuiIconModule } from '@taiga-ui/experimental';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        TuiLoaderModule,
-        TuiInputModule,
-        TuiTextfieldControllerModule,
-        TuiModeModule,
-        TuiTableModule,
-        TuiTagModule,
-        TuiButtonModule,
-        TuiLinkModule,
-        TuiLetModule,
-        TuiPaginationModule,
-    ],
+  imports: [
+    CommonModule,
+    TuiIconModule,
+    TuiLoaderModule,
+    TuiInputRangeModule,
+    TuiActiveZoneModule,
+    TuiInputModule,
+    TuiTextfieldControllerModule,
+    TuiModeModule,
+    TuiSelectModule,
+    TuiTableModule,
+    TuiTagModule,
+    TuiButtonModule,
+    ReactiveFormsModule,
+    TuiLinkModule,
+    NgIf,
+    TuiLetModule,
+    TuiPaginationModule,
+  ],
   providers: [
     {
       provide: TUI_SANITIZER,
-      useClass: NgDompurifySanitizer
+      useClass: NgDompurifySanitizer,
     },
   ],
   declarations: [RatingTableComponent],
