@@ -1,29 +1,46 @@
-import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
-import {TUI_SANITIZER, TuiRootModule, TuiTextfieldControllerModule} from "@taiga-ui/core";
-import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
-import {RouterModule} from "@angular/router";
-import {CreateRatingComponent } from "./create-rating.component";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { TuiInputCountModule } from "@taiga-ui/kit";
-
-
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {
+  TUI_SANITIZER,
+  TuiButtonModule,
+  TuiRootModule,
+  TuiTextfieldControllerModule,
+} from '@taiga-ui/core';
+import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
+import { RouterModule } from '@angular/router';
+import { CreateRatingComponent } from './create-rating.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  TuiInputModule,
+  TuiInputNumberModule,
+  TuiIslandModule,
+} from '@taiga-ui/kit';
+import { TagsTreeModule } from './tags-tree/tags-tree.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    TuiInputNumberModule,
+    TuiInputModule,
+    TagsTreeModule,
+    TuiButtonModule,
+    TuiIslandModule,
+    FormsModule,
     TuiRootModule,
-    ReactiveFormsModule,TuiTextfieldControllerModule,
-    TuiInputCountModule,
+    ReactiveFormsModule,
+    TuiTextfieldControllerModule,
     RouterModule.forChild([
-      {path: '', component: CreateRatingComponent}
+      {
+        path: '',
+        component: CreateRatingComponent,
+      },
     ]),
   ],
   providers: [
     {
       provide: TUI_SANITIZER,
-      useClass: NgDompurifySanitizer
+      useClass: NgDompurifySanitizer,
     },
   ],
   declarations: [CreateRatingComponent],

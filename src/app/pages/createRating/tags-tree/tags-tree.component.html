@@ -1,0 +1,27 @@
+<div>
+  <form [formGroup]="tag" class="tag-parrent">
+    <tui-input-number
+      class="tag-score-input"
+      formControlName="score"
+      (change)="valueChange()"
+    >
+      {{ name }}
+    </tui-input-number>
+    <button
+      icon="{{ expanded ? 'tuiIconChevronDown' : 'tuiIconChevronUp' }}"
+      size="s"
+      tuiIconButton
+      type="button"
+      (click)="changeExpand()"
+      *ngIf="childTags?.length"
+    ></button>
+  </form>
+  <div *ngIf="expanded">
+    <div class="tag-child" *ngFor="let child of childTags">
+      <tags-tree
+        [tagsValue]="child"
+        (onChildValueChange)="onChildInChildValueChange($event)"
+      ></tags-tree>
+    </div>
+  </div>
+</div>
