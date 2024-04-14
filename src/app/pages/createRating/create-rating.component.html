@@ -1,5 +1,29 @@
 <tui-root>
-  <div>
-   <tags-tree></tags-tree>
+  <form [formGroup]="rating" class="button-container">
+    <div class="row">
+      <tui-input class="rating-credentials-input" formControlName="name"
+        >Название</tui-input
+      >
+      <tui-input-number
+        class="rating-credentials-input"
+        formControlName="hours"
+      >
+        часы</tui-input-number
+      >
+    </div>
+    <div class="row">
+      <button size="m" tuiButton>Создать тэг</button>
+      <button size="m" (click)="onSave()" tuiButton>Сохранить</button>
+    </div>
+  </form>
+  <div class="tree-center-display">
+    <div class="tree-container">
+      <tui-island class="tag" *ngFor="let tag of tagsValue">
+        <tags-tree
+          (onChildValueChange)="onChildValueChange($event)"
+          [tagsValue]="tag"
+        ></tags-tree>
+      </tui-island>
+    </div>
   </div>
 </tui-root>
