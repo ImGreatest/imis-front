@@ -16,7 +16,7 @@
       *ngIf="childTags?.length"
     ></button>
   </form>
-  <div *ngIf="expanded">
+  <div class="tag-child-container" *ngIf="expanded">
     <div class="tag-child" *ngFor="let child of childTags">
       <tags-tree
         [tagsValue]="child"
