@@ -1,5 +1,5 @@
 <div>
-  <form [formGroup]="tag" class="tag-parrent">
+    <!-- <form [formGroup]="tag" class="tag-parrent">
     <tui-input-number
       class="tag-score-input"
       formControlName="score"
@@ -23,5 +23,20 @@
         (onChildValueChange)="onChildInChildValueChange($event)"
       ></tags-tree>
     </div>
-  </div>
+  </div> -->
+    <tui-tree
+        *ngFor="let item of tagsValue"
+        [childrenHandler]="handler"
+        [content]="content"
+        [tuiTreeController]="true"
+        [value]="item"></tui-tree>
+
+    <ng-template #content let-item>
+        {{ item.name }}
+        <tui-input-number
+            class="tag-score-input"
+            [ngModel]="item.score"
+            tuiTextfieldSize="s"
+            (ngModelChange)="onChange(item.id, $event)"></tui-input-number>
+    </ng-template>
 </div>

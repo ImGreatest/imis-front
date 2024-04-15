@@ -1,21 +1,28 @@
 export interface ITag {
-  id: number;
-  name: string;
-  description: string;
+    id : number;
+    name : string;
+    description : string;
 }
 export interface ITreeTagElement extends ITag {
-  childTags: ITreeTagElement[];
-  ratingScope: tagScope[];
+    childTags : ITreeTagElement[];
+    ratingScope : tagScope[];
 }
 
 interface tagScope {
-  ratingScore: number;
+    ratingScore : number;
 }
 
 export interface tagScore {
-  [key: number]: number;
+    [key : number] : number;
 }
 export interface TagEvent {
-  id: number;
-  score: number;
+    id : number;
+    score : number;
+}
+
+export interface ITreeTagShowElement {
+    id : number;
+    name : string;
+    score : number;
+    childs? : ITreeTagShowElement[]
 }
