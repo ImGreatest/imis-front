@@ -13,7 +13,7 @@
     <div *ngIf="tagsValue.length > 0" class="tree-center-display">
         <div class="tree-container">
 
-            <tags-tree [tagsValue]="tagsValue"></tags-tree>
+            <tags-tree (onScoreChange)="onScoreChange($event)" [tagsValue]="tagsValue"></tags-tree>
 
         </div>
     </div>

@@ -1,38 +1,16 @@
-<div>
-    <!-- <form [formGroup]="tag" class="tag-parrent">
-    <tui-input-number
-      class="tag-score-input"
-      formControlName="score"
-      (change)="valueChange()"
-    >
-      {{ name }}
-    </tui-input-number>
-    <button
-      icon="{{ expanded ? 'tuiIconChevronDown' : 'tuiIconChevronUp' }}"
-      size="s"
-      tuiIconButton
-      type="button"
-      (click)="changeExpand()"
-      *ngIf="childTags?.length"
-    ></button>
-  </form>
-  <div class="tag-child-container" *ngIf="expanded">
-    <div class="tag-child" *ngFor="let child of childTags">
-      <tags-tree
-        [tagsValue]="child"
-        (onChildValueChange)="onChildInChildValueChange($event)"
-      ></tags-tree>
-    </div>
-  </div> -->
-    <tui-tree
-        *ngFor="let item of tagsValue"
-        [childrenHandler]="handler"
-        [content]="content"
-        [tuiTreeController]="true"
-        [value]="item"></tui-tree>
+<div style="display: flex;">
+    <tui-island *ngFor="let item of tagsValue">
+        <tui-tree
+            [childrenHandler]="handler"
+            [content]="content"
+            [tuiTreeController]="true"
+            [value]="item"></tui-tree>
+    </tui-island>
 
     <ng-template #content let-item>
-        {{ item.name }}
+      
+        <label class="tag-label">
+            {{ item.name }}</label>
         <tui-input-number
             class="tag-score-input"
             [ngModel]="item.score"
