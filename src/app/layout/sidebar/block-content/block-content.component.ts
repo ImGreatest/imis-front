@@ -7,5 +7,5 @@ import {Component, Input} from '@angular/core';
 })
 export class BlockContentComponent {
   @Input()
-  blocks: { routing: string, icon: string, title: string }[] = [];
+  blocks: { routing: string, icon: string, title: string, selected: boolean }[] = [];
 }

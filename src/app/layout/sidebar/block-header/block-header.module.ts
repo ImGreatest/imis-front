@@ -6,12 +6,12 @@ import { RouterLink } from "@angular/router";
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    TuiButtonModule,
-    TuiButtonVerticalModule,
-    RouterLink
-  ],
+	imports: [
+		CommonModule,
+		TuiButtonModule,
+		TuiButtonVerticalModule,
+		RouterLink
+	],
   declarations: [BlockHeaderComponent],
   exports: [BlockHeaderComponent],
 })

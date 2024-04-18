@@ -1,21 +1,21 @@
- <tui-theme-night *ngIf="night | async"></tui-theme-night>
- <tui-root [tuiMode]="mode">
+<tui-theme-night *ngIf="night | async"></tui-theme-night>
+<tui-root [tuiMode]="mode">
 
   <router-outlet></router-outlet>
   <ng-container ngProjectAs="tuiOverContent">
-    <!-- Content over app content -->
+<!--    Content over app content-->
   </ng-container>
   <ng-container ngProjectAs="tuiOverDialogs">
-    <!-- Content over dialogs -->
+<!--    Content over dialogs-->
   </ng-container>
   <ng-container ngProjectAs="tuiOverAlerts">
-    <!-- Content over notifications -->
+<!--    Content over notifications-->
   </ng-container>
   <ng-container ngProjectAs="tuiOverPortals">
-    <!-- Content over dropdowns -->
+<!--    Content over dropdowns-->
   </ng-container>
   <ng-container ngProjectAs="tuiOverHints">
-    <!-- Content over hints -->
+<!--    Content over hints-->
   </ng-container>
 
 </tui-root>

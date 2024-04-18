@@ -1,5 +1,17 @@
 @import '@taiga-ui/core/styles/taiga-ui-local';
 
+@appearance-hover: {
+  color: var(--tui-base-09);
+  background: var(--tui-clear-hover);
+  animation: button-grow-up 0.3s ease-in-out;
+}
+@appearance-active: {
+  color: var(--tui-base-08);
+  background: var(--tui-clear-active);
+  opacity: 0.8;
+  animation: button-tap 0.3s ease;
+}
+
 div {
   display: flex;
   justify-content: center;
@@ -13,18 +25,30 @@ div {
   color: var(--tui-base-08);
   background: transparent;
 
-  .appearance-hover({
-    color: var(--tui-base-09);
-    background: var(--tui-clear-hover);
-    animation: button-grow-up 0.3s ease-in-out;
-  });
+  //.appearance-hover(@appearance-hover);
 
-  .appearance-active({
-    color: var(--tui-base-08);
-    background: var(--tui-clear-active);
-    opacity: 0.8;
-    animation: button-tap 0.3s ease;
-  });
+  //.appearance-active(@appearance-active);
+
+  //.appearance-disabled({
+  //  opacity: 0.85;
+  //})
+}
+
+[tuiAppearance][data-appearance='sidebar-button']:hover {
+  color: var(--tui-base-09);
+  background: var(--tui-clear-hover);
+  animation: button-grow-up 0.3s ease-in-out;
+}
+
+[tuiAppearance][data-appearance='sidebar-button']:active {
+  color: var(--tui-base-08);
+  background: var(--tui-clear-active);
+  opacity: 0.8;
+  animation: button-tap 0.3s ease;
+}
+
+[tuiAppearance][data-appearance='sidebar-button']:disabled {
+  opacity: 0.85;
 }
 
 

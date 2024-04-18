@@ -1,7 +1,6 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
-import {TuiAppearance, tuiScaleIn} from "@taiga-ui/core";
-import {EMonthRedact} from "../../common/enum/datas-date";
-import {Router} from "@angular/router";
+import { ChangeDetectionStrategy, Component, Output, ViewEncapsulation } from '@angular/core';
+import {TuiAppearance} from "@taiga-ui/core";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-sidebar',
@@ -26,13 +25,13 @@ export class SidebarComponent {
   statusNotice: boolean = false;
   @Output()
   readonly buttonContent = [
-    {title: 'Главная', routing: '/', icon: 'tuiIconHome'},
-    {title: 'Рейтинг', routing: '/rating', icon: 'tuiIconBarChartLarge'},
-    {title: 'Проекты', routing: '/projects', icon: 'tuiIconBookLarge'},
-    {title: 'События', routing: '/events', icon: 'tuiIconCalendarLarge'},
-    {title: 'Компании', routing: '/company', icon: 'tuiIconBriefcaseLarge'},
-    {title: 'Мат. Модель', routing: 'createRating', icon: 'tuiIconSlackLarge'},
-    {title: 'Роли', routing: 'roles', icon: 'tuiIconUsersLarge'},
+    {title: 'Главная', routing: '/', icon: 'tuiIconHome', selected: true},
+    {title: 'Рейтинг', routing: '/rating', icon: 'tuiIconBarChartLarge', selected: false},
+    {title: 'Проекты', routing: '/projects', icon: 'tuiIconBookLarge', selected: false},
+    {title: 'События', routing: '/events', icon: 'tuiIconCalendarLarge', selected: false},
+    {title: 'Компании', routing: '/company', icon: 'tuiIconBriefcaseLarge', selected: false},
+    {title: 'Мат. Модель', routing: 'createRating', icon: 'tuiIconSlackLarge', selected: false},
+    {title: 'Роли', routing: 'roles', icon: 'tuiIconUsersLarge', selected: false},
   ]
   @Output()
   readonly buttonHeader = [
@@ -45,21 +44,4 @@ export class SidebarComponent {
   ]
 
   constructor(private router: Router) {}
-
-  convertDate(date: Date): string {
-    const month: { [key: string]: EMonthRedact } = EMonthRedact;
-    return `${date.getDay()} ${month[date.getMonth()]} ${date.getFullYear()}`;
-  }
-
-  closeProfileBar(): void {
-    this.barProfile = false;
-  }
-
-  checkRouterUrl() {
-    if (this.router.url !== '/profile') {
-      return true
-    }
-    this.closeProfileBar()
-    return false;
-  }
 }
