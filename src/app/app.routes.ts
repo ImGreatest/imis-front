@@ -43,6 +43,13 @@ export const routes: Routes = [
         path: 'createRating',
         loadChildren: () => import('./pages/createRating/create-rating.module').then((m) => m.CreateRatingModule),
       },
+      {
+        path: 'roles',
+        loadChildren: () =>
+          import('./pages/roles/roles.module').then(
+            (m) => m.RolesModule
+          ),
+      },
     ],
   },
   {
