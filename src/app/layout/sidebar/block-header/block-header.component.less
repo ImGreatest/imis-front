@@ -1,18 +1,28 @@
+@import '@taiga-ui/core/styles/taiga-ui-local';
+
+[tuiAppearance][data-appearance='custom'] {
+  color: var(--tui-base-08);
+  background: transparent;
+
+  .appearance-hover({
+    color: var(--tui-base-09);
+    background: var(--tui-clear-hover);
+    animation: button-grow-up 0.3s ease-in-out;
+  });
+
+  .appearance-active({
+    color: var(--tui-base-08);
+    background: var(--tui-clear-hover-active);
+    opacity: 0.8;
+    animation: button-tap 0.3s ease;
+  });
+}
+
 div {
   display: flex;
   justify-content: center;
   margin-top: 2rem;
-}
-
-.sidebar-button {
-  :active {
-    animation: button-tap 0.3s ease;
-  }
-}
-
-.sidebar-button-hover {
-  transform: scale(1.05);
-  animation: button-grow-up 0.3s ease-in-out;
+  margin-bottom: 1.5rem;
 }
 
 

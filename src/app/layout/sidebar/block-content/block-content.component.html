@@ -1,14 +1,12 @@
 <div *ngFor="let button of blocks">
   <button
-    appearance="flat"
+    appearance="sidebar-button"
     [iconLeft]="button.icon"
     tuiButton
     tuiButtonVertical
     size="xs"
-    class="sidebar-button"
-    [class.sidebar-button-hover]="button.onHover"
-    (mouseenter)="button.onHover = true"
-    (mouseleave)="button.onHover = false"
     [routerLink]="button.routing"
-  >{{ button.title }}</button>
+  >
+    {{ button.title }}
+  </button>
 </div>

@@ -1,15 +1,12 @@
 <div>
   <button
-    *ngFor="let button of blocks"
-    appearance="flat"
-    [iconLeft]="button.icon"
+    appearance="custom"
+    size="m"
+    iconLeft="tuiIconUser"
+    routerLink="/auth"
     tuiButton
     tuiButtonVertical
-    class="sidebar-button"
-    [class.sidebar-button-hover]="button.onHover"
-    (mouseenter)="button.onHover = true"
-    (mouseleave)="button.onHover = false"
-    size="xs"
-    [routerLink]="'/auth'"
-  >Настройки</button>
+  >
+    Alex Inkin
+  </button>
 </div>

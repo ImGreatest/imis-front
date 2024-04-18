@@ -25,12 +25,9 @@ import {TuiActiveZoneModule, TuiForModule, TuiHoveredModule} from "@taiga-ui/cdk
 import {CommonModule, NgIf} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {TuiBarModule} from "@taiga-ui/addon-charts";
-import {NoticeComponent} from "./notice/notice.component";
-import {BlockProfileComponent} from "./block-profile/block-profile.component";
 import {BlockContentModule} from "./block-content/block-content.module";
 import {BlockHeaderModule} from "./block-header/block-header.module";
-
-
+import { BlockNoticeModule } from "./block-notice/block-notice.module";
 
 @NgModule({
   imports: [
@@ -68,6 +65,7 @@ import {BlockHeaderModule} from "./block-header/block-header.module";
     TuiToggleModule,
     BlockHeaderModule,
     BlockContentModule,
+    BlockNoticeModule,
   ],
   providers: [
     {
@@ -75,7 +73,7 @@ import {BlockHeaderModule} from "./block-header/block-header.module";
       useClass: NgDompurifySanitizer
     },
   ],
-  declarations: [BlockProfileComponent, NoticeComponent, SidebarComponent],
+  declarations: [SidebarComponent],
   exports: [SidebarComponent],
 })
 export class SidebarModule {}
