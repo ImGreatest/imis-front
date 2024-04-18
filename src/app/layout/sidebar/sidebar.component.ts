@@ -39,7 +39,8 @@ export class SidebarComponent {
     {title: 'Проекты', routing: '/projects', icon: 'tuiIconBookLarge', onHover: false},
     {title: 'События', routing: '/events', icon: 'tuiIconCalendarLarge', onHover: false},
     {title: 'Компании', routing: '/company', icon: 'tuiIconBriefcaseLarge', onHover: false},
-    {title: 'Мат модели', routing: '/createRating', icon: 'tuiIconBriefcaseLarge', onHover: false}
+    {title: 'Мат модели', routing: '/createRating', icon: 'tuiIconBriefcaseLarge', onHover: false},
+    {title: 'Роли', routing: '/roles', icon: 'tuiIconBriefcaseLarge', onHover: false}
   ]
   @Output()
   noticeList = [
