@@ -1,16 +1,14 @@
-<div>
-<!--  <h5 *ngIf="statusSideBar">Темная тема</h5>-->
-  <button
-    appearance="secondary"
-    iconLeft="tuiIconHeart"
-    size="xs"
-    tuiIconButton
-    [style.border-radius.%]="100"
-  >
-    Favorite
-  </button>
-  <tui-toggle
-    (click)="night.toggle()"
-    size="l"
-  ></tui-toggle>
+<div style="border-bottom: 1px solid #D7D7D7;">
+  <div class="content">
+    <button
+      appearance="custom"
+      size="m"
+      iconLeft="tuiIconUser"
+      routerLink="/auth"
+      tuiButton
+      tuiButtonVertical
+    >
+      Alex Inkin
+    </button>
+  </div>
 </div>

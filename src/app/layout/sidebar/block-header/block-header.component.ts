@@ -1,8 +1,4 @@
-import {ChangeDetectionStrategy, Component, Inject, Input} from '@angular/core';
-import {TuiThemeNightService} from "@taiga-ui/addon-doc";
-import {TuiBrightness} from "@taiga-ui/core";
-
-
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'block-header',
@@ -12,7 +8,5 @@ import {TuiBrightness} from "@taiga-ui/core";
 })
 export class BlockHeaderComponent {
   @Input()
-  statusSideBar: boolean = false;
-
-  constructor(@Inject(TuiThemeNightService) readonly night: TuiThemeNightService) {}
+  blocks: { routing: string, icon: string, title: string, onHover: boolean }[] = [];
 }

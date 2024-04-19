@@ -1,24 +1,16 @@
-<div *ngFor="let block of blocks" style="display: flex; flex-direction: column; align-items: center; justify-content: center">
-  <button
-    [style.opacity]="statusSideBar ? 1 : 0"
-    (click)="changeOpacity()"
-    appearance="flat"
-    [iconLeft]="block.icon"
-    tuiButton
-    *ngIf="statusSideBar; else simpleButton"
-    size="xs"
-    [routerLink]="block.routing"
-  >{{ block.title }}</button>
-  <ng-template #simpleButton>
+<tui-scrollbar>
+  <div *ngFor="let button of blocks">
     <button
-      [style.opacity]="statusSideBar ? 0 : 1"
-      (click)="changeOpacity()"
-      appearance="flat"
-      [iconLeft]="block.icon"
+      appearance="sidebar-button"
+      [iconLeft]="button.icon"
+      [class.sidebar-button]="button.selected"
+      [style.color]="button.selected ? 'var(--tui-primary)' : 'var(--tui-base-08)'"
       tuiButton
       tuiButtonVertical
       size="xs"
-      [routerLink]="block.routing"
-    >{{ block.title }}</button>
-  </ng-template>
-</div>
+      [routerLink]="button.routing"
+    >
+      {{ button.title }}
+    </button>
+  </div>
+</tui-scrollbar>

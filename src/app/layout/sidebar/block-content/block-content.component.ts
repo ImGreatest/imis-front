@@ -7,12 +7,5 @@ import {Component, Input} from '@angular/core';
 })
 export class BlockContentComponent {
   @Input()
-  statusSideBar: boolean = false;
-  @Input()
-  blocks: { routing: string, icon: string, title: string, onHover: boolean }[] = [];
-  opacityValue: number = 1;
-
-  changeOpacity() {
-    this.opacityValue = 0;
-  }
+  blocks: { routing: string, icon: string, title: string, selected: boolean }[] = [];
 }

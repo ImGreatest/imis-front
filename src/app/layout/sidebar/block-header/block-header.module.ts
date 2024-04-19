@@ -1,37 +1,18 @@
-import {NgModule} from "@angular/core";
-import {
-  TuiButtonModule
-} from '@taiga-ui/experimental';
-import {TuiToggleModule, tuiToggleOptionsProvider} from "@taiga-ui/kit";
-import {CommonModule} from "@angular/common";
-import {RouterLink} from "@angular/router";
-import {BlockHeaderComponent} from "./block-header.component";
-
+import { NgModule } from "@angular/core";
+import { BlockHeaderComponent } from "./block-header.component";
+import { CommonModule } from "@angular/common";
+import { TuiButtonModule, TuiButtonVerticalModule } from "@taiga-ui/experimental";
+import { RouterLink } from "@angular/router";
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    TuiButtonModule,
-    RouterLink,
-    TuiToggleModule,
-  ],
-  providers: [
-    tuiToggleOptionsProvider({
-      icons: {
-        toggleOff: ({$implicit}) =>
-          $implicit === 'm'
-            ? 'tuiIconMoon'
-            : 'tuiIconMoonLarge',
-        toggleOn: ({$implicit}) =>
-          $implicit === 'm' ? 'tuiIconSun' : 'tuiIconSunLarge',
-      },
-      showIcons: true,
-    }),
-  ],
+	imports: [
+		CommonModule,
+		TuiButtonModule,
+		TuiButtonVerticalModule,
+		RouterLink
+	],
   declarations: [BlockHeaderComponent],
-  exports: [
-    BlockHeaderComponent
-  ],
+  exports: [BlockHeaderComponent],
 })
 export class BlockHeaderModule {}

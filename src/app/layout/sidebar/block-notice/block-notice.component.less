@@ -1,6 +1,6 @@
 @import '@taiga-ui/core/styles/taiga-ui-local';
 
-[tuiAppearance][data-appearance='custom'] {
+[tuiAppearance][data-appearance='sidebar-button'] {
   color: var(--tui-base-08);
   background: transparent;
 
@@ -12,17 +12,17 @@
 
   .appearance-active({
     color: var(--tui-base-08);
-    background: var(--tui-clear-hover-active);
+    background: var(--tui-clear-active);
     opacity: 0.8;
     animation: button-tap 0.3s ease;
   });
 }
 
-.content {
+div {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
-  margin-bottom: 1.5rem;
 }
 
 @keyframes button-grow-up {
@@ -52,4 +52,3 @@
     transform: scale(1.05);
   }
 }
-

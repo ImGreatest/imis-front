@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrl: './projects.component.less'
+  styleUrl: './projects.component.less',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectsComponent {}
