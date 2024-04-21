@@ -21,7 +21,5 @@ export class AppComponent implements OnInit {
     });
   }
 
-  get mode(): TuiBrightness | null {
-    return this.night.value ? 'onDark' : null;
-  }
+ 
 }

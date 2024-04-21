@@ -40,8 +40,8 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/user-profile/user-profile.module').then((m) => m.UserProfileModule),
       },
       {
-        path: 'createRating',
-        loadChildren: () => import('./pages/createRating/create-rating.module').then((m) => m.CreateRatingModule),
+        path: 'math-models',
+        loadChildren: () => import('./pages/math-model-table/math-models-table.module').then((m) => m.MathModelsTableModule),
       },
       {
         path: 'roles',

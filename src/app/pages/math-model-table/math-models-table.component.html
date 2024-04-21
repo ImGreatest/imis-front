@@ -1,0 +1,13 @@
+<div>
+    <tui-input>
+        Название
+    </tui-input>
+    <table tuiTable
+    [columns]="columns"
+    [direction]="(direction$ | async) || 1"
+    [tuiSortBy]="sorter$ | async"
+    (directionChange)="direction$.next($event)"
+    (tuiSortByChange)="sorter$.next($event!.toString())">
+
+    </table>
+</div>
