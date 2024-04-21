@@ -30,7 +30,7 @@ export class SidebarComponent {
     {title: 'Проекты', routing: '/projects', icon: 'tuiIconBookLarge', selected: false},
     {title: 'События', routing: '/events', icon: 'tuiIconCalendarLarge', selected: false},
     {title: 'Компании', routing: '/company', icon: 'tuiIconBriefcaseLarge', selected: false},
-    {title: 'Мат. Модель', routing: 'createRating', icon: 'tuiIconSlackLarge', selected: false},
+    {title: 'Мат. Модель', routing: 'math-models', icon: 'tuiIconSlackLarge', selected: false},
     {title: 'Роли', routing: 'roles', icon: 'tuiIconUsersLarge', selected: false},
   ]
   @Output()

@@ -67,11 +67,11 @@
             [direction]="(direction$ | async) || 1"
             [tuiSortBy]="sorter$ | async"
             (directionChange)="direction$.next($event)"
-            (tuiSortByChange)="sorter$.next($event!.toString())">
+            (tuiSortByChange)="sorter$.next($event? $event.toString(): null)">
             <thead>
                 <tr tuiThGroup>
                     <th *tuiHead="'place'" tuiTh [sorter]="null"></th>
-                    <th *tuiHead="'name'" tuiSortable tuiTh>Имя</th>
+                    <th *tuiHead="'name'" tuiSortable  tuiTh>Имя</th>
                     <th *tuiHead="'surname'" tuiSortable tuiTh>Фамилия</th>
                     <th *tuiHead="'group'" tuiSortable tuiTh>Курс</th>
                     <th *tuiHead="'ratingScore'" tuiSortable tuiTh>Баллы</th>

@@ -17,7 +17,6 @@ export interface IStudentScore {
 export interface IGetScore {
   page: number;
   pageSize: number;
-  sortDirection: string;
-  column: string;
+  orderProps: any;
   filters: IFilter[];
 }
