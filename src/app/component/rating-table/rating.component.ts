@@ -5,16 +5,14 @@ import { IStudentScore } from '../../common/interfaces/rating/student.score';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import {
   debounceTime,
-  filter,
   map,
   share,
-  startWith,
   switchMap,
 } from 'rxjs/operators';
-import { PageRes, PageResRating } from '../../common/interfaces/page';
+import { PageResRating } from '../../common/interfaces/page';
 import { tuiIsFalsy } from '@taiga-ui/cdk';
 import { FormControl } from '@angular/forms';
-import { IFilter } from '../../common/interfaces/rating/rating';
+import { IFilter } from '../../common/interfaces/shared/filter.interface';
 
 @Component({
   selector: 'ratingTable',
@@ -35,35 +33,42 @@ export class RatingTableComponent implements OnInit {
     'ratingScore',
     'actions',
   ];
-  readonly direction$ = new BehaviorSubject<-1 | 1>(-1);
   some(event: any) {
     console.log(event);
   }
-  readonly sorter$ = new BehaviorSubject<string | null>('ratingScore');
+
   ngOnInit(): void {
     this.request$.subscribe((users) => {
       this.users = users;
     });
   }
   readonly size$ = new BehaviorSubject(10);
+  readonly page$ = new BehaviorSubject(0);
   readonly pageCount$ = new BehaviorSubject(0);
   readonly filters$ = new BehaviorSubject<IFilter[]>([]);
+  readonly sorter$ = new BehaviorSubject<string | null>('ratingScore');
+  readonly direction$ = new BehaviorSubject<-1 | 1>(-1);
+
   pageCount = 0;
   minScore = 0;
   maxScore = 0;
+
+  readonly minCourse = 1;
+  readonly maxCourse = 5;
+
   readonly ratingFilterControl = new FormControl([
     this.minScore,
     this.maxScore,
   ]);
-  readonly minCourse = 1;
-  readonly maxCourse = 5;
+
   readonly courseFilterControl = new FormControl([
     this.minCourse,
     this.maxCourse,
   ]);
+
   readonly directionSelect = new FormControl();
   readonly groupSelect = new FormControl();
-  readonly page$ = new BehaviorSubject(0);
+  
   readonly request$ = combineLatest([
     this.sorter$,
     this.direction$,
@@ -71,7 +76,7 @@ export class RatingTableComponent implements OnInit {
     this.size$,
     this.filters$,
   ]).pipe(
-    debounceTime(0),
+    debounceTime(0.1),
     switchMap(([key, direction, page, size, filters]) =>
       this.getData(key, direction, page, size, filters)
     ),
@@ -94,10 +99,10 @@ export class RatingTableComponent implements OnInit {
           orderProps = { ratingScore: sortDirection };
           break;
         case 'group':
-          orderProps =  { student: { group: { name: sortDirection } } };
+          orderProps = { student: { group: { name: sortDirection } } };
           break;
         default:
-          orderProps =  { student: { [key]: sortDirection } };
+          orderProps = { student: { [key]: sortDirection } };
           break;
       }
     }

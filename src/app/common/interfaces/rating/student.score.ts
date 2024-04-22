@@ -1,4 +1,5 @@
-import { IFilter } from './rating';
+
+
 
 export interface IStudentScore {
   ratingId: number;
@@ -14,9 +15,4 @@ export interface IStudentScore {
   };
 }
 
-export interface IGetScore {
-  page: number;
-  pageSize: number;
-  orderProps: any;
-  filters: IFilter[];
-}
+

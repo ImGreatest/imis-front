@@ -11,15 +11,15 @@ import {
 import { IScope } from '../../interfaces/rating/scope';
 import {
   IStudentScore,
-  IGetScore,
-} from '../../interfaces/rating/student.score';
 
+} from '../../interfaces/rating/student.score';
+import {IGetPage} from '../../interfaces/shared/req.page.interface';
 @Injectable({ providedIn: 'root' })
 export class RatingService {
   constructor(public http: HttpClient) {}
-  getPage(page: number, limit: number): Observable<PageRes<IRating>> {
-    return this.http.get<PageRes<IRating>>(
-      `${environment.apiRatingUrl}/rating/page-${page}?limit=${limit}`
+  getPage( data: IGetPage): Observable<PageRes<IRating>> {
+    return this.http.post<PageRes<IRating>>(
+      `${environment.apiRatingUrl}/rating/table`,data
     );
   }
   createRating(rating: ICreateRating): Observable<IRating> {
@@ -50,7 +50,7 @@ export class RatingService {
   }
   getScoreById(
     id: number,
-    data: IGetScore
+    data: IGetPage
   ): Observable<PageResRating<IStudentScore>> {
     return this.http.put<PageResRating<IStudentScore>>(
       `${environment.apiRatingUrl}/rating/${id}/score`,

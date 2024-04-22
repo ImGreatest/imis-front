@@ -7,11 +7,15 @@ import { RouterModule } from '@angular/router';
 import { ProjectsComponent } from '../projects/projects.component';
 import { TuiInputModule } from '@taiga-ui/kit';
 import { TuiTableModule } from '@taiga-ui/addon-table';
+import { TuiLetModule } from '@taiga-ui/cdk';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     TuiInputModule,
+    TuiLetModule,
+    ReactiveFormsModule,
     TuiTableModule,
     RouterModule.forChild([{ path: '', component: MathModelsTableComponent }]),
   ],
