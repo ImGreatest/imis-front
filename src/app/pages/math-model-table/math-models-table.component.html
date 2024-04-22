@@ -1,53 +1,99 @@
-<div>
-  <tui-input> Название </tui-input>
-  <table
-    tuiTable
-    [columns]="columns"
-    [direction]="(direction$ | async) || 1"
-    [tuiSortBy]="sorter$ | async"
-    (directionChange)="direction$.next($event)"
-    (tuiSortByChange)="sorter$.next($event!.toString())"
-  >
-    <thead>
-      <tr tuiThGroup>
-        <th *tuiHead="'place'" tuiTh [sorter]="null"></th>
-        <th *tuiHead="'name'" tuiSortable tuiTh>Название</th>
-        <th *tuiHead="'minuteUpdate'" tuiSortable tuiTh>Частота обновления</th>
-        <th *tuiHead="'creater'" tuiSortable tuiTh>Создатель</th>
-        <th *tuiHead="'actions'" tuiTh [sorter]="null"></th>
-      </tr>
-    </thead>
-    <tbody
-      *tuiLet="ratings | tuiTableSort as sortedRatings"
-      tuiTbody
-      [data]="sortedRatings"
-    >
-      <tr *ngFor="let item of sortedRatings; let index = index" tuiTr>
-        <td *tuiCell="'place'" tuiTd>
-          {{ page$.getValue() * size$.getValue() + index + 1 }}
-        </td>
-        <td *tuiCell="'name'" tuiTd>
-          {{ item.name }}
-        </td>
-        <td *tuiCell="'minuteUpdate'" tuiTd>
-          {{ item.minuteUpdate }}
-        </td>
-        <td *tuiCell="'creater'" tuiTd>
-            {{ item.creater.name }} {{ item.creater.surname }}
-        </td>
-        <td *tuiCell="'actions'" tuiTd>
-          <button
-            tuiIconButton
-            appearance="flat"
-            tuiMode="onLight"
-            icon="tuiIconMoreHorizontalLarge"
-            shape="rounded"
-            size="s"
-            title="more"
-            class="more-icon"
-          ></button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<tui-loader
+  [overlay]="true"
+  [showLoader]="!!(loading$ | async)"
+  style="display: flex; align-items: center; width: 100%; height: 100%"
+>
+  <div class="table-placer">
+    <div class="table-container">
+      <div class="search-container">
+        <tui-input
+          [tuiTextfieldCleaner]="true"
+          tuiTextfieldSize="m"
+          tuiTextfieldIconLeft="tuiIconSearch"
+          class="search"
+        >
+          Название
+        </tui-input>
+        <button
+          tuiButton
+          class="create-button"
+          size="m"
+          appearance="primary"
+          (click)="goToMathModel('0')"
+        >
+          Создать
+        </button>
+      </div>
+      <table
+        tuiTable
+        [columns]="columns"
+        [direction]="(direction$ | async) || 1"
+        [tuiSortBy]="sorter$ | async"
+        (directionChange)="direction$.next($event)"
+        (tuiSortByChange)="sorter$.next($event!.toString())"
+      >
+        <thead>
+          <tr tuiThGroup>
+            <th *tuiHead="'place'" tuiTh [sorter]="null"></th>
+            <th *tuiHead="'name'" tuiSortable tuiTh>Название</th>
+            <th *tuiHead="'minuteUpdate'" tuiSortable tuiTh>
+              Частота обновления
+            </th>
+            <th *tuiHead="'creater'" tuiSortable tuiTh>Создатель</th>
+            <th *tuiHead="'actions'" tuiTh [sorter]="null"></th>
+          </tr>
+        </thead>
+        <tbody
+          *tuiLet="ratings | tuiTableSort as sortedRatings"
+          tuiTbody
+          [data]="sortedRatings"
+        >
+          <tr *ngFor="let item of sortedRatings; let index = index" tuiTr>
+            <td *tuiCell="'place'" tuiTd>
+              {{ page$.getValue() * size$.getValue() + index + 1 }}
+            </td>
+            <td *tuiCell="'name'" tuiTd>
+              {{ item.name }}
+            </td>
+            <td *tuiCell="'minuteUpdate'" tuiTd>
+              {{ item.minuteUpdate }}
+            </td>
+            <td *tuiCell="'creater'" tuiTd>
+              {{ item.creater.name }} {{ item.creater.surname }}
+            </td>
+            <td *tuiCell="'actions'" tuiTd>
+              <button
+                tuiIconButton
+                appearance="flat"
+                tuiMode="onLight"
+                icon="tuiIconPenTool"
+                shape="rounded"
+                size="s"
+                title="more"
+                (click)="goToMathModel(item.id.toString())"
+                class="more-icon"
+              ></button>
+              <button
+              tuiIconButton
+              appearance="flat"
+              tuiMode="onLight"
+              icon="tuiIconTrash2"
+              shape="rounded"
+              size="s"
+              title="more"
+              class="more-icon"
+            ></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="pagination-offset">
+        <tui-pagination
+          [index]="page$.getValue()"
+          [length]="pageCount$.getValue()"
+          (indexChange)="goToPage($event)"
+        ></tui-pagination>
+      </div>
+    </div>
+  </div>
+</tui-loader>
