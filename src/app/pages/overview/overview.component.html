@@ -37,8 +37,7 @@
         size="l"
         style="background-image: url('https://avatars.githubusercontent.com/u/3853896?s=48&v=4')"
         tuiAvatarOutline="var(--tui-neutral-bg)"
-      >
-      </tui-avatar>
+      ></tui-avatar>
     </div>
     <p id="overview-card-project-desc">
       Aseprite is a proprietary, source-available image editor designe
@@ -58,7 +57,8 @@
           size="m"
           [value]="tag"
           [hoverable]="true"
-          class="tui-space_right-1"
+          class="tui-space_right-1 "
+          style="box-shadow: var(--tui-shadow-navigation)"
         ></tui-tag>
       </ng-container>
       <ng-template
@@ -111,6 +111,7 @@
         direction="right"
       >
         <tui-avatar
+          id="overview-card-project-footer-row-tui-avatar"
           *ngFor="let name of names"
           size="s"
           [round]="true"
