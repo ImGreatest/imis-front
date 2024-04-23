@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import { ALWAYS_FALSE_HANDLER } from "@taiga-ui/cdk";
 import {tuiFadeIn} from "@taiga-ui/core";
+import { tuiIconUserLarge } from "@taiga-ui/icons";
 
 
 
@@ -75,4 +76,5 @@ export class OverviewComponent {
 
     return this.items.length - offset;
   }
+
 }
