@@ -1,8 +1,9 @@
 import {NgModule} from "@angular/core";
 import {
+  TUI_DIALOGS_CLOSE,
   TUI_SANITIZER,
   TuiButtonModule, TuiDataListModule, TuiDropdownModule,
-  TuiHintModule, TuiLinkModule,
+  TuiHintModule, TuiHostedDropdownModule, TuiLinkModule,
   TuiModeModule,
   TuiScrollbarModule,
   TuiSvgModule,
@@ -13,23 +14,23 @@ import {CommonModule} from "@angular/common";
 import {OverviewComponent} from "./overview.component";
 import {RouterModule} from "@angular/router";
 import {
-  TuiBadgeModule,
+  TuiComboBoxModule, TuiDataListDropdownManagerModule, TuiDataListWrapperModule, TuiFilterByInputPipeModule,
   TuiInputModule,
   TuiItemsWithMoreModule,
-  TuiPaginationModule,
+  TuiPaginationModule, TuiStringifyContentPipeModule,
   TuiTagModule
 } from "@taiga-ui/kit";
-import {ReactiveFormsModule} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {
   TuiAutoColorModule,
   TuiAvatarModule, TuiAvatarOutlineModule,
-  TuiAvatarStackModule,
+  TuiAvatarStackModule, TuiBadgedContentModule, TuiBadgeModule,
   TuiCardModule, TuiCellModule,
   TuiFadeModule, TuiHeaderModule,
-  TuiIconModule, TuiInitialsModule, TuiSurfaceModule, TuiTitleModule
+  TuiIconModule, TuiInitialsModule, TuiSurfaceModule, TuiTitleModule, TuiToggleModule
 } from "@taiga-ui/experimental";
 import {TuiTableModule} from "@taiga-ui/addon-table";
-import { TuiLetModule, TuiRepeatTimesModule } from "@taiga-ui/cdk";
+import { TuiActiveZoneModule, TuiLetModule, TuiRepeatTimesModule } from "@taiga-ui/cdk";
 import { RatingTableModule } from "../../component/rating-table/rating.module";
 
 @NgModule({
@@ -69,6 +70,12 @@ import { RatingTableModule } from "../../component/rating-table/rating.module";
     TuiDropdownModule,
     TuiDataListModule,
     TuiAvatarOutlineModule,
+    TuiBadgedContentModule,
+    TuiHostedDropdownModule,
+    TuiComboBoxModule,
+    TuiDataListWrapperModule,
+    TuiActiveZoneModule,
+    TuiDataListDropdownManagerModule,
   ],
   providers: [
     {

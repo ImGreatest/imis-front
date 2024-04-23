@@ -4,6 +4,7 @@
     tuiCardLarge
     tuiHeader
     tuiSurface="elevated"
+    tuiHostedDropdownHost
   >
     <div
       id="overview-card-project-title-row"
@@ -67,7 +68,7 @@
         tuiMore
       >
         <span
-          [tuiDropdown]="hintContent"
+          [tuiDropdown]="hintContentTags"
           [tuiDropdownMaxHeight]="125"
           [tuiDropdownHideDelay]="40"
           tuiDropdownAlign="right"
@@ -76,19 +77,6 @@
         >
           and {{ getRemaining(tag) }} more
         </span>
-      </ng-template>
-      <ng-template
-        #hintContent
-      >
-        <tui-data-list
-          *ngFor="let tag of testTags"
-        >
-          <button
-            tuiOption
-          >
-            {{ tag }}
-          </button>
-        </tui-data-list>
       </ng-template>
     </tui-items-with-more>
     <footer
@@ -109,6 +97,11 @@
       <tui-avatar-stack
         id="overview-card-project-footer-row-tui-avatar-stack"
         direction="right"
+        [tuiDropdown]="hintContentAvatars"
+        [tuiDropdownMaxHeight]="125"
+        tuiDropdownAlign="center"
+        tuiDropdownDirection="top"
+        tuiDropdownHover
       >
         <tui-avatar
           id="overview-card-project-footer-row-tui-avatar"
@@ -122,3 +115,45 @@
     </footer>
   </button>
 </div>
+
+<ng-template
+  #hintContentTags
+>
+  <tui-data-list
+    *ngFor="let tag of testTags"
+  >
+    <button
+      tuiOption
+      type="button"
+    >
+      {{ tag }}
+    </button>
+  </tui-data-list>
+</ng-template>
+
+<ng-template
+  #hintContentAvatars
+  let-activeZone
+>
+  <tui-data-list
+    tuiDataListDropdownManager
+    *ngFor="let user of names"
+    [tuiActiveZoneParent]="activeZone"
+  >
+    <button
+      tuiDropdownAlign="right"
+      tuiDropdownSided
+      tuiOption
+      [tuiDropdown]="hintContentUser"
+      [tuiDropdownManual]="false"
+    >
+      {{ user }}
+    </button>
+  </tui-data-list>
+</ng-template>
+
+<ng-template
+  #hintContentUser
+>
+  <p>fasfasfa</p>
+</ng-template>

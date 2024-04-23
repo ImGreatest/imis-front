@@ -1,10 +1,6 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import {FormControl} from "@angular/forms";
-import { ALWAYS_FALSE_HANDLER } from "@taiga-ui/cdk";
-import {tuiFadeIn} from "@taiga-ui/core";
-import { tuiIconUserLarge } from "@taiga-ui/icons";
-
-
+import { TuiDialogService, tuiFadeIn } from "@taiga-ui/core";
 
 @Component({
   selector: 'app-overview',
@@ -14,7 +10,6 @@ import { tuiIconUserLarge } from "@taiga-ui/icons";
   animations: [tuiFadeIn],
 })
 export class OverviewComponent {
-  favoritePrj: any[] = [];
   protected length: number = 64;
   protected index: number = 0;
   readonly items: string[] = [
@@ -27,8 +22,7 @@ export class OverviewComponent {
   ];
 
   readonly required = 3;
-  onHoverProjectTags: boolean = false
-
+  private dropdownOpen: boolean = false;
   dataTable: Array<Record<string, number | string>> = this.tableDatas;
   searchProjectControl = new FormControl('', {
     nonNullable: true,
@@ -38,7 +32,9 @@ export class OverviewComponent {
     nonNullable: true,
   })
 
-  constructor() {}
+  constructor(
+    @Inject(TuiDialogService) private readonly dialogs: TuiDialogService
+  ) {}
 
   readonly names = ['Jason Statham', 'Silvester Stallone', 'Jackie Chan'];
   readonly testTags = ['Python', 'C++', 'C#', 'SCSS', 'CSS', 'Java', 'Rust', 'Swift'];
@@ -69,6 +65,15 @@ export class OverviewComponent {
 
   goToPage(index: number): void {
     this.index = index
+  }
+
+  showDialog(): void {
+    this.dialogs
+      .open(
+        '<div>This is a plain string dialog.</div>It supports basic <strong>HTML</strong>',
+        {label: 'Heading', size: 's'},
+      )
+      .subscribe();
   }
 
   getRemaining(index: number): number {
