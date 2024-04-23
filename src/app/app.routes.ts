@@ -1,9 +1,6 @@
 import { Routes } from '@angular/router';
-import {SidebarComponent} from "./layout/sidebar/sidebar.component";
-import {Error404Component} from "./pages/error-404/error-404.component";
-import {AuthModule} from "./pages/auth/auth.module";
-
-
+import { ErrorComponent } from "../app/pages/error-404/error.component";
+import { SidebarComponent } from "./layout/sidebar/sidebar.component";
 
 export const routes: Routes = [
   {
@@ -40,6 +37,10 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/user-profile/user-profile.module').then((m) => m.UserProfileModule),
       },
       {
+        path: 'notice',
+        loadChildren: () => import('./pages/notice/notice.module').then((m) => m.NoticeModule),
+      },
+      {
         path: 'math-models',
         loadChildren: () => import('./pages/math-model-table/math-models-table.module').then((m) => m.MathModelsTableModule),
       },
@@ -58,6 +59,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    component: Error404Component,
+    component: ErrorComponent,
   },
 ];

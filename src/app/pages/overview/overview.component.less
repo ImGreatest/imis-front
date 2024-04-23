@@ -1,6 +1,6 @@
 @import "@taiga-ui/core/styles/taiga-ui-local.less";
 
-@max-width: 290px;
+@project-card-svg-color: var(--tui-focus);
 
 .row {
   display: flex;
@@ -13,211 +13,47 @@
   flex-direction: column;
 }
 
-.label {
-  font-family: Lato, serif;
-  font-size: 28px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-}
-
-.content-page-container {
-  .row();
-  background-color: #e8e9ed;
-}
-
-.container {
-  background-color: #fff;
-  border: thin solid #d7d7d7;
-  border-radius: 24px;
-  box-shadow: var(--tui-shadow-dropdown);
-}
-
-.projects-scroll {
-  width: 99%;
-  height: 61.5vh;
-
-  @media only screen and (max-device-width: 1920px) {
-    height: 69vh;
-  }
-}
-
-.container-page-projects {
-  width: 40%;
-}
-
-.container-projects {
-  width: 65%;
-  .column();
-  margin: 2rem;
-}
-
-.container-label-text {
-  .label();
-  margin-left: 2rem;
-}
-
-.project-container-label-widgets {
-  .row();
-  align-items: center;
-  margin-left: 5rem;
-}
-
-.project-container-label-filters {
+#main-container {
   display: flex;
-  align-items: center;
-  margin-right: 2rem;
-  margin-left: auto;
-}
-
-.filter-button {
-  margin-right: 1rem;
-}
-
-.projects-container {
   width: 100%;
-  .container();
+  height: 100%;
+  justify-content: center;
+  align-items: center
 }
 
-.project-cell {
-  .container();
-  margin: 1rem;
-}
-
-.project-cell-project-label {
-  max-width: @max-width;
-  color: var(tui-clear-hover);
-  font-family: "Crimson Pro", serif;
-  font-weight: bold;
-  font-size: 26px;
-  margin-left: 2rem;
-
-  @media only screen and (max-device-width: 1920px) {
-    max-width: @max-width;
-  }
-
-  @media only screen and (max-width: 1280px) {
-    max-width: @max-width - 25px;
-  }
-
-  @media only screen and (max-width: 1000px) {
-    max-width: 175px;
-  }
-}
-.overview-rating-table {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.project-cell-project-desc {
-  display: block;
-  color: var(--tui-focus);
-  font-family: "Crimson Pro", serif;
-  font-weight: 300;
-  font-size: 18px;
-  letter-spacing: 0.3px;
-  margin: 0 2rem 0 2rem;
-  word-wrap: normal;
-  user-select: none;
-
-  @media only screen and (max-device-width: 1920px) {
-    max-width: @max-width;
-  }
-
-  @media only screen and (max-width: 1919px) {
-    max-width: @max-width - 25px;
-  }
-
-  @media only screen and (max-device-width: 1600px) {
-    max-width: 225px;
-  }
-
-  @media only screen and (max-width: 1500px) {
-    max-width: 200px;
-  }
-
-  @media only screen and (max-width: 1366px) {
-    max-width: 175px;
-  }
-}
-
-.project-cell-avatar {
-  margin: 1rem 2rem 0 0;
-}
-
-.project-cell-tag-cell {
-  margin-left: 0.5rem;
-  margin-top: 0.5rem;
-}
-
-.project-cell-label-icons {
-  .row();
-  margin-left: auto;
-  align-items: center;
-}
-
-.project-cell-additional {
-  .row();
-  align-items: center;
-  margin: 1.5rem 1rem 1rem 2rem;
-}
-
-.project-cell-additional-icons {
-  margin-right: auto;
-}
-
-.project-cell-star-icon {
-  margin-left: 0.75rem;
-}
-
-.project-cell-more-icon {
-  margin: 0 2rem 0 0.75rem;
-}
-
-.project-cell-link-icon {
-  color: #333;
-  margin-right: 0.5rem;
-}
-
-.project-cell-git-icon {
-  color: #333;
-}
-
-.project-cell-tags-container {
-  .row();
-  flex-wrap: wrap;
-  max-width: @max-width;
-  align-items: flex-start;
-  margin-left: 1.5rem;
-  margin-top: 1rem;
-  user-select: none;
-}
-
-.project-cell-contr-stack {
-  margin-left: auto;
-  margin-right: 1rem;
-}
-
-.rating-cell {
-  .container();
-  width: 35%;
-  margin: 2rem 2rem 2rem 0;
-}
-
-.rating-container-cell {
+#overview-card-project {
   .column();
-  margin: 0 2rem 2rem;
+  width: 18.125rem;
 }
 
-.rating-cell-label {
-  .column();
+#overview-card-project-title-row {
+  .row();
+  width: 100%;
 }
 
-.rating-cell-label-widgets {
+#overview-card-project-desc {
+  text-align: start;
+  text-wrap: initial;
+}
+
+#overview-card-project-row-tags-item-with-more {
+  width: 100%
+}
+
+#overview-card-project-footer-row {
   .row();
   align-items: center;
-  margin: 0 0 0 auto;
+  width: 100%
 }
 
-.pagination-offset {
-  margin-top: 2rem;
+#overview-card-project-footer-row-tui-svg-link {
+  color: @project-card-svg-color;
+}
+
+#overview-card-project-footer-row-tui-svg-git {
+  color: @project-card-svg-color;
+}
+
+#overview-card-project-footer-row-tui-avatar-stack {
+  margin-left: auto;
 }

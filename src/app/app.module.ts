@@ -8,6 +8,7 @@ import {
   TuiHostedDropdownModule, TuiModeModule,
   TuiRootModule, TuiThemeNightModule
 } from '@taiga-ui/core';
+import { TuiBlockStatusModule } from "@taiga-ui/layout";
 import {AppComponent} from './app.component';
 import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {BrowserModule} from "@angular/platform-browser";
@@ -27,8 +28,6 @@ import {TuiRepeatTimesModule} from "@taiga-ui/cdk";
 import {POLYMORPHEUS_CONTEXT} from "@tinkoff/ng-polymorpheus";
 import {TuiBarModule} from "@taiga-ui/addon-charts";
 import { HttpClientModule } from '@angular/common/http';
-
-
 
 @NgModule({
   declarations: [AppComponent],
@@ -69,6 +68,7 @@ import { HttpClientModule } from '@angular/common/http';
     TuiBarModule,
     SidebarModule,
     TuiModeModule,
+    TuiBlockStatusModule,
   ],
   providers: [
     {

@@ -5,8 +5,6 @@ import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
 import {ProjectsComponent} from "./projects.component";
 import {RouterModule} from "@angular/router";
 
-
-
 @NgModule({
   imports: [
     CommonModule,

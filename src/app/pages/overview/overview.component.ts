@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FormControl} from "@angular/forms";
+import { ALWAYS_FALSE_HANDLER } from "@taiga-ui/cdk";
 import {tuiFadeIn} from "@taiga-ui/core";
 
 
@@ -15,6 +16,18 @@ export class OverviewComponent {
   favoritePrj: any[] = [];
   protected length: number = 64;
   protected index: number = 0;
+  readonly items: string[] = [
+    'Tag',
+    'Tag',
+    'Tag',
+    'Tag',
+    'TAg',
+    'Tag',
+  ];
+
+  readonly required = 3;
+  onHoverProjectTags: boolean = false
+
   dataTable: Array<Record<string, number | string>> = this.tableDatas;
   searchProjectControl = new FormControl('', {
     nonNullable: true,
@@ -26,6 +39,8 @@ export class OverviewComponent {
 
   constructor() {}
 
+  readonly names = ['Jason Statham', 'Silvester Stallone', 'Jackie Chan'];
+  readonly testTags = ['Python', 'C++', 'C#', 'SCSS', 'CSS', 'Java', 'Rust', 'Swift'];
   protected projectsList = [
     [
       { id: 1, avatar: 'https://avatars.githubusercontent.com/u/11832552', websiteLink: '', githubLink: '', name: "Aseprite", description: "Aseprite is a proprietary, source-available image editor designed primarily for pixel art drawing and animation.", tags: [{value: "python", color: "blue"}, {value: "typescript", color: "darkblue"}], cotr_avatar: ['https://avatars.githubusercontent.com/u/11832552', 'https://avatars.githubusercontent.com/u/11832552'], favorite: false},
@@ -55,15 +70,9 @@ export class OverviewComponent {
     this.index = index
   }
 
-  subscribePrj(prjId: number): void {
-    this.favoritePrj.push(prjId);
-  }
+  getRemaining(index: number): number {
+    const offset = index < this.required ? index + 2 : index + 1;
 
-  unsubscribePrj(prjId: number): void {
-    const index: number = this.favoritePrj.findIndex(value => value === prjId);
-    if (index > -1) {
-      this.favoritePrj.splice(index, 1);
-    }
+    return this.items.length - offset;
   }
-
 }

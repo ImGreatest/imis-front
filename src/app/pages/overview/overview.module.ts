@@ -1,7 +1,7 @@
 import {NgModule} from "@angular/core";
 import {
   TUI_SANITIZER,
-  TuiButtonModule,
+  TuiButtonModule, TuiDataListModule, TuiDropdownModule,
   TuiHintModule, TuiLinkModule,
   TuiModeModule,
   TuiScrollbarModule,
@@ -12,14 +12,25 @@ import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
 import {CommonModule} from "@angular/common";
 import {OverviewComponent} from "./overview.component";
 import {RouterModule} from "@angular/router";
-import {TuiInputModule, TuiPaginationModule, TuiTagModule} from "@taiga-ui/kit";
+import {
+  TuiBadgeModule,
+  TuiInputModule,
+  TuiItemsWithMoreModule,
+  TuiPaginationModule,
+  TuiTagModule
+} from "@taiga-ui/kit";
 import {ReactiveFormsModule} from "@angular/forms";
-import {TuiAvatarModule, TuiAvatarStackModule, TuiFadeModule, TuiIconModule} from "@taiga-ui/experimental";
+import {
+  TuiAutoColorModule,
+  TuiAvatarModule, TuiAvatarOutlineModule,
+  TuiAvatarStackModule,
+  TuiCardModule, TuiCellModule,
+  TuiFadeModule, TuiHeaderModule,
+  TuiIconModule, TuiInitialsModule, TuiSurfaceModule, TuiTitleModule
+} from "@taiga-ui/experimental";
 import {TuiTableModule} from "@taiga-ui/addon-table";
-import {TuiLetModule} from "@taiga-ui/cdk";
+import { TuiLetModule, TuiRepeatTimesModule } from "@taiga-ui/cdk";
 import { RatingTableModule } from "../../component/rating-table/rating.module";
-
-
 
 @NgModule({
   imports: [
@@ -34,7 +45,6 @@ import { RatingTableModule } from "../../component/rating-table/rating.module";
     ReactiveFormsModule,
     TuiSvgModule,
     TuiButtonModule,
-    TuiButtonModule,
     TuiIconModule,
     TuiModeModule,
     TuiScrollbarModule,
@@ -46,6 +56,19 @@ import { RatingTableModule } from "../../component/rating-table/rating.module";
     TuiTableModule,
     TuiLetModule,
     TuiPaginationModule,
+    TuiCardModule,
+    TuiHeaderModule,
+    TuiSurfaceModule,
+    TuiTitleModule,
+    TuiCellModule,
+    TuiRepeatTimesModule,
+    TuiBadgeModule,
+    TuiItemsWithMoreModule,
+    TuiInitialsModule,
+    TuiAutoColorModule,
+    TuiDropdownModule,
+    TuiDataListModule,
+    TuiAvatarOutlineModule,
   ],
   providers: [
     {
