@@ -8,7 +8,6 @@ import {
   TuiModeModule,
   TuiTextfieldControllerModule,
 } from '@taiga-ui/core';
-import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
 import { RatingTableComponent } from './rating.component';
 import {
   TuiInputModule,
@@ -21,6 +20,7 @@ import { TuiTableModule } from '@taiga-ui/addon-table';
 import { TuiActiveZoneModule, TuiLetModule } from '@taiga-ui/cdk';
 import { TuiIconModule } from '@taiga-ui/experimental';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
 
 @NgModule({
   imports: [
@@ -45,7 +45,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   providers: [
     {
       provide: TUI_SANITIZER,
-      useClass: NgDompurifySanitizer,
+      useClass: NgDompurifySanitizer
     },
   ],
   declarations: [RatingTableComponent],

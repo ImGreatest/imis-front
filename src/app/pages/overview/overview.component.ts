@@ -22,11 +22,15 @@ export class OverviewComponent {
   ];
 
   readonly required = 3;
-  private dropdownOpen: boolean = false;
+  selectedUser: string = ''
   dataTable: Array<Record<string, number | string>> = this.tableDatas;
   searchProjectControl = new FormControl('', {
     nonNullable: true,
   });
+
+  selectOption(item: string): void {
+    this.selectedUser = item.toString();
+  }
 
   searchRatingControl = new FormControl('', {
     nonNullable: true,
@@ -36,9 +40,11 @@ export class OverviewComponent {
     @Inject(TuiDialogService) private readonly dialogs: TuiDialogService
   ) {}
 
-  readonly names = ['Jason Statham', 'Silvester Stallone', 'Jackie Chan'];
-  readonly testTags = ['Python', 'C++', 'C#', 'SCSS', 'CSS', 'Java', 'Rust', 'Swift'];
-  protected projectsList = [
+  protected readonly contributes = ['Jason Statham', 'Silvester Stallone', 'Jackie Chan'];
+  protected readonly projectTags = ['editors'];
+  protected readonly languageTags = ['Python', 'C++', 'C#', 'SCSS', 'CSS', 'Java', 'Rust', 'Swift'];
+
+  projectsList = [
     [
       { id: 1, avatar: 'https://avatars.githubusercontent.com/u/11832552', websiteLink: '', githubLink: '', name: "Aseprite", description: "Aseprite is a proprietary, source-available image editor designed primarily for pixel art drawing and animation.", tags: [{value: "python", color: "blue"}, {value: "typescript", color: "darkblue"}], cotr_avatar: ['https://avatars.githubusercontent.com/u/11832552', 'https://avatars.githubusercontent.com/u/11832552'], favorite: false},
       { id: 2, avatar: 'https://avatars.githubusercontent.com/u/11832552', websiteLink: '', githubLink: '', name: "Swift", description: "Aseprite is a proprietary, source-available image editor designed primarily for pixel art drawing and animation.", tags: [{value: "C++", color: "pink"}, {value: "python", color: "darkblue"}], cotr_avatar: ['https://avatars.githubusercontent.com/u/11832552'], favorite: false },
@@ -63,23 +69,9 @@ export class OverviewComponent {
     return Object.keys(this.dataTable[0])
   }
 
-  goToPage(index: number): void {
-    this.index = index
-  }
-
-  showDialog(): void {
-    this.dialogs
-      .open(
-        '<div>This is a plain string dialog.</div>It supports basic <strong>HTML</strong>',
-        {label: 'Heading', size: 's'},
-      )
-      .subscribe();
-  }
-
   getRemaining(index: number): number {
     const offset = index < this.required ? index + 2 : index + 1;
 
     return this.items.length - offset;
   }
-
 }

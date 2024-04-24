@@ -16,26 +16,24 @@ import {TuiTableModule} from "@taiga-ui/addon-table";
 import {TuiLetModule} from "@taiga-ui/cdk";
 import { RatingTableModule } from "../../component/rating-table/rating.module";
 
-
-
 @NgModule({
-    imports: [
-        RatingTableModule,
-        CommonModule,
-        RouterModule.forChild([
-            {path: '', component: RatingComponent}
-        ]),
-        TuiLoaderModule,
-        TuiInputModule,
-        TuiTextfieldControllerModule,
-        TuiModeModule,
-        TuiTableModule,
-        TuiTagModule,
-        TuiButtonModule,
-        TuiLinkModule,
-        TuiLetModule,
-        TuiPaginationModule,
-    ],
+  imports: [
+    CommonModule,
+    RouterModule.forChild([
+      { path: '', component: RatingComponent }
+    ]),
+    TuiLoaderModule,
+    TuiInputModule,
+    TuiTextfieldControllerModule,
+    TuiModeModule,
+    TuiTableModule,
+    TuiTagModule,
+    TuiButtonModule,
+    TuiLinkModule,
+    TuiLetModule,
+    TuiPaginationModule,
+    RatingTableModule,
+  ],
   providers: [
     {
       provide: TUI_SANITIZER,

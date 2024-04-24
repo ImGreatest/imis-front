@@ -28,6 +28,7 @@ import {TuiRepeatTimesModule} from "@taiga-ui/cdk";
 import {POLYMORPHEUS_CONTEXT} from "@tinkoff/ng-polymorpheus";
 import {TuiBarModule} from "@taiga-ui/addon-charts";
 import { HttpClientModule } from '@angular/common/http';
+import { ComponentsModule } from "./component/components.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -69,6 +70,7 @@ import { HttpClientModule } from '@angular/common/http';
     SidebarModule,
     TuiModeModule,
     TuiBlockStatusModule,
+    ComponentsModule
   ],
   providers: [
     {

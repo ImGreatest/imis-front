@@ -1,81 +1,55 @@
-import {NgModule} from "@angular/core";
 import {
-  TUI_DIALOGS_CLOSE,
   TUI_SANITIZER,
-  TuiButtonModule, TuiDataListModule, TuiDropdownModule,
-  TuiHintModule, TuiHostedDropdownModule, TuiLinkModule,
-  TuiModeModule,
-  TuiScrollbarModule,
-  TuiSvgModule,
-  TuiTextfieldControllerModule,
+  TuiDataListModule,
+  TuiDropdownModule,
+  TuiHostedDropdownModule,
+  TuiSvgModule
 } from "@taiga-ui/core";
-import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
-import {CommonModule} from "@angular/common";
-import {OverviewComponent} from "./overview.component";
-import {RouterModule} from "@angular/router";
-import {
-  TuiComboBoxModule, TuiDataListDropdownManagerModule, TuiDataListWrapperModule, TuiFilterByInputPipeModule,
-  TuiInputModule,
-  TuiItemsWithMoreModule,
-  TuiPaginationModule, TuiStringifyContentPipeModule,
-  TuiTagModule
-} from "@taiga-ui/kit";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
+import { OverviewComponent } from "./overview.component";
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
+import { RatingTableModule } from "../../component/rating-table/rating.module";
+import { NgModule } from "@angular/core";
 import {
   TuiAutoColorModule,
-  TuiAvatarModule, TuiAvatarOutlineModule,
-  TuiAvatarStackModule, TuiBadgedContentModule, TuiBadgeModule,
+  TuiAvatarModule, TuiAvatarOutlineModule, TuiAvatarStackModule,
   TuiCardModule, TuiCellModule,
-  TuiFadeModule, TuiHeaderModule,
-  TuiIconModule, TuiInitialsModule, TuiSurfaceModule, TuiTitleModule, TuiToggleModule
+  TuiHeaderModule, TuiInitialsModule,
+  TuiSurfaceModule,
+  TuiTitleModule
 } from "@taiga-ui/experimental";
-import {TuiTableModule} from "@taiga-ui/addon-table";
-import { TuiActiveZoneModule, TuiLetModule, TuiRepeatTimesModule } from "@taiga-ui/cdk";
-import { RatingTableModule } from "../../component/rating-table/rating.module";
+import { TuiDataListDropdownManagerModule, TuiItemsWithMoreModule, TuiTagModule } from "@taiga-ui/kit";
+import { TuiActiveZoneModule, TuiRepeatTimesModule } from "@taiga-ui/cdk";
+import { ComponentsModule } from "../../component/components.module";
 
 @NgModule({
   imports: [
     RatingTableModule,
     CommonModule,
     RouterModule.forChild([
-      {path: '', component: OverviewComponent}
+      { path: '', component: OverviewComponent }
     ]),
-    TuiInputModule,
-    TuiHintModule,
-    TuiTextfieldControllerModule,
-    ReactiveFormsModule,
-    TuiSvgModule,
-    TuiButtonModule,
-    TuiIconModule,
-    TuiModeModule,
-    TuiScrollbarModule,
-    TuiTagModule,
-    TuiAvatarStackModule,
-    TuiAvatarModule,
-    TuiLinkModule,
-    TuiFadeModule,
-    TuiTableModule,
-    TuiLetModule,
-    TuiPaginationModule,
     TuiCardModule,
     TuiHeaderModule,
     TuiSurfaceModule,
+    TuiHostedDropdownModule,
     TuiTitleModule,
-    TuiCellModule,
-    TuiRepeatTimesModule,
-    TuiBadgeModule,
     TuiItemsWithMoreModule,
+    TuiTagModule,
+    TuiAvatarModule,
+    TuiAvatarOutlineModule,
+    TuiDropdownModule,
+    TuiSvgModule,
+    TuiAvatarStackModule,
     TuiInitialsModule,
     TuiAutoColorModule,
-    TuiDropdownModule,
     TuiDataListModule,
-    TuiAvatarOutlineModule,
-    TuiBadgedContentModule,
-    TuiHostedDropdownModule,
-    TuiComboBoxModule,
-    TuiDataListWrapperModule,
     TuiActiveZoneModule,
+    TuiCellModule,
     TuiDataListDropdownManagerModule,
+    TuiRepeatTimesModule,
+    ComponentsModule
   ],
   providers: [
     {
