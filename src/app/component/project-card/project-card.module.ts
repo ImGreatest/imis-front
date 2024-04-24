@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import {
+  TuiAmountPipeModule,
   TuiAutoColorModule,
   TuiAvatarModule, TuiAvatarOutlineModule, TuiAvatarStackModule,
   TuiCardModule, TuiCellModule, TuiFallbackSrcModule,
@@ -26,6 +27,7 @@ import { ProjectCardComponent } from "./project-card.component";
 import { RouterLink } from "@angular/router";
 import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
 import { FormsModule } from "@angular/forms";
+import { TuiDropdownMobileModule } from "@taiga-ui/addon-mobile";
 
 @NgModule({
   imports: [
@@ -55,7 +57,8 @@ import { FormsModule } from "@angular/forms";
     TuiSelectModule,
     FormsModule,
     TuiTextfieldControllerModule,
-    TuiDropdownMobileModule
+    TuiDropdownMobileModule,
+    TuiAmountPipeModule
   ],
   providers: [
     {
