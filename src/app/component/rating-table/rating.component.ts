@@ -29,7 +29,6 @@ export class RatingTableComponent implements OnInit {
     'surname',
     'group',
     'ratingScore',
-    'actions',
   ];
   some(event: any) {
     console.log(event);

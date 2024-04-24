@@ -91,7 +91,6 @@
           <th *tuiHead="'surname'" tuiSortable tuiTh>Фамилия</th>
           <th *tuiHead="'group'" tuiSortable tuiTh>Курс</th>
           <th *tuiHead="'ratingScore'" tuiSortable tuiTh>Баллы</th>
-          <th *tuiHead="'actions'" tuiTh [sorter]="null"></th>
         </tr>
       </thead>
       <tbody
@@ -115,18 +114,7 @@
           <td *tuiCell="'ratingScore'" tuiTd>
             {{ item.ratingScore }}
           </td>
-          <td *tuiCell="'actions'" tuiTd>
-            <button
-              tuiIconButton
-              appearance="flat"
-              tuiMode="onLight"
-              icon="tuiIconMoreHorizontalLarge"
-              shape="rounded"
-              size="s"
-              title="more"
-              class="more-icon"
-            ></button>
-          </td>
+          
         </tr>
       </tbody>
     </table>
