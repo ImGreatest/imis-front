@@ -5,8 +5,9 @@
 >
   <div class="table-placer">
     <div class="table-container">
-      <div class="search-container">
+      <form [formGroup]="search" class="search-container">
         <tui-input
+          formControlName="searchInput"
           [tuiTextfieldCleaner]="true"
           tuiTextfieldSize="m"
           tuiTextfieldIconLeft="tuiIconSearch"
@@ -23,7 +24,7 @@
         >
           Создать
         </button>
-      </div>
+      </form>
       <table
         tuiTable
         [columns]="columns"
@@ -74,15 +75,15 @@
                 class="more-icon"
               ></button>
               <button
-              tuiIconButton
-              appearance="flat"
-              tuiMode="onLight"
-              icon="tuiIconTrash2"
-              shape="rounded"
-              size="s"
-              title="more"
-              class="more-icon"
-            ></button>
+                tuiIconButton
+                appearance="flat"
+                tuiMode="onLight"
+                icon="tuiIconTrash2"
+                shape="rounded"
+                size="s"
+                title="more"
+                class="more-icon"
+              ></button>
             </td>
           </tr>
         </tbody>

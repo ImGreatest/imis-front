@@ -17,6 +17,7 @@ import { IStudentScore } from '../../common/interfaces/rating/student.score';
 import { IRating } from '../../common/interfaces/rating/rating';
 import { tuiIsFalsy } from '@taiga-ui/cdk';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-events',
@@ -28,11 +29,22 @@ import { Router } from '@angular/router';
 export class MathModelsTableComponent implements OnInit {
   constructor(private ratingService: RatingService, private router: Router) {}
   ratings: IRatingTableElement[] = [];
-
+  readonly search = new FormGroup({
+    searchInput: new FormControl(''),
+  });
   ngOnInit(): void {
     this.request$.subscribe((ratings) => {
       this.ratings = ratings;
       console.log(this.ratings);
+    });
+    this.search.controls.searchInput.valueChanges.subscribe((value) => {
+      this.filters$.next(
+        this.filters$.value.filter((filter) => filter.column !== 'name')
+      );
+      this.filters$.next([
+        ...this.filters$.value,
+        { column: 'name', value: { contains: value } },
+      ]);
     });
     this.page$.next(0);
   }

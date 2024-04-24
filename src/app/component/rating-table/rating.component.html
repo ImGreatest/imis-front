@@ -1,122 +1,141 @@
 <div id="rating-table">
-    <div id="rating-filters">
-        <tui-input
-            [tuiTextfieldCleaner]="true"
-            tuiTextfieldSize="m"
-            [formControl]="searchProjectControl"
-            tuiTextfieldIconLeft="tuiIconSearch"
-            [style.width.px]="200">Поиск</tui-input >
-        <div class="filter-container" (tuiActiveZoneChange)="closeFilter($event)">
-            <div class="filter-window" *ngIf="statusFilter">
-                <p class="filter-label">Фильтрация</p>
-                <div style="display: flex;">
-                    <div style="display: flex; flex-direction: column;">
-                        <tui-input-range
-                            class="filter-input"
-                            [formControl]="ratingFilterControl"
-                            [max]="maxScore"
-                            [min]="minScore"
-                            [quantum]="0.01"
-                            [steps]="maxScore - minScore">Выбери рейтинг</tui-input-range >
-                        <tui-input-range
-                            class="filter-input"
-                            [formControl]="courseFilterControl"
-                            [max]="maxCourse"
-                            [min]="minCourse"
-                            [quantum]="1"
-                            [steps]="maxCourse -minCourse">Выбери курс</tui-input-range >
-                    </div>
-                    <div style="display: flex; flex-direction: column;">
-                        <tui-select [formControl]="directionSelect" class="filter-input">Выбери направление</tui-select>
-                        <tui-select [formControl]="groupSelect" class="filter-input">Выбери группу</tui-select>
-                    </div>
-                </div>
-                <div class="filter-buttons-container">
-                    <button (click)="clearFilters()" size="m" tuiButton>Очистить</button>
-                    <button (click)="confirmFilters()" size="m" tuiButton>
-                        Применить
-                    </button>
-                </div>
-            </div>
-            <button
-                id="project-container-label-div-filter"
-                tuiButton
-                appearance="secondary"
-                tuiMode="onLight"
-                size="m"
-                class="filter-button"
-                (click)="openFilter()">
-                <tui-icon icon="tuiIconFilterLarge"></tui-icon>
-                Filter
-            </button>
+  <div id="rating-filters">
+    <form [formGroup]="search">
+      <tui-input
+        [tuiTextfieldCleaner]="true"
+        tuiTextfieldSize="m"
+        formControlName="searchInput"
+        [formControl]="searchProjectControl"
+        tuiTextfieldIconLeft="tuiIconSearch"
+        [style.width.px]="200"
+        >Поиск по фамилии</tui-input
+      >
+    </form>
+    <div class="filter-container" (tuiActiveZoneChange)="closeFilter($event)">
+      <div class="filter-window" *ngIf="statusFilter">
+        <p class="filter-label">Фильтрация</p>
+        <div style="display: flex">
+          <div style="display: flex; flex-direction: column">
+            <tui-input-range
+              class="filter-input"
+              [formControl]="ratingFilterControl"
+              [max]="maxScore"
+              [min]="minScore"
+              [quantum]="0.01"
+              [steps]="maxScore - minScore"
+              >Выбери рейтинг</tui-input-range
+            >
+            <tui-input-range
+              class="filter-input"
+              [formControl]="courseFilterControl"
+              [max]="maxCourse"
+              [min]="minCourse"
+              [quantum]="1"
+              [steps]="maxCourse - minCourse"
+              >Выбери курс</tui-input-range
+            >
+          </div>
+          <div style="display: flex; flex-direction: column">
+            <tui-select [formControl]="directionSelect" class="filter-input"
+              >Выбери направление</tui-select
+            >
+            <tui-select [formControl]="groupSelect" class="filter-input"
+              >Выбери группу</tui-select
+            >
+          </div>
         </div>
+        <div class="filter-buttons-container">
+          <button (click)="clearFilters()" size="m" tuiButton>Очистить</button>
+          <button (click)="confirmFilters()" size="m" tuiButton>
+            Применить
+          </button>
+        </div>
+      </div>
+      <button
+        id="project-container-label-div-filter"
+        tuiButton
+        appearance="secondary"
+        tuiMode="onLight"
+        size="m"
+        class="filter-button"
+        (click)="openFilter()"
+      >
+        <tui-icon icon="tuiIconFilterLarge"></tui-icon>
+        Filter
+      </button>
     </div>
-    <tui-loader
-        [overlay]="true"
-        [showLoader]="!!(loading$ | async)"
-        style="
+  </div>
+  <tui-loader
+    [overlay]="true"
+    [showLoader]="!!(loading$ | async)"
+    style="
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 100%;
-    ">
-        <table
-            style="width: 100%"
-            tuiTable
-            [columns]="columns"
-            [direction]="(direction$ | async) || 1"
-            [tuiSortBy]="sorter$ | async"
-            (directionChange)="direction$.next($event)"
-            (tuiSortByChange)="sorter$.next($event? $event.toString(): null)">
-            <thead>
-                <tr tuiThGroup>
-                    <th *tuiHead="'place'" tuiTh [sorter]="null"></th>
-                    <th *tuiHead="'name'" tuiSortable  tuiTh>Имя</th>
-                    <th *tuiHead="'surname'" tuiSortable tuiTh>Фамилия</th>
-                    <th *tuiHead="'group'" tuiSortable tuiTh>Курс</th>
-                    <th *tuiHead="'ratingScore'" tuiSortable tuiTh>Баллы</th>
-                    <th *tuiHead="'actions'" tuiTh [sorter]="null"></th>
-                </tr>
-            </thead>
-            <tbody
-                *tuiLet="users | tuiTableSort as sortedUsers"
-                tuiTbody
-                [data]="sortedUsers">
-                <tr *ngFor="let item of sortedUsers; let index = index" tuiTr>
-                    <td *tuiCell="'place'" tuiTd>
-                        {{ page$.getValue() * size$.getValue() + index + 1 }}
-                    </td>
-                    <td *tuiCell="'name'" tuiTd>
-                        {{ item.name }}
-                    </td>
-                    <td *tuiCell="'surname'" tuiTd>
-                        {{ item.surname }}
-                    </td>
-                    <td *tuiCell="'group'" tuiTd>
-                        {{ item.group }}
-                    </td>
-                    <td *tuiCell="'ratingScore'" tuiTd>
-                        {{ item.ratingScore }}
-                    </td>
-                    <td *tuiCell="'actions'" tuiTd>
-                        <button
-                            tuiIconButton
-                            appearance="flat"
-                            tuiMode="onLight"
-                            icon="tuiIconMoreHorizontalLarge"
-                            shape="rounded"
-                            size="s"
-                            title="more"
-                            class="more-icon"></button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="pagination-offset">
-            <tui-pagination
-                [index]="page$.getValue()"
-                [length]="pageCount$.getValue()"
-                (indexChange)="goToPage($event)"></tui-pagination>
-        </div >
-    </tui-loader>
+    "
+  >
+    <table
+      style="width: 100%"
+      tuiTable
+      [columns]="columns"
+      [direction]="(direction$ | async) || 1"
+      [tuiSortBy]="sorter$ | async"
+      (directionChange)="direction$.next($event)"
+      (tuiSortByChange)="sorter$.next($event ? $event.toString() : null)"
+    >
+      <thead>
+        <tr tuiThGroup>
+          <th *tuiHead="'place'" tuiTh [sorter]="null"></th>
+          <th *tuiHead="'name'" tuiSortable tuiTh>Имя</th>
+          <th *tuiHead="'surname'" tuiSortable tuiTh>Фамилия</th>
+          <th *tuiHead="'group'" tuiSortable tuiTh>Курс</th>
+          <th *tuiHead="'ratingScore'" tuiSortable tuiTh>Баллы</th>
+          <th *tuiHead="'actions'" tuiTh [sorter]="null"></th>
+        </tr>
+      </thead>
+      <tbody
+        *tuiLet="users | tuiTableSort as sortedUsers"
+        tuiTbody
+        [data]="sortedUsers"
+      >
+        <tr *ngFor="let item of sortedUsers; let index = index" tuiTr>
+          <td *tuiCell="'place'" tuiTd>
+            {{ page$.getValue() * size$.getValue() + index + 1 }}
+          </td>
+          <td *tuiCell="'name'" tuiTd>
+            {{ item.name }}
+          </td>
+          <td *tuiCell="'surname'" tuiTd>
+            {{ item.surname }}
+          </td>
+          <td *tuiCell="'group'" tuiTd>
+            {{ item.group }}
+          </td>
+          <td *tuiCell="'ratingScore'" tuiTd>
+            {{ item.ratingScore }}
+          </td>
+          <td *tuiCell="'actions'" tuiTd>
+            <button
+              tuiIconButton
+              appearance="flat"
+              tuiMode="onLight"
+              icon="tuiIconMoreHorizontalLarge"
+              shape="rounded"
+              size="s"
+              title="more"
+              class="more-icon"
+            ></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pagination-offset">
+      <tui-pagination
+        [index]="page$.getValue()"
+        [length]="pageCount$.getValue()"
+        (indexChange)="goToPage($event)"
+      ></tui-pagination>
+    </div>
+  </tui-loader>
 </div>
