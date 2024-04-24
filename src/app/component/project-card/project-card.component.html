@@ -1,0 +1,216 @@
+<div id="main-container">
+  <button
+    id="overview-card-project"
+    tuiCardLarge
+    tuiHeader
+    tuiSurface="elevated"
+    tuiHostedDropdownHost
+  >
+    <div id="overview-card-project-title-row">
+      <h1
+        id="overview-card-project-title"
+        tuiTitle="s"
+      >
+        {{ title }}
+        <tui-items-with-more
+          id="overview-card-project-title-tui-items-with-more"
+          [required]="2"
+        >
+          <ng-container
+            id="overview-card-project-title-container"
+            *ngFor="let tag of projectTags"
+          >
+            <tui-tag
+              id="overview-card-project-title-tag"
+              *tuiItem
+              [value]="tag"
+              class="tui-space_right-1"
+              size="s"
+              [style.background]="tag | tuiAutoColor"
+              [hoverable]="true"
+            ></tui-tag>
+          </ng-container>
+        </tui-items-with-more>
+      </h1>
+      <tui-avatar
+        id="overview-card-project-avatar"
+        size="l"
+        [src]="'{{ avatar }}' | tuiFallbackSrc: 'tuiIconUserLarge' | async"
+        tuiAvatarOutline="var(--tui-neutral-bg)"
+      ></tui-avatar>
+    </div>
+    <p id="overview-card-project-desc">
+      {{ description }}
+    </p>
+    <tui-items-with-more
+      id="overview-card-project-row-tags-item-with-more"
+      class="tui-space_top-1"
+      [required]="3"
+    >
+      <ng-container
+        id="overview-card-project-row-tags-container"
+        *ngFor="let tag of usedLanguages"
+      >
+        <tui-tag
+          id="overview-card-project-row-tags-tag"
+          *tuiItem
+          size="m"
+          [value]="tag"
+          [hoverable]="true"
+          class="tui-space_right-1 "
+          style="box-shadow: var(--tui-shadow-navigation)"
+        ></tui-tag>
+      </ng-container>
+      <ng-template
+        id="overview-card-project-row-tags-template"
+        let-tag
+        tuiMore
+      >
+        <span
+          id="overview-card-project-row-tags-template-span"
+          [tuiDropdown]="hintContentTags"
+          [tuiDropdownMaxHeight]="150"
+          [tuiDropdownHideDelay]="40"
+          tuiDropdownAlign="right"
+          tuiDropdownDirection="bottom"
+          tuiDropdownHover
+        >
+          and {{ getRemaining(tag) }} more
+        </span>
+      </ng-template>
+    </tui-items-with-more>
+    <footer
+      id="overview-card-project-footer-row"
+      class="tui-space_top-3"
+    >
+      <tui-svg
+        id="overview-card-project-footer-row-tui-svg-link"
+        src="tuiIconLink2Large"
+        [routerLink]="'/'"
+      ></tui-svg>
+      <tui-svg
+        id="overview-card-project-footer-row-tui-svg-git"
+        class="tui-space_left-3"
+        src="tuiIconGithubLarge"
+        [routerLink]="'/'"
+      ></tui-svg>
+      <tui-avatar-stack
+        id="overview-card-project-footer-row-tui-avatar-stack"
+        direction="right"
+        [tuiDropdown]="hintContentAvatars"
+        [tuiDropdownMaxHeight]="125"
+        tuiDropdownAlign="center"
+        tuiDropdownDirection="top"
+        tuiDropdownHover
+      >
+        <tui-avatar
+          id="overview-card-project-footer-row-tui-avatar"
+          *ngFor="let member of members"
+          size="s"
+          [round]="true"
+          [src]="member | tuiInitials"
+          [style.background]="member | tuiAutoColor"
+        ></tui-avatar>
+      </tui-avatar-stack>
+    </footer>
+  </button>
+</div>
+
+<ng-template
+  #hintContentTags
+>
+  <tui-data-list
+    id="overview-card-project-dropdown"
+    *ngFor="let tag of usedLanguages"
+  >
+    <button
+      id="overview-card-project-dropdown-button-option"
+      tuiOption
+      type="button"
+    >
+      <span id="overview-card-project-dropdown-span-tag">
+        {{ tag }}
+      </span>
+    </button>
+  </tui-data-list>
+</ng-template>
+
+<ng-template
+  #hintContentAvatars
+  let-activeZone
+>
+  	<tui-select
+    class="tui-space_vertical-4"
+    [tuiDropdownMobile]="'Select user'"
+    [tuiTextfieldLabelOutside]="true"
+    [valueContent]="template"
+    [(ngModel)]="user"
+>
+    Select user
+    <tui-data-list-wrapper
+        *tuiDataList
+        [itemContent]="template"
+        [items]="users"
+    ></tui-data-list-wrapper>
+  </tui-select>
+</ng-template>
+
+<!--<ng-template-->
+<!--  #hintContentAvatars-->
+<!--  let-activeZone-->
+<!--&gt;-->
+<!--  <tui-data-list-->
+<!--    id="overview-card-project-dropdown-tui-data-list"-->
+<!--    tuiDataListDropdownManager-->
+<!--    *ngFor="let user of members"-->
+<!--    [tuiActiveZoneParent]="activeZone"-->
+<!--  >-->
+<!--    <button-->
+<!--      id="overview-card-project-dropdown-button-dropdown-option"-->
+<!--      tuiOption-->
+<!--      tuiDropdownAlign="right"-->
+<!--      tuiDropdownSided-->
+<!--      tuiDropdownHover-->
+<!--      [tuiDropdownShowDelay]="25"-->
+<!--      [tuiDropdownHideDelay]="75"-->
+<!--      [tuiDropdownMaxHeight]="150"-->
+<!--      [tuiDropdown]="hintContentUser"-->
+<!--      [tuiDropdownManual]="false"-->
+<!--      (mouseenter)="selectOption(user)"-->
+<!--      routerLink="/profile"-->
+<!--    >-->
+<!--      {{ user }}-->
+<!--    </button>-->
+<!--  </tui-data-list>-->
+<!--</ng-template>-->
+
+<ng-template
+  #hintContentUser
+  let-activeZone
+>
+  <div
+    id="overview-card-project-profile-user-container"
+    tuiCell="l"
+    [tuiActiveZoneParent]="activeZone"
+    routerLink="/profile"
+  >
+    <tui-avatar
+      id="overview-card-project-profile-user-container-avatar"
+      size="xs"
+      [src]="selectedUser | tuiInitials"
+      [style.background]="selectedUser | tuiAutoColor"
+    ></tui-avatar>
+    <div
+      id="overview-card-project-profile-user-container-title"
+      tuiTitle
+    >
+        {{ selectedUser }}
+        <div
+          id="overview-card-project-profile-user-container-subtitle"
+          tuiSubtitle
+        >
+          Student
+        </div>
+    </div>
+  </div>
+</ng-template>
