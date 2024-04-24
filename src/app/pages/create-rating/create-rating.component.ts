@@ -40,17 +40,11 @@ export class CreateRatingComponent implements OnInit {
   private allValues: tagScore = {};
 
   getChildTag(tag: ITreeTagElement): ITreeTagShowElement {
-    this.tagsScore[tag.id] =
-      tag.ratingScope && tag.ratingScope.length > 0
-        ? tag.ratingScope[0].ratingScore
-        : 0;
+    this.tagsScore[tag.id] = tag.ratingScope || 0;
     return {
       id: tag.id,
       name: tag.name,
-      score:
-        tag.ratingScope && tag.ratingScope.length > 0
-          ? tag.ratingScope[0].ratingScore
-          : 0,
+      score: tag.ratingScope || 0,
       childs:
         tag.childTags.length > 0
           ? tag.childTags.map((childTag) => this.getChildTag(childTag))
@@ -64,7 +58,9 @@ export class CreateRatingComponent implements OnInit {
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.params['id']);
     this.tagService.getTreeTags(this.id).subscribe((tags) => {
-      this.tagsValue = tags.map((tag) => this.getChildTag(tag));
+      this.rating.controls.name.setValue(tags.ratingName);
+      this.rating.controls.hours.setValue(tags.hourlyUpdate);
+      this.tagsValue = tags.tag.map((tag) => this.getChildTag(tag));
       console.log(this.tagsValue);
       this.cdr.markForCheck();
     });
