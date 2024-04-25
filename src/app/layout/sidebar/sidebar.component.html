@@ -1,12 +1,12 @@
 <div id="page-container">  <!--Очень странная х..я без этого дива вся верстка ломается хз поч -->
   <section>
-    <aside>
+    <aside id="sidebar">
       <block-header [blocks]="buttonHeader"></block-header>
       <block-content [blocks]="buttonContent"></block-content>
       <block-notice></block-notice>
     </aside>
   </section>
-  <div id="div-router-outlet" style="width: 100%">
+  <div id="div-router-outlet">
     <router-outlet></router-outlet>
   </div>
 </div>

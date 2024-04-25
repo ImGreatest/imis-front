@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-rating',
@@ -6,5 +6,4 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrl: './rating.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RatingComponent {
-}
+export class RatingComponent {}

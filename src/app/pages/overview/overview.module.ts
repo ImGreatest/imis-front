@@ -1,51 +1,55 @@
-import {NgModule} from "@angular/core";
 import {
   TUI_SANITIZER,
-  TuiButtonModule,
-  TuiHintModule, TuiLinkModule,
-  TuiModeModule,
-  TuiScrollbarModule,
-  TuiSvgModule,
-  TuiTextfieldControllerModule,
+  TuiDataListModule,
+  TuiDropdownModule,
+  TuiHostedDropdownModule,
+  TuiSvgModule
 } from "@taiga-ui/core";
-import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
-import {CommonModule} from "@angular/common";
-import {OverviewComponent} from "./overview.component";
-import {RouterModule} from "@angular/router";
-import {TuiInputModule, TuiPaginationModule, TuiTagModule} from "@taiga-ui/kit";
-import {ReactiveFormsModule} from "@angular/forms";
-import {TuiAvatarModule, TuiAvatarStackModule, TuiFadeModule, TuiIconModule} from "@taiga-ui/experimental";
-import {TuiTableModule} from "@taiga-ui/addon-table";
-import {TuiLetModule} from "@taiga-ui/cdk";
+import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
+import { OverviewComponent } from "./overview.component";
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
 import { RatingTableModule } from "../../component/rating-table/rating.module";
-
-
+import { NgModule } from "@angular/core";
+import {
+  TuiAutoColorModule,
+  TuiAvatarModule, TuiAvatarOutlineModule, TuiAvatarStackModule,
+  TuiCardModule, TuiCellModule,
+  TuiHeaderModule, TuiInitialsModule,
+  TuiSurfaceModule,
+  TuiTitleModule
+} from "@taiga-ui/experimental";
+import { TuiDataListDropdownManagerModule, TuiItemsWithMoreModule, TuiTagModule } from "@taiga-ui/kit";
+import { TuiActiveZoneModule, TuiRepeatTimesModule } from "@taiga-ui/cdk";
+import { ComponentsModule } from "../../component/components.module";
 
 @NgModule({
   imports: [
     RatingTableModule,
     CommonModule,
     RouterModule.forChild([
-      {path: '', component: OverviewComponent}
+      { path: '', component: OverviewComponent }
     ]),
-    TuiInputModule,
-    TuiHintModule,
-    TuiTextfieldControllerModule,
-    ReactiveFormsModule,
-    TuiSvgModule,
-    TuiButtonModule,
-    TuiButtonModule,
-    TuiIconModule,
-    TuiModeModule,
-    TuiScrollbarModule,
+    TuiCardModule,
+    TuiHeaderModule,
+    TuiSurfaceModule,
+    TuiHostedDropdownModule,
+    TuiTitleModule,
+    TuiItemsWithMoreModule,
     TuiTagModule,
-    TuiAvatarStackModule,
     TuiAvatarModule,
-    TuiLinkModule,
-    TuiFadeModule,
-    TuiTableModule,
-    TuiLetModule,
-    TuiPaginationModule,
+    TuiAvatarOutlineModule,
+    TuiDropdownModule,
+    TuiSvgModule,
+    TuiAvatarStackModule,
+    TuiInitialsModule,
+    TuiAutoColorModule,
+    TuiDataListModule,
+    TuiActiveZoneModule,
+    TuiCellModule,
+    TuiDataListDropdownManagerModule,
+    TuiRepeatTimesModule,
+    ComponentsModule
   ],
   providers: [
     {

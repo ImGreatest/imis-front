@@ -148,14 +148,17 @@ export class RatingTableComponent implements OnInit {
   goToPage(index: number): void {
     this.page$.next(index);
   }
+
   openFilter() {
     this.statusFilter = true;
   }
+
   clearFilters() {
     this.ratingFilterControl.setValue([this.minScore, this.maxScore]);
     this.courseFilterControl.setValue([1, 5]);
     this.filters$.next([]);
   }
+
   confirmFilters() {
     const ratingScoreFilterValue = this.ratingFilterControl.value;
     const courseFilterFilterValue = this.courseFilterControl.value;
@@ -188,6 +191,7 @@ export class RatingTableComponent implements OnInit {
     }
     this.filters$.next(filters);
   }
+
   closeFilter(active?: boolean): void {
     if (active === undefined || !active) {
       this.statusFilter = false;

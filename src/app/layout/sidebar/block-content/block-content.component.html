@@ -3,14 +3,15 @@
     <button
       appearance="sidebar-button"
       [iconLeft]="button.icon"
-      [class.sidebar-button]="button.selected"
       [style.color]="button.selected ? 'var(--tui-primary)' : 'var(--tui-base-08)'"
       tuiButton
       tuiButtonVertical
-      size="xs"
+      size="l"
       [routerLink]="button.routing"
     >
       {{ button.title }}
     </button>
   </div>
 </tui-scrollbar>
+
+<!--[class.sidebar-button]="button.selected"-->
