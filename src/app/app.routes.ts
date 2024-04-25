@@ -47,6 +47,9 @@ export const routes: Routes = [
       {
         path: 'math-models/:id',
         loadChildren: () => import('./pages/create-rating/create-rating.module').then((m) => m.CreateRatingModule)
+      },{
+        path: 'math-models/create',
+        loadChildren: () => import('./pages/create-rating/create-rating.module').then((m) => m.CreateRatingModule)
       },
       {
         path: 'roles',

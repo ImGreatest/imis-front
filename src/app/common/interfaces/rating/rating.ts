@@ -11,7 +11,7 @@ export interface ICreateRating{
     scope: IScope[]
 }
 
-interface IScope{
+export interface IScope{
     tagId: number,
     ratingScore: number
 }
