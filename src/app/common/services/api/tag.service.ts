@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../enviroments/enviroments';
 import { Observable } from 'rxjs';
 import { ITag } from '../../interfaces/tag';
-import { ITreeTagElement } from '../../interfaces/tag/tag.interface';
+import { ITreeTag } from '../../interfaces/tag/tag.interface';
 
 @Injectable({ providedIn: 'root' })
 export class TagService {
@@ -14,8 +14,8 @@ export class TagService {
     );
   }
 
-  getTreeTags(ratingId: number): Observable<Array<ITreeTagElement>> {
-    return this.http.get<Array<ITreeTagElement>>(
+  getTreeTags(ratingId: number): Observable<ITreeTag> {
+    return this.http.get<ITreeTag>(
       `${environment.apiRatingUrl}/tag/tree/${ratingId}`
     );
   }

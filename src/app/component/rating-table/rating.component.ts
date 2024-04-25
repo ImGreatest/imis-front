@@ -3,15 +3,10 @@ import { IUser } from './interface/user';
 import { RatingService } from '../../common/services/api/rating.service';
 import { IStudentScore } from '../../common/interfaces/rating/student.score';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import {
-  debounceTime,
-  map,
-  share,
-  switchMap,
-} from 'rxjs/operators';
+import { debounceTime, map, share, switchMap } from 'rxjs/operators';
 import { PageResRating } from '../../common/interfaces/page';
 import { tuiIsFalsy } from '@taiga-ui/cdk';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { IFilter } from '../../common/interfaces/shared/filter.interface';
 
 @Component({
@@ -23,6 +18,9 @@ import { IFilter } from '../../common/interfaces/shared/filter.interface';
 export class RatingTableComponent implements OnInit {
   constructor(private ratingService: RatingService) {}
   users: IUser[] = [];
+  readonly search = new FormGroup({
+    searchInput: new FormControl(''),
+  });
   statusFilter: boolean = false;
   searchProjectControl = new FormControl('', { nonNullable: true });
   readonly columns = [
@@ -31,7 +29,6 @@ export class RatingTableComponent implements OnInit {
     'surname',
     'group',
     'ratingScore',
-    'actions',
   ];
   some(event: any) {
     console.log(event);
@@ -40,6 +37,18 @@ export class RatingTableComponent implements OnInit {
   ngOnInit(): void {
     this.request$.subscribe((users) => {
       this.users = users;
+    });
+    this.search.controls.searchInput.valueChanges.subscribe((value) => {
+      this.filters$.next(
+        this.filters$.value.filter((filter) => filter.column !== 'student')
+      );
+      this.filters$.next([
+        ...this.filters$.value,
+        {
+          column: 'student',
+          value: { surname: { contains: value, mode: 'insensitive' } },
+        },
+      ]);
     });
   }
   readonly size$ = new BehaviorSubject(10);
