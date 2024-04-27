@@ -1,13 +1,19 @@
 export interface IUpdateCreateRole {
   name : string;
 }
+export interface IRole {
+    id : number;
+    name : string;
+    Permission : IPermission[]
+}
+export interface IPermission {
+    action : string,
+    subject : string,
+    conditions : {
+        [key : string]: string
+    },
+    inverted : boolean
 
-export interface IRole{
-  id: number;
-  name: string;
-  created_at: Date;
-  updated_at: Date;
-  deleted_at: Date;
 }
 
 export interface IUpdatePermission {

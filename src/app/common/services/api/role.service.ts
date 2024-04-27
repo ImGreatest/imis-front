@@ -15,6 +15,9 @@ export class RoleService {
     getPage(limit : number, page : number) {
         return this.http.get < PageRes < IRole >> (`${environment.apiRatingUrl}/role/page-${page}?limit=${limit}`)
     }
+    getRoleAssert(){
+        return this.http.get<IRoleAsserts> (`${environment.apiRatingUrl}/role/role-assert`)
+    }
 
     delete(id : number) {
         return this
