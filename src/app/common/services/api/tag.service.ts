@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../enviroments/enviroments';
+import { environment } from '@src/enviroments/enviroments';
 import { Observable } from 'rxjs';
-import { ITag } from '../../interfaces/tag';
+import { ITag } from '@interfaces';
 import { ITreeTag } from '../../interfaces/tag/tag.interface';
 
 @Injectable({ providedIn: 'root' })

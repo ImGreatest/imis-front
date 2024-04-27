@@ -1,5 +1,5 @@
-import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 import {
     TuiAmountPipeModule,
     TuiAutoColorModule,
@@ -22,13 +22,19 @@ import {
     TuiSvgModule,
     TuiTextfieldControllerModule
 } from "@taiga-ui/core";
-import {TuiDataListDropdownManagerModule, TuiDataListWrapperModule, TuiItemsWithMoreModule, TuiSelectModule, TuiTagModule} from "@taiga-ui/kit";
-import {TuiActiveZoneModule, TuiRepeatTimesModule} from "@taiga-ui/cdk";
-import {ProjectCardComponent} from "./project-card.component";
-import {RouterLink} from "@angular/router";
-import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
-import {FormsModule} from "@angular/forms";
-import {TuiDropdownMobileModule} from "@taiga-ui/addon-mobile";
+import {
+  TuiDataListDropdownManagerModule,
+  TuiDataListWrapperModule,
+  TuiItemsWithMoreModule,
+  TuiSelectModule,
+  TuiTagModule
+} from "@taiga-ui/kit";
+import { TuiActiveZoneModule, TuiRepeatTimesModule } from "@taiga-ui/cdk";
+import { ProjectCardComponent } from "./project-card.component";
+import { RouterLink } from "@angular/router";
+import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
+import { FormsModule } from "@angular/forms";
+import { TuiDropdownMobileModule } from "@taiga-ui/addon-mobile";
 
 @NgModule({
     imports: [

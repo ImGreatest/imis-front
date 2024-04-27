@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {environment} from '../../../../enviroments/enviroments';
-import {Observable} from 'rxjs';
-import {IUpdateCreateRole, IRole, IUpdatePermission} from '../../interfaces/role/role.interface';
-import {PageRes} from '../../interfaces/page';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '@src/enviroments/enviroments';
+import { Observable } from 'rxjs';
+import { IUpdateCreateRole, IRole, IUpdatePermission } from '../../interfaces/role/role.interface';
+import { PageRes } from '@interfaces';
 
 @Injectable({providedIn: 'root'})
 export class RoleService {

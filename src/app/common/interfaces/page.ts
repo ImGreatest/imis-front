@@ -7,6 +7,7 @@ export interface PageRes<T> {
     totalPages: number;
   };
 }
+
 export interface PageResRating<T> {
   rows: T[];
   info: {
@@ -18,6 +19,7 @@ export interface PageResRating<T> {
     maxScores: number;
   };
 }
+
 export interface PageResSort<T> {
   rows: T[];
   info: {

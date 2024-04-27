@@ -1,6 +1,7 @@
 export interface IUpdateCreateRole {
-    name : string;
+  name : string;
 }
+
 export interface IRole{
   id: number;
   name: string;
@@ -8,12 +9,13 @@ export interface IRole{
   updated_at: Date;
   deleted_at: Date;
 }
+
 export interface IUpdatePermission {
-    action : string;
-    subject : string;
-    inverted?: boolean;
-    conditions?: {
-        [key : string]: string;
-    };
-    reason?: string;
+  action : string;
+  subject : string;
+  inverted?: boolean;
+  conditions?: {
+      [key : string]: string;
+  };
+  reason?: string;
 }

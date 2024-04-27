@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../enviroments/enviroments';
-import { PageRes, PageResRating } from '../../interfaces/page';
+import { environment } from '@src/enviroments/enviroments';
+import { PageRes, PageResRating } from '@interfaces';
 import { Observable } from 'rxjs';
 import {
   ICreateRating,
   IRating,
   IUpdateRating,
-} from '../../interfaces/rating/rating';
-import { IScope } from '../../interfaces/rating/scope';
-import {
-  IStudentScore,
+} from 'src/app/common/interfaces/rating/rating.interface';
+import { IScope } from 'src/app/common/interfaces/rating/scope.interface';
+import { IStudentScore } from 'src/app/common/interfaces/rating/student.score.interface';
+import { IGetPage } from '../../interfaces/shared/req.page.interface';
 
-} from '../../interfaces/rating/student.score';
-import {IGetPage} from '../../interfaces/shared/req.page.interface';
 @Injectable({ providedIn: 'root' })
 export class RatingService {
   constructor(public http: HttpClient) {}

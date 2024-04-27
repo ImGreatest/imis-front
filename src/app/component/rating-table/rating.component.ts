@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { IUser } from './interface/user';
 import { RatingService } from '../../common/services/api/rating.service';
-import { IStudentScore } from '../../common/interfaces/rating/student.score';
+import { IStudentScore } from 'src/app/common/interfaces/rating/student.score.interface';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { debounceTime, map, share, switchMap } from 'rxjs/operators';
 import { PageResRating } from '../../common/interfaces/page';

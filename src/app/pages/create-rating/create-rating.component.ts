@@ -18,8 +18,8 @@ import { RatingService } from '../../common/services/api/rating.service';
 import {
   ICreateRating,
   IUpdateRating,
-} from '../../common/interfaces/rating/rating';
-import { IScope } from '../../common/interfaces/rating/rating';
+} from 'src/app/common/interfaces/rating/rating.interface';
+import { IScope } from 'src/app/common/interfaces/rating/rating.interface';
 import { TuiAlertService } from '@taiga-ui/core';
 
 @Component({

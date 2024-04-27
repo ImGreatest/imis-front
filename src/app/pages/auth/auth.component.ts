@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { emailValidators } from "../../common/validators/email.validators";
+import { emailValidators } from "@validators";
 import { IAuthForm } from "../auth/interfaces/auth-form.interface";
 import { firstValueFrom } from 'rxjs';
 import { Router } from "@angular/router";
+import { AuthService } from "@services";
 
 @Component({
   selector: 'app-auth',
@@ -24,7 +25,8 @@ export class AuthComponent {
   });
 
   constructor(
-    private route: Router
+    private route: Router,
+    private authService: AuthService,
   ) {}
 
   get login() {
@@ -46,7 +48,7 @@ export class AuthComponent {
   }
 
   private async _login(login: string, password: string) {
-    // await firstValueFrom(); // ToDo: authService from back
+    await firstValueFrom(this.authService.signIn({ login, password }));
     await this.route.navigate(['/']);
   }
 }

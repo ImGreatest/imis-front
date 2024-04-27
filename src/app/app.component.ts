@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
-import {TuiThemeNightService} from "@taiga-ui/addon-doc";
-import {TuiBrightness} from "@taiga-ui/core";
+import { TuiThemeNightService } from "@taiga-ui/addon-doc";
 import { NavigationEnd, Router } from "@angular/router";
 import { filter } from "rxjs/operators";
 
