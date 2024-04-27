@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { emailValidators } from "@validators";
+import { emailValidators } from "../../common/validators/email.validators";
 import { IAuthForm } from "../auth/interfaces/auth-form.interface";
 import { firstValueFrom } from 'rxjs';
 import { Router } from "@angular/router";
-import { AuthService } from "@services";
 
 @Component({
   selector: 'app-auth',
@@ -25,8 +24,7 @@ export class AuthComponent {
   });
 
   constructor(
-    private route: Router,
-    private authService: AuthService,
+    private route: Router
   ) {}
 
   get login() {
@@ -35,6 +33,10 @@ export class AuthComponent {
 
   get password() {
     return this.form.controls.password.value;
+  }
+
+  get remind() {
+    return this.form.controls.remind.value;
   }
 
   onLogin() {
@@ -48,7 +50,7 @@ export class AuthComponent {
   }
 
   private async _login(login: string, password: string) {
-    await firstValueFrom(this.authService.signIn({ login, password }));
+    // await firstValueFrom(); // ToDo: authService from back
     await this.route.navigate(['/']);
   }
 }
