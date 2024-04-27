@@ -35,6 +35,10 @@ export class AuthComponent {
     return this.form.controls.password.value;
   }
 
+  get remind() {
+    return this.form.controls.remind.value;
+  }
+
   onLogin() {
     this.form.markAllAsTouched();
     Object.values(this.form.controls).map((control) => control.updateValueAndValidity());
