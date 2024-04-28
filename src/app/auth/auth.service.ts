@@ -15,7 +15,7 @@ export class AuthService {
   ) {}
 
   get url(): string {
-    return this.appService.apiCabinetUrl + '/auth'
+    return this.appService.apiUserUrl + '/auth'
   }
 
   get token(): string | null {
