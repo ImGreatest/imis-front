@@ -35,7 +35,7 @@ export interface IRoleAsserts {
     posibleConditions : IPosibleConditions[]
 }
 
-interface IPosibleConditions {
+export interface IPosibleConditions {
     row : string
     entitys : string[]
 }

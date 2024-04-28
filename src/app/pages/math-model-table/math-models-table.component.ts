@@ -35,7 +35,7 @@ export class MathModelsTableComponent implements OnInit {
   ngOnInit(): void {
     this.request$.subscribe((ratings) => {
       this.ratings = ratings;
-      console.log(this.ratings);
+      
     });
     this.search.controls.searchInput.valueChanges.subscribe((value) => {
       this.filters$.next(

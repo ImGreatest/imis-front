@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {
   TUI_SANITIZER,
   TuiButtonModule,
+  TuiLoaderModule,
   TuiRootModule,
   TuiTextfieldControllerModule,
 } from '@taiga-ui/core';
@@ -11,12 +12,21 @@ import { RouterModule } from '@angular/router';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RolesComponent } from './roles.component';
+import { TuiInputModule, TuiPaginationModule } from '@taiga-ui/kit';
+import { TuiTableModule } from '@taiga-ui/addon-table';
+import { TuiLetModule } from '@taiga-ui/cdk';
 
 @NgModule({
   imports: [
     CommonModule,
+    TuiInputModule,
+    TuiPaginationModule,
+    TuiLoaderModule,
     TuiButtonModule,
-    TuiRootModule,
+    TuiLetModule,
+    TuiTextfieldControllerModule,
+    ReactiveFormsModule,
+    TuiTableModule,
     RouterModule.forChild([
       {
         path: '',
