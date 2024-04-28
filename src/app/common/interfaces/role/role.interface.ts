@@ -24,3 +24,18 @@ export interface IUpdatePermission {
   };
   reason?: string;
 }
+export interface IRoleAsserts {
+    subjects : {
+        [key : string]: string
+    },
+
+    actions : {
+        [key : string]: string
+    },
+    posibleConditions : IPosibleConditions[]
+}
+
+export interface IPosibleConditions {
+    row : string
+    entitys : string[]
+}
