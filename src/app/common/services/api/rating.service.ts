@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '@src/enviroments/enviroments';
+import { environment } from 'src/enviroments/enviroments';
 import { PageRes, PageResRating } from '@interfaces';
 import { Observable } from 'rxjs';
 import {

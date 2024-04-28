@@ -1,5 +1,5 @@
 <div id="auth-container" class="tui-container">
-  <form id="auth-container-form" [formGroup]="form" class="tui-col_6">
+  <form id="auth-container-form" [formGroup]="form" class="tui-col_6" (submit)="onLogin()">
     <div id="auth-container-form-card" tuiCardLarge="compact" tuiSurface="elevated">
       <div id="auth-container-form-card-sme" class="tui-row_align_center tui-row_sme">
         <header id="auth-container-form-card-sme-header" class="tui-form__header tui-form__header_margin-top_none">
@@ -22,7 +22,7 @@
             Input password
             <span id="auth-container-form-card-sme-password-row-tui-input-password-span" class="tui-required"></span>
           </tui-input-password>
-          <span id="auth-container-form-card-sme-password-row-span" class="tui-text_body-s">
+          <span id="auth-container-form-card-sme-password-row-span" class="tui-text_body-s" routerLink="/auth/forgot-password">
             reset password
           </span>
           <tui-error

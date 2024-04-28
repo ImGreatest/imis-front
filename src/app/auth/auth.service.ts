@@ -5,7 +5,7 @@ import { Observable, tap } from "rxjs";
 import { IUser } from "@entities";
 import { IReqResetPassword, IReqSignIn, IResAuthDatas } from "@interfaces";
 import { EAuthKeys } from "src/app/auth/enums/auth-keys.enum";
-import { v4 } from "uuid";
+import { nanoid } from 'nanoid';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -15,7 +15,7 @@ export class AuthService {
   ) {}
 
   get url(): string {
-    return this.appService.apiUserUrl + '/auth'
+    return this.appService.apiCabinetUrl + '/auth'
   }
 
   get token(): string | null {
@@ -30,23 +30,42 @@ export class AuthService {
     let deviceId: string | null = localStorage.getItem(EAuthKeys.DEVICE_ID);
 
     if (!deviceId) {
-      deviceId = v4();
+      deviceId = nanoid();
       localStorage.setItem(EAuthKeys.DEVICE_ID, deviceId);
     }
 
     return deviceId;
   }
 
-  authorization() {
-    return `Bearer ${this.token}`;
+  get authorization(): string {
+      return `Bearer ${this.token}`;
   }
+
+
+  isAuthenticated(): boolean {
+    return !!this.token;
+  }
+
+  setToken(data: IResAuthDatas): void {
+    localStorage.setItem(EAuthKeys.TOKEN, data.access);
+    localStorage.setItem(EAuthKeys.TOKEN_REFRESH, data.refresh);
+  }
+
 
   signIn(data: IReqSignIn): Observable<IResAuthDatas> {
     return this._http.post<IResAuthDatas>(`${this.url}/login`, data).pipe(tap(console.log));
   }
 
-  refresh() {
-    return this._http.get(`${this.url}/refresh`).pipe(tap(console.log));
+  logout(): void {
+    localStorage.removeItem(EAuthKeys.TOKEN);
+    localStorage.removeItem(EAuthKeys.TOKEN_REFRESH);
+  }
+
+  refresh(): Observable<IResAuthDatas> {
+    return this._http.post<IResAuthDatas>(`${this.url}/refresh`, {
+      token: this.refreshToken,
+      deviceId: this.deviceId
+    }).pipe(tap((data) => this.setToken(data)));
   }
 
   reset(data: IReqResetPassword): Observable<IUser> {

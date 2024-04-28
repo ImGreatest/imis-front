@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '@src/enviroments/enviroments';
+import { environment } from 'src/enviroments/enviroments';
 import { Observable } from 'rxjs';
 import { IUpdateCreateRole, IRole, IUpdatePermission } from '../../interfaces/role/role.interface';
 import { PageRes } from '@interfaces';
@@ -15,9 +15,10 @@ export class RoleService {
     getPage(limit : number, page : number) {
         return this.http.get < PageRes < IRole >> (`${environment.apiRatingUrl}/role/page-${page}?limit=${limit}`)
     }
-    getRoleAssert(){
-        return this.http.get<IRoleAsserts> (`${environment.apiRatingUrl}/role/role-assert`)
-    }
+
+    // getRoleAssert(){
+    //     return this.http.get<IRoleAsserts> (`${environment.apiRatingUrl}/role/role-assert`)
+    // }
 
     delete(id : number) {
         return this
