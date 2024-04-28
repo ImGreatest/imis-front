@@ -5,6 +5,7 @@ import { IAuthForm } from "./interfaces/auth-form.interface";
 import { firstValueFrom } from 'rxjs';
 import { Router } from "@angular/router";
 import { AuthService } from "../../auth/auth.service";
+import { UserService } from "../../common/services/api/user.service";
 
 @Component({
   selector: 'app-auth',
@@ -26,7 +27,8 @@ export class AuthComponent {
 
   constructor(
     private route: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private userService: UserService
   ) {}
 
   get login() {
@@ -55,8 +57,9 @@ export class AuthComponent {
   private async _login(email: string, password: string) {
     await firstValueFrom(this.authService.signIn({
       email: email,
-      password: password
+      password: password,
     }));
     await this.route.navigate(['/']);
+    console.log(this.userService.getUsers());
   }
 }

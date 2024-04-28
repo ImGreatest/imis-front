@@ -11,7 +11,10 @@ export class AuthInterceptor implements HttpInterceptor {
   private refreshTokenInProgress: boolean = false;
   private refreshTokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   private handle401Error(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<object>> {
     if (this.refreshTokenInProgress) {
@@ -40,7 +43,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (!req.url.includes(environment.apiRatingUrl || environment.apiCabinetUrl || environment.apiEmployerUrl)) {
+    if (!req.url.includes(environment.apiRatingUrl || environment.apiUserUrl || environment.apiEmployerUrl)) {
       return next.handle(req);
     }
 
@@ -52,7 +55,7 @@ export class AuthInterceptor implements HttpInterceptor {
       catchError((err) => {
         if (
           err instanceof HttpErrorResponse &&
-          authReq.url.includes(environment.apiRatingUrl || environment.apiCabinetUrl || environment.apiEmployerUrl) &&
+          authReq.url.includes(environment.apiRatingUrl || environment.apiUserUrl || environment.apiEmployerUrl) &&
           !authReq.url.includes('auth') &&
           err.status === 401
         ) {

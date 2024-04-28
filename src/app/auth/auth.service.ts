@@ -53,7 +53,12 @@ export class AuthService {
 
 
   signIn(data: IReqSignIn): Observable<IResAuthDatas> {
-    return this._http.post<IResAuthDatas>(`${this.url}/login`, data).pipe(tap(console.log));
+    console.log(data);
+    const deviceId: string = this.deviceId;
+    return this._http.post<IResAuthDatas>(`${this.url}/login`, {
+      ...data,
+      deviceId
+    }).pipe(tap(console.log));
   }
 
   logout(): void {
