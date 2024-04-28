@@ -8,10 +8,10 @@ export interface IRating{
 export interface ICreateRating{
     minuteUpdate: number
     name: string
-    scope: IScope[]
+    scope: IScopeElement[]
 }
 
-export interface IScope{
+export interface IScopeElement{
     tagId: number,
     ratingScore: number
 }
@@ -19,6 +19,6 @@ export interface IScope{
 export interface IUpdateRating{
     minuteUpdate?: number
     name?: string
-    scope?: IScope[]
+    scope?: IScopeElement[]
 }
 

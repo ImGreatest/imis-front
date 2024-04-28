@@ -11,15 +11,13 @@ import { TagService } from '../../common/services/api/tag.service';
 import {
   ITreeTagElement,
   ITreeTagShowElement,
-  tagScore,
-} from '../../common/interfaces/tag/tag.interface';
-import { ActivatedRoute } from '@angular/router';
-import { RatingService } from '../../common/services/api/rating.service';
-import {
+  IScopeElement,
   ICreateRating,
-  IUpdateRating,
-} from 'src/app/common/interfaces/rating/rating.interface';
-import { IScope } from 'src/app/common/interfaces/rating/rating.interface';
+  tagScore,
+} from '@interfaces';
+import { ActivatedRoute } from '@angular/router';
+import { RatingService } from '@services';
+
 import { TuiAlertService } from '@taiga-ui/core';
 
 @Component({
@@ -76,19 +74,19 @@ export class CreateRatingComponent implements OnInit {
   onSave(): void {
     if (!this.rating.valid) {
       this.alerts
-          .open('',{
-            label: "Введите название",
-            status: 'error',
-            autoClose: true,
-          })
-          .subscribe();
+        .open('', {
+          label: 'Введите название',
+          status: 'error',
+          autoClose: true,
+        })
+        .subscribe();
       return;
     }
 
     const name = this.rating.controls.name.value!;
     const hours = this.rating.controls.hours.value || 0;
 
-    const scope: IScope[] = Object.entries(this.tagsScore).map(
+    const scope: IScopeElement[] = Object.entries(this.tagsScore).map(
       ([tagId, ratingScore]) => ({
         tagId: +tagId,
         ratingScore,
@@ -129,7 +127,7 @@ export class CreateRatingComponent implements OnInit {
           error
         );
         this.alerts
-          .open('',{
+          .open('', {
             label: error.error.message || errorMessage,
             status: 'error',
             autoClose: true,

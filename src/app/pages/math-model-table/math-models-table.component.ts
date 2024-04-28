@@ -9,12 +9,8 @@ import {
   share,
   switchMap,
 } from 'rxjs';
-import { IRatingTableElement } from './interface/ratings.interface';
-import { IFilter } from '../../common/interfaces/shared/filter.interface';
-import { RatingService } from '../../common/services/api/rating.service';
-import { PageRes, PageResRating } from '../../common/interfaces/page';
-import { IStudentScore } from 'src/app/common/interfaces/rating/student.score.interface';
-import { IRating } from 'src/app/common/interfaces/rating/rating.interface';
+import { IRatingTableElement, IFilter, PageRes, IRating } from '@interfaces';
+import { RatingService } from '@services';
 import { tuiIsFalsy } from '@taiga-ui/cdk';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -35,7 +31,6 @@ export class MathModelsTableComponent implements OnInit {
   ngOnInit(): void {
     this.request$.subscribe((ratings) => {
       this.ratings = ratings;
-      
     });
     this.search.controls.searchInput.valueChanges.subscribe((value) => {
       this.filters$.next(

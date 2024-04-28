@@ -8,8 +8,7 @@ import {
     Output
 } from '@angular/core';
 import {TUI_TREE_CONTENT, tuiInputNumberOptionsProvider} from '@taiga-ui/kit';
-import {ITreeTagElement, TagEvent, ITreeTagShowElement} from '../../../common/interfaces/tag/tag.interface';
-import {FormControl, FormGroup} from '@angular/forms';
+import {ITreeTagElement, ITreeTagShowElement} from '@interfaces';
 import {TuiHandler} from '@taiga-ui/cdk';
 import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus';
 import {ExpandModule} from './expand-conponent';

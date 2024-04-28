@@ -1,13 +1,16 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { IUser } from './interface/user';
-import { RatingService } from '../../common/services/api/rating.service';
-import { IStudentScore } from 'src/app/common/interfaces/rating/student.score.interface';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 import { debounceTime, map, share, switchMap } from 'rxjs/operators';
-import { PageResRating } from '../../common/interfaces/page';
+
+import {
+  PageResRating,
+  IUserInRating,
+  IFilter,
+  IStudentScore,
+} from '@interfaces';
 import { tuiIsFalsy } from '@taiga-ui/cdk';
 import { FormControl, FormGroup } from '@angular/forms';
-import { IFilter } from '../../common/interfaces/shared/filter.interface';
+import { RatingService } from '@services';
 
 @Component({
   selector: 'ratingTable',
@@ -17,19 +20,13 @@ import { IFilter } from '../../common/interfaces/shared/filter.interface';
 })
 export class RatingTableComponent implements OnInit {
   constructor(private ratingService: RatingService) {}
-  users: IUser[] = [];
+  users: IUserInRating[] = [];
   readonly search = new FormGroup({
     searchInput: new FormControl(''),
   });
   statusFilter: boolean = false;
   searchProjectControl = new FormControl('', { nonNullable: true });
-  readonly columns = [
-    'place',
-    'name',
-    'surname',
-    'group',
-    'ratingScore',
-  ];
+  readonly columns = ['place', 'name', 'surname', 'group', 'ratingScore'];
   some(event: any) {
     console.log(event);
   }
@@ -140,10 +137,6 @@ export class RatingTableComponent implements OnInit {
       );
   }
   readonly loading$ = this.request$.pipe(map(tuiIsFalsy));
-
-  remove(item: IUser): void {
-    this.users = this.users.filter((user) => user !== item);
-  }
 
   goToPage(index: number): void {
     this.page$.next(index);
