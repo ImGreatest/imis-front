@@ -1,24 +1,31 @@
-form {
-  background: #333333;
-  border-radius: 24px;
+
+.column() {
+  display: flex;
+  flex-direction: column;
 }
 
-section {
-  display: flex;
-  border-radius: 0.75rem;
-  justify-content: center;
+#auth-container {
+  .column();
   align-items: center;
-  color: var(--tui-base-06);
-  border: 1px dashed var(--tui-base-06);
-  width: 50vh;
-  height: 25vh;
+  margin-top: 10rem;
 }
 
-.label {
-    font: var(--tui-font-text-l);
+#auth-container-form-card-sme-password-row-span {
+  .column();
+  margin: 5px 0 0 5px;
+  color: var(--tui-text-02);
 }
 
-footer {
-  display: flex;
-  justify-content: flex-end;
+#auth-container-form-card-sme-password-row-field-checkbox-span {
+  color: var(--tui-text-02);
+}
+
+#auth-container-form-card-sme-submit-row {
+  .column();
+  align-items: flex-end;
+  margin-top: -1rem;
+}
+
+#auth-container-form-card-sme-submit-row-form__buttons-button {
+  width: 150px
 }

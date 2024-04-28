@@ -1,5 +1,5 @@
-import {NgModule} from "@angular/core";
-import {SidebarComponent} from "./sidebar.component";
+import { NgModule } from "@angular/core";
+import { SidebarComponent } from "./sidebar.component";
 import {
   TUI_SANITIZER, TuiButtonModule,
   TuiDialogModule, TuiLinkModule, TuiModeModule, TuiScrollbarModule,
@@ -12,8 +12,8 @@ import {
   TuiIconModule,
   TuiNavigationModule
 } from '@taiga-ui/experimental';
-import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
-import {TuiSidebarModule} from "@taiga-ui/addon-mobile";
+import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
+import { TuiSidebarModule } from "@taiga-ui/addon-mobile";
 import {
   TuiAccordionModule,
   TuiAvatarModule,
@@ -21,12 +21,12 @@ import {
   TuiMarkerIconModule,
   TuiToggleModule
 } from "@taiga-ui/kit";
-import {TuiActiveZoneModule, TuiForModule, TuiHoveredModule} from "@taiga-ui/cdk";
-import {CommonModule, NgIf} from "@angular/common";
-import {RouterModule} from "@angular/router";
-import {TuiBarModule} from "@taiga-ui/addon-charts";
-import {BlockContentModule} from "./block-content/block-content.module";
-import {BlockHeaderModule} from "./block-header/block-header.module";
+import { TuiActiveZoneModule, TuiForModule, TuiHoveredModule } from "@taiga-ui/cdk";
+import { CommonModule, NgIf } from "@angular/common";
+import { RouterModule } from "@angular/router";
+import { TuiBarModule } from "@taiga-ui/addon-charts";
+import { BlockContentModule } from "./block-content/block-content.module";
+import { BlockHeaderModule } from "./block-header/block-header.module";
 import { BlockNoticeModule } from "./block-notice/block-notice.module";
 
 @NgModule({
