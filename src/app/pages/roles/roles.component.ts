@@ -27,7 +27,7 @@ export class RolesComponent implements OnInit {
   columns = ['Role'];
   roles: IRole[] = [];
   readonly direction$ = new BehaviorSubject<-1 | 1>(-1);
-  readonly size$ = new BehaviorSubject<number>(10);
+  readonly size$ = new BehaviorSubject<number>(4);
   readonly page$ = new BehaviorSubject<number>(0);
   readonly pageCount$ = new BehaviorSubject<number>(0);
   readonly filter$ = new BehaviorSubject<string>('');
@@ -54,12 +54,15 @@ export class RolesComponent implements OnInit {
   ngOnInit(): void {
     this.request$.subscribe((roles) => {
       this.roles = roles;
-      console.log(this.roles);
     });
     this.roleService.getRoleAssert().subscribe((val) => {
       this.subjects = val.subjects;
-      this.columns = [...this.columns, ...Object.values(val.subjects)];
-      console.log(this.columns);
+      this.columns = [
+        ...this.columns,
+        ...Object.values(val.subjects),
+        'actions',
+      ];
+      console.log(this.columns.slice(1, -1));
       this.actions = val.actions;
       this.posibleConditions = val.posibleConditions;
       this.cdr.markForCheck();
@@ -72,24 +75,16 @@ export class RolesComponent implements OnInit {
     size: number,
     filter: string
   ): Observable<any> {
-    return this.roleService
-      .getPage(
-        // orderProps: {name: sortDirection},
-        size,
-        page + 1,
-        direction,
-        filter
+    return this.roleService.getPage(size, page + 1, direction, filter).pipe(
+      map((data: PageRes<IRole>) => {
+        this.pageCount$.next(data.info.totalPages);
+        this.cdr.markForCheck();
 
-        // filters: filters,
-      )
-      .pipe(
-        map((data: PageRes<IRole>) => {
-          this.pageCount$.next(data.info.totalPages);
-          return data.rows;
-        })
-      );
+        return data.rows;
+      })
+    );
   }
-  private subjects: any;
+  subjects: any;
   private actions: any;
   private posibleConditions: IPosibleConditions[] = [];
 

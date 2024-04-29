@@ -1,36 +1,50 @@
 <table
-    tuiTable
-    [columns]="columns"
-    [direction]="(direction$ | async) || 1"
-    (directionChange)="direction$.next($event)">
-    <thead>
-        <tr tuiThGroup>
-            <th *ngFor="let column of columns" [tuiHead]="column" tuiTh [sorter]="null">{{ column }}</th>
-        </tr>
-    </thead>
-    <tbody
-        *tuiLet="roles | tuiTableSort as sortedRatings"
-        tuiTbody
-        [data]="sortedRatings">
-        <tr *ngFor="let item of sortedRatings; let index = index" tuiTr>
-            <td *tuiCell="'place'" tuiTd>{{ (page$.getValue() - 1) * size$.getValue() + index + 1 }}</td>
-            <td *tuiCell="'actions'" tuiTd>
-                <button
-                    tuiIconButton
-                    appearance="flat"
-                    tuiMode="onLight"
-                    icon="tuiIconTrash2"
-                    shape="rounded"
-                    size="s"
-                    title="more"
-                    class="more-icon"></button>
-            </td>
-        </tr>
-    </tbody>
+  tuiTable
+  [columns]="columns"
+  [direction]="(direction$ | async) || 1"
+  (directionChange)="direction$.next($event)"
+>
+  <thead>
+    <tr tuiThGroup>
+      <th
+        *ngFor="let column of columns"
+        [tuiHead]="column"
+        tuiTh
+        [sorter]="null"
+      >
+        {{ column }}
+      </th>
+    </tr>
+  </thead>
+  <tbody
+    *tuiLet="roles | tuiTableSort as sortedRoles"
+    tuiTbody
+    [data]="sortedRoles"
+  >
+    <tr *ngFor="let item of sortedRoles; let index = index" tuiTr>
+      <td *tuiCell="'Role'" tuiTd>{{ item.name }}</td>
+      <ng-container *ngFor="let subject of columns.slice(1, -1)">
+        <td *tuiCell="subject" tuiTd>{{ subject }}</td>
+      </ng-container>
+      <td *tuiCell="'actions'" tuiTd>
+        <button
+          tuiIconButton
+          appearance="flat"
+          tuiMode="onLight"
+          icon="tuiIconTrash2"
+          shape="rounded"
+          size="s"
+          title="more"
+          class="more-icon"
+        ></button>
+      </td>
+    </tr>
+  </tbody>
 </table>
 <div class="pagination-offset">
-    <tui-pagination
-        total="pageCount$.getValue()"
-        value="page$.getValue()"
-        (indexChange)="goToPage($event)"></tui-pagination>
+  <tui-pagination
+    [index]="page$.getValue()"
+    [length]="pageCount$.getValue()"
+    (indexChange)="goToPage($event)"
+  ></tui-pagination>
 </div>
