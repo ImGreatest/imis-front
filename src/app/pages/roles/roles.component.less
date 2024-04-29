@@ -1,33 +1,55 @@
-tbody tr td:nth-child(1) {
-    text-align: center;
+@import "@taiga-ui/core/styles/taiga-ui-local.less";
+table {
+  overflow-x: scroll;
+  width: 100%;
+  display: block;
 }
-tbody tr td:nth-child(6) {
-    text-align: center;
+tbody tr td:last-child,
+tbody tr td:nth-child(1) {
+  width: 5rem;
+  text-align: center;
 }
 
+tbody tr td:last-child {
+  width: 5rem;
+  display: flex;
+}
+td {
+  width: 10rem;
+}
 td,
 th {
-    border-color: #d7d7d7;
+  border-color: #d7d7d7;
 }
-th:first-child {
-    border-top-left-radius: 24px;
-}
-th:last-child {
-    border-top-right-radius: 24px;
-}
-tr:last-child td:first-child {
-    border-bottom-left-radius: 24px;
-}
-tr:last-child td:last-child {
-    border-bottom-right-radius: 24px;
+thead tr th:first-child {
+  border-top-left-radius: 24px;
 }
 
+thead tr th:last-child {
+  border-top-right-radius: 24px;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius: 24px;
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius: 24px;
+}
 tbody {
-    border-color: #d7d7d7;
+  border-color: #d7d7d7;
 }
 .scroll {
-    .scrollbar-hidden();
-    height: 200px;
+  .scrollbar-hidden();
+  height: 200px;
 
-    --tui-duration: 0;
+  --tui-duration: 0;
+}
+.table-placer {
+  display: flex;
+  height: 100%;
+  width: 92%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

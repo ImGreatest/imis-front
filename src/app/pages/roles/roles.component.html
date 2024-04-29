@@ -1,75 +1,90 @@
-<table
-  tuiTable
-  [columns]="columns"
-  [direction]="(direction$ | async) || 1"
-  (directionChange)="direction$.next($event)"
->
-  <thead>
-    <tr tuiThGroup>
-      <th
-        *ngFor="let column of columns"
-        [tuiHead]="column"
-        tuiTh
-        [sorter]="null"
-      >
-        {{ column }}
-      </th>
-    </tr>
-  </thead>
-  <tbody
-    *tuiLet="roles | tuiTableSort as sortedRoles"
-    tuiTbody
-    [data]="sortedRoles"
+<div class="table-placer">
+  <table
+    tuiTable
+    [columns]="columns"
+    [direction]="(direction$ | async) || 1"
+    (directionChange)="direction$.next($event)"
   >
-    <tr *ngFor="let item  of sortedRoles; let index = index" tuiTr>
-      <td *tuiCell="'Role'" tuiTd>{{ item.name }}</td>
-      <ng-container *ngFor="let subject of columns.slice(1, -1)">
-        <td *tuiCell="subject" tuiTd>
-          <tui-multi-select
-          class="b-form"
-          [editable]="false"
-          [valueContent]="content"
-          [(ngModel)]="value"
-      >
-          Разрешения
-          <cdk-virtual-scroll-viewport
-              *tuiDataList
-              tuiScrollable
-              class="scroll"
-              [itemSize]="44"
-          >
-              <tui-data-list tuiMultiSelectGroup>
-                  <button
-                      *cdkVirtualFor="let x of countries"
-                      tuiOption
-                      [value]="x"
-                  >
-                      {{ x }}
-                  </button>
-              </tui-data-list>
-          </cdk-virtual-scroll-viewport>
-      </tui-multi-select>
+    <thead>
+      <tr tuiThGroup>
+        <th
+          *ngFor="let column of columns; let i = index"
+          [tuiHead]="column"
+          tuiTh
+          [sorter]="null"
+        >
+          {{ column }}
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      *tuiLet="roles | tuiTableSort as sortedRoles"
+      tuiTbody
+      [data]="sortedRoles"
+    >
+      <tr *ngFor="let item of sortedRoles; let index = index" tuiTr>
+        <td *tuiCell="'Role'" tuiTd>{{ item.name }}</td>
+        <ng-container *ngFor="let subject of columns.slice(1, -1)">
+          <td *tuiCell="subject" tuiTd>
+            <tui-multi-select
+              [editable]="false"
+              [valueContent]="getContent(item.name, subject)"
+              tuiTextfieldSize="s"
+              [(ngModel)]="curUiPermissions[item.name][subject]"
+            >
+              Разрешения
+              <tui-data-list-wrapper
+                *tuiDataList
+                tuiMultiSelectGroup
+                [items]="actionsList"
+              ></tui-data-list-wrapper>
+            </tui-multi-select>
+          </td>
+        </ng-container>
+        <td *tuiCell="'actions'" tuiTd>
+          <button
+            *ngIf="checkChangedPermission(item.name)"
+            tuiIconButton
+            appearance="flat"
+            tuiMode="onLight"
+            icon="tuiIconCheck"
+            shape="rounded"
+            size="s"
+            title="more"
+            class="more-icon"
+          ></button>
+          <button
+            *ngIf="checkChangedPermission(item.name)"
+            tuiIconButton
+            (click)="setOriginalPermissions(item.name)"
+            appearance="flat"
+            tuiMode="onLight"
+            icon="tuiIconClose"
+            shape="rounded"
+            size="s"
+            title="more"
+            class="more-icon"
+          ></button>
+          <button
+            *ngIf="!checkChangedPermission(item.name)"
+            tuiIconButton
+            appearance="flat"
+            tuiMode="onLight"
+            icon="tuiIconTrash2"
+            shape="rounded"
+            size="s"
+            title="more"
+            class="more-icon"
+          ></button>
         </td>
-      </ng-container>
-      <td *tuiCell="'actions'" tuiTd>
-        <button
-          tuiIconButton
-          appearance="flat"
-          tuiMode="onLight"
-          icon="tuiIconTrash2"
-          shape="rounded"
-          size="s"
-          title="more"
-          class="more-icon"
-        ></button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<div class="pagination-offset">
-  <tui-pagination
-    [index]="page$.getValue()"
-    [length]="pageCount$.getValue()"
-    (indexChange)="goToPage($event)"
-  ></tui-pagination>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pagination-offset">
+    <tui-pagination
+      [index]="page$.getValue()"
+      [length]="pageCount$.getValue()"
+      (indexChange)="goToPage($event)"
+    ></tui-pagination>
+  </div>
 </div>
