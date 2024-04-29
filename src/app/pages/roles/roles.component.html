@@ -21,10 +21,35 @@
     tuiTbody
     [data]="sortedRoles"
   >
-    <tr *ngFor="let item of sortedRoles; let index = index" tuiTr>
+    <tr *ngFor="let item  of sortedRoles; let index = index" tuiTr>
       <td *tuiCell="'Role'" tuiTd>{{ item.name }}</td>
       <ng-container *ngFor="let subject of columns.slice(1, -1)">
-        <td *tuiCell="subject" tuiTd>{{ subject }}</td>
+        <td *tuiCell="subject" tuiTd>
+          <tui-multi-select
+          class="b-form"
+          [editable]="false"
+          [valueContent]="content"
+          [(ngModel)]="value"
+      >
+          Разрешения
+          <cdk-virtual-scroll-viewport
+              *tuiDataList
+              tuiScrollable
+              class="scroll"
+              [itemSize]="44"
+          >
+              <tui-data-list tuiMultiSelectGroup>
+                  <button
+                      *cdkVirtualFor="let x of countries"
+                      tuiOption
+                      [value]="x"
+                  >
+                      {{ x }}
+                  </button>
+              </tui-data-list>
+          </cdk-virtual-scroll-viewport>
+      </tui-multi-select>
+        </td>
       </ng-container>
       <td *tuiCell="'actions'" tuiTd>
         <button
