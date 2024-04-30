@@ -1,4 +1,4 @@
-<div style="display: flex">
+<div class="tags-tree-container">
   <tui-island *ngFor="let item of tagsValue">
     <tui-tree
       [childrenHandler]="handler"
@@ -16,5 +16,16 @@
       tuiTextfieldSize="s"
       (ngModelChange)="onChange(item.id, $event)"
     ></tui-input-number>
+    <button
+      tuiIconButton
+      appearance="flat"
+      tuiMode="onLight"
+      icon="tuiIconTrash2"
+      shape="rounded"
+      size="s"
+      title="Удалить тег"
+      (click)="delete(item.id)"
+      class="delete-icon"
+    ></button>
   </ng-template>
 </div>

@@ -1,22 +1,40 @@
 <div class="table-placer">
   <div class="search-cont">
-    <form [formGroup]="search">
+    <form class="search-form" [formGroup]="search">
       <tui-input
-        style="padding: 0.25rem"
         formControlName="searchInput"
         [tuiTextfieldCleaner]="true"
         tuiTextfieldSize="m"
       >
         Введи название роли
-        <input tuiTextfield type="email" />
+        <input tuiTextfield />
       </tui-input>
-      <button
-        style="padding: 0.25rem"
-        tuiIconButton
-        [size]="'m'"
-        type="button"
-        icon="tuiIconPlus"
-      ></button>
+      <div class="create-role-cont">
+        <button
+          *ngIf="!createRoleState"
+          (click)="changeCreateRoleState()"
+          tuiIconButton
+          [size]="'m'"
+          type="button"
+          icon="tuiIconPlus"
+        ></button>
+        <tui-input
+          *ngIf="createRoleState"
+          formControlName="createInput"
+          tuiTextfieldSize="m"
+        >
+          Введи название новой роли
+          <input tuiTextfield />
+        </tui-input>
+        <button
+          *ngIf="createRoleState"
+          tuiIconButton
+          (click)="createRole()"
+          [size]="'m'"
+          type="button"
+          icon="tuiIconCheck"
+        ></button>
+      </div>
     </form>
   </div>
   <table
@@ -71,7 +89,7 @@
             icon="tuiIconCheck"
             shape="rounded"
             size="s"
-            title="more"
+            title="Сохранить"
             class="more-icon"
           ></button>
           <button
@@ -83,7 +101,7 @@
             icon="tuiIconClose"
             shape="rounded"
             size="s"
-            title="more"
+            title="Сбросить"
             class="more-icon"
           ></button>
           <button
@@ -94,7 +112,8 @@
             icon="tuiIconTrash2"
             shape="rounded"
             size="s"
-            title="more"
+            title="Удалить"
+            (click)="delete(item.id)"
             class="more-icon"
           ></button>
         </td>

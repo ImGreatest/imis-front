@@ -45,10 +45,20 @@ tbody {
 
   --tui-duration: 0;
 }
-.search-cont{
-    width: 100%;
+.search-cont {
+  width: 100%;
+  display: flex;
+  .search-form {
+    width: 20%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 0.25rem;
+    .create-role-cont{
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 0.25rem;
+    }
+  }
 }
 .table-placer {
   display: flex;

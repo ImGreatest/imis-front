@@ -22,8 +22,9 @@ import {
   IRolePermissionValue,
   IUpdatePermission,
 } from '@interfaces';
-import { TuiAlertService } from '@taiga-ui/core';
+import { TuiAlertService, TuiDialogService } from '@taiga-ui/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { TuiPromptData, TUI_PROMPT } from '@taiga-ui/kit';
 
 @Component({
   selector: 'roles',
@@ -37,8 +38,16 @@ export class RolesComponent implements OnInit {
   curUiPermissions: IRolePermissionValue = {};
   originUiPermissions: IRolePermissionValue = {};
 
+  createRoleState: boolean = false;
+
+  changeCreateRoleState() {
+    this.createRoleState = !this.createRoleState;
+    this.search.controls.createInput.setValue('');
+  }
+
   readonly search = new FormGroup({
     searchInput: new FormControl(''),
+    createInput: new FormControl(''),
   });
 
   readonly direction$ = new BehaviorSubject<-1 | 1>(-1);
@@ -142,7 +151,8 @@ export class RolesComponent implements OnInit {
   constructor(
     private roleService: RoleService,
     private cdr: ChangeDetectorRef,
-    @Inject(TuiAlertService) private alerts: TuiAlertService
+    @Inject(TuiAlertService) private alerts: TuiAlertService,
+    @Inject(TuiDialogService) private readonly dialogs: TuiDialogService
   ) {}
   checkChangedPermission(role: string): boolean {
     return Object.keys(this.originUiPermissions[role]).some((key) => {
@@ -225,6 +235,9 @@ export class RolesComponent implements OnInit {
   actionsList: { [key: string]: string[] } = {};
   private posibleConditions: IPosibleConditions[] = [];
 
+  private _update() {
+    this.page$.next(this.page$.value);
+  }
   goToPage(index: number): void {
     this.page$.next(index);
   }
@@ -246,5 +259,80 @@ export class RolesComponent implements OnInit {
     }
 
     return true;
+  }
+  createRole() {
+    const name = this.search.controls.createInput.value;
+    if (!name) {
+      this.alerts
+        .open('', {
+          label: 'Введите название новой роли',
+          status: 'error',
+          autoClose: true,
+        })
+        .subscribe();
+      return;
+    }
+    this.roleService.create({ name: name }).subscribe(
+      () => {
+        this.alerts
+          .open('', {
+            label: 'Успешно создано',
+            status: 'success',
+            autoClose: true,
+          })
+          .subscribe();
+
+        this._update();
+        this.changeCreateRoleState()
+      },
+      (error) => {
+        this.alerts
+          .open('', {
+            label: error.error.message || 'Не удалось создать',
+            status: 'error',
+            autoClose: true,
+          })
+          .subscribe();
+      }
+    );
+  }
+
+  delete(id: number) {
+    const data: TuiPromptData = {
+      content: 'Вы уверены что хотите удалить роль?',
+      yes: 'Да',
+      no: 'Нет',
+    };
+    this.dialogs
+      .open<boolean>(TUI_PROMPT, {
+        label: 'Уверены?',
+        size: 's',
+        data,
+      })
+      .subscribe((result) => result && this._delete(id));
+  }
+  private _delete(id: number) {
+    this.roleService.delete(id).subscribe(
+      () => {
+        this.alerts
+          .open('', {
+            label: 'Успешно удалено',
+            status: 'success',
+            autoClose: true,
+          })
+          .subscribe();
+
+        this._update();
+      },
+      (error) => {
+        this.alerts
+          .open('', {
+            label: error.error.message || 'Не удалось удалить',
+            status: 'error',
+            autoClose: true,
+          })
+          .subscribe();
+      }
+    );
   }
 }
