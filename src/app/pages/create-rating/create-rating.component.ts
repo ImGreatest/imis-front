@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   Inject,
+  Injector,
   OnInit,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -19,6 +20,9 @@ import { ActivatedRoute } from '@angular/router';
 import { RatingService } from '@services';
 
 import { TuiAlertService } from '@taiga-ui/core';
+import { AppDialogService } from 'src/app/component/dialog/app-dialog.service';
+import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
+import { CreateTagComponent } from './create-tag-modal/create-tag.component';
 
 @Component({
   selector: 'app-create-rating',
@@ -35,7 +39,9 @@ export class CreateRatingComponent implements OnInit {
     private ratingService: RatingService,
     private tagService: TagService,
     private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private appDialogService: AppDialogService,
+    private injector: Injector,
   ) {}
 
   tagsValue: ITreeTagShowElement[] = [];
@@ -93,8 +99,6 @@ export class CreateRatingComponent implements OnInit {
       })
     );
 
-    console.log(name, hours, scope);
-
     const ratingBody: ICreateRating = {
       name,
       minuteUpdate: hours * 60,
@@ -135,5 +139,15 @@ export class CreateRatingComponent implements OnInit {
           .subscribe();
       }
     );
+  }
+  onCreateTag(){
+    this.appDialogService
+    .open(new PolymorpheusComponent<any,any>(CreateTagComponent, this.injector), {
+      size: 'm',
+      closeable: true,
+      title: 'Создание тега',
+    })
+    .subscribe((value: any) => value === 'created' )
+
   }
 }

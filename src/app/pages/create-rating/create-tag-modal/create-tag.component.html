@@ -1,0 +1,20 @@
+<div class="create-tag">
+  <div class="tag-info">
+    <form [formGroup]="form"    >
+      <tui-select tuiTextfieldSize="m" [formControl]="form.controls.baseTagControl">
+        Выбери родительский тег
+        <input tuiTextfield />
+        <tui-data-list-wrapper
+          *tuiDataList
+          [items]="items"
+        ></tui-data-list-wrapper>
+      </tui-select>
+    </form>
+    <tui-input [formControl]="form.controls.nameControl"  tuiTextfieldSize="m">
+      Название нового тега
+      <input tuiTextfield />
+    </tui-input>
+  </div>
+
+  <button (click)="onSave()" [size]="'m'" tuiButton="primary">Сохранить</button>
+</div>

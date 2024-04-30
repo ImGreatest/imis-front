@@ -1,5 +1,105 @@
-@import '@taiga-ui/core/styles/taiga-ui-local.less';
-@import 'apps/car-wash-owner-panel/src/styles/shared.less';
+@import "@taiga-ui/core/styles/taiga-ui-local.less";
+.form-label {
+  color: var(--tui-text-02);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 28px;
+  margin: 0;
+
+  @media @tui-mobile {
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 24px;
+  }
+}
+.page-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 48px;
+  gap: 54px;
+
+  @media @tui-desktop {
+    gap: 20px;
+  }
+
+  @media @tui-tablet {
+    flex-wrap: wrap;
+    margin: 0 0 30px;
+  }
+
+  @media @tui-mobile {
+    width: calc(100% + 40px);
+    margin: -21px -20px 21px;
+    background: var(--tui-primary);
+    padding: 15px;
+    border-radius: 0 0 12px 12px;
+  }
+}
+
+.modal-back-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  height: 60px;
+  width: 60px;
+  background-color: var(--tui-primary);
+  cursor: pointer;
+  color: #ffffff;
+
+  &:hover {
+    background-color: var(--tui-primary-hover);
+  }
+
+  @media @tui-mobile {
+    display: flex;
+  }
+}
+
+.search-input {
+  flex-grow: 1;
+
+  @media @tui-mobile {
+    margin: 0 0 20px;
+  }
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0 0 48px;
+
+  @media @tui-tablet {
+    flex-wrap: wrap;
+    margin: 0 0 30px;
+  }
+
+  @media @tui-mobile {
+    width: calc(100% + 40px);
+    margin: -21px -20px 16px;
+    background: var(--tui-primary);
+    padding: 15px;
+    border-radius: 0 0 12px 12px;
+  }
+
+  h1.page-title {
+    margin-right: auto;
+
+    @media @tui-tablet {
+      flex-basis: 100%;
+      margin: 0 0 30px;
+    }
+
+    @media @tui-mobile {
+      display: none;
+    }
+  }
+}
 
 .header {
   margin: 0;
@@ -86,7 +186,7 @@
     position: absolute;
     top: 15px;
     left: 9px;
-    content: '';
+    content: "";
     display: block;
     width: 14px;
     height: 2px;
@@ -111,6 +211,7 @@ section {
   margin: 0 auto;
   overflow: hidden;
 }
+
 
 .s {
   max-width: 30rem;

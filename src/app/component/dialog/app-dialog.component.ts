@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Inject, OnInit, Self } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  OnInit,
+  Self,
+} from '@angular/core';
 import { TuiDestroyService, TuiDialog } from '@taiga-ui/cdk';
 import { TuiDialogCloseService, TuiDialogService } from '@taiga-ui/core';
 import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
@@ -35,7 +41,7 @@ export class AppDialogComponent implements OnInit {
     private dialogService: TuiDialogService
   ) {
     close$.pipe(takeUntil(destroy$)).subscribe(() => {
-      this.prompt.subscribe(value => value && this.context.$implicit.complete());
+      this.context.$implicit.complete();
     });
   }
 
