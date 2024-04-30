@@ -1,4 +1,24 @@
 <div class="table-placer">
+  <div class="search-cont">
+    <form [formGroup]="search">
+      <tui-input
+        style="padding: 0.25rem"
+        formControlName="searchInput"
+        [tuiTextfieldCleaner]="true"
+        tuiTextfieldSize="m"
+      >
+        Введи название роли
+        <input tuiTextfield type="email" />
+      </tui-input>
+      <button
+        style="padding: 0.25rem"
+        tuiIconButton
+        [size]="'m'"
+        type="button"
+        icon="tuiIconPlus"
+      ></button>
+    </form>
+  </div>
   <table
     tuiTable
     [columns]="columns"

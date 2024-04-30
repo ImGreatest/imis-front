@@ -23,6 +23,7 @@ import {
   IUpdatePermission,
 } from '@interfaces';
 import { TuiAlertService } from '@taiga-ui/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'roles',
@@ -35,6 +36,11 @@ export class RolesComponent implements OnInit {
   roles: IRole[] = [];
   curUiPermissions: IRolePermissionValue = {};
   originUiPermissions: IRolePermissionValue = {};
+
+  readonly search = new FormGroup({
+    searchInput: new FormControl(''),
+  });
+
   readonly direction$ = new BehaviorSubject<-1 | 1>(-1);
   readonly size$ = new BehaviorSubject<number>(10);
   readonly page$ = new BehaviorSubject<number>(0);
@@ -118,11 +124,12 @@ export class RolesComponent implements OnInit {
         },
         (error) => {
           this.alerts
-          .open('', {
-            label: 'Не удалось обновить',
-            status: 'error',
-            autoClose: true,
-          }).subscribe()
+            .open('', {
+              label: 'Не удалось обновить',
+              status: 'error',
+              autoClose: true,
+            })
+            .subscribe();
         }
       );
   }
@@ -177,6 +184,9 @@ export class RolesComponent implements OnInit {
 
       console.log(this.actionsList);
       this.cdr.markForCheck();
+    });
+    this.search.controls.searchInput.valueChanges.subscribe((value) => {
+      this.filter$.next(value ?? '');
     });
   }
 
