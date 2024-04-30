@@ -24,10 +24,10 @@ export class RoleService {
             .http
             .delete(`${environment.apiRatingUrl}/role/${id}`)
     }
-    createDeletePermissions(roleId : number, newPermission : IUpdatePermission[],) {
+    createDeletePermissions(role : string, newPermission : IUpdatePermission[],) {
         return this
             .http
-            .put(`${environment.apiRatingUrl}/role/${roleId}`, newPermission)
+            .put(`${environment.apiRatingUrl}/role/permission/${role}`, newPermission)
     }
 
 }

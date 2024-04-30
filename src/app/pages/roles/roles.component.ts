@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  Inject,
   OnInit,
 } from '@angular/core';
 import { RoleService } from '@services';
@@ -15,7 +16,13 @@ import {
   switchMap,
 } from 'rxjs';
 import { PageRes } from '../../common/interfaces/shared/page';
-import { IPosibleConditions, IRole, IRolePermissionValue } from '@interfaces';
+import {
+  IPosibleConditions,
+  IRole,
+  IRolePermissionValue,
+  IUpdatePermission,
+} from '@interfaces';
+import { TuiAlertService } from '@taiga-ui/core';
 
 @Component({
   selector: 'roles',
@@ -39,7 +46,7 @@ export class RolesComponent implements OnInit {
       this.curUiPermissions[role][subject]
         ? this.curUiPermissions[role][subject].length
         : 0
-    } из ${this.actionsList.length}`;
+    } из ${this.actionsList[subject].length}`;
   }
   readonly request$ = combineLatest([
     this.direction$,
@@ -54,11 +61,81 @@ export class RolesComponent implements OnInit {
     share()
   );
   setOriginalPermissions(role: string) {
-    this.curUiPermissions[role] = JSON.parse(JSON.stringify(this.originUiPermissions[role]));
+    this.curUiPermissions[role] = JSON.parse(
+      JSON.stringify(this.originUiPermissions[role])
+    );
   }
+  savePermissions(role: string) {
+    console.log(role, this.curUiPermissions[role]);
+    const permissionsToUpdate: IUpdatePermission[] = [];
+
+    Object.entries(this.curUiPermissions[role]).forEach(([key, value]) => {
+      const entity = this.findKeyByValue(this.subjects, key);
+      if (!entity) {
+        console.error(`Entity not found for key: ${key}`);
+        return; // Exit current iteration if entity is not found
+      }
+
+      value.forEach((perm) => {
+        let condition = false;
+        if (perm.includes('своего')) {
+          condition = true;
+          perm = perm.replace(' своего', '');
+        }
+        const action = this.findKeyByValue(this.actions, perm);
+        if (!action) {
+          console.error(`Action not found for permission: ${perm}`);
+          return; // Exit current iteration if action is not found
+        }
+        const conditionRow = condition
+          ? this.findConditionForEntity(entity)
+          : false;
+        const permissionResult: IUpdatePermission = {
+          action: action,
+          subject: entity,
+        };
+        if (conditionRow) {
+          permissionResult.conditions = {
+            id: `{{${conditionRow}}}`,
+          };
+        }
+        permissionsToUpdate.push(permissionResult);
+      });
+    });
+
+    this.roleService
+      .createDeletePermissions(role, permissionsToUpdate)
+      .subscribe(
+        () => {
+          this.alerts
+            .open('', {
+              label: 'Успешное обновление',
+              status: 'success',
+              autoClose: true,
+            })
+            .subscribe();
+          this.page$.next(this.page$.value);
+        },
+        (error) => {
+          this.alerts
+          .open('', {
+            label: 'Не удалось обновить',
+            status: 'error',
+            autoClose: true,
+          }).subscribe()
+        }
+      );
+  }
+
+  findConditionForEntity(entity: string) {
+    return this.posibleConditions.find((cond) => cond.entitys.includes(entity))
+      ?.row;
+  }
+
   constructor(
     private roleService: RoleService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    @Inject(TuiAlertService) private alerts: TuiAlertService
   ) {}
   checkChangedPermission(role: string): boolean {
     return Object.keys(this.originUiPermissions[role]).some((key) => {
@@ -80,8 +157,25 @@ export class RolesComponent implements OnInit {
         'actions',
       ];
       this.actions = val.actions;
-      this.actionsList = Object.values(val.actions);
       this.posibleConditions = val.posibleConditions;
+      Object.keys(this.subjects).forEach((key) => {
+        const ruKey = this.subjects[key];
+        this.actionsList[ruKey] = Object.values(this.actions);
+        if (
+          this.posibleConditions
+            .map((conditions) => conditions.entitys.includes(key))
+            .includes(true)
+        ) {
+          this.actionsList[ruKey] = [
+            ...this.actionsList[ruKey],
+            ...this.actionsList[ruKey]
+              .filter((action) => action != 'Создание')
+              .map((action) => action + ' своего'),
+          ];
+        }
+      });
+
+      console.log(this.actionsList);
       this.cdr.markForCheck();
     });
   }
@@ -95,6 +189,7 @@ export class RolesComponent implements OnInit {
     return this.roleService.getPage(size, page + 1, direction, filter).pipe(
       map((data: PageRes<IRole>) => {
         this.pageCount$.next(data.info.totalPages);
+
         data.rows.forEach((role) => {
           Object.keys(this.subjects).forEach((subject: any) => {
             if (!this.originUiPermissions[role.name]) {
@@ -102,7 +197,8 @@ export class RolesComponent implements OnInit {
             }
             this.originUiPermissions[role.name][this.subjects[subject]] =
               role.Permission.filter((perm) => perm.subject === subject).map(
-                (perm) => this.actions[perm.action]
+                (perm) =>
+                  this.actions[perm.action] + (perm.conditions ? ' своего' : '')
               ) ?? [];
           });
         });
@@ -116,13 +212,15 @@ export class RolesComponent implements OnInit {
   }
   subjects: any;
   actions: any;
-  actionsList: string[] = [];
+  actionsList: { [key: string]: string[] } = {};
   private posibleConditions: IPosibleConditions[] = [];
 
   goToPage(index: number): void {
     this.page$.next(index);
   }
-
+  findKeyByValue(obj: any, value: string) {
+    return Object.keys(obj).find((key) => obj[key] === value);
+  }
   arraysAreEqual<T>(arr1: T[], arr2: T[]): boolean {
     if (arr1.length !== arr2.length) {
       return false;

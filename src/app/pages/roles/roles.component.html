@@ -36,7 +36,7 @@
               <tui-data-list-wrapper
                 *tuiDataList
                 tuiMultiSelectGroup
-                [items]="actionsList"
+                [items]="actionsList[subject]"
               ></tui-data-list-wrapper>
             </tui-multi-select>
           </td>
@@ -46,6 +46,7 @@
             *ngIf="checkChangedPermission(item.name)"
             tuiIconButton
             appearance="flat"
+            (click)="savePermissions(item.name)"
             tuiMode="onLight"
             icon="tuiIconCheck"
             shape="rounded"
