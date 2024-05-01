@@ -13,7 +13,6 @@ import {ExpandModule} from './expand-conponent';
         CommonModule,
         TuiIslandModule,
         TuiInputNumberModule,
-        FormsModule,
         TuiTextfieldControllerModule,
         TuiTreeModule,
         TuiButtonModule,

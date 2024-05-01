@@ -32,6 +32,7 @@ export class SidebarComponent {
     {title: 'Компании', routing: '/company', icon: 'tuiIconBriefcaseLarge', selected: false},
     {title: 'Мат. Модель', routing: 'math-models', icon: 'tuiIconSlackLarge', selected: false},
     {title: 'Роли', routing: 'roles', icon: 'tuiIconUsersLarge', selected: false},
+    {title: 'Умения', routing: 'skills', icon: 'tuiIconGitPullRequestLarge', selected: false},
   ]
   @Output()
   readonly buttonHeader = [

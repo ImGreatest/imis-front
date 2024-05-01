@@ -21,7 +21,7 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-events',
+  selector: 'math-models-table',
   templateUrl: './math-models-table.component.html',
   styleUrl: './math-models-table.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,

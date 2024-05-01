@@ -41,6 +41,10 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/notice/notice.module').then((m) => m.NoticeModule),
       },
       {
+        path: 'skills',
+        loadChildren: () => import('./pages/skills/skills.page.module').then((m) => m.SkillsPageModule),
+      },
+      {
         path: 'math-models',
         loadChildren: () => import('./pages/math-model-table/math-models-table.module').then((m) => m.MathModelsTableModule),
       },
