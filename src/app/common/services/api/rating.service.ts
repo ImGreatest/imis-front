@@ -55,6 +55,14 @@ export class RatingService {
       data
     );
   }
+  getDefaultScore(
+    data: IGetPage
+  ): Observable<PageResRating<IStudentScore>> {
+    return this.http.put<PageResRating<IStudentScore>>(
+      `${environment.apiRatingUrl}/rating/getScore/default`,
+      data
+    );
+  }
 
   updateScoreById(id: number): Observable<null> {
     return this.http.get<null>(
