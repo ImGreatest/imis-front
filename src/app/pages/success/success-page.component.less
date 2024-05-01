@@ -1,0 +1,122 @@
+#success-table {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .filter-input {
+    width: 12rem;
+    margin: 1rem 0.5rem;
+  }
+  #success-filters {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+    justify-content: space-between;
+  }
+  .filter-label {
+    font-family: Lato, serif;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .filter-container {
+    display: flex;
+    margin: 1rem;
+  }
+  
+  .filter-buttons-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
+  
+  .filter-window {
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    background-color: #fff;
+    border: thin solid #d7d7d7;
+    right: 0;
+    padding: 1rem;
+    z-index: 1;
+    border-radius: 2rem;
+  }
+  tbody tr td:nth-child(1) {
+    text-align: center;
+  }
+  
+  tbody tr td:nth-child(6) {
+    text-align: center;
+  }
+  
+  td,
+  th {
+    border-color: #d7d7d7;
+  }
+  
+  th:first-child {
+    border-top-left-radius: 24px;
+  }
+  
+  th:last-child {
+    border-top-right-radius: 24px;
+  }
+  
+  tr:last-child td:first-child {
+    border-bottom-left-radius: 24px;
+  }
+  
+  tr:last-child td:last-child {
+    border-bottom-right-radius: 24px;
+  }
+  
+  tbody {
+    border-color: #d7d7d7;
+  }
+  
+  .deceased {
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+  
+    &:before {
+      content: "";
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 100%;
+      margin-right: 0.5rem;
+      background: var(--tui-base-04);
+    }
+  }
+  
+  .alive:before {
+    background: var(--tui-success-fill);
+  }
+  
+  .transition(@param: all, @speed: var(--tui-duration, 300ms)) {
+    transition-property: @param;
+    transition-duration: @speed;
+    transition-timing-function: ease-in-out;
+  }
+  
+  .remove {
+    .transition(opacity);
+    opacity: 0;
+    color: #333333;
+  
+    tr:hover &,
+    tr:focus-within & {
+      opacity: 1;
+    }
+  }
+  
+  .pagination-offset {
+    margin: 1.55rem;
+  }
+  
