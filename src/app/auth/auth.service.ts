@@ -51,9 +51,12 @@ export class AuthService {
     localStorage.setItem(EAuthKeys.TOKEN_REFRESH, data.refresh);
   }
 
-
   signIn(data: IReqSignIn): Observable<IResAuthDatas> {
-    return this._http.post<IResAuthDatas>(`${this.url}/login`, data).pipe(tap(console.log));
+    return this._http.post<IResAuthDatas>(`${this.url}/login`, {
+      email: data.email,
+      password: data.password,
+      deviceId: this.deviceId,
+    }).pipe(tap(console.log));
   }
 
   logout(): void {

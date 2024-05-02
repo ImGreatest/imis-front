@@ -3,11 +3,11 @@
   display: flex;
 }
 
-#div-router-outlet {
+#page-container-div-router-outlet {
   width: 100%;
 }
 
-#sidebar {
+#page-container-section-aside { // sidebar
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -18,11 +18,47 @@
   transition: width 0.3s ease-in;
 }
 
-block-content {
+#page-container-section-aside-tui-scrollbar {
+  @media screen and (max-width: 2560px) {
+    padding: 0.175rem;
+  }
+  @media screen and (max-width: 2048px) {
+    padding: 0.1rem;
+  }
+  @media screen and (max-width: 1680px) {
+    padding: 0.0875rem;
+  }
+  @media screen and (max-width: 1650px) {
+    padding: 0.0825rem;
+  }
+  @media screen and (max-width: 1440px) {
+    padding: 0.0675rem;
+  }
+  @media screen and (max-width: 1280px) {
+    padding: 0.0475rem;
+  }
+  @media screen and (max-width: 1152px) {
+    padding: 0.0325rem;
+  }
+  @media screen and (max-width: 1024px) {
+    padding: 0.0275rem
+  }
+  @media screen and (max-width: 840px) {
+    padding: 0.0175rem;
+  }
+  @media screen and (max-width: 825px) {
+    padding: 0.0150rem;
+  }
+  @media screen and (max-width: 800px) {
+    padding: 0.0125rem;
+  }
+}
+
+#page-container-section-aside-tui-scrollbar-block-content {
   margin-top: 1.5rem;
 }
 
-block-notice {
+#page-container-section-aside-block-notice {
   margin-top: auto;
   border-top: 1px solid #D7D7D7;
 }

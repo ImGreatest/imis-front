@@ -45,10 +45,10 @@ export class AuthComponent {
     this.form.markAllAsTouched();
     Object.values(this.form.controls).map((control) => control.updateValueAndValidity());
     console.log(this.form.valid);
-
+    console.log(this.authService.isAuthenticated());
     if (this.form.valid) {
       console.log(this.login, this.password);
-      this._login(this.login, this.password);
+      this._login(this.login, this.password).then(r => console.log(r));
     }
   }
 
