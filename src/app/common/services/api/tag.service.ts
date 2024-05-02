@@ -7,6 +7,7 @@ import { ITag, ITreeTag, ICreateTag } from '@interfaces';
 @Injectable({ providedIn: 'root' })
 export class TagService {
   constructor(public http: HttpClient) {}
+
   getList(): Observable<Array<ITag>> {
     return this.http.get<Array<ITag>>(
       `${environment.apiRatingUrl}/tag/getList`

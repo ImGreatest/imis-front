@@ -1,12 +1,12 @@
 import { AbstractControl, ValidationErrors } from "@angular/forms";
 
-export function emailValidators(
+export function passwordValidators(
   control: AbstractControl
 ): ValidationErrors | null {
   if (control.value) {
-    const passwordRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     const matches = control.value.match(passwordRegex);
-    return matches ? null : { email: true };
+    return matches ? null : { password: true };
   }
 
   return null;

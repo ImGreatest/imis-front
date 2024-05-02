@@ -71,7 +71,24 @@ export const routes: Routes = [
   },
   {
     path: 'auth',
-    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule),
+    children: [
+      {
+        path: 'login',
+        loadChildren: () => import('src/app/pages/authorization/auth/auth.module').then(m => m.AuthModule),
+      },
+      {
+        path: 'reset',
+        loadChildren: () => import('src/app/pages/authorization/recover/recover.module').then(m => m.RecoverModule),
+      },
+      {
+        path: 'confirm',
+        loadChildren: () => import('src/app/pages/authorization/confirm/confirm.module').then(m => m.ConfirmModule),
+      },
+      {
+        path: '**',
+        redirectTo: 'login',
+      }
+    ]
   },
   {
     path: '**',
