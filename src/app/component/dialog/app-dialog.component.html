@@ -1,0 +1,16 @@
+<section id="app-dialog-section" class="wrapper" [class]="size" [style.maxWidth]="maxWidth ? maxWidth + 'px' : ''">
+  <div id="app-dialog-section-header" *ngIf="title" class="header">
+    <div id="app-dialog-section-button-close" role="button" (click)="onClose()" class="modal-back-btn">
+      <tui-svg src="tuiIconArrowLeftLarge" class="icon"></tui-svg>
+    </div>
+    <h2 id="app-dialog-section-title" class="modal-title">{{ title }}</h2>
+  </div>
+  <div id="app-dialog-section-content" class="content">
+    <ng-container
+      id="app-dialog-section-content-ng-container"
+      *polymorpheusOutlet="$any(context.content) as content; context: context">
+      {{ content }}
+    </ng-container>
+  </div>
+</section>
+<div id="app-dialog-button-close" *ngIf="closeable" class="modal-close-btn" role="button" (click)="onClose()"></div>

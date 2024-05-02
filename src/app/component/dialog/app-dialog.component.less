@@ -1,0 +1,226 @@
+@import "@taiga-ui/core/styles/taiga-ui-local.less";
+.form-label {
+  color: var(--tui-text-02);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 28px;
+  margin: 0;
+
+  @media @tui-mobile {
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 24px;
+  }
+}
+.page-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 48px;
+  gap: 54px;
+
+  @media @tui-desktop {
+    gap: 20px;
+  }
+
+  @media @tui-tablet {
+    flex-wrap: wrap;
+    margin: 0 0 30px;
+  }
+
+  @media @tui-mobile {
+    width: calc(100% + 40px);
+    margin: -21px -20px 21px;
+    background: var(--tui-primary);
+    padding: 15px;
+    border-radius: 0 0 12px 12px;
+  }
+}
+
+.modal-back-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  height: 60px;
+  width: 60px;
+  background-color: var(--tui-primary);
+  cursor: pointer;
+  color: #ffffff;
+
+  &:hover {
+    background-color: var(--tui-primary-hover);
+  }
+
+  @media @tui-mobile {
+    display: flex;
+  }
+}
+
+.search-input {
+  flex-grow: 1;
+
+  @media @tui-mobile {
+    margin: 0 0 20px;
+  }
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 0 0 48px;
+
+  @media @tui-tablet {
+    flex-wrap: wrap;
+    margin: 0 0 30px;
+  }
+
+  @media @tui-mobile {
+    width: calc(100% + 40px);
+    margin: -21px -20px 16px;
+    background: var(--tui-primary);
+    padding: 15px;
+    border-radius: 0 0 12px 12px;
+  }
+
+  h1.page-title {
+    margin-right: auto;
+
+    @media @tui-tablet {
+      flex-basis: 100%;
+      margin: 0 0 30px;
+    }
+
+    @media @tui-mobile {
+      display: none;
+    }
+  }
+}
+
+.header {
+  margin: 0;
+}
+
+:host {
+  display: block;
+  margin: auto;
+  width: 100%;
+  padding: 40px;
+
+  @media @tui-mobile {
+    padding: 0;
+  }
+}
+
+.wrapper {
+  background: #ffffff;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+
+  @media @tui-mobile {
+    border-radius: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+}
+
+.header {
+  flex-shrink: 0;
+  padding: 24px 24px 16px;
+
+  @media @tui-mobile {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    padding: 0 60px 0 0;
+    background-color: var(--tui-primary);
+    border-radius: 0 0 12px 12px;
+    overflow: hidden;
+  }
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 32px;
+  color: rgba(var(--tui-text-01), 0.9);
+
+  @media @tui-mobile {
+    flex-grow: 1;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: normal;
+    color: #ffffff;
+    text-align: center;
+  }
+}
+
+.content {
+  padding: 24px;
+  overflow-y: auto;
+
+  @media @tui-mobile {
+    padding: 16px;
+  }
+}
+
+.modal-close-btn {
+  width: 32px;
+  height: 32px;
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:before,
+  &:after {
+    position: absolute;
+    top: 15px;
+    left: 9px;
+    content: "";
+    display: block;
+    width: 14px;
+    height: 2px;
+    background-color: currentColor;
+    transform-origin: 7px 1px;
+  }
+
+  &:before {
+    transform: rotate(45deg);
+  }
+
+  &:after {
+    transform: rotate(-45deg);
+  }
+
+  @media @tui-mobile {
+    display: none;
+  }
+}
+
+section {
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+
+.s {
+  max-width: 30rem;
+}
+
+.m {
+  max-width: 40rem;
+}
+
+.l {
+  max-width: 76rem;
+}

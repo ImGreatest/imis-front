@@ -14,6 +14,12 @@ export interface IPermission {
   },
   inverted : boolean
 }
+export interface IRolePermissionValue {
+  [key: string]: {
+    [key: string]: string[]
+  }
+}
+
 
 export interface IUpdatePermission {
   action : string;

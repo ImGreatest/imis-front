@@ -1,3 +1,5 @@
+import { scoringType } from "@enums"
+
 export interface IRating{
     id: number,
     name: string,
@@ -9,6 +11,7 @@ export interface ICreateRating{
     minuteUpdate: number
     name: string
     scope: IScopeElement[]
+    scoringType: scoringType
 }
 
 export interface IScopeElement{
@@ -16,9 +19,6 @@ export interface IScopeElement{
     ratingScore: number
 }
 
-export interface IUpdateRating{
-    minuteUpdate?: number
-    name?: string
-    scope?: IScopeElement[]
-}
+export interface IUpdateRating extends Partial<ICreateRating> {
+  }
 

@@ -1,20 +1,31 @@
-<div style="display: flex;">
-    <tui-island *ngFor="let item of tagsValue">
-        <tui-tree
-            [childrenHandler]="handler"
-            [content]="content"
-            [tuiTreeController]="true"
-            [value]="item"></tui-tree>
-    </tui-island>
+<div class="tags-tree-container">
+  <tui-island *ngFor="let item of tagsValue">
+    <tui-tree
+      [childrenHandler]="handler"
+      [content]="content"
+      [tuiTreeController]="true"
+      [value]="item"
+    ></tui-tree>
+  </tui-island>
 
-    <ng-template #content let-item>
-      
-        <label class="tag-label">
-            {{ item.name }}</label>
-        <tui-input-number
-            class="tag-score-input"
-            [ngModel]="item.score"
-            tuiTextfieldSize="s"
-            (ngModelChange)="onChange(item.id, $event)"></tui-input-number>
-    </ng-template>
+  <ng-template #content let-item>
+    <label class="tag-label"> {{ item.name }}</label>
+    <tui-input-number
+      class="tag-score-input"
+      [ngModel]="item.score"
+      tuiTextfieldSize="s"
+      (ngModelChange)="onChange(item.id, $event)"
+    ></tui-input-number>
+    <button
+      tuiIconButton
+      appearance="flat"
+      tuiMode="onLight"
+      icon="tuiIconTrash2"
+      shape="rounded"
+      size="s"
+      title="Удалить тег"
+      (click)="delete(item.id)"
+      class="delete-icon"
+    ></button>
+  </ng-template>
 </div>

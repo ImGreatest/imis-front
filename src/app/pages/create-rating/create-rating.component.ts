@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   Inject,
+  Injector,
   OnInit,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -19,6 +20,10 @@ import { ActivatedRoute } from '@angular/router';
 import { RatingService } from '@services';
 
 import { TuiAlertService } from '@taiga-ui/core';
+import { AppDialogService } from 'src/app/component/dialog/app-dialog.service';
+import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
+import { CreateTagComponent } from './create-tag-modal/create-tag.component';
+import { scoringType } from '@enums';
 
 @Component({
   selector: 'app-create-rating',
@@ -35,16 +40,20 @@ export class CreateRatingComponent implements OnInit {
     private ratingService: RatingService,
     private tagService: TagService,
     private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private appDialogService: AppDialogService,
+    private injector: Injector
   ) {}
 
   tagsValue: ITreeTagShowElement[] = [];
   private tagsScore: tagScore = {};
   readonly rating = new FormGroup({
     name: new FormControl('', Validators.required),
+    type: new FormControl('Среднее', Validators.required),
     hours: new FormControl(0),
   });
 
+  types = Object.keys(scoringType);
   getChildTag(tag: ITreeTagElement): ITreeTagShowElement {
     this.tagsScore[tag.id] = tag.ratingScope || 0;
     return {
@@ -63,8 +72,15 @@ export class CreateRatingComponent implements OnInit {
   }
   ngOnInit(): void {
     this.id = Number(this.route.snapshot.params['id']) || -5;
+    this.update();
+  }
+   update(){
     this.tagService.getTreeTags(this.id).subscribe((tags) => {
       this.rating.controls.name.setValue(tags.ratingName);
+      const key = Object.keys(scoringType).find(
+        (k) => scoringType[k as keyof typeof scoringType] === tags.scoringType
+      );
+      this.rating.controls.type.setValue(key!);
       this.rating.controls.hours.setValue(tags.hourlyUpdate / 60);
       this.tagsValue = tags.tag.map((tag) => this.getChildTag(tag));
       this.cdr.markForCheck();
@@ -93,12 +109,14 @@ export class CreateRatingComponent implements OnInit {
       })
     );
 
-    console.log(name, hours, scope);
-
     const ratingBody: ICreateRating = {
       name,
       minuteUpdate: hours * 60,
       scope,
+      scoringType:
+        scoringType[
+          this.rating.controls.type.value! as keyof typeof scoringType
+        ],
     };
 
     const successMessage = this.id < 0 ? 'Успешно создан' : 'Успешно обновлен';
@@ -135,5 +153,17 @@ export class CreateRatingComponent implements OnInit {
           .subscribe();
       }
     );
+  }
+  onCreateTag() {
+    this.appDialogService
+      .open(
+        new PolymorpheusComponent<any, any>(CreateTagComponent, this.injector),
+        {
+          size: 'm',
+          closeable: true,
+          title: 'Создание тега',
+        }
+      )
+      .subscribe((value: any) => value === 'created' && this.update());
   }
 }

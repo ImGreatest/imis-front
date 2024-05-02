@@ -1,5 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { tuiFadeIn } from '@taiga-ui/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  OnInit,
+} from '@angular/core';
+import { TuiAlertService, tuiFadeIn } from '@taiga-ui/core';
 import {
   BehaviorSubject,
   combineLatest,
@@ -16,14 +21,19 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-events',
+  selector: 'math-models-table',
   templateUrl: './math-models-table.component.html',
   styleUrl: './math-models-table.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [tuiFadeIn],
 })
 export class MathModelsTableComponent implements OnInit {
-  constructor(private ratingService: RatingService, private router: Router) {}
+  constructor(
+    private ratingService: RatingService,
+    private router: Router,
+
+    @Inject(TuiAlertService) private alerts: TuiAlertService
+  ) {}
   ratings: IRatingTableElement[] = [];
   readonly search = new FormGroup({
     searchInput: new FormControl(''),
@@ -33,11 +43,12 @@ export class MathModelsTableComponent implements OnInit {
       this.ratings = ratings;
     });
     this.search.controls.searchInput.valueChanges.subscribe((value) => {
-      this.filters$.next(
-        this.filters$.value.filter((filter) => filter.column !== 'name')
+      const filterValue = this.filters$.value.filter(
+        (filter) => filter.column !== 'name'
       );
+
       this.filters$.next([
-        ...this.filters$.value,
+        ...filterValue,
         { column: 'name', value: { contains: value } },
       ]);
     });
@@ -108,5 +119,30 @@ export class MathModelsTableComponent implements OnInit {
   goToMathModel(id: string): void {
     // Navigate to the math-models/:id route
     this.router.navigate(['/math-models', id]);
+  }
+
+  delete(id: number): void {
+    this.ratingService.delete(id).subscribe(
+      () => {
+        this.alerts
+          .open('', {
+            label: 'Модель удалена',
+            status: 'success',
+            autoClose: true,
+          })
+          .subscribe();
+
+        this.page$.next(this.page$.value);
+      },
+      (error) => {
+        this.alerts
+          .open('', {
+            label: 'Модель не удалена',
+            status: 'error',
+            autoClose: true,
+          })
+          .subscribe();
+      }
+    );
   }
 }

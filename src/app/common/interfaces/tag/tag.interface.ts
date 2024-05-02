@@ -8,10 +8,16 @@ export interface ITreeTagElement extends ITag {
   childTags: ITreeTagElement[];
   ratingScope: number;
 }
+export interface ICreateTag{
+  name: string;
+  description: string;
+  baseTagId?: number;
+}
 
 export interface ITreeTag {
   ratingName: string;
   hourlyUpdate: number;
+  scoringType: string;
   tag: ITreeTagElement[];
 }
 

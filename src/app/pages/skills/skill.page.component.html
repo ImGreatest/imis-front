@@ -1,0 +1,95 @@
+<div class="skills-container">
+    <form class="create-form" [formGroup]="createForm">
+        <div class="create-skill-cont">
+            <div class="create-skill">
+                <button
+                    *ngIf="!createSkillState"
+                    (click)="changeCreateSkillState()"
+                    tuiButton
+                    [size]="'m'"
+                    type="button">Создать умение</button>
+                <div class="create-skill-cont" *ngIf="createSkillState">
+                    
+                    <tui-select
+                        *tuiLet="skillTypes"
+                        tuiTextfieldSize="m"
+                        [valueContent]="skillTypes ? stringify(skillTypes) : loading"
+                        formControlName="skillTypeSelect">Тип умения
+                        <ng-template tuiDataList>
+                            <tui-data-list *ngIf="skillTypes; else loading">
+                                <button *ngFor="let item of skillTypes" tuiOption [value]="item.id">
+                                    {{ item.name }}
+                                </button>
+                            </tui-data-list>
+                        </ng-template>
+                        <ng-template #loading>
+                            <tui-loader class="tui-space_vertical-3 loader"></tui-loader>
+                        </ng-template>
+                    </tui-select>
+                    <tui-input formControlName="skillInput" tuiTextfieldSize="m">
+                        Введи название умения
+                        <input tuiTextfield/>
+                    </tui-input>
+                    <button
+                        tuiIconButton
+                        (click)="createSkill()"
+                        [size]="'m'"
+                        type="button"
+                        icon="tuiIconCheck"></button>
+                </div>
+                
+            </div>
+            <div class="create-skill-type">
+                <button
+                    *ngIf="!createSkillTypeState"
+                    (click)="changeCreateSkillTypeState()"
+                    tuiButton
+                    [size]="'m'"
+                    type="button">Создать тип умения</button>
+                <div class="create-skill-cont" *ngIf="createSkillTypeState">
+                 
+                    <tui-input formControlName="skillTypeInput" tuiTextfieldSize="m">
+                        Введи название типа умения
+                        <input tuiTextfield/>
+                    </tui-input>
+                    <button
+                        tuiIconButton
+                        (click)="createSkillType()"
+                        [size]="'m'"
+                        type="button"
+                        icon="tuiIconCheck"></button>
+                </div>
+                
+            </div>
+        </div>
+    </form>
+
+    <div class="tree-center-display">
+        <div class="tree-container">
+            <div class="skill-tree-container">
+                <tui-island *ngFor="let item of Skills">
+                    <tui-tree
+                        [childrenHandler]="handler"
+                        [content]="content"
+                        [tuiTreeController]="true"
+                        [value]="item"></tui-tree>
+                </tui-island>
+
+                <ng-template #content let-item>
+                    <label class="tag-label">
+                        {{ item.name }}</label>
+                    <button
+                        tuiIconButton
+                        appearance="flat"
+                        tuiMode="onLight"
+                        icon="tuiIconTrash2"
+                        shape="rounded"
+                        size="s"
+                        title="Удалить тег"
+                        (click)="delete(item.id, item.skills? 'тип':'')"
+                        class="delete-icon"></button>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

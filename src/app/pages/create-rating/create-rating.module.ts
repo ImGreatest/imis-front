@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {
   TUI_SANITIZER,
   TuiButtonModule,
+  TuiDataListModule,
   TuiRootModule,
   TuiTextfieldControllerModule,
 } from '@taiga-ui/core';
@@ -11,23 +12,31 @@ import { RouterModule } from '@angular/router';
 import { CreateRatingComponent } from './create-rating.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
+  TuiDataListWrapperModule,
   TuiInputModule,
   TuiInputNumberModule,
   TuiIslandModule,
+  TuiSelectModule,
 } from '@taiga-ui/kit';
 import { TagsTreeModule } from './tags-tree/tags-tree.module';
+import { CreateTagComponent } from './create-tag-modal/create-tag.component';
+import { CreateTagModule } from './create-tag-modal/create-tag.module';
 
 @NgModule({
   imports: [
+    TagsTreeModule,
     CommonModule,
     FormsModule,
     TuiInputNumberModule,
     TuiInputModule,
-    TagsTreeModule,
     TuiButtonModule,
     TuiIslandModule,
     FormsModule,
+    CreateTagModule,
     TuiRootModule,
+    TuiSelectModule,
+    TuiDataListModule,
+    TuiDataListWrapperModule,
     ReactiveFormsModule,
     TuiTextfieldControllerModule,
     RouterModule.forChild([

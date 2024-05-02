@@ -12,16 +12,27 @@ import { RouterModule } from '@angular/router';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RolesComponent } from './roles.component';
-import { TuiInputModule, TuiPaginationModule } from '@taiga-ui/kit';
+import {
+  TuiDataListWrapperModule,
+  TuiInputModule,
+  TuiMultiSelectModule,
+  TuiPaginationModule,
+} from '@taiga-ui/kit';
 import { TuiTableModule } from '@taiga-ui/addon-table';
 import { TuiLetModule } from '@taiga-ui/cdk';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   imports: [
     CommonModule,
     TuiInputModule,
+    ScrollingModule,
     TuiPaginationModule,
     TuiLoaderModule,
+    TuiMultiSelectModule,
+    TuiDataListWrapperModule,
+    ReactiveFormsModule,
+    FormsModule,
     TuiButtonModule,
     TuiLetModule,
     TuiTextfieldControllerModule,
