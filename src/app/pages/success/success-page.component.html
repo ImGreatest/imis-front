@@ -1,112 +1,108 @@
-<div id="success-table">
-    <div id="success-filters">
-        <form [formGroup]="search">
-            <tui-input
-                [tuiTextfieldCleaner]="true"
-                tuiTextfieldSize="m"
-                formControlName="searchInput"
-                [formControl]="search.controls.searchInput"
-                tuiTextfieldIconLeft="tuiIconSearch"
-                [style.width.px]="200">Поиск по фамилии</tui-input >
-        </form>
-        <div class="filter-container" (tuiActiveZoneChange)="closeFilter($event)">
-            <div class="filter-window" *ngIf="statusFilter">
-                <p class="filter-label">Фильтрация</p>
-                <div style="display: flex">
-                    <div style="display: flex; flex-direction: column"></div>
-                    <div style="display: flex; flex-direction: column"></div>
+<div class="table-placer">
+    <div id="success-table">
+        <div id="success-filters">
+            <form [formGroup]="search">
+                <tui-input
+                    [tuiTextfieldCleaner]="true"
+                    tuiTextfieldSize="m"
+                    formControlName="searchInput"
+                    [formControl]="search.controls.searchInput"
+                    tuiTextfieldIconLeft="tuiIconSearch"
+                    [style.width.px]="200">Поиск по фамилии</tui-input >
+            </form>
+            <div class="filter-container" (tuiActiveZoneChange)="closeFilter($event)">
+                <div class="filter-window" *ngIf="statusFilter">
+                    <p class="filter-label">Фильтрация</p>
+                    <div style="display: flex">
+                        <div style="display: flex; flex-direction: column"></div>
+                        <div style="display: flex; flex-direction: column"></div>
+                    </div>
+                    <div class="filter-buttons-container">
+                        <button (click)="clearFilters()" size="m" tuiButton>Очистить</button>
+                        <button (click)="confirmFilters()" size="m" tuiButton>
+                            Применить
+                        </button>
+                    </div>
                 </div>
-                <div class="filter-buttons-container">
-                    <button (click)="clearFilters()" size="m" tuiButton>Очистить</button>
-                    <button (click)="confirmFilters()" size="m" tuiButton>
-                        Применить
-                    </button>
-                </div>
+                <button
+                    id="project-container-label-div-filter"
+                    tuiButton
+                    appearance="secondary"
+                    tuiMode="onLight"
+                    size="m"
+                    class="filter-button"
+                    (click)="openFilter()">
+                    <tui-icon icon="tuiIconFilterLarge"></tui-icon>
+                    Filter
+                </button>
             </div>
-            <button
-                id="project-container-label-div-filter"
-                tuiButton
-                appearance="secondary"
-                tuiMode="onLight"
-                size="m"
-                class="filter-button"
-                (click)="openFilter()">
-                <tui-icon icon="tuiIconFilterLarge"></tui-icon>
-                Filter
-            </button>
         </div>
-    </div>
-    <tui-loader
-        [overlay]="true"
-        [showLoader]="!!(loading$ | async)"
-        style="
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;">
+        <div class="table-wrapper">
 
-        <table
-            style="width: 100%"
-            tuiTable
-            [columns]="columns"
-            [direction]="(direction$ | async) || 1"
-            [tuiSortBy]="sorter$ | async"
-            (directionChange)="direction$.next($event)"
-            (tuiSortByChange)="sorter$.next($event ? $event.toString() : null)">
-            <thead>
-                <tr tuiThGroup>
-                    <th *tuiHead="'place'" tuiTh [sorter]="null"></th>
-                    <th *tuiHead="'name'" tuiSortable tuiTh>Название</th>
-                    <th *tuiHead="'description'" tuiSortable tuiTh>Описание</th>
-                    <th *tuiHead="'tags'" tuiTh [sorter]="null">Теги</th>
-                    <th *tuiHead="'studentName'" tuiTh >Имя студента</th>
-                    <th *tuiHead="'studentSurname'" tuiTh >Фамилия студента</th>
-                    <th *tuiHead="'studentDirection'" tuiTh >Направление</th>
-                    <th *tuiHead="'studentGroup'" tuiTh >Группа</th>
-                    <th *tuiHead="'actions'" tuiTh [sorter]="null"></th>
+            <table
+                class="success-table"
+                style="width: 100%"
+                tuiTable
+                [columns]="columns"
+                [direction]="(direction$ | async) || 1"
+                [tuiSortBy]="sorter$ | async"
+                (directionChange)="direction$.next($event)"
+                (tuiSortByChange)="sorter$.next($event ? $event.toString() : null)">
+                <thead>
+                    <tr tuiThGroup>
+                        <th *tuiHead="'place'" tuiTh [sorter]="null"></th>
+                        <th *tuiHead="'name'" tuiSortable tuiTh>Название</th>
+                        <th *tuiHead="'description'" tuiSortable tuiTh>Описание</th>
+                        <th *tuiHead="'tags'" tuiTh [sorter]="null">Теги</th>
+                        <th *tuiHead="'studentName'" tuiTh>Имя студента</th>
+                        <th *tuiHead="'studentSurname'" tuiTh>Фамилия студента</th>
+                        <th *tuiHead="'studentDirection'" tuiTh>Направление</th>
+                        <th *tuiHead="'studentGroup'" tuiTh>Группа</th>
+                        <th *tuiHead="'actions'" tuiTh [sorter]="null"></th>
 
-                </tr>
-            </thead>
-            <tbody
-                *tuiLet="success | tuiTableSort as sortedSuccess"
-                tuiTbody
-                [data]="sortedSuccess">
-                <tr *ngFor="let item of sortedSuccess; let index = index" tuiTr>
-                    <td *tuiCell="'place'" tuiTd>
-                        {{ page$.getValue() * size$.getValue() + index + 1 }}
-                    </td>
-                    <td *tuiCell="'name'" tuiTd>
-                        {{ item.name }}
-                    </td>
-                    <td *tuiCell="'description'" tuiTd>
-                        {{ item.description }}
-                    </td>
-                    <td *tuiCell="'tags'" tuiTd>
-                        <tui-tag *ngFor="let tag of item.tags" [value]="tag.name"></tui-tag>
-                    </td>
-                    <td *tuiCell="'studentName'" tuiTd>
-                        {{ item.studentName }}
-                    </td>
-                    <td *tuiCell="'studentSurname'" tuiTd>
-                        {{ item.studentSurname }}
-                    </td>
-                    <td *tuiCell="'studentDirection'" tuiTd>
-                        {{ item.studentDirection }}
-                    </td>
-                    <td *tuiCell="'studentGroup'" tuiTd>
-                        {{ item.studentGroup }}
-                    </td>
-                    <td *tuiCell="'actions'" tuiTd></td>
+                    </tr>
+                </thead>
+                <tbody
+                    *tuiLet="success | tuiTableSort as sortedSuccess"
+                    tuiTbody
+                    [data]="sortedSuccess">
+                    <tr *ngFor="let item of sortedSuccess; let index = index" tuiTr>
+                        <td *tuiCell="'place'" tuiTd>
+                            {{ page$.getValue() * size$.getValue() + index + 1 }}
+                        </td>
+                        <td *tuiCell="'name'" tuiTd>
+                            {{ item.name }}
+                        </td>
+                        <td *tuiCell="'description'" tuiTd>
+                            {{ item.description }}
+                        </td>
+                        <td *tuiCell="'tags'" tuiTd>
+                            <tui-tag *ngFor="let tag of item.tags" [value]="tag.name"></tui-tag>
+                        </td>
+                        <td *tuiCell="'studentName'" tuiTd>
+                            {{ item.studentName }}
+                        </td>
+                        <td *tuiCell="'studentSurname'" tuiTd>
+                            {{ item.studentSurname }}
+                        </td>
+                        <td *tuiCell="'studentDirection'" tuiTd>
+                            {{ item.studentDirection }}
+                        </td>
+                        <td *tuiCell="'studentGroup'" tuiTd>
+                            {{ item.studentGroup }}
+                        </td>
+                        <td *tuiCell="'actions'" tuiTd></td>
 
-                </tr>
-            </tbody>
-        </table>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div class="pagination-offset">
-            <tui-pagination
-                [index]="page$.getValue()"
-                [length]="pageCount$.getValue()"
-                (indexChange)="goToPage($event)"></tui-pagination>
-        </div>
-    </tui-loader>
+                <tui-pagination
+                    [index]="page$.getValue()"
+                    [length]="pageCount$.getValue()"
+                    (indexChange)="goToPage($event)"></tui-pagination>
+            </div>
 
+    </div>
 </div>

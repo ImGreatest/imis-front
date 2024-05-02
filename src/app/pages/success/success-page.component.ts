@@ -1,4 +1,4 @@
-import {Component, ChangeDetectionStrategy, OnInit} from "@angular/core";
+import {Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef} from "@angular/core";
 import {FormGroup, FormControl} from "@angular/forms";
 import {IFilter, ISuccess, ISuccessReq, PageRes} from "@interfaces";
 import {tuiIsFalsy} from "@taiga-ui/cdk";
@@ -17,12 +17,21 @@ import {SuccessService} from '../../common/services/api/success.service';
 export class SuccessPageComponent implements OnInit {
     readonly search = new FormGroup({searchInput: new FormControl('')});
 
-    constructor(private successService : SuccessService) {}
+    constructor(private cdr : ChangeDetectorRef,private successService : SuccessService) {}
 
-    ngOnInit(): void {
-        this.request$.subscribe((success) => {
-          this.success = success;
-        });}
+    ngOnInit() : void {
+        this
+            .request$
+            .subscribe((success) => {
+                this.success = success;
+                this
+                    .cdr
+                    .markForCheck()
+            });
+        this
+            .page$
+            .next(this.page$.value)
+    }
 
     readonly columns = [
         'place',
