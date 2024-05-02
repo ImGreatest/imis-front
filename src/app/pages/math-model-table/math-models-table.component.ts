@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   Inject,
   OnInit,
@@ -29,6 +30,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class MathModelsTableComponent implements OnInit {
   constructor(
+    private cdr : ChangeDetectorRef,
     private ratingService: RatingService,
     private router: Router,
 
@@ -41,6 +43,9 @@ export class MathModelsTableComponent implements OnInit {
   ngOnInit(): void {
     this.request$.subscribe((ratings) => {
       this.ratings = ratings;
+      this
+                    .cdr
+                    .markForCheck()
     });
     this.search.controls.searchInput.valueChanges.subscribe((value) => {
       const filterValue = this.filters$.value.filter(
@@ -79,7 +84,6 @@ export class MathModelsTableComponent implements OnInit {
     share()
   );
 
-  readonly loading$ = this.request$.pipe(map(tuiIsFalsy));
 
   private getData(
     key: string | null,

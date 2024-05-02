@@ -33,6 +33,7 @@ tbody {
 .search-container {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap-reverse;
   .search, .create-button {
     width: 8rem;
     margin: 0.5rem;
@@ -40,7 +41,7 @@ tbody {
   
 }
 .table-container {
-  width: fit-content;
+  width: 100%;
 }
 .table-placer {
   display: flex;
@@ -48,6 +49,11 @@ tbody {
   align-items: center;
   justify-content: center;
   height: 100%;
+  width: 100%;
+}
+.table-wrapper{
+  width: 100%;
+  overflow-x: auto;
 }
 .pagination-offset {
   margin: 1.55rem;

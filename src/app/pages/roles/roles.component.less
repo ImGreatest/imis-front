@@ -1,6 +1,6 @@
 @import "@taiga-ui/core/styles/taiga-ui-local.less";
 table {
-  overflow-x: scroll;
+  overflow-x: auto;
   width: 100%;
   display: block;
 }
@@ -50,6 +50,7 @@ tbody {
   display: flex;
   .search-form {
     width: 20%;
+    min-width: 10rem;
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
