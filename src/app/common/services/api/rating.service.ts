@@ -15,6 +15,7 @@ import { IGetPage } from '../../interfaces/shared/req.page.interface';
 @Injectable({ providedIn: 'root' })
 export class RatingService {
   constructor(public http: HttpClient) {}
+
   getPage( data: IGetPage): Observable<PageRes<IRating>> {
     return this.http.post<PageRes<IRating>>(
       `${environment.apiRatingUrl}/rating/table`,data
