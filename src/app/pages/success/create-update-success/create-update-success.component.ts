@@ -15,7 +15,7 @@ import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
       private readonly context: TuiDialogContext<any, ISuccessModalData>,
     ){}
     ngOnInit(): void {
-      this.successId && this._fetchData(this.orderId);
+      // this.successId && this._fetchData(this.orderId);
     }
 
   get successId(): number {
