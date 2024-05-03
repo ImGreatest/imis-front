@@ -54,11 +54,15 @@
             </button>
         </div>
     </div>
+    
     <div
         style="
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 100%;
+      overflow-x: auto;"
+      >
       width: 100%;
       overflow-x: auto;"
       >
@@ -110,5 +114,6 @@
                 [length]="pageCount$.getValue()"
                 (indexChange)="goToPage($event)"></tui-pagination>
         </div>
+    
 
 </div>
