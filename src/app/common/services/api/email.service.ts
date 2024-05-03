@@ -22,8 +22,8 @@ export class EmailService {
     return this.http.post<IStateMessageConfirm>(`${this.url}/sent-text-message`, message).pipe(tap(console.log));
   }
 
-  confirmAction(message: IReqMessageHtml): Observable<void> {
+  confirmAction(message: IReqMessageHtml): Observable<IActionConfirm> {
     console.log(message);
-    return this.http.post<void>(`${this.url}/sent-html-message`, message).pipe(tap(console.log));
+    return this.http.post<IActionConfirm>(`${this.url}/sent-html-message`, message).pipe(tap(console.log));
   }
 }

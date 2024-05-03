@@ -7,7 +7,7 @@ import { EmailService } from "@services";
 import { TuiDialogService } from "@taiga-ui/core";
 import { PolymorpheusComponent } from "@tinkoff/ng-polymorpheus";
 import { ConfirmComponent } from "src/app/pages/authorisation/confirm/confirm.component";
-import { IReqMessageHtml, IReqMessageText } from "@interfaces";
+import { IReqMessageHtml } from "@interfaces";
 import { tuiIconBell } from "@taiga-ui/icons";
 
 @Component({
@@ -38,25 +38,16 @@ export class RecoverComponent {
   async onReset() {
     this.form.markAllAsTouched();
     Object.values(this.form.controls).map((control) => control.updateValueAndValidity());
-    const message: IReqMessageText = {
-      to: this.login,
-      subject: "Reset password",
-      text: 'This is test message for reset your password!',
-    }
 
     const messageHtml: IReqMessageHtml = {
       to: this.login,
-      subject: "Обновление пароля",
-      text: 'pon',
+      subject: "Обновление пароля"
     }
 
-    let state: boolean = false;
-    // await this.emailService.sentMessage(message).subscribe((value) => {
-    //   state = value.state;
-    // });
-    this.emailService.confirmAction(messageHtml);
-    this.showAlert = true;
-    this.showDialog();
+    await this.emailService.confirmAction(messageHtml).subscribe((v) => {
+      this.showAlert = true;
+      this.showDialog(v.access);
+    });
   }
 
   async onCancel(): Promise<void> {
@@ -64,13 +55,13 @@ export class RecoverComponent {
     await this.route.navigate(['/auth']);
   }
 
-  showDialog() {
+  showDialog(code: number) {
     const dialog = this.dialogs.open<number>(
       new PolymorpheusComponent(ConfirmComponent, this.injector),
       {
         data: {
           email: this.login,
-          code: 237-544,
+          code: code,
         },
         dismissible: true,
         label: "Confirm action"

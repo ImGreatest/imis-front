@@ -1,33 +1,26 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { NewPasswordComponent } from "src/app/pages/authorisation/new-password/new-password.component";
-import { ReactiveFormsModule } from "@angular/forms";
-import {
-  TuiButtonModule,
-  TuiCardModule,
-  TuiIconsModule,
-  TuiSurfaceModule,
-  TuiTooltipModule
-} from "@taiga-ui/experimental";
-import { TuiErrorModule } from "@taiga-ui/core";
-import { TuiFieldErrorPipeModule, TuiInputPasswordModule } from "@taiga-ui/kit";
 import { RouterModule } from "@angular/router";
+import { TuiButtonModule, TuiCardModule, TuiSurfaceModule, TuiTooltipModule } from "@taiga-ui/experimental";
+import { ReactiveFormsModule } from "@angular/forms";
+import { TuiFieldErrorPipeModule, TuiInputPasswordModule } from "@taiga-ui/kit";
+import { TuiErrorModule } from "@taiga-ui/core";
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild([
-      { path: '', component: NewPasswordModule }
+      { path: '', component: NewPasswordComponent }
     ]),
+    TuiTooltipModule,
     ReactiveFormsModule,
-    TuiButtonModule,
     TuiCardModule,
+    TuiSurfaceModule,
+    TuiInputPasswordModule,
     TuiErrorModule,
     TuiFieldErrorPipeModule,
-    TuiIconsModule,
-    TuiInputPasswordModule,
-    TuiSurfaceModule,
-    TuiTooltipModule,
+    TuiButtonModule,
   ],
   declarations: [NewPasswordComponent],
   exports: [NewPasswordComponent],

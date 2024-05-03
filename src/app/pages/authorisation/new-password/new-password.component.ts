@@ -23,6 +23,7 @@ export class NewPasswordComponent {
 
   constructor(
     private route: Router,
+
   ) {}
 
   get password() {
