@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
-import { Router } from "@angular/router";
-import { IConfirmForm } from "src/app/pages/authorization/confirm/interfaces/confirm-form.interface";
 import { passwordValidators } from "@validators";
+import { Router } from "@angular/router";
+import { INewPasswordForm } from "src/app/pages/authorisation/new-password/interfaces/new-password.interface";
 
 @Component({
-  selector: 'app-confirm',
-  templateUrl: './confirm.component.html',
-  styleUrl: './confirm.component.less'
+  selector: 'app-new-password',
+  templateUrl: './new-password.component.html',
+  styleUrl: './new-password.component.less'
 })
-export class ConfirmComponent {
-  readonly form: FormGroup<IConfirmForm> = new FormGroup({
+export class NewPasswordComponent {
+  readonly form: FormGroup<INewPasswordForm> = new FormGroup({
     password: new FormControl('', {
       nonNullable: true,
       validators: passwordValidators,
@@ -23,7 +23,6 @@ export class ConfirmComponent {
 
   constructor(
     private route: Router,
-
   ) {}
 
   get password() {
@@ -32,13 +31,5 @@ export class ConfirmComponent {
 
   get retryPassword() {
     return this.form.controls.retryPassword.value;
-  }
-
-  onConfirm() {
-    this.form.markAllAsTouched();
-  }
-
-  private async _confirm() {
-    await this.route.navigate(['/auth']);
   }
 }

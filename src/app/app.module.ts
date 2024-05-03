@@ -80,7 +80,7 @@ import { ComponentsModule } from "./component/components.module";
     {
       provide: POLYMORPHEUS_CONTEXT,
       useValue: {}
-    }
+    },
   ],
   bootstrap: [AppComponent],
   exports: [AppComponent],

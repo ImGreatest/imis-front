@@ -69,15 +69,15 @@ export const routes: Routes = [
     children: [
       {
         path: 'login',
-        loadChildren: () => import('src/app/pages/authorization/auth/auth.module').then(m => m.AuthModule),
+        loadChildren: () => import('src/app/pages/authorisation/auth/auth.module').then(m => m.AuthModule),
       },
       {
         path: 'reset',
-        loadChildren: () => import('src/app/pages/authorization/recover/recover.module').then(m => m.RecoverModule),
+        loadChildren: () => import('src/app/pages/authorisation/recover/recover.module').then(m => m.RecoverModule),
       },
       {
-        path: 'confirm',
-        loadChildren: () => import('src/app/pages/authorization/confirm/confirm.module').then(m => m.ConfirmModule),
+        path: 'new-password',
+        loadChildren: () => import('src/app/pages/authorisation/new-password/new-password.module').then(m => m.NewPasswordModule),
       },
       {
         path: '**',

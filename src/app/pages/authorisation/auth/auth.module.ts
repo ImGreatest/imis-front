@@ -1,7 +1,7 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
-import {AuthComponent} from "src/app/pages/authorization/auth/auth.component";
+import {AuthComponent} from "src/app/pages/authorisation/auth/auth.component";
 import {
 	TuiButtonModule,
 	TuiCardModule,
