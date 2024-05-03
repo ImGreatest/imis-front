@@ -25,6 +25,14 @@
                     </div>
                 </div>
                 <button
+                    tuiButton
+                    appearance="primary"
+                    tuiMode="onLight"
+                    size="m"
+                    class="filter-button">
+                    Создать
+                </button>
+                <button
                     id="project-container-label-div-filter"
                     tuiButton
                     appearance="secondary"
@@ -33,7 +41,7 @@
                     class="filter-button"
                     (click)="openFilter()">
                     <tui-icon icon="tuiIconFilterLarge"></tui-icon>
-                    Filter
+                    Фильтры
                 </button>
             </div>
         </div>
@@ -91,18 +99,37 @@
                         <td *tuiCell="'studentGroup'" tuiTd>
                             {{ item.studentGroup }}
                         </td>
-                        <td *tuiCell="'actions'" tuiTd></td>
+                        <td *tuiCell="'actions'" class="actions" tuiTd>
+                            <button
+                                tuiIconButton
+                                appearance="flat"
+                                tuiMode="onLight"
+                                icon="tuiIconPenTool"
+                                shape="rounded"
+                                size="s"
+                                title="more"
+                                class="more-icon"></button>
+                            <button
+                                tuiIconButton
+                                appearance="flat"
+                                tuiMode="onLight"
+                                icon="tuiIconTrash2"
+                                shape="rounded"
+                                size="s"
+                                title="more"
+                                class="more-icon"></button>
+                        </td>
 
                     </tr>
                 </tbody>
             </table>
         </div>
         <div class="pagination-offset">
-                <tui-pagination
-                    [index]="page$.getValue()"
-                    [length]="pageCount$.getValue()"
-                    (indexChange)="goToPage($event)"></tui-pagination>
-            </div>
+            <tui-pagination
+                [index]="page$.getValue()"
+                [length]="pageCount$.getValue()"
+                (indexChange)="goToPage($event)"></tui-pagination>
+        </div>
 
     </div>
 </div>

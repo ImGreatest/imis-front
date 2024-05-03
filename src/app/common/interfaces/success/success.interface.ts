@@ -36,3 +36,7 @@ export interface ISuccessTag {
         id: number,
         name: string
 }
+
+export interface ISuccessModalData{
+    successId: number
+}
