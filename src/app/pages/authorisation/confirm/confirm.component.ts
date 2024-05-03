@@ -72,8 +72,9 @@ export class ConfirmComponent {
   }
 
   private async _confirm() {
-    if (this.emailCode === this.unmask(this.code)) {
-      // await this.route.navigate(['/auth/new-password']);
+    console.log(typeof this.emailCode.toString(), typeof this.unmask(this.code), this.emailCode.toString(), this.unmask(this.code));
+    if (this.emailCode.toString() === this.unmask(this.code)) {
+      await this.route.navigate(['/auth/new-password']);
     }
   }
 
