@@ -9,8 +9,10 @@ import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
 import {SuccessPageComponent} from "./success-page.component";
 import {TuiIconModule} from "@taiga-ui/experimental";
 import {TuiActiveZoneModule, TuiLetModule} from "@taiga-ui/cdk";
+import { CreateUpdateSuccessModule } from "./create-update-success/create-update-success.module";
 @NgModule({
     imports: [
+        CreateUpdateSuccessModule,
         FormsModule,
         ReactiveFormsModule,
         CommonModule,

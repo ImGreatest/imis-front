@@ -40,3 +40,11 @@ export interface ISuccessTag {
 export interface ISuccessModalData{
     successId: number
 }
+
+export interface ISuccessStudent{
+    id: number
+    name: string
+    surname: string
+    direction: string
+    group: string
+}
