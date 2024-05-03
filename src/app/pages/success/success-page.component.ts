@@ -1,4 +1,4 @@
-import {Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef} from "@angular/core";
+import {Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef, Injector} from "@angular/core";
 import {FormGroup, FormControl} from "@angular/forms";
 import {IFilter, ISuccess, ISuccessReq, PageRes} from "@interfaces";
 import {tuiIsFalsy} from "@taiga-ui/cdk";
@@ -12,12 +12,15 @@ import {
     switchMap
 } from "rxjs";
 import {SuccessService} from '../../common/services/api/success.service';
+import {AppDialogService} from "src/app/component/dialog/app-dialog.service";
+import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus';
+import {CreateUpdateSuccessComponent} from "./create-update-success/create-update-success.component";
 
 @Component({selector: 'skills', templateUrl: './success-page.component.html', styleUrl: './success-page.component.less', changeDetection: ChangeDetectionStrategy.OnPush})
 export class SuccessPageComponent implements OnInit {
-    readonly search = new FormGroup({searchInput: new FormControl('')});
+    readonly search = new FormGroup({searchStudentSurname: new FormControl(''), searchSuccessName: new FormControl('')});
 
-    constructor(private cdr : ChangeDetectorRef,private successService : SuccessService) {}
+    constructor(private cdr : ChangeDetectorRef, private successService : SuccessService, private appDialogService : AppDialogService, private injector : Injector) {}
 
     ngOnInit() : void {
         this
@@ -29,8 +32,50 @@ export class SuccessPageComponent implements OnInit {
                     .markForCheck()
             });
         this
-            .page$
-            .next(this.page$.value)
+            .search
+            .controls
+            .searchStudentSurname
+            .valueChanges
+            .subscribe((value) => {
+                this
+                    .filters$
+                    .next(this.filters$.value.filter((filter) => filter.column !== 'user'));
+                this
+                    .filters$
+                    .next([
+                        ...this.filters$.value, {
+                            column: 'user',
+                            value: {
+                                surname: {
+                                    contains: value,
+                                    mode: 'insensitive'
+                                }
+                            }
+                        }
+                    ]);
+            });
+        this
+            .search
+            .controls
+            .searchSuccessName
+            .valueChanges
+            .subscribe((value) => {
+                console.log(value)
+                this
+                    .filters$
+                    .next(this.filters$.value.filter((filter) => filter.column !== 'name'));
+                this
+                    .filters$
+                    .next([
+                        ...this.filters$.value, {
+                            column: 'name',
+                            value: {
+                                contains: value,
+                                mode: 'insensitive'
+                            }
+                        }
+                    ]);
+            });
     }
 
     readonly columns = [
@@ -71,7 +116,6 @@ export class SuccessPageComponent implements OnInit {
 
     confirmFilters() {
         const filters : IFilter[] = [];
-
         this
             .filters$
             .next(filters);
@@ -85,12 +129,21 @@ export class SuccessPageComponent implements OnInit {
 
         if (key) {
             switch (key) {
-                case 'ratingScore':
+                case 'studentName':
                     orderProps = {
-                        ratingScore: sortDirection
+                        user: {
+                            name: sortDirection
+                        }
                     };
                     break;
-                case 'group':
+                case 'studentSurname':
+                    orderProps = {
+                        user: {
+                            surname: sortDirection
+                        }
+                    };
+                    break;
+                case 'studentGroup':
                     orderProps = {
                         user: {
                             group: {
@@ -99,21 +152,18 @@ export class SuccessPageComponent implements OnInit {
                         }
                     };
                     break;
-                case 'name':
+                case 'studentDirection':
                     orderProps = {
-                        name: sortDirection
-                    };
-                    break;
-                case 'description':
-                    orderProps = {
-                        description: sortDirection
+                        user: {
+                            direction: {
+                                name: sortDirection
+                            }
+                        }
                     };
                     break;
                 default:
                     orderProps = {
-
                         [key]: sortDirection
-
                     };
                     break;
             }
@@ -154,5 +204,20 @@ export class SuccessPageComponent implements OnInit {
         if(active === undefined || !active) {
             this.statusFilter = false;
         }
+    }
+    onCreateUpdateSuccess(id : number = -5) : void {
+        this
+            .appDialogService
+            .open(new PolymorpheusComponent < any, any > (CreateUpdateSuccessComponent, this.injector), {
+                size: 'm',
+                closeable: true,
+                title: id < 0
+                    ? 'Создание успеха'
+                    : 'Редактирование успеха',
+                data: {
+                    successId: id
+                }
+            })
+            .subscribe((value : any) => value === 'created');
     }
 }

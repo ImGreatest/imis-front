@@ -1,14 +1,19 @@
 <div class="table-placer">
     <div id="success-table">
         <div id="success-filters">
-            <form [formGroup]="search">
+            <form class="input-search-container" [formGroup]="search">
                 <tui-input
                     [tuiTextfieldCleaner]="true"
                     tuiTextfieldSize="m"
-                    formControlName="searchInput"
-                    [formControl]="search.controls.searchInput"
+                    [formControl]="search.controls.searchSuccessName"
                     tuiTextfieldIconLeft="tuiIconSearch"
-                    [style.width.px]="200">Поиск по фамилии</tui-input >
+                    >Поиск по названию успеха</tui-input >
+                <tui-input
+                    [tuiTextfieldCleaner]="true"
+                    tuiTextfieldSize="m"
+                    [formControl]="search.controls.searchStudentSurname"
+                    tuiTextfieldIconLeft="tuiIconSearch"
+                    >Поиск по фамилии</tui-input >
             </form>
             <div class="filter-container" (tuiActiveZoneChange)="closeFilter($event)">
                 <div class="filter-window" *ngIf="statusFilter">
@@ -29,6 +34,7 @@
                     appearance="primary"
                     tuiMode="onLight"
                     size="m"
+                    (click)="onCreateUpdateSuccess()"
                     class="filter-button">
                     Создать
                 </button>
@@ -75,7 +81,7 @@
                     tuiTbody
                     [data]="sortedSuccess">
                     <tr *ngFor="let item of sortedSuccess; let index = index" tuiTr>
-                        <td *tuiCell="'place'" tuiTd>
+                        <td *tuiCell="'place'"  tuiTd>
                             {{ page$.getValue() * size$.getValue() + index + 1 }}
                         </td>
                         <td *tuiCell="'name'" tuiTd>
@@ -107,6 +113,7 @@
                                 icon="tuiIconPenTool"
                                 shape="rounded"
                                 size="s"
+                                (click)="onCreateUpdateSuccess(item.id)"
                                 title="more"
                                 class="more-icon"></button>
                             <button
