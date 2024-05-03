@@ -1,6 +1,6 @@
 import { FormControl } from "@angular/forms";
 
-export interface IConfirmForm  {
+export interface INewPasswordForm  {
   password: FormControl<string>,
   retryPassword: FormControl<string>;
 }

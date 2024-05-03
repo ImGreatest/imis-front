@@ -10,7 +10,7 @@ import {
 } from 'src/app/common/interfaces/rating/rating.interface';
 import { IScope } from 'src/app/common/interfaces/rating/scope.interface';
 import { IStudentScore } from 'src/app/common/interfaces/rating/student.score.interface';
-import { IGetPage } from '../../interfaces/shared/req.page.interface';
+import { IGetPage } from '@interfaces';
 
 @Injectable({ providedIn: 'root' })
 export class RatingService {

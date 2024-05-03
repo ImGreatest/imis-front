@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { emailValidators } from "@validators";
-import { IAuthForm } from "src/app/pages/authorization/auth/interfaces/auth-form.interface";
+import { IAuthForm } from "src/app/pages/authorisation/auth/interfaces/auth-form.interface";
 import { firstValueFrom } from 'rxjs';
 import { Router } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";

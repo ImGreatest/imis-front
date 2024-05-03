@@ -55,3 +55,18 @@
     </div>
   </form>
 </div>
+
+<ng-template
+  [tuiAlertOptions]="{ label: 'Уведомление', icon: tuiIconBell, status: 'info', autoClose: true, hasCloseButton: true }"
+  [(tuiAlert)]="showAlert"
+>
+  На вашу почту выслано сообщение с кодом подтверждения
+</ng-template>
+
+<div style='display: flex; flex-direction: column; align-items: center; background: rgb(255, 255, 255)'>
+  <h2 style='margin-top: 2rem; color: rgb(82,110,211)'>Экосистема IMIS</h2>
+  <h4 style='text-align: center; color: rgba(27, 31, 59, 0.65)'>Ваш код доступа для смены пароля от учетной записи IMIS: </h4>
+  <div style='margin-bottom: 2rem; background-color: rgb(250,249,250); border: 1px solid rgb(218,216,222); padding: 5px;'>
+    <span style='font-size: 1.17rem; font-weight: bold; text-align: center; letter-spacing: 0.35rem; color: rgb(50,47,55)'>2342352</span>
+  </div>
+</div>

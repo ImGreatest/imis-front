@@ -99,5 +99,6 @@ import {AuthInterceptor} from './auth/auth.interceptor';
     ],
     bootstrap: [AppComponent],
     exports: [AppComponent]
+  
 })
 export class AppModule {}

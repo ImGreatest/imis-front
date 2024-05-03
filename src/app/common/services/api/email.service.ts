@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { AppService } from "@services";
-import { IActionConfirm, IMessageHtml, IMessageText } from "@interfaces";
-import { Observable } from "rxjs";
+import { IActionConfirm, IReqMessageHtml, IReqMessageText } from "@interfaces";
+import { Observable, tap } from "rxjs";
+import { IStateMessageConfirm } from "src/app/pages/authorisation/recover/interfaces/state-message-confirm.interface";
 
 @Injectable({ providedIn: 'root' })
 export class EmailService {
@@ -12,15 +13,16 @@ export class EmailService {
   ) {}
 
   get url(): string {
-    return this.appService.apiUserUrl + 'email-service';
+    return this.appService.apiUserUrl + '/email-service';
   }
 
-  sentMessage(message: IMessageText) {
-    console.log("sentMessage APi method", message);
-    return this.http.post(`http://localhost:6000/api/email-service/sent-text-message`, message);
+  sentMessage(message: IReqMessageText): Observable<IStateMessageConfirm> {
+    console.log(message);
+    return this.http.post<IStateMessageConfirm>(`${this.url}/sent-text-message`, message).pipe(tap(console.log));
   }
 
-  sentConfirmActionMessage(message: IMessageHtml): Observable<IActionConfirm> {
-    return this.http.post<IActionConfirm>(`${this.url}/sent-confirm-message`, message);
+  confirmAction(message: IReqMessageHtml): Observable<void> {
+    console.log(message);
+    return this.http.post<void>(`${this.url}/sent-html-message`, message).pipe(tap(console.log));
   }
 }
