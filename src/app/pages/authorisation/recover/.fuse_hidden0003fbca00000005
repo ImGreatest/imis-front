@@ -1,0 +1,72 @@
+<div id="recover-container" class="tui-container">
+  <form id="recover-container-form" [formGroup]="form" class="tui-col_6" (submit)="onReset()">
+    <div id="recover-container-form-card" tuiCardLarge="compact" tuiSurface="elevated">
+      <div id="recover-container-form-card-sme" class="tui-row_align_center tui-row_sme">
+        <header id="recover-container-form-card-sme-header" class="tui-form__header tui-form__header_margin-top_none">
+          Reset Password
+          <tui-tooltip
+            id="recover-container-form-card-sme-header-tui-tooltip"
+            content="Вам будет отправлено уведомление для изменения пароля"
+            direction="bottom"
+          ></tui-tooltip>
+        </header>
+        <div id="recover-container-form-card-sme-login-row" class="tui-form__row">
+          <tui-input id="recover-container-form-card-sme-login-row-tui-input" formControlName="login">
+            Login/Email
+            <input
+              id="recover-container-form-card-sme-login-row-tui-input-input"
+              placeholder="Ivanov@mail.ru"
+              tuiTextfield
+            />
+            <span id="recover-container-form-card-sme-login-row-tui-input-span" class="tui-required"></span>
+          </tui-input>
+          <tui-error
+            id="recover-container-form-card-sme-login-row-tui-error"
+            formControlName="login"
+            [error]="[] | tuiFieldError | async"
+          ></tui-error>
+        </div>
+      </div>
+      <div id="recover-container-form-card-sme-submit-row" class="tui-form__row">
+        <div id="recover-container-form-card-sme-cancel-row-form__buttons" class="tui-form__buttons">
+          <button
+            id="recover-container-form-card-sme-cancel-row-form__buttons-button"
+            size="m"
+            tuiButton
+            type="button"
+            class="tui-form__button"
+            (click)="onCancel()"
+          >
+            Cancel
+          </button>
+        </div>
+        <div id="recover-container-form-card-sme-submit-row-form__buttons" class="tui-form__buttons">
+          <button
+            id="recover-container-form-card-sme-submit-row-form__buttons-button"
+            size="m"
+            tuiButton
+            type="submit"
+            class="tui-form__button"
+          >
+            Confirm
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<ng-template
+  [tuiAlertOptions]="{ label: 'Уведомление', icon: tuiIconBell, status: 'info', autoClose: true, hasCloseButton: true }"
+  [(tuiAlert)]="showAlert"
+>
+  На вашу почту выслано сообщение с кодом подтверждения
+</ng-template>
+
+<div style='display: flex; flex-direction: column; align-items: center; background: rgb(255, 255, 255)'>
+  <h2 style='margin-top: 2rem; color: rgb(82,110,211)'>Экосистема IMIS</h2>
+  <h4 style='text-align: center; color: rgba(27, 31, 59, 0.65)'>Ваш код доступа для смены пароля от учетной записи IMIS: </h4>
+  <div style='margin-bottom: 2rem; background-color: rgb(250,249,250); border: 1px solid rgb(218,216,222); padding: 5px;'>
+    <span style='font-size: 1.17rem; font-weight: bold; text-align: center; letter-spacing: 0.35rem; color: rgb(50,47,55)'>2342352</span>
+  </div>
+</div>
