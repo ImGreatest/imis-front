@@ -195,7 +195,7 @@ export class SuccessPageComponent implements OnInit {
                     ? 'Создание успеха'
                     : 'Редактирование успеха',
                 data: {
-                    successId: id
+                    successId: id === -5 ? null : id
                 }
             })
             .subscribe((value : any) => value === 'created' && this.page$.next(this.page$.value));
