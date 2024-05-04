@@ -83,6 +83,7 @@ export class CreateRatingComponent implements OnInit {
       );
       this.rating.controls.type.setValue(key!);
       this.rating.controls.hours.setValue(tags.hourlyUpdate / 60);
+      this.rating.controls.default.setValue(tags.default);
       this.tagsValue = tags.tag.map((tag) => this.getChildTag(tag));
       this.cdr.markForCheck();
     });
