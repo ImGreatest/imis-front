@@ -44,7 +44,11 @@ export const routes: Routes = [
         path: 'skills',
         loadChildren: () => import('./pages/skills/skills.page.module').then((m) => m.SkillsPageModule),
       },
+<<<<<<< 1adb9506bd6a48e161976c80e06556f81c04ca7c
 
+=======
+      
+>>>>>>> 96979b89bb44f9ff99eefa13fa11b85c5699c886
       {
         path: 'success',
         loadChildren: () => import('./pages/success/success-page.module').then((m) => m.SuccessPageModule),
