@@ -105,7 +105,7 @@ export class RatingTableComponent implements OnInit {
         }
         return this
             .ratingService
-            .getScoreById(1, {
+            .getDefaultScore( {
                 orderProps: orderProps,
                 page: page + 1,
                 pageSize: size,

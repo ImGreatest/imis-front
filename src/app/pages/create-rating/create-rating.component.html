@@ -8,6 +8,12 @@
         </tui-select>
         <tui-input-number class="rating-credentials-input" formControlName="hours">
             часы</tui-input-number >
+        <tui-island>
+            <tui-checkbox-labeled formControlName="default">
+                Основной
+                <div class="example">Будет отображаться по умолчанию</div>
+            </tui-checkbox-labeled>
+        </tui-island>
     </div>
     <div class="row">
         <button size="m" (click)="onCreateTag()" tuiButton>Создать тэг</button>
@@ -17,9 +23,11 @@
 <div *ngIf="tagsValue.length > 0" class="tree-center-display">
     <div class="tree-container">
         <tags-tree
-            style="width: 100%;    
+            style="width: 100%;
             display: flex;
-            overflow-y: auto;"
+            overflow-y: auto;
+            justify-content: center;
+            align-items: center;"
             (onDelete)="update()"
             (onScoreChange)="onScoreChange($event)"
             [tagsValue]="tagsValue"></tags-tree>

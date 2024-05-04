@@ -5,6 +5,7 @@ export interface IRating{
     name: string,
     minuteUpdate: number,
     createrId: number
+    default?: boolean;
 }
 
 export interface ICreateRating{
@@ -12,6 +13,7 @@ export interface ICreateRating{
     name: string
     scope: IScopeElement[]
     scoringType: scoringType
+    default?: boolean;
 }
 
 export interface IScopeElement{

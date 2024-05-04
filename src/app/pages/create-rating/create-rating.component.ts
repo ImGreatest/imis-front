@@ -51,6 +51,7 @@ export class CreateRatingComponent implements OnInit {
     name: new FormControl('', Validators.required),
     type: new FormControl('Среднее', Validators.required),
     hours: new FormControl(0),
+    default: new FormControl(false),
   });
 
   types = Object.keys(scoringType);
@@ -117,6 +118,7 @@ export class CreateRatingComponent implements OnInit {
         scoringType[
           this.rating.controls.type.value! as keyof typeof scoringType
         ],
+      default: this.rating.controls.default.value!,
     };
 
     const successMessage = this.id < 0 ? 'Успешно создан' : 'Успешно обновлен';
