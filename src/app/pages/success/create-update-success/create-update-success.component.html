@@ -24,14 +24,17 @@
     <div>
         <tui-select
             *tuiLet="students as items"
-            class="b-form"
-            [tuiTextfieldLabelOutside]="true"
+            tuiTextfieldSize="m"
             [valueContent]="items ? stringify(items) : loading"
             [formControl]="form.controls.studentControl">
+            Выбери студента
             <ng-template tuiDataList>
                 <tui-data-list *ngIf="items; else loading">
                     <button *ngFor="let item of items" tuiOption [value]="item.id">
-                        {{ item.surname }} {{ item.name }}  {{ item.direction }}  {{ item.group }} 
+                        {{ item.surname }}
+                        {{ item.name }}
+                        {{ item.direction.name }}
+                        {{ item.group.name }}
                     </button>
                 </tui-data-list>
             </ng-template>
@@ -39,5 +42,8 @@
                 <tui-loader class="tui-space_vertical-3 loader"></tui-loader>
             </ng-template>
         </tui-select>
+    </div>
+    <div class="button-save-container">
+        <button tuiButton size="m" type="submit" (click)="onSave()">Сохранить</button>
     </div>
 </form>

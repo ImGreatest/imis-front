@@ -1,6 +1,6 @@
 import {Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef, Injector} from "@angular/core";
 import {FormGroup, FormControl} from "@angular/forms";
-import {IFilter, ISuccess, ISuccessReq, PageRes} from "@interfaces";
+import {IFilter, ISuccess, ISuccessRes, PageRes} from "@interfaces";
 import {tuiIsFalsy} from "@taiga-ui/cdk";
 import {
     BehaviorSubject,
@@ -104,22 +104,6 @@ export class SuccessPageComponent implements OnInit {
             .next(index);
     }
 
-    openFilter() {
-        this.statusFilter = true;
-    }
-
-    clearFilters() {
-        this
-            .filters$
-            .next([]);
-    }
-
-    confirmFilters() {
-        const filters : IFilter[] = [];
-        this
-            .filters$
-            .next(filters);
-    }
     readonly request$ = combineLatest([this.sorter$, this.direction$, this.page$, this.size$, this.filters$]).pipe(debounceTime(0.1), switchMap(([key, direction, page, size, filters]) => this.getData(key, direction, page, size, filters)), share());
     private getData(key : string | null, direction : -1 | 1, page : number, size : number, filters : IFilter[]) : Observable < any > {
         const sortDirection = direction === 1
@@ -176,13 +160,13 @@ export class SuccessPageComponent implements OnInit {
                 pageSize: size,
                 filters: filters
             })
-            .pipe(map((data : PageRes < ISuccessReq >) => {
+            .pipe(map((data : PageRes < ISuccessRes >) => {
                 this
                     .pageCount$
                     .next(data.info.totalPages);
                 return data
                     .rows
-                    .map((success : ISuccessReq) => ({
+                    .map((success : ISuccessRes) => ({
                         id: success.id,
                         name: success.name,
                         description: success.description,
@@ -200,11 +184,7 @@ export class SuccessPageComponent implements OnInit {
         .request$
         .pipe(map(tuiIsFalsy));
 
-    closeFilter(active?: any) : void {
-        if(active === undefined || !active) {
-            this.statusFilter = false;
-        }
-    }
+    
     onCreateUpdateSuccess(id : number = -5) : void {
         this
             .appDialogService
@@ -218,6 +198,6 @@ export class SuccessPageComponent implements OnInit {
                     successId: id
                 }
             })
-            .subscribe((value : any) => value === 'created');
+            .subscribe((value : any) => value === 'created' && this.page$.next(this.page$.value));
     }
 }

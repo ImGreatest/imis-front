@@ -15,20 +15,7 @@
                     tuiTextfieldIconLeft="tuiIconSearch"
                     >Поиск по фамилии</tui-input >
             </form>
-            <div class="filter-container" (tuiActiveZoneChange)="closeFilter($event)">
-                <div class="filter-window" *ngIf="statusFilter">
-                    <p class="filter-label">Фильтрация</p>
-                    <div style="display: flex">
-                        <div style="display: flex; flex-direction: column"></div>
-                        <div style="display: flex; flex-direction: column"></div>
-                    </div>
-                    <div class="filter-buttons-container">
-                        <button (click)="clearFilters()" size="m" tuiButton>Очистить</button>
-                        <button (click)="confirmFilters()" size="m" tuiButton>
-                            Применить
-                        </button>
-                    </div>
-                </div>
+            <div class="filter-container">
                 <button
                     tuiButton
                     appearance="primary"
@@ -37,17 +24,6 @@
                     (click)="onCreateUpdateSuccess()"
                     class="filter-button">
                     Создать
-                </button>
-                <button
-                    id="project-container-label-div-filter"
-                    tuiButton
-                    appearance="secondary"
-                    tuiMode="onLight"
-                    size="m"
-                    class="filter-button"
-                    (click)="openFilter()">
-                    <tui-icon icon="tuiIconFilterLarge"></tui-icon>
-                    Фильтры
                 </button>
             </div>
         </div>

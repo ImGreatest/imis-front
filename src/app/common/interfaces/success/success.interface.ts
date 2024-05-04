@@ -1,9 +1,10 @@
-export interface ISuccessReq {
+export interface ISuccessRes {
     id : number
     name : string
     description : string
     tags : ISuccessTagTag[]
     user:{
+        id: number
         name: string
         surname: string
         direction: {
@@ -21,6 +22,12 @@ export interface ISuccessTagTag {
         name: string
     }
 }
+export interface ISuccessReq{
+    tags: number[]
+    name: string
+    description: string
+    userId: number
+}
 export interface ISuccess {
     id : number,
     name : string
@@ -32,6 +39,7 @@ export interface ISuccess {
     studentGroup:string
 }
 
+
 export interface ISuccessTag {
         id: number,
         name: string
@@ -42,9 +50,9 @@ export interface ISuccessModalData{
 }
 
 export interface ISuccessStudent{
-    id: number
-    name: string
-    surname: string
-    direction: string
-    group: string
+    id: number;
+    name: string;
+    surname: string;
+    direction: { name: string };
+    group: { name: string };
 }

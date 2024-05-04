@@ -10,7 +10,7 @@ import {
     tuiPure,
     TuiStringHandler
 } from "@taiga-ui/cdk";
-import {TuiDialogContext} from "@taiga-ui/core";
+import {TuiAlertService, TuiDialogContext} from "@taiga-ui/core";
 import {POLYMORPHEUS_CONTEXT} from '@tinkoff/ng-polymorpheus';
 import {
     map,
@@ -27,12 +27,12 @@ export class CreateUpdateSuccessComponent implements OnInit {
     constructor(
       @Inject(POLYMORPHEUS_CONTEXT)private readonly context : TuiDialogContext < any, ISuccessModalData >, 
       private userService : UserService, 
-      private tagService : TagService, 
+      private tagService : TagService, @Inject(TuiAlertService) private alerts: TuiAlertService,
       private successService : SuccessService,private cdr : ChangeDetectorRef) {}
-    readonly form = new FormGroup({nameControl: new FormControl(''), descriptionControl: new FormControl(''), tagsControl: new FormControl([]), studentControl: new FormControl(0)});
+    readonly form = new FormGroup({nameControl: new FormControl(''), descriptionControl: new FormControl(''), tagsControl: new FormControl<number[]>([]), studentControl: new FormControl(0)});
     
     ngOnInit() : void {
-        // this.successId && this._fetchData(this.orderId);
+        this.successId && this._fetchData(this.successId);
         this
             .userService
             .getStudentList()
@@ -48,6 +48,15 @@ export class CreateUpdateSuccessComponent implements OnInit {
         ? map.get(id)
         : map.get(id.$implicit)) || 'Loading...',),);
 
+        })
+    }
+    private _fetchData(successId:number){
+        this.successService.getSuccessById(successId).subscribe((data) => {
+            const {nameControl, descriptionControl, tagsControl, studentControl} = this.form.controls;
+            nameControl.setValue(data.name);
+            descriptionControl.setValue(data.description);
+            tagsControl.setValue(data.tags.map(tag => tag.tag.id));
+            studentControl.setValue(data.user.id);
         })
     }
     tags: ITag[] = [
@@ -81,11 +90,54 @@ export class CreateUpdateSuccessComponent implements OnInit {
         : map.get(id.$implicit)) || 'Loading...',),);
     @tuiPure
     stringify(items : readonly ISuccessStudent[],) : TuiStringHandler < TuiContextWithImplicit < number >> {
-        const map = new Map(items.map((student) => [student.id, `${student.surname} ${student.name} ${student.direction} ${student.group}`]as[number,
+        const map = new Map(items.map((student) => [student.id, `${student.surname} ${student.name} ${student.direction.name} ${student.group.name}`]as[number,
             string]));
 
         return ({$implicit} : TuiContextWithImplicit < number >) => map.get($implicit) || '';
     }
     get successId() : number {return this.context.data.successId;}
+
+    onSave(){
+        const {nameControl, descriptionControl, tagsControl, studentControl} = this.form.controls;
+        const name = nameControl.value;
+        const description = descriptionControl.value;
+        const tags = tagsControl.value;
+        const student = studentControl.value;
+        if (!name || !description || !tags || !student) 
+            {
+                this.alerts
+                .open('', {
+                  label: 'Заполните все поля',
+                  status: 'error',
+                  autoClose: true,
+                })
+                .subscribe();
+                return
+            };
+            const successBody = {name:name, description:description, tags:tags, userId:student};
+            const successObservable =
+            this.successId
+              ? this.successService.updateSuccess(this.successId,successBody)
+              : this.successService.createSuccess( successBody);
+        successObservable.subscribe( () => {
+            this.alerts
+              .open('', {
+                label: 'Успешно сохранено',
+                status: 'success',
+                autoClose: true,
+              })
+              .subscribe();
+            this.context.completeWith('created');
+          },
+          (error) => {
+            this.alerts
+              .open('', {
+                label: error.error.message || 'Не удалось сохранить',
+                status: 'error',
+                autoClose: true,
+              })
+              .subscribe();
+          });
+    }
 
 }

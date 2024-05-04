@@ -53,10 +53,12 @@ export class AuthComponent {
   }
 
   private async _login(email: string, password: string) {
-    await firstValueFrom(this.authService.signIn({
+    const result = await firstValueFrom(this.authService.signIn({
       email: email,
       password: password
     }));
+    console.log(result);
+    this.authService.setToken(result);
     await this.route.navigate(['/']);
   }
 }

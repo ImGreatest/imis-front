@@ -8,15 +8,6 @@ import { ISuccessStudent } from '@interfaces';
 export class UserService {
   constructor(public http: HttpClient) {}
   getStudentList(): Observable<Array<ISuccessStudent>> {
-    const students = [
-        {
-            id: 1,
-            name: "имя",
-            surname: "Фамилия",
-            direction: "Испк",
-            group: "492",
-        }
-    ]
-    return of(students)
+    return this.http.get<Array<ISuccessStudent>>(`${environment.apiUserUrl}/user/students`);
   }
 }
