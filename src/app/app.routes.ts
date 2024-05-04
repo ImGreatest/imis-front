@@ -37,10 +37,6 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/user-profile/user-profile.module').then((m) => m.UserProfileModule),
       },
       {
-        path: 'notice',
-        loadChildren: () => import('./pages/notice/notice.module').then((m) => m.NoticeModule),
-      },
-      {
         path: 'skills',
         loadChildren: () => import('./pages/skills/skills.page.module').then((m) => m.SkillsPageModule),
       },
