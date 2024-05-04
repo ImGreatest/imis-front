@@ -12,7 +12,7 @@
         <div class="filter-container" (tuiActiveZoneChange)="closeFilter($event)">
             <div class="filter-window" *ngIf="statusFilter">
                 <p class="filter-label">Фильтрация</p>
-                <div style="display: flex">
+                <div style="display: flex; flex-wrap: wrap;">
                     <div style="display: flex; flex-direction: column">
                         <tui-input-range
                             class="filter-input"
