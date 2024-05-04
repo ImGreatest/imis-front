@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { AppService } from "@services";
-import { IReqMessageHtml, IReqMessageText } from "@interfaces";
+import { IActionConfirm, IReqMessageHtml, IReqMessageText } from "@interfaces";
 import { Observable, tap } from "rxjs";
 import { IStateMessageConfirm } from "src/app/pages/authorisation/recover/interfaces/state-message-confirm.interface";
 
@@ -13,7 +13,6 @@ export class EmailService {
   ) {}
 
   get url(): string {
-    return this.appService.apiUserUrl + '/email-service';
     return this.appService.apiUserUrl + '/email-service';
   }
 
