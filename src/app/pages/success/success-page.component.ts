@@ -186,6 +186,7 @@ export class SuccessPageComponent implements OnInit {
 
     
     onCreateUpdateSuccess(id : number = -5) : void {
+        const dataToModal = id < 0? {}: {successId: id}
         this
             .appDialogService
             .open(new PolymorpheusComponent < any, any > (CreateUpdateSuccessComponent, this.injector), {
@@ -194,9 +195,7 @@ export class SuccessPageComponent implements OnInit {
                 title: id < 0
                     ? 'Создание успеха'
                     : 'Редактирование успеха',
-                data: {
-                    successId: id === -5 ? null : id
-                }
+                data: dataToModal
             })
             .subscribe((value : any) => value === 'created' && this.page$.next(this.page$.value));
     }
