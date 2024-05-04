@@ -10,7 +10,6 @@ import { RouterLink } from "@angular/router";
 import { TuiModeModule } from "@taiga-ui/core";
 import { BlockNoticeComponent } from "./block-notice.component";
 
-
 @NgModule({
   imports: [
     CommonModule,
