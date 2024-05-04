@@ -104,23 +104,6 @@ export class SuccessPageComponent implements OnInit {
             .next(index);
     }
 
-    openFilter() {
-        this.statusFilter = true;
-    }
-
-    clearFilters() {
-        this
-            .filters$
-            .next([]);
-    }
-
-    confirmFilters() {
-        const filters : IFilter[] = [];
-
-        this
-            .filters$
-            .next(filters);
-    }
     readonly request$ = combineLatest([this.sorter$, this.direction$, this.page$, this.size$, this.filters$]).pipe(debounceTime(0.1), switchMap(([key, direction, page, size, filters]) => this.getData(key, direction, page, size, filters)), share());
     private getData(key : string | null, direction : -1 | 1, page : number, size : number, filters : IFilter[]) : Observable < any > {
         const sortDirection = direction === 1
@@ -201,6 +184,7 @@ export class SuccessPageComponent implements OnInit {
         .request$
         .pipe(map(tuiIsFalsy));
 
+    
     
     onCreateUpdateSuccess(id : number = -5) : void {
         const dataToModal = id < 0? {}: {successId: id}
