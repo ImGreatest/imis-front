@@ -17,12 +17,10 @@ export class EmailService {
   }
 
   sentMessage(message: IReqMessageText): Observable<IStateMessageConfirm> {
-    console.log(message);
     return this.http.post<IStateMessageConfirm>(`${this.url}/sent-text-message`, message).pipe(tap(console.log));
   }
 
   confirmAction(message: IReqMessageHtml): Observable<IActionConfirm> {
-    console.log(message);
     return this.http.post<IActionConfirm>(`${this.url}/sent-html-message`, message).pipe(tap(console.log));
   }
 }
