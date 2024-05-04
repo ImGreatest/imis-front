@@ -1,17 +1,15 @@
-import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { NotificationComponent } from "./notification.component";
+import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
-import {
-  TUI_SANITIZER,
-} from "@taiga-ui/core";
+import { TUI_SANITIZER } from "@taiga-ui/core";
 import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
-import { NoticeComponent } from "../notice/notice.component";
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild([
-      {path: '', component: NoticeComponent}
+      {path: '', component: NotificationComponent}
     ]),
   ],
   providers: [
@@ -20,7 +18,7 @@ import { NoticeComponent } from "../notice/notice.component";
       useClass: NgDompurifySanitizer
     },
   ],
-  declarations: [NoticeComponent],
-  exports: [NoticeComponent],
+  declarations: [NotificationComponent],
+  exports: [NotificationComponent],
 })
-export class NoticeModule {}
+export class NotificationModule {}

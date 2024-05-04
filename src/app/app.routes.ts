@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { ErrorComponent } from "../app/pages/error-404/error.component";
+import { ErrorComponent } from "./pages/error-404/error.component";
 import { SidebarComponent } from "./layout/sidebar/sidebar.component";
 
 export const routes: Routes = [
@@ -37,14 +37,10 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/user-profile/user-profile.module').then((m) => m.UserProfileModule),
       },
       {
-        path: 'notice',
-        loadChildren: () => import('./pages/notice/notice.module').then((m) => m.NoticeModule),
-      },
-      {
         path: 'skills',
         loadChildren: () => import('./pages/skills/skills.page.module').then((m) => m.SkillsPageModule),
       },
-      
+
       {
         path: 'success',
         loadChildren: () => import('./pages/success/success-page.module').then((m) => m.SuccessPageModule),
@@ -55,23 +51,42 @@ export const routes: Routes = [
       },
       {
         path: 'math-models/:id',
-        loadChildren: () => import('./pages/create-rating/create-rating.module').then((m) => m.CreateRatingModule)
-      },{
+        loadChildren: () => import('./pages/create-rating/create-rating.module').then((m) => m.CreateRatingModule),
+      },
+      {
         path: 'math-models/create',
-        loadChildren: () => import('./pages/create-rating/create-rating.module').then((m) => m.CreateRatingModule)
+        loadChildren: () => import('./pages/create-rating/create-rating.module').then((m) => m.CreateRatingModule),
       },
       {
         path: 'roles',
-        loadChildren: () =>
-          import('./pages/roles/roles.module').then(
-            (m) => m.RolesModule
-          ),
+        loadChildren: () => import('./pages/roles/roles.module').then((m) => m.RolesModule),
       },
+      {
+        path: 'notifications',
+        loadChildren: () => import('./pages/notification/notification.module').then((m) => m.NotificationModule),
+      }
     ],
   },
   {
     path: 'auth',
-    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule),
+    children: [
+      {
+        path: 'login',
+        loadChildren: () => import('src/app/pages/authorisation/auth/auth.module').then(m => m.AuthModule),
+      },
+      {
+        path: 'reset',
+        loadChildren: () => import('src/app/pages/authorisation/recover/recover.module').then(m => m.RecoverModule),
+      },
+      {
+        path: 'new-password',
+        loadChildren: () => import('src/app/pages/authorisation/new-password/new-password.module').then(m => m.NewPasswordModule),
+      },
+      {
+        path: '**',
+        redirectTo: 'login',
+      }
+    ]
   },
   {
     path: '**',

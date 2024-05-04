@@ -8,8 +8,6 @@ import {BlockContentComponent} from "./block-content.component";
 import {RouterLink} from "@angular/router";
 import { TuiScrollbarModule } from "@taiga-ui/core";
 
-
-
 @NgModule({
 	imports: [
 		CommonModule,

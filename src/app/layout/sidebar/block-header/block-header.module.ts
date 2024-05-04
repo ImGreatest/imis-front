@@ -4,7 +4,6 @@ import { CommonModule } from "@angular/common";
 import { TuiButtonModule, TuiButtonVerticalModule } from "@taiga-ui/experimental";
 import { RouterLink } from "@angular/router";
 
-
 @NgModule({
 	imports: [
 		CommonModule,
