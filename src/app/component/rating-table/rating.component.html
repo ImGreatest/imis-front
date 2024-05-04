@@ -103,12 +103,12 @@
                 </tr>
             </tbody>
         </table>
-        <div class="pagination-offset">
+    </div>
+    <div class="pagination-offset">
             <tui-pagination
                 [index]="page$.getValue()"
                 [length]="pageCount$.getValue()"
                 (indexChange)="goToPage($event)"></tui-pagination>
         </div>
-    </div>
 
 </div>
