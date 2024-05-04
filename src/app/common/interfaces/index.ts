@@ -5,6 +5,4 @@ export * from "src/app/common/interfaces/rating";
 export * from "src/app/common/interfaces/role";
 export * from "src/app/common/interfaces/tag";
 export * from "src/app/common/interfaces/skill";
-export * from "src/app/common/interfaces/email";
 export * from "src/app/common/interfaces/success";
-export * from "src/app/common/interfaces/email";
