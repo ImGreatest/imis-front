@@ -25,6 +25,7 @@ export class MathModelsTableComponent implements OnInit {
             .request$
             .subscribe((ratings) => {
                 this.ratings = ratings;
+                console.log(this.ratings);
                 this
                     .cdr
                     .markForCheck()
@@ -55,7 +56,7 @@ export class MathModelsTableComponent implements OnInit {
             .page$
             .next(0);
     }
-    readonly columns = ['place', 'name', 'minuteUpdate', 'creater', 'actions'];
+    readonly columns = ['place', 'name', 'minuteUpdate', 'creater','default', 'actions'];
     readonly direction$ = new BehaviorSubject < -1 | 1 > (-1);
     readonly sorter$ = new BehaviorSubject < string > ('name');
     readonly size$ = new BehaviorSubject(10);

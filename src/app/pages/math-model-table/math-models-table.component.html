@@ -35,6 +35,7 @@
                                 Частота обновления
                             </th>
                             <th *tuiHead="'creater'" tuiSortable tuiTh>Создатель</th>
+                            <th *tuiHead="'default'" tuiTh [sorter]="null">Основной</th>
                             <th *tuiHead="'actions'" tuiTh [sorter]="null"></th>
                         </tr>
                     </thead>
@@ -56,6 +57,8 @@
                                 {{ item.creater.name }}
                                 {{ item.creater.surname }}
                             </td>
+                            <td *tuiCell="'default'" tuiTd >
+                                {{ item.default ? 'Да' : 'Нет' }}</td>
                             <td *tuiCell="'actions'" tuiTd>
                                 <button
                                     tuiIconButton
