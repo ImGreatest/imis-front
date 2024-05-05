@@ -12,7 +12,7 @@ export class BlockNoticeComponent {
   constructor(private readonly route: Router) {
     this.route.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.select = this.route.url === '/notifications';
+        this.select = this.route.url === '/user/notifications';
         console.log(this.select);
       }
     });
@@ -20,6 +20,6 @@ export class BlockNoticeComponent {
 
   async onClick(): Promise<void> {
     this.select = !this.select;
-    await this.route.navigate(['/notifications']);
+    await this.route.navigate(['user/notifications']);
   }
 }

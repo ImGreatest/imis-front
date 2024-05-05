@@ -34,14 +34,9 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/company/company.module').then((m) => m.CompanyModule),
       },
       {
-        path: 'profile',
-        loadChildren: () => import('./pages/user-profile/user-profile.module').then((m) => m.UserProfileModule),
-      },
-      {
         path: 'skills',
         loadChildren: () => import('./pages/skills/skills.page.module').then((m) => m.SkillsPageModule),
       },
-
       {
         path: 'success',
         loadChildren: () => import('./pages/success/success-page.module').then((m) => m.SuccessPageModule),
@@ -63,8 +58,25 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/roles/roles.module').then((m) => m.RolesModule),
       },
       {
-        path: 'notifications',
-        loadChildren: () => import('./pages/notification/notification.module').then((m) => m.NotificationModule),
+        path: 'user',
+        children: [
+          {
+            path: 'profile',
+            loadChildren: () => import('./pages/user-profile/user-profile.module').then((m) => m.UserProfileModule),
+          },
+          {
+            path: 'events',
+            loadChildren: () => import('./pages/user-profile/events/events.component').then((m) => m.EventsComponent),
+          },
+          {
+            path: 'projects',
+            loadChildren: () => import('./pages/user-profile/projects/projects.component').then((m) => m.ProjectsComponent),
+          },
+          {
+            path: 'notifications',
+            loadChildren: () => import('./pages/user-profile/notification/notification.module').then((m) => m.NotificationModule),
+          }
+        ]
       },
     ],
     canActivateChild: [AuthGuard],
