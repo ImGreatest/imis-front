@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Router } from "@angular/router";
+import { NavigationEnd, Router } from "@angular/router";
 
 @Component({
   selector: 'block-notice',
@@ -8,9 +8,18 @@ import { Router } from "@angular/router";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlockNoticeComponent {
-  constructor(private readonly route: Router) {}
+  select: boolean = false;
+  constructor(private readonly route: Router) {
+    this.route.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.select = this.route.url === '/notifications';
+        console.log(this.select);
+      }
+    });
+  }
 
   async onClick(): Promise<void> {
-    await this.route.navigate(['/notifications'])
+    this.select = !this.select;
+    await this.route.navigate(['/notifications']);
   }
 }

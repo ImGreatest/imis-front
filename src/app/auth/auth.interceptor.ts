@@ -31,7 +31,7 @@ export class AuthInterceptor implements HttpInterceptor {
         }),
         catchError((err) => {
           this.authService.logout();
-          this.router.navigate(['auth', 'login']);
+          this.router.navigate(['auth']).then(r => {});
           return throwError(() => err);
         }),
         finalize(() => (this.refreshTokenInProgress = false))
@@ -40,7 +40,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (!req.url.includes(environment.apiRatingUrl || environment.apiCabinetUrl || environment.apiEmployerUrl)) {
+    if (!req.url.includes(environment.apiRatingUrl || environment.apiUserUrl || environment.apiEmployerUrl)) {
       return next.handle(req);
     }
 
@@ -52,7 +52,7 @@ export class AuthInterceptor implements HttpInterceptor {
       catchError((err) => {
         if (
           err instanceof HttpErrorResponse &&
-          authReq.url.includes(environment.apiRatingUrl || environment.apiCabinetUrl || environment.apiEmployerUrl) &&
+          authReq.url.includes(environment.apiRatingUrl || environment.apiUserUrl || environment.apiEmployerUrl) &&
           !authReq.url.includes('auth') &&
           err.status === 401
         ) {

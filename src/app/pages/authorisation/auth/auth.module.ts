@@ -16,7 +16,7 @@ import {
   TuiInputModule,
   TuiInputPasswordModule
 } from "@taiga-ui/kit";
-import { TuiErrorModule } from "@taiga-ui/core";
+import { TuiDialogModule, TuiErrorModule } from "@taiga-ui/core";
 
 @NgModule({
 	imports: [
@@ -36,6 +36,7 @@ import { TuiErrorModule } from "@taiga-ui/core";
 		TuiCheckboxLabeledModule,
 		TuiSurfaceModule,
 		TuiTooltipModule,
+    TuiDialogModule,
 	],
   declarations: [AuthComponent],
   exports: [AuthComponent],

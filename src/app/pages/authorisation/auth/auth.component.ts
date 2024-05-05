@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { emailValidators } from "@validators";
 import { IAuthForm } from "src/app/pages/authorisation/auth/interfaces/auth-form.interface";
@@ -11,7 +11,7 @@ import { AuthService } from "src/app/auth/auth.service";
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.less'
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit {
   readonly form: FormGroup<IAuthForm> = new FormGroup({
     login: new FormControl('', {
       nonNullable: true,
@@ -41,12 +41,15 @@ export class AuthComponent {
     return this.form.controls.remind.value;
   }
 
+  ngOnInit(): void {
+    console.log(this.authService.isAuthenticated());
+  }
+
   onLogin(): void {
     this.form.markAllAsTouched();
     Object.values(this.form.controls).map((control) => control.updateValueAndValidity());
     if (this.form.valid) {
-      console.log(this.login, this.password);
-      this._login(this.login, this.password).then(r => console.log(r));
+      this._login(this.login, this.password).then(r => r);
     }
   }
 
@@ -59,6 +62,6 @@ export class AuthComponent {
       email: email,
       password: password
     }));
-    await this.route.navigate(['/']);
+    await this.route.navigate(['/overview']);
   }
 }

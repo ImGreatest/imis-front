@@ -1,14 +1,93 @@
-<div style="border-bottom: 1px solid #D7D7D7;">
-  <div class="content">
+<div id="header-container">
+  <div id="header-container-div" class="content">
     <button
+      id="header-container-div-button-profile"
       appearance="custom"
       size="m"
       iconLeft="tuiIconUser"
-      routerLink="/auth"
       tuiButton
       tuiButtonVertical
+      [tuiDropdown]="dropdownProfileContent"
+      [tuiDropdownManual]="open"
+      (click)="onClick()"
+      (tuiActiveZoneChange)="onActiveZone($event)"
+      (tuiObscured)="onObscured($event)"
+      [disabled]="open"
     >
       Alex Inkin
+      <ng-template #dropdownProfileContent>
+        <div id="template-container">
+          <tui-island id="template-container-island" size="l" [hoverable]="true" (click)="onProfile()">
+            <div id="template-container-island-content" class="tui-island__content">
+              <figure id="template-container-island-content-figure" class="tui-island__figure">
+                <tui-avatar
+                  id="template-container-island-content-figure-avatar"
+                  src="tuiIconUserLarge"
+                  size="m"
+                ></tui-avatar>
+              </figure>
+              <div id="template-container-island-content-div">
+                <h5 id="template-container-island-content-div-title" class="tui-island__title">Alex Inkin</h5>
+                <h6 id="template-container-island-content-div-paragraph" class="tui-island__paragraph">email.ru</h6>
+              </div>
+            </div>
+          </tui-island>
+          <button
+            id="template-container-button-project"
+            size="s"
+            appearance="profile-buttons"
+            iconLeft="tuiIconBookLarge"
+            tuiButton
+            (click)="onProject()"
+          >Проекты</button>
+          <button
+            id="template-container-button-logout"
+            size="s"
+            appearance="profile-buttons"
+            iconLeft="tuiIconArrowRightCircleLarge"
+            tuiButton
+            (click)="onOpen()"
+          >Выйти</button>
+        </div>
+      </ng-template>
     </button>
   </div>
 </div>
+
+<ng-template
+  let-observer
+  [tuiDialogOptions]="{ label: 'Выход из аккаунта', dismissible: true, closeable: true, size: 'm' }"
+  [(tuiDialog)]="openDialog"
+>
+  <form
+    [formGroup]="form"
+    (ngSubmit)="observer.complete()"
+  >
+    <span style="color: var(--tui-text-02)">Вы действительно хотите выйти из аккаунта?</span>
+    <div style="display: flex; flex-direction: row; align-items: center; margin-top: 2rem;">
+      <tui-checkbox-labeled
+        formControlName="preference"
+        size="l"
+      >Больше не показывать</tui-checkbox-labeled>
+      <div style="display: flex; gap: 15px; margin-left: auto">
+        <button
+          appearance="flat"
+          size="m"
+          type="submit"
+          tuiButton
+          (click)="onLogout()"
+        >
+          Выйти
+        </button>
+        <button
+          size="m"
+          type="button"
+          tuiButton
+          (click)="onClose()"
+        >
+          Отмена
+        </button>
+      </div>
+    </div>
+  </form>
+</ng-template>

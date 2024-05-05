@@ -25,37 +25,29 @@ import {SuccessService} from "src/app/common/services/api/success.service";
 @Component({selector: 'create-update-success', templateUrl: './create-update-success.component.html', styleUrls: ['./create-update-success.component.less'], changeDetection: ChangeDetectionStrategy.OnPush})
 export class CreateUpdateSuccessComponent implements OnInit {
     constructor(
-      @Inject(POLYMORPHEUS_CONTEXT)private readonly context : TuiDialogContext < any, ISuccessModalData >, 
-      private userService : UserService, 
-      private tagService : TagService, 
+      @Inject(POLYMORPHEUS_CONTEXT)private readonly context : TuiDialogContext < any, ISuccessModalData >,
+      private userService : UserService,
+      private tagService : TagService,
       private successService : SuccessService,private cdr : ChangeDetectorRef) {}
     readonly form = new FormGroup({nameControl: new FormControl(''), descriptionControl: new FormControl(''), tagsControl: new FormControl([]), studentControl: new FormControl(0)});
-    
+
     ngOnInit() : void {
         // this.successId && this._fetchData(this.orderId);
-        this
-            .userService
-            .getStudentList()
-            .subscribe((data) => {
-                this.students = data;
-            })
+        // this.userService.getStudentList().subscribe((data) => {this.students = data;})
         this.tagService.getList().subscribe((data) => {
             this.tags = data;
             console.log(this.tags);
             this.tagSearch$.next("");
-            this.tagStringify$ = of(this.tags).pipe(map(items => new Map(items.map < [number, string] > (({id, name}) => [id, name]))), startWith(new Map()), map(map => (id : TuiContextWithImplicit < number > | number) => 
+            this.tagStringify$ = of(this.tags).pipe(map(items => new Map(items.map < [number, string] > (({id, name}) => [id, name]))), startWith(new Map()), map(map => (id : TuiContextWithImplicit < number > | number) =>
       (tuiIsNumber(id)
         ? map.get(id)
         : map.get(id.$implicit)) || 'Loading...',),);
 
         })
     }
-    tags: ITag[] = [
-        
-    ];
+    tags: ITag[] = [];
     private readonly tagSearch$ = new Subject < string > ();
-    readonly tagItems$ : Observable < number[] | null > = this
-        .tagSearch$
+    readonly tagItems$ : Observable < number[] | null > = this.tagSearch$
         .pipe(startWith(''), map((search) => {
             return this
                 .tags
@@ -64,7 +56,7 @@ export class CreateUpdateSuccessComponent implements OnInit {
         }), startWith(null), //
         );
 
-    
+
 
     readonly control = new FormControl([2]);
 
@@ -75,7 +67,7 @@ export class CreateUpdateSuccessComponent implements OnInit {
     }
     students : ISuccessStudent[] = []
     tagStringify$ : Observable < TuiHandler < TuiContextWithImplicit < number > | number,
-    string > > = of(this.tags).pipe(map(items => new Map(items.map < [number, string] > (({id, name}) => [id, name]))), startWith(new Map()), map(map => (id : TuiContextWithImplicit < number > | number) => 
+    string > > = of(this.tags).pipe(map(items => new Map(items.map < [number, string] > (({id, name}) => [id, name]))), startWith(new Map()), map(map => (id : TuiContextWithImplicit < number > | number) =>
       (tuiIsNumber(id)
         ? map.get(id)
         : map.get(id.$implicit)) || 'Loading...',),);
@@ -86,6 +78,5 @@ export class CreateUpdateSuccessComponent implements OnInit {
 
         return ({$implicit} : TuiContextWithImplicit < number >) => map.get($implicit) || '';
     }
-    get successId() : number {return this.context.data.successId;}
-
+    get successId() : number { return this.context.data.successId }
 }
