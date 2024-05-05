@@ -11,6 +11,7 @@ import {
   TuiDataListWrapperModule,
   TuiInputModule,
   TuiIslandModule,
+  TuiMultiSelectModule,
   TuiSelectModule,
   TuiTreeModule,
 } from '@taiga-ui/kit';
@@ -32,7 +33,8 @@ import { CreateUpdateSuccessComponent } from './create-update-success.component'
     TuiTextfieldControllerModule,
     TuiDataListModule,
     TuiDataListWrapperModule,
-    TuiTreeModule,
+    TuiTreeModule, 
+    TuiMultiSelectModule,
     TuiButtonModule,
     TuiIconModule,
     FormsModule,
