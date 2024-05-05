@@ -31,10 +31,7 @@
             <ng-template tuiDataList>
                 <tui-data-list *ngIf="items; else loading">
                     <button *ngFor="let item of items" tuiOption [value]="item.id">
-                        {{ item.surname }}
-                        {{ item.name }}
-                        {{ item.direction.name }}
-                        {{ item.group.name }}
+                       {{ item.surname }} {{ item.name }}  {{ item.direction }}  {{ item.group }}
                     </button>
                 </tui-data-list>
             </ng-template>

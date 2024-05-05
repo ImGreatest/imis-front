@@ -1,11 +1,9 @@
 import {
-  TUI_SANITIZER,
   TuiDataListModule,
   TuiDropdownModule,
   TuiHostedDropdownModule,
   TuiSvgModule
 } from "@taiga-ui/core";
-import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
 import { OverviewComponent } from "./overview.component";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
@@ -50,12 +48,6 @@ import { ComponentsModule } from "../../component/components.module";
     TuiDataListDropdownManagerModule,
     TuiRepeatTimesModule,
     ComponentsModule
-  ],
-  providers: [
-    {
-      provide: TUI_SANITIZER,
-      useClass: NgDompurifySanitizer
-    },
   ],
   declarations: [OverviewComponent],
   exports: [OverviewComponent],

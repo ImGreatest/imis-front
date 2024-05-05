@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { ErrorComponent } from "./pages/error-404/error.component";
 import { SidebarComponent } from "./layout/sidebar/sidebar.component";
+import { AuthGuard } from "./auth/auth.guard";
 
 export const routes: Routes = [
   {
@@ -64,8 +65,9 @@ export const routes: Routes = [
       {
         path: 'notifications',
         loadChildren: () => import('./pages/notification/notification.module').then((m) => m.NotificationModule),
-      }
+      },
     ],
+    canActivateChild: [AuthGuard],
   },
   {
     path: 'auth',

@@ -38,9 +38,8 @@ export class AuthService {
   }
 
   get authorization(): string {
-      return `Bearer ${this.token}`;
+    return `Bearer ${this.token}`;
   }
-
 
   isAuthenticated(): boolean {
     return !!this.token;
@@ -56,7 +55,7 @@ export class AuthService {
       email: data.email,
       password: data.password,
       deviceId: this.deviceId,
-    }).pipe(tap(console.log));
+    }).pipe(tap((data) => this.setToken(data)));
   }
 
   logout(): void {

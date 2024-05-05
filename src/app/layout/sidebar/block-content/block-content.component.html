@@ -1,13 +1,22 @@
-<div *ngFor="let button of blocks">
-  <button
-    appearance="sidebar-button"
-    [iconLeft]="button.icon"
-    [style.color]="button.selected ? 'var(--tui-primary)' : 'var(--tui-base-08)'"
-    tuiButton
-    tuiButtonVertical
-    size="l"
-    [routerLink]="button.routing"
+<div id="content-container" *ngFor="let button of blocks">
+  <div
+    id="content-container-div"
+    [ngClass]="{
+      'selected': button.selected
+    }"
   >
-    {{ button.title }}
-  </button>
+    <button
+      id="content-container-div-button"
+      appearance="sidebar-button"
+      [iconLeft]="button.icon"
+      tuiButton
+      tuiButtonVertical
+      size="l"
+      [routerLink]="button.routing"
+      [style.color]="button.selected ? 'var(--tui-primary)' : 'var(--tui-base-08)'"
+      [disabled]="button.selected"
+    >
+      {{ button.title }}
+    </button>
+  </div>
 </div>

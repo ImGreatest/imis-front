@@ -43,7 +43,7 @@ export class CreateUpdateSuccessComponent implements OnInit {
             this.tags = data;
             console.log(this.tags);
             this.tagSearch$.next("");
-            this.tagStringify$ = of(this.tags).pipe(map(items => new Map(items.map < [number, string] > (({id, name}) => [id, name]))), startWith(new Map()), map(map => (id : TuiContextWithImplicit < number > | number) => 
+            this.tagStringify$ = of(this.tags).pipe(map(items => new Map(items.map < [number, string] > (({id, name}) => [id, name]))), startWith(new Map()), map(map => (id : TuiContextWithImplicit < number > | number) =>
       (tuiIsNumber(id)
         ? map.get(id)
         : map.get(id.$implicit)) || 'Loading...',),);
@@ -63,8 +63,7 @@ export class CreateUpdateSuccessComponent implements OnInit {
         
     ];
     private readonly tagSearch$ = new Subject < string > ();
-    readonly tagItems$ : Observable < number[] | null > = this
-        .tagSearch$
+    readonly tagItems$ : Observable < number[] | null > = this.tagSearch$
         .pipe(startWith(''), map((search) => {
             return this
                 .tags
@@ -73,7 +72,7 @@ export class CreateUpdateSuccessComponent implements OnInit {
         }), startWith(null), //
         );
 
-    
+
 
     readonly control = new FormControl([2]);
 
@@ -84,7 +83,7 @@ export class CreateUpdateSuccessComponent implements OnInit {
     }
     students : ISuccessStudent[] = []
     tagStringify$ : Observable < TuiHandler < TuiContextWithImplicit < number > | number,
-    string > > = of(this.tags).pipe(map(items => new Map(items.map < [number, string] > (({id, name}) => [id, name]))), startWith(new Map()), map(map => (id : TuiContextWithImplicit < number > | number) => 
+    string > > = of(this.tags).pipe(map(items => new Map(items.map < [number, string] > (({id, name}) => [id, name]))), startWith(new Map()), map(map => (id : TuiContextWithImplicit < number > | number) =>
       (tuiIsNumber(id)
         ? map.get(id)
         : map.get(id.$implicit)) || 'Loading...',),);

@@ -1,11 +1,11 @@
 <div>
 	<button
     appearance="sidebar-button"
-    iconLeft="tuiIconBellLarge"
     size="m"
     tuiIconButton
-    class="sidebar-button"
     (click)="onClick()"
     [style.border-radius.%]="100"
+    iconLeft="tuiIconBellLarge"
+    [disabled]="select"
   ></button>
 </div>

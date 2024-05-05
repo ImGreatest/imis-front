@@ -19,6 +19,7 @@ import { BlockNoticeComponent } from "./block-notice.component";
     TuiAvatarLabeledModule,
     TuiAvatarModule,
     TuiModeModule,
+    TuiButtonModule,
   ],
   declarations: [BlockNoticeComponent],
   exports: [BlockNoticeComponent],
