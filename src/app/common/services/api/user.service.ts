@@ -14,7 +14,7 @@ export class UserService {
   ) {}
 
   get url(): string {
-    return this.appService.apiUserUrl + 'user';
+    return this.appService.apiUserUrl + '/user';
   }
   getStudentList(): Observable<Array<ISuccessStudent>> {
     return this.http.get<Array<ISuccessStudent>>(`${this.url}/students`);
