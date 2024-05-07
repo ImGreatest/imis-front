@@ -1,0 +1,46 @@
+<form [formGroup]="form">
+    <div class="success-input-container">
+        <tui-input
+            [formControl]="form.controls.nameControl"
+            [tuiTextfieldCleaner]="true"
+            tuiTextfieldSize="m">Название</tui-input >
+        <tui-input
+            [formControl]="form.controls.descriptionControl"
+            [tuiTextfieldCleaner]="true"
+            tuiTextfieldSize="m">Описание</tui-input >
+        <tui-multi-select
+            *tuiLet="tagItems$ | async as items"
+            [formControl]="form.controls.tagsControl"
+            tuiTextfieldSize="m"
+            [stringify]="(tagStringify$ | async)!"
+            (searchChange)="onTagSearch($event)">
+            <tui-data-list-wrapper
+                *tuiDataList
+                tuiMultiSelectGroup
+                [itemContent]="(tagStringify$ | async)!"
+                [items]="items"></tui-data-list-wrapper>Теги
+        </tui-multi-select>
+    </div>
+    <div>
+        <tui-select
+            *tuiLet="students as items"
+            tuiTextfieldSize="m"
+            [valueContent]="items ? stringify(items) : loading"
+            [formControl]="form.controls.studentControl">
+            Выбери студента
+            <ng-template tuiDataList>
+                <tui-data-list *ngIf="items; else loading">
+                    <button *ngFor="let item of items" tuiOption [value]="item.id">
+                       {{ item.surname }} {{ item.name }}  {{ item.direction }}  {{ item.group }}
+                    </button>
+                </tui-data-list>
+            </ng-template>
+            <ng-template #loading>
+                <tui-loader class="tui-space_vertical-3 loader"></tui-loader>
+            </ng-template>
+        </tui-select>
+    </div>
+    <div class="button-save-container">
+        <button tuiButton size="m" type="submit" (click)="onSave()">Сохранить</button>
+    </div>
+</form>

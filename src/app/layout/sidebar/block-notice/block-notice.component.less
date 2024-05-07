@@ -1,0 +1,64 @@
+@import '@taiga-ui/core/styles/taiga-ui-local';
+
+[tuiAppearance][data-appearance='sidebar-button'] {
+  color: var(--tui-base-08);
+  background: transparent;
+
+  .appearance-hover({
+    color: var(--tui-base-09);
+    background: var(--tui-clear-hover);
+    animation: button-grow-up 0.3s ease-in-out;
+  });
+
+  .appearance-active({
+    color: var(--tui-base-08);
+    background-color: var(--tui-clear-active);
+    opacity: 0.8;
+    animation: button-tap 0.3s ease;
+  });
+
+  .appearance-disabled({
+    color: var(--tui-primary);
+    background: rgba(99, 132, 255, 0.21);
+    opacity: 0.85;
+  })
+}
+
+div {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+@keyframes button-grow-up {
+  0% {
+    transform: scale(1.05);
+}
+
+  50% {
+    transform: scale(1.1);
+}
+
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes button-tap {
+  0% {
+    transform: scale(1.05);
+}
+
+  50% {
+    transform: scale(1.1);
+}
+
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+.selected {
+  background: rgba(99, 132, 255, 0.11);
+}

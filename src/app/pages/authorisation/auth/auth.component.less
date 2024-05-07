@@ -1,0 +1,93 @@
+
+#auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10rem;
+
+  @media screen and (max-height: 1600px) {
+    margin-top: 20rem;
+  }
+
+  @media screen and (max-height: 1280px) {
+    margin-top: 12.5rem;
+  }
+
+  @media screen and (max-height: 1050px) {
+    margin-top: 11rem;
+  }
+
+  @media screen and (max-height: 800px) {
+    margin-top: 8.25rem;
+  }
+
+  @media screen and (max-height: 768px) {
+    margin-top: 7.5rem;
+  }
+
+  @media screen and (max-height: 720px) {
+    margin-top: 7rem;
+  }
+
+  @media screen and (max-height: 640px) {
+    margin-top: 5rem;
+  }
+
+  @media screen and (max-height: 525px) {
+    margin-top: 2rem;
+  }
+}
+
+#auth-container-form-card-sme-header {
+  display: flex;
+}
+
+#auth-container-form-card-sme-header-tui-tooltip {
+  margin-left: auto;
+}
+
+#auth-container-form-card-sme-password-row-span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px 0 0 5px;
+  width: 105px;
+  color: var(--tui-text-02);
+
+  :hover {
+    color: var(--tui-primary-hover);
+  }
+
+  :disabled {
+    color: var(--tui-text-03);
+  }
+
+  :active {
+    color: var(--tui-primary-active)
+  }
+}
+
+#auth-container-form-card-sme-password-row-span-a {
+  cursor: pointer;
+  user-select: none;
+}
+
+#auth-container-form-card-sme-password-row-field-checkbox-span {
+  color: var(--tui-text-02);
+  user-select: none;
+}
+
+#auth-container-form-card-sme-submit-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: -2rem;
+}
+
+#auth-container-form-card-sme-submit-row-form__buttons-button {
+  width: 125px;
+
+  @media screen and (max-width: 1024px) {
+    width: 100px;
+  }
+}

@@ -1,0 +1,58 @@
+@import "@taiga-ui/core/styles/taiga-ui-local.less";
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+#overview-card-project {
+  .column();
+  width: 18.125rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+#overview-card-project-title-row {
+  .row();
+  width: 100%;
+}
+
+#overview-card-project-avatar {
+  background-size: 85% 85%;
+  background-position: center;
+}
+
+#overview-card-project-desc {
+  text-align: start;
+  text-wrap: initial;
+}
+
+#overview-card-project-row-tags-item-with-more {
+  width: 100%;
+}
+
+#overview-card-project-footer-row {
+  .row();
+  align-items: center;
+  width: 100%;
+}
+
+#overview-card-project-footer-row-tui-svg-link,
+#overview-card-project-footer-row-tui-svg-git {
+  color: var(--tui-focus);
+}
+
+#overview-card-project-footer-row-tui-avatar-stack {
+  margin-left: auto;
+}
+
+#overview-card-project-footer-row-tui-avatar {
+  box-shadow: var(--tui-shadow);
+}

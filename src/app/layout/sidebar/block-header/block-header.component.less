@@ -1,0 +1,89 @@
+@import '@taiga-ui/core/styles/taiga-ui-local';
+
+@offset: 16px;
+
+.button-state-hover {
+  color: var(--tui-base-09);
+  background: var(--tui-clear-hover);
+}
+
+.button-state-active {
+  color: var(--tui-base-08);
+  background: var(--tui-clear-hover-active);
+}
+
+[tuiAppearance][data-appearance='custom'] {
+  color: var(--tui-base-08);
+  background: transparent;
+
+  .appearance-hover({
+    .button-state-hover();
+    animation: button-grow-up 0.3s ease-in-out;
+  });
+
+  .appearance-active({
+    .button-state-active();
+    opacity: 0.8;
+  });
+
+  .appearance-disabled({
+    color: var(--tui-primary);
+    background: rgba(99, 132, 255, 0.21);
+    opacity: 0.85;
+  })
+}
+
+[tuiAppearance][data-appearance='profile-buttons'] {
+  width: 100%;
+  border-radius: 0;
+  justify-content: flex-start;
+  padding: @offset;
+
+  .appearance-hover({
+    .button-state-hover();
+  });
+
+  .appearance-active({
+    .button-state-active();
+    opacity: 0.8;
+  })
+}
+
+#header-container {
+  border-bottom: 1px solid #D7D7D7;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+@keyframes button-grow-up {
+  0% {
+    transform: scale(1.05);
+}
+
+  50% {
+    transform: scale(1.1);
+}
+
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+#template-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#template-container-island {
+  margin: @offset;
+}
+
+#template-container-island-content-figure-button {
+  border-radius: 100%;
+}

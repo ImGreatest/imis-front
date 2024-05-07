@@ -2,6 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -22,7 +23,15 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@entities": ["src/app/common/entities/index.ts", "src/app/auth/interfaces/index.ts"],
+      "@enums": ["src/app/common/enum/index.ts", "src/app/auth/enums/index.ts"],
+//      "@guards": [],
+      "@interfaces": ["src/app/common/interfaces/index.ts"],
+      "@services": ["src/app/common/services/index.ts"],
+      "@validators": ["src/app/common/validators/index.ts"],
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
