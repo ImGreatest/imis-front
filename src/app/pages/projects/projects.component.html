@@ -2,18 +2,27 @@
   <aside id="page-container-section-aside">
     <h2>Фильтр поиска</h2>
     <div class="filter-fields">
-        <label for="title">Название Проекта:</label>
-        <input [(ngModel)]="filters.title" id="title">
+      <label for="title" class="filter-label">Название Проекта:</label>
+      <input [(ngModel)]="filters.title" id="title" class="filter-input">
+    
+      <label for="languages" class="filter-label">Язык:</label>
+      <select [(ngModel)]="filters.language" id="languages" class="filter-input">
+        <option *ngFor="let language of languages">{{ language }}</option>
+      </select>
+    
+      <div class="checkbox-container">
+        <label class="checkmark-container">
+          Только мои проекты
+          <input type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+      </div>
 
-        <label for="languages">Язык:</label>
-        <select [(ngModel)]="filters.language" id="languages">
-          <option *ngFor="let language of languages">{{ language }}</option>
-        </select>
-
-        <div id="filter-btn-group">
-          <button class="filter-button" (click)="applyFilters()">Применить фильтры</button>
-          <button class="filter-button" (click)="clearFilters()">Очистить фильтры</button>
-        </div>
+      <div class="button-container">
+        <button class="filter-button" id="clearButton">Очистить</button>
+        <button class="filter-button" id="applyButton">Применить</button>
+      </div>
+      
     </div>
 </aside>
 
