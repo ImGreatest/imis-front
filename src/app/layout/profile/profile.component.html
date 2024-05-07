@@ -5,6 +5,7 @@
       (mouseover)="section.select = true"
       (mouseout)="section.select = false"
       class="nav-cell"
+      [routerLink]="section.routing"
     >
       <h2 id="section-label">{{ section.name }}</h2>
       <div

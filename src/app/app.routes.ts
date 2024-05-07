@@ -75,12 +75,16 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/user/user-profile/user-profile.module').then((m) => m.UserProfileModule),
       },
       {
-        path: 'events',
-        loadChildren: () => import('./pages/user/events/events.module').then((m) => m.EventsModule),
+        path: 'favorite',
+        loadChildren: () => import('./pages/user/favorite/favorite.module').then((m) => m.FavoriteModule),
       },
       {
         path: 'projects',
         loadChildren: () => import('./pages/user/projects/projects.module').then((m) => m.ProjectsModule),
+      },
+      {
+        path: 'events',
+        loadChildren: () => import('./pages/user/events/events.module').then((m) => m.EventsModule),
       },
       {
         path: 'notifications',

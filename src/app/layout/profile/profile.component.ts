@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthService } from "../../auth/auth.service";
+import { INavContent } from "@interfaces";
 
 @Component({
   selector: 'app-profile',
@@ -9,12 +10,12 @@ import { AuthService } from "../../auth/auth.service";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileComponent {
-  readonly sections = [
-    { name: 'Главная', routing:'overview', select: false },
-    { name:'Рейтинг', routing: 'rating', select: false },
-    { name:'Проекты', routing: 'projects', select: false },
-    { name:'События', routing: 'events', select: false },
-    { name:'Компании', routing: 'company', select: false }
+  readonly sections: INavContent[] = [
+    { name: 'Главная', routing:'/overview', select: false },
+    { name:'Рейтинг', routing: '/rating', select: false },
+    { name:'Проекты', routing: '/projects', select: false },
+    { name:'События', routing: '/events', select: false },
+    { name:'Компании', routing: '/company', select: false }
   ];
   constructor(
     protected router: Router,
