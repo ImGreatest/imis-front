@@ -1,1 +1,88 @@
-<p>company works!</p>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Страница компании</title>
+  <script src="scripts/company_styles.ts" type="module"></script>
+  <style>
+    /* CSS стили для карточек компаний */
+    .company-card {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+    .company-card h3 {
+      margin-top: 0;
+    }
+    .company-card p {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="page-container">
+  <div id="page-container-section-aside">
+    <!-- Сайдбар или раздел фильтров -->
+    <div class="filter-container">
+      <!-- Содержимое фильтров -->
+      <div class="filter-fields">
+        <div class="title-container">
+          <h2>Фильтры</h2>
+        </div>
+        <!-- Здесь размещаются поля фильтров -->
+        <label class="filter-label" for="companyName">Название компании</label>
+        <input type="text" id="companyName" class="filter-input">
+        <label class="filter-label" for="industry">Отрасль</label>
+        <select id="industry" class="filter-input">
+          <!-- Опции для фильтра по отрасли -->
+          <option value="industry1">Отрасль 1</option>
+          <option value="industry2">Отрасль 2</option>
+          <option value="industry3">Отрасль 3</option>
+        </select>
+        <button class="filter-button">Применить фильтры</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="page-container-div-router-outlet">
+    <!-- Основной раздел контента -->
+    <div class="title-container">
+      <h1>Компании</h1>
+    </div>
+    <div class="companies-container">
+      <!-- Карточки компаний -->
+      <div *ngFor="let company of companies" class="company-card">
+        <!-- Содержимое карточки компании -->
+        <h3>{{ company.name }}</h3>
+        <p>{{ company.description }}</p>
+        <p>Стек: {{ company.techStack }}</p>
+        <p>Адрес: {{ company.address }}</p>
+        <p>Контакты: {{ company.contacts }}</p>
+      </div>
+    </div>
+      <!-- Карточки компаний -->
+      <div class="company-card">
+        <!-- Содержимое карточки компании -->
+        <h3>Название компании 1</h3>
+        <p>Описание компании 1</p>
+        <p>Стек: Технологии 1, Технологии 2</p>
+        <p>Адрес: Адрес компании 1</p>
+        <p>Контакты: Телефон, Электронная почта</p>
+      </div>
+      <div class="company-card">
+        <!-- Содержимое карточки компании -->
+        <h3>Название компании 2</h3>
+        <p>Описание компании 2</p>
+        <p>Стек: Технологии 3, Технологии 4</p>
+        <p>Адрес: Адрес компании 2</p>
+        <p>Контакты: Телефон, Электронная почта</p>
+      </div>
+      <!-- Добавьте сюда еще карточки компаний -->
+    </div>
+  </div>
+
+</body>
+</html>

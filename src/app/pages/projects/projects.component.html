@@ -1,1 +1,45 @@
-<p>projects works!</p>
+<div id="page-container">
+  <aside id="page-container-section-aside">
+    <h2>Фильтр поиска</h2>
+    <div class="filter-fields">
+      <label for="title" class="filter-label">Название Проекта:</label>
+      <input [(ngModel)]="filters.title" id="title" class="filter-input">
+    
+      <label for="languages" class="filter-label">Язык:</label>
+      <select [(ngModel)]="filters.language" id="languages" class="filter-input">
+        <option *ngFor="let language of languages">{{ language }}</option>
+      </select>
+    
+      <div class="checkbox-container">
+        <label class="checkmark-container">
+          Только мои проекты
+          <input type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+
+      <div class="button-container">
+        <button class="filter-button" id="clearButton">Очистить</button>
+        <button class="filter-button" id="applyButton">Применить</button>
+      </div>
+      
+    </div>
+</aside>
+
+  <div id="page-container-div-router-outlet">
+    <div class="projects-container">
+      <project-card
+        *ngFor="let project of projects"
+        [title]="project.title"
+        [description]="project.description"
+        [avatar]="project.avatar"
+        [projectTags]="project.projectTags"
+        [usedLanguages]="project.usedLanguages"
+        [customLink]="project.customLink"
+        [gitLink]="project.gitLink"
+        [members]="project.members">
+      </project-card>
+    </div>
+  </div>
+
+</div>
