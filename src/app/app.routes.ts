@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { ErrorComponent } from "./pages/error-404/error.component";
 import { SidebarComponent } from "./layout/sidebar/sidebar.component";
 import { AuthGuard } from "./auth/auth.guard";
-import { UserProfileComponent } from "./pages/user-profile/user-profile.component";
+import { ProfileComponent } from "./layout/profile/profile.component";
 
 export const routes: Routes = [
   {
@@ -58,26 +58,31 @@ export const routes: Routes = [
         path: 'roles',
         loadChildren: () => import('./pages/roles/roles.module').then((m) => m.RolesModule),
       },
-      {
-        path: 'user',
-        component: UserProfileComponent,
-        children: [
-          {
-            path: 'events',
-            loadChildren: () => import('./pages/user-profile/events/events.module').then((m) => m.EventsModule),
-          },
-          {
-            path: 'projects',
-            loadChildren: () => import('./pages/user-profile/projects/projects.module').then((m) => m.ProjectsModule),
-          },
-          {
-            path: 'notifications',
-            loadChildren: () => import('./pages/user-profile/notification/notification.module').then((m) => m.NotificationModule),
-          }
-        ]
-      },
     ],
     canActivateChild: [AuthGuard],
+  },
+  {
+    path: 'user',
+    component: ProfileComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: '/profile',
+        pathMatch: 'full',
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('./pages/user/user-profile/user-profile.module').then((m) => m.UserProfileModule),
+      },
+      {
+        path: 'events',
+        loadChildren: () => import('./pages/user/events/events.module').then((m) => m.EventsModule),
+      },
+      {
+        path: 'projects',
+        loadChildren: () => import('./pages/user/projects/projects.module').then((m) => m.ProjectsModule),
+      },
+    ]
   },
   {
     path: 'auth',

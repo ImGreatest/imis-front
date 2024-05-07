@@ -3,14 +3,18 @@ import {CommonModule} from "@angular/common";
 import {TUI_SANITIZER} from "@taiga-ui/core";
 import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
 import {RouterModule} from "@angular/router";
-import { EventsComponent } from "./events.component";
+import {UserProfileComponent} from "./user-profile.component";
+import { ProjectsModule } from "../projects/projects.module";
+import { EventsModule } from "../events/events.module";
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild([
-      {path: 'user', component: EventsComponent}
+      { path: '', component: UserProfileComponent },
     ]),
+    ProjectsModule,
+    EventsModule,
   ],
   providers: [
     {
@@ -18,7 +22,7 @@ import { EventsComponent } from "./events.component";
       useClass: NgDompurifySanitizer
     },
   ],
-  declarations: [EventsComponent],
-  exports: [EventsComponent],
+  declarations: [UserProfileComponent],
+  exports: [UserProfileComponent],
 })
-export class EventsModule {}
+export class UserProfileModule {}
