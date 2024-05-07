@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {tuiFadeIn} from "@taiga-ui/core";
-
+import { NgModel } from '@angular/forms';
 @Component({
   selector: 'app-company',
   templateUrl: './company.component.html',
@@ -9,21 +9,71 @@ import {tuiFadeIn} from "@taiga-ui/core";
   animations: [tuiFadeIn],
 })
 export class CompanyComponent {
+
+  filters = {
+    name: '',
+    industry: '',
+    techStack: ''
+  }
+
+  industries = ['IT', 'СМИ', 'Ритейл', 'Здравоохранение','Банки'];
   companies = [
     {
-      name: 'Название компании 1',
+      name: 'Компания 1',
+      
+      industry: 'IT',
       description: 'Описание компании 1',
-      techStack: 'Технологии 1, Технологии 2',
-      address: 'Адрес компании 1',
-      contacts: 'Телефон, Электронная почта',
+      techStack: ['JavaScript', 'C#'],
+      address: 'г.Москва, ул.Ленина, 1',
+      contacts: '8(800)555-35-35, example1@example.com',
     },
     {
-      name: 'Название компании 2',
+      name: 'Компания 2',
+      industry: 'СМИ',
       description: 'Описание компании 2',
-      techStack: 'Технологии 3, Технологии 4',
-      address: 'Адрес компании 2',
-      contacts: 'Телефон, Электронная почта',
-    }
-    // Добавьте сюда данные о дополнительных компаниях аналогичным образом
+      techStack: ['Python', 'Java'],
+      address: 'г.Санкт-Петербург, просп.Невский, 2',
+      contacts: '8(800)665-45-25, example2@example.com',
+    },
+    {
+      name: 'Компания 3',
+      industry: 'Ритейл',
+      description: 'Описание компании 3',
+      techStack: ['PHP', 'Ruby'],
+      address: 'г.Казань, ул.Казанская, 3',
+      contacts: '8(800)775-55-15, example3@example.com',
+    },
+    // Можно добавить больше компаний по этому образцу...
   ];
+
+  originalCompanies = this.companies;
+
+  applyFilters() {
+    this.companies = this.originalCompanies.slice(); // сброс к исходным перед фильтрацией
+    if(this.filters.name) {
+      this.companies = this.companies.filter(c => c.name.toLowerCase().includes(this.filters.name.toLowerCase()));
+    }
+    if(this.filters.industry) {
+      this.companies = this.companies.filter(c => c.industry.includes(this.filters.industry));
+    }
+    if(this.filters.techStack) {
+      this.companies = this.companies.filter(c => c.techStack.some(t => t.toLowerCase() === this.filters.techStack.toLowerCase()));
+    }
+  }
+
+  clearFilters() {
+    this.filters = {
+      name: '',
+      industry: '',
+      techStack: ''
+    };
+    this.companies = this.originalCompanies.slice();
+  }
+
+  isFilterVisible = false;
+
+  toggleFilter() {
+    this.isFilterVisible = !this.isFilterVisible;
+  }
+
 }
