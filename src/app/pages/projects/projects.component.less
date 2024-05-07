@@ -1,0 +1,107 @@
+@primary-color: #526ED3;
+@secondary-color: rgba(27, 31, 59, 0.4);
+@light-color: #FFFFFF;
+@border-color: #E0E0E0;
+@filter-search-color: #000000;
+
+body {
+  font-family: 'Manrope', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+#page-container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#page-container-section-aside {
+  width: 232px;
+  border-left: thin solid @border-color;
+  background-color: @light-color;
+}
+
+#page-container-div-router-outlet {
+  width: calc(100% - 232px);
+  padding: 20px;
+}
+
+.filter-fields {
+  padding: 10px 0;
+}
+
+.filter-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  width: 129px;
+  height: 44px;
+  margin-bottom: 20px;
+  background-color: @primary-color;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+}
+
+.filter-button:hover {
+  background-color: lighten(@primary-color, 10%);
+}
+
+.filter-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.projects-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  overflow-y: scroll;
+  max-height: 500px; /* Высота на ваше усмотрение */
+  padding: 20px 0;
+}
+
+.project-card {
+  margin: 15px;
+  padding: 20px;
+  border: 1px solid @border-color;
+  background-color: @light-color;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  max-height: 200px; /* Высота на ваше усмотрение */
+  overflow: scroll;
+}
+
+#languages {
+  width: 100%;
+  height: 44px;
+  padding: 5px;
+  border-radius: 12px;
+  border: 1px solid @border-color;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  #page-container {
+    flex-direction: column;
+  }
+
+  #page-container-section-aside {
+    width: 100%;
+    border-left: none;
+    border-bottom: thin solid @border-color;
+  }
+
+  #page-container-div-router-outlet {
+    width: 100%;
+  }
+}

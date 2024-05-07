@@ -1,1 +1,36 @@
-<p>projects works!</p>
+<div id="page-container">
+  <aside id="page-container-section-aside">
+    <h2>Фильтр поиска</h2>
+    <div class="filter-fields">
+        <label for="title">Название Проекта:</label>
+        <input [(ngModel)]="filters.title" id="title">
+
+        <label for="languages">Язык:</label>
+        <select [(ngModel)]="filters.language" id="languages">
+          <option *ngFor="let language of languages">{{ language }}</option>
+        </select>
+
+        <div id="filter-btn-group">
+          <button class="filter-button" (click)="applyFilters()">Применить фильтры</button>
+          <button class="filter-button" (click)="clearFilters()">Очистить фильтры</button>
+        </div>
+    </div>
+</aside>
+
+  <div id="page-container-div-router-outlet">
+    <div class="projects-container">
+      <project-card
+        *ngFor="let project of projects"
+        [title]="project.title"
+        [description]="project.description"
+        [avatar]="project.avatar"
+        [projectTags]="project.projectTags"
+        [usedLanguages]="project.usedLanguages"
+        [customLink]="project.customLink"
+        [gitLink]="project.gitLink"
+        [members]="project.members">
+      </project-card>
+    </div>
+  </div>
+
+</div>
