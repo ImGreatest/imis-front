@@ -7,8 +7,7 @@ import {CommonModule} from "@angular/common";
 import {CompanyComponent} from "./company.component";
 import {RouterModule} from "@angular/router";
 import {ProjectsComponent} from "../projects/projects.component";
-
-
+import { CompanyCardModule } from "src/app/component/company-card/company-card.module";
 
 @NgModule({
   imports: [
@@ -16,6 +15,7 @@ import {ProjectsComponent} from "../projects/projects.component";
     RouterModule.forChild([
       {path: '', component: CompanyComponent}
     ]),
+    CompanyCardModule
   ],
   providers: [
     {

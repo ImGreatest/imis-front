@@ -6,6 +6,7 @@ import {ProjectsComponent} from "./projects.component";
 import {RouterModule} from "@angular/router";
 import { FormsModule } from '@angular/forms';
 import { ProjectCardModule } from "src/app/component/project-card/project-card.module";
+import { CompanyCardModule } from "src/app/component/company-card/company-card.module";
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { ProjectCardModule } from "src/app/component/project-card/project-card.m
       {path: '', component: ProjectsComponent}
     ]),
     ProjectCardModule, // Подключение ProjectCardModule
+    CompanyCardModule,
   ],
   providers: [
     {
