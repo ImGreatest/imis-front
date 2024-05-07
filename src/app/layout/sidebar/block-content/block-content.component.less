@@ -1,0 +1,69 @@
+@import '@taiga-ui/core/styles/taiga-ui-local';
+
+@appearance-hover: {
+  color: var(--tui-base-09);
+  background: var(--tui-clear-hover);
+  animation: button-grow-up 0.3s ease-in-out;
+}
+@appearance-active: {
+  color: var(--tui-base-08);
+  background: var(--tui-clear-active);
+  opacity: 0.8;
+  animation: button-tap 0.3s ease;
+}
+
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+[tuiAppearance][data-appearance='sidebar-button'] {
+  width: 80px;
+  height: 70px;
+  color: var(--tui-base-08);
+  background: transparent;
+}
+
+[tuiAppearance][data-appearance='sidebar-button']:hover {
+  color: var(--tui-base-09);
+  background: var(--tui-clear-hover);
+  animation: button-grow-up 0.3s ease-in-out;
+}
+
+[tuiAppearance][data-appearance='sidebar-button']:active {
+  color: var(--tui-base-08);
+  background-color: var(--tui-clear-active);
+  opacity: 0.8;
+}
+
+[tuiAppearance][data-appearance='sidebar-button']:disabled {
+  opacity: 0.85;
+}
+
+@keyframes button-grow-up {
+  0% {
+    transform: scale(1.05);
+}
+
+  50% {
+    transform: scale(1.1);
+}
+
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+.box {
+  padding: 0 0.6875rem;
+}
+
+#content-container-div {
+  border-radius: 12px
+}
+
+.selected {
+  background: rgba(99, 132, 255, 0.11);
+}

@@ -1,0 +1,44 @@
+<div id="confirm-container" class="tui-container">
+  <form id="confirm-container-form" [formGroup]="form" class="tui-col_6" (submit)="onConfirm()">
+    <div id="confirm-container-form-card" tuiCardLarge="normal">
+      <div id="confirm-container-form-card-sme" class="tui-row_align_center tui-row_sme">
+        <div id="confirm-container-form-card-sme-code-row" class="tui-form__row">
+          <tui-input
+            id="auth-container-form-card-sme-code-row-tui-input"
+            formControlName="code"
+            [maskito]="maskCode"
+            tuiHintContent="Введите код отправленный на указанную ранее почту"
+            tuiHintDirection="bottom"
+          >
+            Код из сообщения
+            <input
+              id="auth-container-form-card-sme-code-row-tui-input-input"
+              autocomplete="off"
+              inputmode="numeric"
+              tuiTextfield
+            />
+            <span id="auth-container-form-card-sme-login-row-tui-input-span" class="tui-required"></span>
+          </tui-input>
+          <tui-error
+            id="auth-container-form-card-sme-login-row-tui-error"
+            formControlName="code"
+            [error]="[] | tuiFieldError | async"
+          ></tui-error>
+        </div>
+      </div>
+      <div id="confirm-container-form-card-sme-submit-row" class="tui-form__row">
+        <div id="confirm-container-form-card-sme-submit-row-form__buttons" class="tui-form__buttons">
+          <button
+            id="confirm-container-form-card-sme-submit-row-form__buttons-button"
+            size="m"
+            tuiButton
+            type="submit"
+            class="tui-form__button"
+          >
+            Continue
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

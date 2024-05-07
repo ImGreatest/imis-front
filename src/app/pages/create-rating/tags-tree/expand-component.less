@@ -1,0 +1,53 @@
+@import '@taiga-ui/core/styles/taiga-ui-local.less';
+
+:host {
+    .transition(background);
+    position: relative;
+    height: var(--tui-height-s);
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.25rem;
+    padding: 0 0.5rem;
+    border-radius: var(--tui-radius-xs);
+    background: var(--tui-base-01);
+
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0rem;
+        z-index: 0;
+    }
+
+    &:before {
+        width: 2rem;
+        border-bottom: 1px solid var(--tui-base-04);
+    }
+
+    &:after {
+        top: -1.2rem;
+        bottom: 1rem;
+        border-left: 1px solid var(--tui-base-04);
+    }
+
+    &._expandable {
+        &:hover {
+            cursor: pointer;
+            background: var(--tui-base-02);
+        }
+    }
+}
+
+tui-svg {
+    position: relative;
+    background: inherit;
+    z-index: 1;
+}
+.spacer{
+    width: 2rem;
+}
+.expand-button{
+    z-index: 1; margin-right: 0.25rem
+}
+  

@@ -1,0 +1,17 @@
+<div id="page-container">  <!--Очень странная х..я без этого дива вся верстка ломается хз поч -->
+  <section id="page-container-section">
+    <aside id="page-container-section-aside">
+      <block-header id="page-container-section-aside-block-header"></block-header>
+      <tui-scrollbar id="page-container-section-aside-tui-scrollbar">
+        <block-content
+          id="page-container-section-aside-tui-scrollbar-block-content"
+          [blocks]="buttonContent"
+        ></block-content>
+      </tui-scrollbar>
+      <block-notice id="page-container-section-aside-block-notice"></block-notice>
+    </aside>
+  </section>
+  <div id="page-container-div-router-outlet">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -5,8 +5,6 @@ import { provideAnimations } from "@angular/platform-browser/animations";
 import { provideClientHydration } from "@angular/platform-browser";
 import { TuiRootModule } from "@taiga-ui/core";
 
-
-
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),

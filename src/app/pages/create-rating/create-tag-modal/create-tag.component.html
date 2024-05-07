@@ -1,0 +1,34 @@
+<div class="create-tag">
+  <form [formGroup]="form" class="tag-info">
+    <div>
+      <tui-select
+        *tuiLet="items"
+        tuiTextfieldSize="m"
+        class="b-form"
+        [valueContent]="items ? stringify(items) : loading"
+        [formControl]="form.controls.baseTagControl"
+        >Родительский тег
+        <ng-template tuiDataList>
+          <tui-data-list *ngIf="items; else loading">
+            <button *ngFor="let item of items" tuiOption [value]="item.id">
+              {{ item.name }}, {{ item.description }}
+            </button>
+          </tui-data-list>
+        </ng-template>
+        <ng-template #loading>
+          <tui-loader class="tui-space_vertical-3 loader"></tui-loader>
+        </ng-template>
+      </tui-select>
+    </div>
+    <tui-input [formControl]="form.controls.nameControl" tuiTextfieldSize="m">
+      Название нового тега
+      <input tuiTextfield />
+    </tui-input>
+    <tui-input [formControl]="form.controls.descriptionControl" tuiTextfieldSize="m">
+        Описание нового тега
+        <input tuiTextfield />
+      </tui-input>
+  </form>
+
+  <button (click)="onSave()" [size]="'m'" tuiButton="primary">Сохранить</button>
+</div>
