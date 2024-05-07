@@ -6,14 +6,12 @@
                     [tuiTextfieldCleaner]="true"
                     tuiTextfieldSize="m"
                     [formControl]="search.controls.searchSuccessName"
-                    tuiTextfieldIconLeft="tuiIconSearch"
-                    >Поиск по названию успеха</tui-input >
+                    tuiTextfieldIconLeft="tuiIconSearch">Поиск по названию успеха</tui-input >
                 <tui-input
                     [tuiTextfieldCleaner]="true"
                     tuiTextfieldSize="m"
                     [formControl]="search.controls.searchStudentSurname"
-                    tuiTextfieldIconLeft="tuiIconSearch"
-                    >Поиск по фамилии</tui-input >
+                    tuiTextfieldIconLeft="tuiIconSearch">Поиск по фамилии</tui-input >
             </form>
             <div class="filter-container">
                 <button
@@ -57,7 +55,7 @@
                     tuiTbody
                     [data]="sortedSuccess">
                     <tr *ngFor="let item of sortedSuccess; let index = index" tuiTr>
-                        <td *tuiCell="'place'"  tuiTd>
+                        <td *tuiCell="'place'" tuiTd>
                             {{ page$.getValue() * size$.getValue() + index + 1 }}
                         </td>
                         <td *tuiCell="'name'" tuiTd>
@@ -67,7 +65,9 @@
                             {{ item.description }}
                         </td>
                         <td *tuiCell="'tags'" tuiTd>
-                            <tui-tag *ngFor="let tag of item.tags" [value]="tag.name"></tui-tag>
+                            <div style="display: flex;flex-wrap: wrap;gap: 0.5rem">
+                                <tui-tag *ngFor="let tag of item.tags" [value]="tag.name"></tui-tag>
+                            </div>
                         </td>
                         <td *tuiCell="'studentName'" tuiTd>
                             {{ item.studentName }}

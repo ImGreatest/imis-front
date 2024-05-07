@@ -173,10 +173,10 @@ export class SuccessPageComponent implements OnInit {
                         tags: success
                             .tags
                             .map((tag) => tag.tag),
-                        studentName: success.user.name,
-                        studentSurname: success.user.surname,
-                        studentDirection: success.user.direction.name,
-                        studentGroup: success.user.group.name
+                        studentName: success.student.name,
+                        studentSurname: success.student.surname,
+                        studentDirection: success.student.direction.name,
+                        studentGroup: success.student.group.name
                     }));
             }));
     }
