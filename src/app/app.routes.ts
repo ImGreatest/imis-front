@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { ErrorComponent } from "./pages/error-404/error.component";
 import { SidebarComponent } from "./layout/sidebar/sidebar.component";
 import { AuthGuard } from "./auth/auth.guard";
+import { UserProfileComponent } from "./pages/user-profile/user-profile.component";
 
 export const routes: Routes = [
   {
@@ -59,18 +60,15 @@ export const routes: Routes = [
       },
       {
         path: 'user',
+        component: UserProfileComponent,
         children: [
           {
-            path: 'profile',
-            loadChildren: () => import('./pages/user-profile/user-profile.module').then((m) => m.UserProfileModule),
-          },
-          {
             path: 'events',
-            loadChildren: () => import('./pages/user-profile/events/events.component').then((m) => m.EventsComponent),
+            loadChildren: () => import('./pages/user-profile/events/events.module').then((m) => m.EventsModule),
           },
           {
             path: 'projects',
-            loadChildren: () => import('./pages/user-profile/projects/projects.component').then((m) => m.ProjectsComponent),
+            loadChildren: () => import('./pages/user-profile/projects/projects.module').then((m) => m.ProjectsModule),
           },
           {
             path: 'notifications',

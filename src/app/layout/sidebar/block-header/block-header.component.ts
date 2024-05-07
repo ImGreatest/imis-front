@@ -41,9 +41,17 @@ export class BlockHeaderComponent {
     this.cookieService.put('preference-logout-dialog', String(this.preference));
   }
 
+  async onEvents(): Promise<void> {
+    if (this.authService.isAuthenticated()) {
+      await this.router.navigate(['user/events'])
+    } else {
+      await this.router.navigate(['auth']);
+    }
+  }
+
   async onProfile(): Promise<void> {
     if (this.authService.isAuthenticated()) {
-      await this.router.navigate(['user-profile'])
+      await this.router.navigate(['user/profile'])
     } else {
       await this.router.navigate(['auth']);
     }
@@ -52,7 +60,7 @@ export class BlockHeaderComponent {
   async onProject(): Promise<void> {
     if (this.authService.isAuthenticated()) {
       console.log('navigate to user projects');
-      // await this.router.navigate(['user-profile/projects'])
+      await this.router.navigate(['user/projects'])
     } else {
       await this.router.navigate(['auth']);
     }

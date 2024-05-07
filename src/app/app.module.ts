@@ -87,17 +87,19 @@ import { CookieModule } from "ngx-cookie";
       CookieModule.withOptions(),
     ],
     providers: [
-        {
-            provide: TUI_SANITIZER,
-            useClass: NgDompurifySanitizer
-        }, {
-            provide: POLYMORPHEUS_CONTEXT,
-            useValue: {}
-        }, {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthInterceptor,
-            multi: true
-        }
+      {
+        provide: TUI_SANITIZER,
+        useClass: NgDompurifySanitizer
+      },
+      {
+        provide: POLYMORPHEUS_CONTEXT,
+        useValue: {}
+      },
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthInterceptor,
+        multi: true
+      }
     ],
     bootstrap: [AppComponent],
     exports: [AppComponent]
