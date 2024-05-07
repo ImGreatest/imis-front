@@ -43,7 +43,7 @@ export class BlockHeaderComponent {
 
   async onEvents(): Promise<void> {
     if (this.authService.isAuthenticated()) {
-      await this.router.navigate(['profile/events'])
+      await this.router.navigate(['user/events'])
     } else {
       await this.router.navigate(['auth']);
     }
@@ -59,8 +59,7 @@ export class BlockHeaderComponent {
 
   async onProject(): Promise<void> {
     if (this.authService.isAuthenticated()) {
-      console.log('navigate to user projects');
-      await this.router.navigate(['profile/projects'])
+      await this.router.navigate(['user/projects'])
     } else {
       await this.router.navigate(['auth']);
     }

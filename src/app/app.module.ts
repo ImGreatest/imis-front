@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     TUI_SANITIZER,
     TuiAlertModule,
@@ -12,14 +12,14 @@ import {
     TuiRootModule,
     TuiThemeNightModule
 } from '@taiga-ui/core';
-import {TuiBlockStatusModule} from "@taiga-ui/layout";
-import {AppComponent} from './app.component';
-import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
-import {BrowserModule} from "@angular/platform-browser";
-import {AppRoutingModule} from "./app-routing.module";
-import {CommonModule} from "@angular/common";
-import {SidebarModule} from "./layout/sidebar/sidebar.module";
-import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
+import { TuiBlockStatusModule } from "@taiga-ui/layout";
+import { AppComponent } from './app.component';
+import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
+import { BrowserModule } from "@angular/platform-browser";
+import { AppRoutingModule } from "./app-routing.module";
+import { CommonModule } from "@angular/common";
+import { SidebarModule } from "./layout/sidebar/sidebar.module";
+import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
 import {
     TuiAppearanceModule,
     TuiBadgeNotificationModule,
@@ -33,15 +33,16 @@ import {
     TuiSurfaceModule,
     TuiTitleModule
 } from "@taiga-ui/experimental";
-import {TuiRepeatTimesModule} from "@taiga-ui/cdk";
-import {POLYMORPHEUS_CONTEXT} from "@tinkoff/ng-polymorpheus";
-import {TuiBarModule} from "@taiga-ui/addon-charts";
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {ComponentsModule} from "./component/components.module";
-import {AuthInterceptor} from './auth/auth.interceptor';
+import { TuiRepeatTimesModule } from "@taiga-ui/cdk";
+import { POLYMORPHEUS_CONTEXT } from "@tinkoff/ng-polymorpheus";
+import { TuiBarModule } from "@taiga-ui/addon-charts";
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ComponentsModule } from "./component/components.module";
+import { AuthInterceptor } from './auth/auth.interceptor';
 import { TuiMobileDialogModule } from '@taiga-ui/addon-mobile';
 import { TuiAvatarModule, TuiBadgeModule, TuiInputModule, TuiTabsModule } from '@taiga-ui/kit';
 import { CookieModule } from "ngx-cookie";
+import { ProfileModule } from "./layout/profile/profile.module";
 
 @NgModule({
     declarations: [AppComponent],
@@ -81,6 +82,7 @@ import { CookieModule } from "ngx-cookie";
       TuiButtonCloseModule,
       TuiBarModule,
       SidebarModule,
+      ProfileModule,
       TuiModeModule,
       TuiBlockStatusModule,
       ComponentsModule,

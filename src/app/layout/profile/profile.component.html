@@ -1,1 +1,97 @@
-<p>profile works!</p>
+<div id="page">
+  <nav id="page-nav">
+    <div
+      *ngFor="let section of sections"
+      (mouseover)="section.select = true"
+      (mouseout)="section.select = false"
+      class="nav-cell"
+    >
+      <h2 id="section-label">{{ section.name }}</h2>
+      <div
+        class="select-bar"
+        *ngIf="section.select"
+      ></div>
+    </div>
+  </nav>
+  <div id="content">
+    <div id="page-navigation">
+      <div id="page-navigation-container">
+        <div id="page-navigation-container-header">
+          <h2 id="page-navigation-container-header-h2" tuiTitle="m">
+            Личный кабинет
+          </h2>
+        </div>
+        <div id="page-navigation-container-content">
+          <button
+            id="page-navigation-container-content-profile"
+            appearance="navigation-buttons"
+            iconLeft="tuiIconUserLarge"
+            tuiButton
+            size="m"
+            (click)="onProfile()"
+            [style.color]="this.router.url === '/user/profile' ? 'var(--tui-primary)' : 'var(--tui-base-08)'"
+          >
+            Профиль
+          </button>
+          <button
+            id="page-navigation-container-content-favorite"
+            appearance="navigation-buttons"
+            iconLeft="tuiIconBookmarkLarge"
+            tuiButton
+            size="m"
+            (click)="onFavorite()"
+            [style.color]="this.router.url === '/user/favorite' ? 'var(--tui-primary)' : 'var(--tui-base-08)'"
+          >Избраное</button>
+          <button
+            id="page-navigation-container-content-projects"
+            appearance="navigation-buttons"
+            iconLeft="tuiIconBookLarge"
+            tuiButton
+            size="m"
+            (click)="onProject()"
+            [style.color]="this.router.url === '/user/projects' ? 'var(--tui-primary)' : 'var(--tui-base-08)'"
+          >
+            Мои Проекты
+          </button>
+          <button
+            id="page-navigation-container-content-events"
+            appearance="navigation-buttons"
+            iconLeft="tuiIconCalendarLarge"
+            tuiButton
+            size="m"
+            (click)="onEvent()"
+            [style.color]="this.router.url === '/user/events' ? 'var(--tui-primary)' : 'var(--tui-base-08)'"
+          >
+            Мои События
+          </button>
+          <button
+            id="page-navigation-container-content-notice"
+            appearance="navigation-buttons"
+            iconLeft="tuiIconBellLarge"
+            tuiButton
+            size="m"
+            (click)="onNotice()"
+            [style.color]="this.router.url === '/user/notifications' ? 'var(--tui-primary)' : 'var(--tui-base-08)'"
+          >
+            Уведомления
+          </button>
+        </div>
+        <div id="page-navigation-container-footer">
+          <button
+            id="page-navigation-container-footer-button"
+            appearance="navigation-buttons"
+            iconLeft="tuiIconLogOutLarge"
+            tuiButton
+            size="m"
+            (click)="onLogout()"
+          >
+            Leave
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="page-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

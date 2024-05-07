@@ -66,7 +66,7 @@ export const routes: Routes = [
     component: ProfileComponent,
     children: [
       {
-        path: '',
+        path: 'user',
         redirectTo: '/profile',
         pathMatch: 'full',
       },
@@ -82,7 +82,16 @@ export const routes: Routes = [
         path: 'projects',
         loadChildren: () => import('./pages/user/projects/projects.module').then((m) => m.ProjectsModule),
       },
-    ]
+      {
+        path: 'notifications',
+        loadChildren: () => import('./pages/user/notification/notification.module').then((m) => m.NotificationModule),
+      },
+      {
+        path: '**',
+        redirectTo: 'profile'
+      }
+    ],
+    canActivateChild: [AuthGuard],
   },
   {
     path: 'auth',

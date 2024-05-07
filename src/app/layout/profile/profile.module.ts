@@ -1,22 +1,21 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { RouterModule } from "@angular/router";
-import { TUI_SANITIZER } from "@taiga-ui/core";
-import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
 import { ProfileComponent } from "./profile.component";
+import { RouterModule } from "@angular/router";
+import { TuiButtonModule, TuiTitleModule } from "@taiga-ui/experimental";
+import { TuiForModule } from "@taiga-ui/cdk";
+import { TuiBarModule } from "@taiga-ui/addon-charts";
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild([
-      {path: '', component: ProfileComponent}
+      { path: 'user', component: ProfileComponent }
     ]),
-  ],
-  providers: [
-    {
-      provide: TUI_SANITIZER,
-      useClass: NgDompurifySanitizer
-    },
+    TuiTitleModule,
+    TuiButtonModule,
+    TuiForModule,
+    TuiBarModule,
   ],
   declarations: [ProfileComponent],
   exports: [ProfileComponent],

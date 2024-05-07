@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Output, ViewEncapsulation } from '@angular/core';
 import { NavigationEnd, Router } from "@angular/router";
-import { IButtonContent } from "./interfaces/button-content.interface";
+import { IButtonContent } from "../../common/interfaces/layout/button-content.interface";
 
 @Component({
   selector: 'app-sidebar',
