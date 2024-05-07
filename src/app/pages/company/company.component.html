@@ -54,6 +54,16 @@
     </div>
     <div class="companies-container">
       <!-- Карточки компаний -->
+      <div *ngFor="let company of companies" class="company-card">
+        <!-- Содержимое карточки компании -->
+        <h3>{{ company.name }}</h3>
+        <p>{{ company.description }}</p>
+        <p>Стек: {{ company.techStack }}</p>
+        <p>Адрес: {{ company.address }}</p>
+        <p>Контакты: {{ company.contacts }}</p>
+      </div>
+    </div>
+      <!-- Карточки компаний -->
       <div class="company-card">
         <!-- Содержимое карточки компании -->
         <h3>Название компании 1</h3>
@@ -73,7 +83,6 @@
       <!-- Добавьте сюда еще карточки компаний -->
     </div>
   </div>
-</div>
 
 </body>
 </html>
