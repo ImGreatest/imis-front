@@ -6,10 +6,23 @@ export interface IResAuthDatas {
 
 export interface IPermissions
 {
-  [key : string]: {
-      action: string,
-      condition: null | {
-          [key : string]: string
-      }
+  [key : string]: IAction[]
+}
+export interface IAction {
+  action: string,
+  condition: null | {
+      [key : string]: string
   }
+}
+
+export interface ISubjectPermisions{
+  delete: boolean ,
+  create: boolean,
+  read: boolean,
+  update: boolean,
+  deleteCondition: boolean ,
+  createCondition: boolean,
+  readCondition: boolean,
+  updateCondition: boolean,
+  
 }

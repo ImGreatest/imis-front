@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { AppService } from "src/app/common/services/app.service";
 import { Observable, tap } from "rxjs";
 import { IUser } from "@entities";
-import { IPermissions, IReqResetPassword, IReqSignIn, IResAuthDatas } from "@interfaces";
+import { IAction, IPermissions, IReqResetPassword, IReqSignIn, IResAuthDatas, ISubjectPermisions } from "@interfaces";
 import { EAuthKeys } from "src/app/auth/enums/auth-keys.enum";
 import { nanoid } from 'nanoid';
 
@@ -30,6 +30,62 @@ export class AuthService {
     const permissionsJson = localStorage.getItem(EAuthKeys.PERMISSIONS);
     return permissionsJson ? JSON.parse(permissionsJson) : null;
   }
+  getPermissionsForSubject(subject: string): ISubjectPermisions {
+    const perms = this.permissions || {};
+    const getPermissionForAction = (perms: IAction[], action: string) => {
+        const perm = perms.find(perm => perm.action === action);
+        return {
+            exists: perm !== undefined,
+            hasCondition: perm?.condition !== null
+        };
+    };
+
+    const subjectPermission: ISubjectPermisions = {
+        delete: false,
+        create: false,
+        read: false,
+        update: false,
+        deleteCondition: false,
+        createCondition: false,
+        readCondition: false,
+        updateCondition: false,
+    };
+
+    if (perms['all']) {
+        const { exists: deleteExists, hasCondition: deleteHasCondition } = getPermissionForAction(perms['all'], 'delete');
+        const { exists: createExists, hasCondition: createHasCondition } = getPermissionForAction(perms['all'], 'create');
+        const { exists: updateExists, hasCondition: updateHasCondition } = getPermissionForAction(perms['all'], 'update');
+        const { exists: readExists, hasCondition: readHasCondition } = getPermissionForAction(perms['all'], 'read');
+
+        subjectPermission.delete = deleteExists;
+        subjectPermission.create = createExists;
+        subjectPermission.update = updateExists;
+        subjectPermission.read = readExists;
+        subjectPermission.deleteCondition = deleteHasCondition;
+        subjectPermission.createCondition = createHasCondition;
+        subjectPermission.updateCondition = updateHasCondition;
+        subjectPermission.readCondition = readHasCondition;
+    }
+
+    if (perms[subject]) {
+        const { exists: deleteExists, hasCondition: deleteHasCondition } = getPermissionForAction(perms[subject], 'delete');
+        const { exists: createExists, hasCondition: createHasCondition } = getPermissionForAction(perms[subject], 'create');
+        const { exists: updateExists, hasCondition: updateHasCondition } = getPermissionForAction(perms[subject], 'update');
+        const { exists: readExists, hasCondition: readHasCondition } = getPermissionForAction(perms[subject], 'read');
+
+        subjectPermission.delete = deleteExists || subjectPermission.delete;
+        subjectPermission.create = createExists || subjectPermission.create;
+        subjectPermission.update = updateExists || subjectPermission.update;
+        subjectPermission.read = readExists || subjectPermission.read;
+        subjectPermission.deleteCondition = deleteHasCondition || subjectPermission.deleteCondition;
+        subjectPermission.createCondition = createHasCondition || subjectPermission.createCondition;
+        subjectPermission.updateCondition = updateHasCondition || subjectPermission.updateCondition;
+        subjectPermission.readCondition = readHasCondition || subjectPermission.readCondition;
+    }
+
+    return subjectPermission;
+}
+
 
   get deviceId(): string {
     let deviceId: string | null = localStorage.getItem(EAuthKeys.DEVICE_ID);

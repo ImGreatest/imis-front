@@ -15,14 +15,35 @@ import {SuccessService} from '../../common/services/api/success.service';
 import {AppDialogService} from "src/app/component/dialog/app-dialog.service";
 import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus';
 import {CreateUpdateSuccessComponent} from "./create-update-success/create-update-success.component";
+import {AuthService} from '../../auth/auth.service';
 
 @Component({selector: 'skills', templateUrl: './success-page.component.html', styleUrl: './success-page.component.less', changeDetection: ChangeDetectionStrategy.OnPush})
 export class SuccessPageComponent implements OnInit {
     readonly search = new FormGroup({searchStudentSurname: new FormControl(''), searchSuccessName: new FormControl('')});
 
-    constructor(private cdr : ChangeDetectorRef, private successService : SuccessService, private appDialogService : AppDialogService, private injector : Injector) {}
+    delete : boolean = false;
+    create : boolean = false;
+    update : boolean = false;
+    read : boolean = false;
+
+    constructor(private authService : AuthService, private cdr : ChangeDetectorRef, private successService : SuccessService, private appDialogService : AppDialogService, private injector : Injector) {}
 
     ngOnInit() : void {
+
+        const perms = this.authService.permissions;
+        if (perms) {
+            if (perms['all']) {
+                console.log(perms)
+                this.delete = perms['all'].find((perm) => perm.action === 'read') !== null || this.delete
+                this.create = perms['all'].find((perm) => perm.action === 'create') !== null || this.delete
+                this.update = perms['all'].find((perm) => perm.action === 'update') !== null || this.delete
+                this.read = perms['all'].find((perm) => perm.action === 'read') !== null || this.delete
+            }
+            if (perms['success']) {
+                this.delete = perms['success'].find((perm) => perm.action === 'read') !== null || this.delete
+            }
+        }
+       
         this
             .request$
             .subscribe((success) => {
@@ -184,20 +205,22 @@ export class SuccessPageComponent implements OnInit {
         .request$
         .pipe(map(tuiIsFalsy));
 
-    
-    
     onCreateUpdateSuccess(id : number = -5) : void {
-        const dataToModal = id < 0? {}: {successId: id}
-        this
-            .appDialogService
-            .open(new PolymorpheusComponent < any, any > (CreateUpdateSuccessComponent, this.injector), {
-                size: 'm',
-                closeable: true,
-                title: id < 0
-                    ? 'Создание успеха'
-                    : 'Редактирование успеха',
-                data: dataToModal
-            })
-            .subscribe((value : any) => value === 'created' && this.page$.next(this.page$.value));
+        const dataToModal = id < 0
+            ? {}
+            : {
+                successId: id
+            }
+            this
+                .appDialogService
+                .open(new PolymorpheusComponent < any, any > (CreateUpdateSuccessComponent, this.injector), {
+                    size: 'm',
+                    closeable: true,
+                    title: id < 0
+                        ? 'Создание успеха'
+                        : 'Редактирование успеха',
+                    data: dataToModal
+                })
+                .subscribe((value : any) => value === 'created' && this.page$.next(this.page$.value));
     }
 }
