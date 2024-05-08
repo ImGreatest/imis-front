@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { AppService } from "src/app/common/services/app.service";
 import { Observable, tap } from "rxjs";
 import { IUser } from "@entities";
-import { IReqResetPassword, IReqSignIn, IResAuthDatas } from "@interfaces";
+import { IPermissions, IReqResetPassword, IReqSignIn, IResAuthDatas } from "@interfaces";
 import { EAuthKeys } from "src/app/auth/enums/auth-keys.enum";
 import { nanoid } from 'nanoid';
 
@@ -24,6 +24,11 @@ export class AuthService {
 
   get refreshToken(): string | null {
     return localStorage.getItem(EAuthKeys.TOKEN_REFRESH);
+  }
+
+  get permissions(): IPermissions|null{
+    const permissionsJson = localStorage.getItem(EAuthKeys.PERMISSIONS);
+    return permissionsJson ? JSON.parse(permissionsJson) : null;
   }
 
   get deviceId(): string {
@@ -48,6 +53,8 @@ export class AuthService {
   setToken(data: IResAuthDatas): void {
     localStorage.setItem(EAuthKeys.TOKEN, data.access);
     localStorage.setItem(EAuthKeys.TOKEN_REFRESH, data.refresh);
+    localStorage.setItem(EAuthKeys.PERMISSIONS,JSON.stringify(data.permissions))
+
   }
 
   signIn(data: IReqSignIn): Observable<IResAuthDatas> {
