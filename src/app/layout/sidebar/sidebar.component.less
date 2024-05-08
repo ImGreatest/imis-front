@@ -6,9 +6,14 @@
 #page-container-div-router-outlet {
   width: calc(100% - 125px);
   height: calc(100vh - 125px);
-  display: grid;
+  display: flex;
 }
+#page-container-div-router-outlet > * {
+  width: 100%;}
 
+#page-container-div-router-outlet > router-outlet {
+    width: 0%;}
+  
 #page-container-section-aside {
   display: flex;
   flex-direction: column;
