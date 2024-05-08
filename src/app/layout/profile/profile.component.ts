@@ -10,6 +10,7 @@ import { INavContent } from "@interfaces";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileComponent {
+  expandDropdown: boolean = false;
   readonly sections: INavContent[] = [
     { name: 'Главная', routing:'/overview', select: false },
     { name:'Рейтинг', routing: '/rating', select: false },
@@ -28,7 +29,8 @@ export class ProfileComponent {
   }
 
   onFavorite(): void {
-    this.router.navigate(['/user/favorite']).then(r => '');
+    this.expandDropdown = true;
+    // this.router.navigate(['/user/favorite']).then(r => '');
   }
 
   onProject(): void {
@@ -46,5 +48,13 @@ export class ProfileComponent {
   async onLogout(): Promise<void> {
     this.authService.logout();
     await this.router.navigate(['auth']);
+  }
+
+  onObscured(obscured: boolean): void {
+    if (obscured) this.expandDropdown = true;
+  }
+
+  onActiveZone(active: boolean): void {
+    this.expandDropdown = active && this.expandDropdown;
   }
 }

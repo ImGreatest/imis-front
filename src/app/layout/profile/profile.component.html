@@ -22,7 +22,9 @@
             Личный кабинет
           </h2>
         </div>
-        <div id="page-navigation-container-content">
+        <div
+          id="page-navigation-container-content"
+        >
           <button
             id="page-navigation-container-content-profile"
             appearance="navigation-buttons"
@@ -31,6 +33,9 @@
             size="m"
             (click)="onProfile()"
             [style.color]="this.router.url === '/user/profile' ? 'var(--tui-primary)' : 'var(--tui-base-08)'"
+            [ngClass]="{
+              'selected': this.router.url === '/user/profile'
+            }"
           >
             Профиль
           </button>
@@ -40,9 +45,18 @@
             iconLeft="tuiIconBookmarkLarge"
             tuiButton
             size="m"
+            [tuiDropdown]="dropdownFavoriteContent"
+            [tuiDropdownManual]="expandDropdown"
             (click)="onFavorite()"
-            [style.color]="this.router.url === '/user/favorite' ? 'var(--tui-primary)' : 'var(--tui-base-08)'"
-          >Избраное</button>
+            (tuiActiveZoneChange)="onActiveZone($event)"
+            (tuiObscured)="onObscured($event)"
+            [style.color]="this.expandDropdown ? 'var(--tui-primary)' : 'var(--tui-base-08)'"
+            [ngClass]="{
+              'selected': this.expandDropdown
+            }"
+          >
+            Избранное
+          </button>
           <button
             id="page-navigation-container-content-projects"
             appearance="navigation-buttons"
@@ -51,6 +65,9 @@
             size="m"
             (click)="onProject()"
             [style.color]="this.router.url === '/user/projects' ? 'var(--tui-primary)' : 'var(--tui-base-08)'"
+            [ngClass]="{
+              'selected': this.router.url === '/user/projects'
+            }"
           >
             Мои Проекты
           </button>
@@ -62,6 +79,9 @@
             size="m"
             (click)="onEvent()"
             [style.color]="this.router.url === '/user/events' ? 'var(--tui-primary)' : 'var(--tui-base-08)'"
+            [ngClass]="{
+              'selected': this.router.url === '/user/events'
+            }"
           >
             Мои События
           </button>
@@ -73,6 +93,9 @@
             size="m"
             (click)="onNotice()"
             [style.color]="this.router.url === '/user/notifications' ? 'var(--tui-primary)' : 'var(--tui-base-08)'"
+            [ngClass]="{
+              'selected': this.router.url === 'user/notifications'
+            }"
           >
             Уведомления
           </button>
@@ -86,7 +109,7 @@
             size="m"
             (click)="onLogout()"
           >
-            Leave
+            Выйти
           </button>
         </div>
       </div>
@@ -96,3 +119,46 @@
     </div>
   </div>
 </div>
+
+<ng-template
+  #dropdownFavoriteContent
+>
+  <div id="template-container">
+    <button
+      id="template-container-button-project"
+      size="m"
+      appearance="dropdown-buttons"
+      iconLeft="tuiIconBookLarge"
+      tuiButton
+    >
+      Проекты
+    </button>
+    <button
+      id="template-container-button-events"
+      size="m"
+      appearance="dropdown-buttons"
+      iconLeft="tuiIconCalendar"
+      tuiButton
+    >
+      События
+    </button>
+    <button
+      id="template-container-button-users"
+      size="m"
+      appearance="dropdown-buttons"
+      iconLeft="tuiIconUsersLarge"
+      tuiButton
+    >
+      Пользователи
+    </button>
+    <button
+      id="template-container-button-company"
+      size="m"
+      appearance="dropdown-buttons"
+      iconLeft="tuiIconBriefcaseLarge"
+      tuiButton
+    >
+      Компании
+    </button>
+  </div>
+</ng-template>

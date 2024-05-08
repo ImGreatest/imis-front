@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './favorite.component.html',
   styleUrl: './favorite.component.less'
 })
-export class FavoriteComponent {
-
-}
+export class FavoriteComponent {}

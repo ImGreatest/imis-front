@@ -7,7 +7,7 @@ import { FavoriteComponent } from "./favorite.component";
   imports: [
     CommonModule,
     RouterModule.forChild([
-      {path: '', component: FavoriteComponent}
+      { path: '', component: FavoriteComponent }
     ]),
   ],
   declarations: [FavoriteComponent],

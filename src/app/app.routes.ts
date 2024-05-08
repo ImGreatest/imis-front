@@ -76,7 +76,22 @@ export const routes: Routes = [
       },
       {
         path: 'favorite',
-        loadChildren: () => import('./pages/user/favorite/favorite.module').then((m) => m.FavoriteModule),
+        // loadChildren: () => import('./pages/user/favorite/favorite.module').then((m) => m.FavoriteModule),
+        children: [
+          {
+            path: 'favorite',
+            redirectTo: '/projects',
+            pathMatch: 'full'
+          },
+          {
+            path: 'projects',
+            loadChildren: () => import('./pages/user/favorite/favorite-projects/favorite-projects.module').then((m) => m.FavoriteProjectsModule),
+          },
+          {
+            path: '**',
+            redirectTo: 'projects'
+          }
+        ]
       },
       {
         path: 'projects',
