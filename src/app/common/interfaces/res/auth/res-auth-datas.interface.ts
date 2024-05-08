@@ -1,28 +1,30 @@
 export interface IResAuthDatas {
-    access : string;
-    refresh : string;
-    permissions : IPermissions
+  access: string;
+  refresh: string;
+  permissions: IPermissions;
+  id: number;
 }
 
-export interface IPermissions
-{
-  [key : string]: IAction[]
+export interface IPermissions {
+  [key: string]: IAction[];
 }
 export interface IAction {
-  action: string,
+  action: string;
   condition: null | {
-      [key : string]: string
-  }
+    [key: string]: string;
+  };
 }
 
-export interface ISubjectPermisions{
-  delete: boolean ,
-  create: boolean,
-  read: boolean,
-  update: boolean,
-  deleteCondition: boolean ,
-  createCondition: boolean,
-  readCondition: boolean,
-  updateCondition: boolean,
-  
+export interface ISubjectPermissions {
+  delete: boolean;
+  create: boolean;
+  read: boolean;
+  update: boolean;
+  updateStatus: boolean;
+  deleteCondition: boolean;
+  createCondition: boolean;
+  readCondition: boolean;
+  updateCondition: boolean;
+  updateStatusCondition: boolean;
+  userId: number;
 }
