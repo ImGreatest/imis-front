@@ -1,1 +1,37 @@
-<p>company works!</p>
+<div id="page-container">
+  <aside id="page-container-section-aside">
+    <h2>Фильтр поиска</h2>
+    <div class="filter-fields">
+      <label for="name" class="filter-label">Название Компании:</label>
+      <input (input)="filters.name" id="name" class="filter-input">
+
+      <label for="industries" class="filter-label">Отрасль:</label>
+      <select (change)="filters.industry" id="industries" class="filter-input">
+        <option *ngFor="let industry of industries">{{ industry }}</option>
+      </select>
+
+      <label for="techStack" class="filter-label">Технологии:</label>
+      <select (change)="filters.techStack" id="techStack" class="filter-input">
+      </select>
+
+      <div class="button-container">
+        <button class="filter-button" id="clearButton" (click)="clearFilters()">Очистить</button>
+        <button class="filter-button" id="applyButton" (click)="applyFilters()">Применить</button>
+      </div>
+      
+    </div>
+  </aside>
+
+  <div id="page-container-div-router-outlet">
+    <div class="companies-container">
+      <company-card
+      *ngFor="let company of companies"
+      [name]="company.name"
+      [description]="company.description"
+      [techStack]="company.techStack"
+      [address]="company.address"
+      [contacts]="company.contacts"
+    ></company-card>
+    </div>
+  </div>
+</div>

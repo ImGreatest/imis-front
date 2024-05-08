@@ -3,7 +3,7 @@ export interface ISuccessRes {
     name : string
     description : string
     tags : ISuccessTagTag[]
-    user:{
+    student:{
         id: number
         name: string
         surname: string

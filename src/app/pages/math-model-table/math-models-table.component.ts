@@ -16,7 +16,6 @@ import {Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({selector: 'math-models-table', templateUrl: './math-models-table.component.html', styleUrl: './math-models-table.component.less', changeDetection: ChangeDetectionStrategy.OnPush, animations: [tuiFadeIn]})
-@Component({selector: 'math-models-table', templateUrl: './math-models-table.component.html', styleUrl: './math-models-table.component.less', changeDetection: ChangeDetectionStrategy.OnPush, animations: [tuiFadeIn]})
 export class MathModelsTableComponent implements OnInit {
     constructor(private cdr : ChangeDetectorRef, private ratingService : RatingService, private router : Router, @Inject(TuiAlertService)private alerts : TuiAlertService) {}
     ratings : IRatingTableElement[] = [];
