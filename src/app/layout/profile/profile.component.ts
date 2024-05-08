@@ -17,6 +17,7 @@ export class ProfileComponent {
     { name:'События', routing: '/events', select: false },
     { name:'Компании', routing: '/company', select: false }
   ];
+
   constructor(
     protected router: Router,
     private authService: AuthService
