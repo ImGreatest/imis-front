@@ -42,7 +42,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { TuiMobileDialogModule } from '@taiga-ui/addon-mobile';
 import { TuiAvatarModule, TuiBadgeModule, TuiInputModule, TuiTabsModule } from '@taiga-ui/kit';
 import { CookieModule } from "ngx-cookie";
-import { ProfileModule } from "./layout/profile/profile.module";
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
     declarations: [AppComponent],
@@ -89,19 +89,17 @@ import { ProfileModule } from "./layout/profile/profile.module";
       CookieModule.withOptions(),
     ],
     providers: [
-      {
-        provide: TUI_SANITIZER,
-        useClass: NgDompurifySanitizer
-      },
-      {
-        provide: POLYMORPHEUS_CONTEXT,
-        useValue: {}
-      },
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: AuthInterceptor,
-        multi: true
-      }
+        {
+            provide: TUI_SANITIZER,
+            useClass: NgDompurifySanitizer
+        }, {
+            provide: POLYMORPHEUS_CONTEXT,
+            useValue: {}
+        }, {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true
+        }, provideAnimationsAsync()
     ],
     bootstrap: [AppComponent],
     exports: [AppComponent]

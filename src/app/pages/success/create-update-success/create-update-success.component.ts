@@ -56,7 +56,7 @@ export class CreateUpdateSuccessComponent implements OnInit {
             nameControl.setValue(data.name);
             descriptionControl.setValue(data.description);
             tagsControl.setValue(data.tags.map(tag => tag.tag.id));
-            studentControl.setValue(data.user.id);
+            studentControl.setValue(data.student.id);
         })
     }
     tags: ITag[] = [
