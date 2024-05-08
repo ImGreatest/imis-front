@@ -33,18 +33,26 @@
             </div>
           </tui-island>
           <button
+            id="template-container-button-events"
+            size="s"
+            appearance="profile-buttons"
+            iconLeft="tuiIconCalendar"
+            tuiButton
+            (click)="onEvents()"
+          >Ваши события</button>
+          <button
             id="template-container-button-project"
             size="s"
             appearance="profile-buttons"
             iconLeft="tuiIconBookLarge"
             tuiButton
             (click)="onProject()"
-          >Проекты</button>
+          >Ваши проекты</button>
           <button
             id="template-container-button-logout"
             size="s"
             appearance="profile-buttons"
-            iconLeft="tuiIconArrowRightCircleLarge"
+            iconLeft="tuiIconLogOutLarge"
             tuiButton
             (click)="onOpen()"
           >Выйти</button>

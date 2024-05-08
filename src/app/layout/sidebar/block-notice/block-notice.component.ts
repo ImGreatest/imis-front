@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { NavigationEnd, Router } from "@angular/router";
 
 @Component({
@@ -9,17 +9,21 @@ import { NavigationEnd, Router } from "@angular/router";
 })
 export class BlockNoticeComponent {
   select: boolean = false;
-  constructor(private readonly route: Router) {
+  constructor(
+    private readonly route: Router,
+    private cdr: ChangeDetectorRef
+  ) {
     this.route.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.select = this.route.url === '/notifications';
-        console.log(this.select);
+        this.select = this.route.url === '/user/notifications';
+        this.cdr.markForCheck();
       }
     });
   }
 
   async onClick(): Promise<void> {
     this.select = !this.select;
-    await this.route.navigate(['/notifications']);
+    await this.route.navigate(['user/notifications']);
+    this.cdr.markForCheck();
   }
 }

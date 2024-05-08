@@ -16,7 +16,8 @@
             <input
               id="auth-container-form-card-sme-login-row-tui-input-input"
               autocomplete="off"
-              placeholder="Ivanov@mail.ru" tuiTextfield
+              placeholder="Ivanov@mail.ru"
+              tuiTextfield
             />
             <span id="auth-container-form-card-sme-login-row-tui-input-span" class="tui-required"></span>
           </tui-input>
@@ -29,26 +30,27 @@
         <div id="auth-container-form-card-sme-password-row" class="tui-form__row">
           <tui-input-password
             id="auth-container-form-card-sme-password-row-tui-input-password"
+            *tuiLet="password$ | async as password"
             formControlName="password"
           >
             Input password
             <span id="auth-container-form-card-sme-password-row-tui-input-password-span" class="tui-required"></span>
           </tui-input-password>
-          <span id="auth-container-form-card-sme-password-row-span" class="tui-text_body-s" (click)="onForgotPassword()">
-            <a id="auth-container-form-card-sme-password-row-span-a">Forgot password</a>
-          </span>
           <tui-error
             id="auth-container-form-card-sme-password-row-tui-error"
             formControlName="password"
             [error]="[] | tuiFieldError | async">
           </tui-error>
+          <span id="auth-container-form-card-sme-password-row-span" class="tui-text_body-s" (click)="onForgotPassword()">
+            <a id="auth-container-form-card-sme-password-row-span-a">Forgot password</a>
+          </span>
         </div>
         <div id="auth-container-form-card-sme-remind-row" class="tui-form__row">
           <div id="auth-container-form-card-sme-password-row-field-checkbox" class="tui-form__field-checkbox">
             <tui-checkbox-labeled
-              id="auth-container-form-card-sme-password-row-field-checkbox-tui-checkbox-labeled"
-              formControlName="remind"
-              size="l"
+                id="auth-container-form-card-sme-password-row-field-checkbox-tui-checkbox-labeled"
+                formControlName="remind"
+                size="l"
               >
               <span id="auth-container-form-card-sme-password-row-field-checkbox-span">Remind Me</span>
             </tui-checkbox-labeled>

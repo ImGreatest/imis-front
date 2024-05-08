@@ -1,0 +1,140 @@
+
+* {
+  box-sizing: border-box;
+}
+
+[tuiAppearance][data-appearance='navigation-buttons'] {
+  width: 100%;
+  justify-content: flex-start;
+  color: var(--tui-base-08);
+  gap: 25px;
+  border-radius: 0;
+  padding: 30px 30px 30px 42px;
+  letter-spacing: 0.33px;
+  white-space: nowrap;
+  text-align: center;
+  user-select: none;
+}
+
+[tuiAppearance][data-appearance='navigation-buttons']:hover {
+  color: var(--tui-base-09);
+  background: var(--tui-clear-hover);
+}
+
+[tuiAppearance][data-appearance='navigation-buttons']:active {
+  color: var(--tui-base-09);
+  background: var(--tui-clear-hover);
+  opacity: 0.8;
+}
+
+#page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#page-nav {
+  width: 100%;
+  height: 9%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 8px;
+  gap: 45px;
+  border-bottom: 1.75px solid #D7D7D7;
+  box-shadow: var(--tui-shadow-navigation);
+}
+
+#content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#page-navigation {
+  width: 45%;
+  height: 100%;
+  order: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+#page-navigation-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin-right: 5.25rem;
+  margin-top: 24px;
+  background: #fff;
+  border: 1px solid var(--tui-base-04);
+  border-radius: 24px;
+  box-shadow: var(--tui-shadow-dropdown);
+}
+
+#page-navigation-container-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: 1px solid #D7D7D7;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  padding: 16px 16px 12px 30px;
+}
+
+#page-navigation-container-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#page-navigation-container-footer {
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid #D7D7D7;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+}
+
+#page-navigation-container-header-h2 {
+  color: var(--tui-text-01);
+  letter-spacing: 0.3px;
+  word-spacing: 1px;
+  text-align: center;
+}
+
+#page-navigation-container-content-notice {
+
+}
+
+#page-navigation-container-footer-button {
+  border-bottom-left-radius: 23px;
+  border-bottom-right-radius: 23px;
+}
+
+.nav-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.select-bar {
+  display: flex;
+  align-items: center;
+  width: 4rem;
+  height: 3px;
+  background: var(--tui-primary-hover);
+  border: 0 solid transparent;
+  border-radius: 24%;
+}
+
+#page-content {
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+  order: 2;
+}
