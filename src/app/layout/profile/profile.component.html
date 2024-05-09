@@ -22,9 +22,7 @@
             Личный кабинет
           </h2>
         </div>
-        <div
-          id="page-navigation-container-content"
-        >
+        <div id="page-navigation-container-content">
           <button
             id="page-navigation-container-content-profile"
             appearance="navigation-buttons"
@@ -50,9 +48,9 @@
             (click)="onFavorite()"
             (tuiActiveZoneChange)="onActiveZone($event)"
             (tuiObscured)="onObscured($event)"
-            [style.color]="this.expandDropdown ? 'var(--tui-primary)' : 'var(--tui-base-08)'"
+            [style.color]="this.router.url.includes('/favorite') ? 'var(--tui-primary)' : 'var(--tui-base-08)'"
             [ngClass]="{
-              'selected': this.expandDropdown
+              'selected': this.router.url.includes('/favorite')
             }"
           >
             Избранное
@@ -94,7 +92,7 @@
             (click)="onNotice()"
             [style.color]="this.router.url === '/user/notifications' ? 'var(--tui-primary)' : 'var(--tui-base-08)'"
             [ngClass]="{
-              'selected': this.router.url === 'user/notifications'
+              'selected': this.router.url === '/user/notifications'
             }"
           >
             Уведомления
@@ -130,6 +128,11 @@
       appearance="dropdown-buttons"
       iconLeft="tuiIconBookLarge"
       tuiButton
+      (click)="onFavoriteProjects()"
+      [style.color]="this.router.url.includes('favorite/projects') ? 'var(--tui-primary)' : 'var(--tui-base-08)'"
+      [ngClass]="{
+        'selected': this.router.url.includes('favorite/projects')
+      }"
     >
       Проекты
     </button>
@@ -139,6 +142,11 @@
       appearance="dropdown-buttons"
       iconLeft="tuiIconCalendar"
       tuiButton
+      (click)="onFavoriteEvents()"
+      [style.color]="this.router.url.includes('favorite/events') ? 'var(--tui-primary)' : 'var(--tui-base-08)'"
+      [ngClass]="{
+        'selected': this.router.url.includes('favorite/events')
+      }"
     >
       События
     </button>
@@ -148,6 +156,11 @@
       appearance="dropdown-buttons"
       iconLeft="tuiIconUsersLarge"
       tuiButton
+      (click)="onFavoriteUsers()"
+      [style.color]="this.router.url.includes('favorite/users') ? 'var(--tui-primary)' : 'var(--tui-base-08)'"
+      [ngClass]="{
+        'selected': this.router.url.includes('favorite/users')
+      }"
     >
       Пользователи
     </button>
@@ -157,6 +170,11 @@
       appearance="dropdown-buttons"
       iconLeft="tuiIconBriefcaseLarge"
       tuiButton
+      (click)="onFavoriteCompanies()"
+      [style.color]="this.router.url.includes('favorite/companies') ? 'var(--tui-primary)' : 'var(--tui-base-08)'"
+      [ngClass]="{
+        'selected': this.router.url.includes('favorite/companies')
+      }"
     >
       Компании
     </button>

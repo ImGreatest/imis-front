@@ -37,43 +37,43 @@ import { FormsModule } from "@angular/forms";
 import { TuiDropdownMobileModule } from "@taiga-ui/addon-mobile";
 
 @NgModule({
-    imports: [
-        CommonModule,
-        TuiCardModule,
-        TuiHeaderModule,
-        TuiSurfaceModule,
-        TuiHostedDropdownModule,
-        TuiTitleModule,
-        TuiItemsWithMoreModule,
-        TuiTagModule,
-        TuiAvatarModule,
-        TuiAvatarOutlineModule,
-        TuiDropdownModule,
-        TuiSvgModule,
-        TuiAvatarStackModule,
-        TuiInitialsModule,
-        TuiAutoColorModule,
-        TuiDataListModule,
-        TuiActiveZoneModule,
-        TuiCellModule,
-        TuiDataListDropdownManagerModule,
-        TuiRepeatTimesModule,
-        RouterLink,
-        TuiFallbackSrcModule,
-        TuiDataListWrapperModule,
-        TuiSelectModule,
-        FormsModule,
-        TuiTextfieldControllerModule,
-        TuiDropdownMobileModule,
-        TuiAmountPipeModule
-    ],
-    providers: [
-        {
-            provide: TUI_SANITIZER,
-            useClass: NgDompurifySanitizer
-        }
-    ],
-    declarations: [ProjectCardComponent],
-    exports: [ProjectCardComponent]
+  imports: [
+    CommonModule,
+    TuiCardModule,
+    TuiHeaderModule,
+    TuiSurfaceModule,
+    TuiHostedDropdownModule,
+    TuiTitleModule,
+    TuiItemsWithMoreModule,
+    TuiTagModule,
+    TuiAvatarModule,
+    TuiAvatarOutlineModule,
+    TuiDropdownModule,
+    TuiSvgModule,
+    TuiAvatarStackModule,
+    TuiInitialsModule,
+    TuiAutoColorModule,
+    TuiDataListModule,
+    TuiActiveZoneModule,
+    TuiCellModule,
+    TuiDataListDropdownManagerModule,
+    TuiRepeatTimesModule,
+    RouterLink,
+    TuiFallbackSrcModule,
+    TuiDataListWrapperModule,
+    TuiSelectModule,
+    FormsModule,
+    TuiTextfieldControllerModule,
+    TuiDropdownMobileModule,
+    TuiAmountPipeModule
+  ],
+  providers: [
+    {
+      provide: TUI_SANITIZER,
+      useClass: NgDompurifySanitizer
+    }
+  ],
+  declarations: [ProjectCardComponent],
+  exports: [ProjectCardComponent]
 })
 export class ProjectCardModule {}

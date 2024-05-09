@@ -1,8 +1,45 @@
+
+[tuiAppearance][data-appearance='filter'] {
+  color: var(--tui-base-08);
+  background: var(--tui-base-03);
+}
+
+[tuiAppearance][data-appearance='filter']:hover {
+  color: var(--tui-base-08);
+  background: var(--tui-base-04);
+}
+
+[tuiAppearance][data-appearance='filter']:active {
+  color: var(--tui-base-09);
+  background: var(--tui-base-05);
+}
+
+[tuiAppearance][data-appearance='filter']:disabled {
+  color: var(--tui-base-06);
+  background: var(--tui-base-02);
+}
+
+[tuiAppearance][data-appearance='dropdown-buttons'] {
+  width: 100%;
+  background: var(--tui-clear);
+}
+
+[tuiAppearance][data-appearance='dropdown-buttons']:hover {
+  color: var(--tui-base-09);
+  background: var(--tui-clear-hover);
+}
+
+[tuiAppearance][data-appearance='dropdown-buttons']:active {
+  color: var(--tui-base-09);
+  background: var(--tui-clear-active);
+  opacity: 0.8;
+}
+
 #notice-page {
-  height: 100%;
-  background: rgb(253, 253, 253);
   display: flex;
   flex-direction: column;
+  height: 100%;
+  background: rgb(253, 253, 253);
   border: 1.85px solid var(--tui-base-03);
   border-radius: 24px;
   box-shadow: var(--tui-shadow-hover);
@@ -10,7 +47,10 @@
 
 #notice-page-container-header {
   display: flex;
+  flex-direction: row;
+  align-items: center;
   border-bottom: 1px solid #D7D7D7;
+  padding: 0 24px;
 }
 
 #notice-page-container-header-span {
@@ -18,7 +58,11 @@
   letter-spacing: 0.3px;
   white-space: nowrap;
   user-select: none;
-  padding: 16px 24px 12px 24px;
+  padding: 16px 24px 12px 0;
+}
+
+#notice-page-container-filter {
+  margin-left: auto;
 }
 
 #notice-page-container-content {
@@ -44,6 +88,18 @@
   margin: 8px 16px 16px;
 }
 
+#notice-page-container-content-content-scrollbar {
+  width: 100%;
+  height: 42rem;
+}
+
+#notice-page-container-content-content-scrollbar-box {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+  gap: 15px;
+}
+
 #notice-page-container-content-footer {
   order: 3;
   height: 8%;
@@ -54,20 +110,14 @@
   border-top: 1px solid #D7D7D7;
 }
 
-#notice-page-container-content-content-cell {
-  height: 37.5px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 8px 8px 8px 16px;
-  user-select: none;
-  background-color: var(--tui-base-03);
+#notice-page-container-content-content-container {
+  background: var(--tui-base-03);
+  border-bottom: 1.25px solid var(--tui-base-03);
 }
 
-#notice-page-container-content-content-cell-label {
-  display: flex;
-  gap: 0.5rem;
-  [tuiSubtitle] {
-    color: var(--tui-positive)
-  }
+#notice-page-container-content-content-cell {
+  width: 98%;
+  box-shadow: none;
 }
+
+//[ngStyle]="{'border-bottom': last ? 'none' : '1.25px solid var(--tui-base-03)'}"

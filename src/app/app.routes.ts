@@ -76,7 +76,6 @@ export const routes: Routes = [
       },
       {
         path: 'favorite',
-        // loadChildren: () => import('./pages/user/favorite/favorite.module').then((m) => m.FavoriteModule),
         children: [
           {
             path: 'favorite',
@@ -85,7 +84,19 @@ export const routes: Routes = [
           },
           {
             path: 'projects',
-            loadChildren: () => import('./pages/user/favorite/favorite-projects/favorite-projects.module').then((m) => m.FavoriteProjectsModule),
+            loadComponent: () => import('./pages/user/favorite/favorite-projects/favorite-projects.component').then((m) => m.FavoriteProjectsComponent),
+          },
+          {
+            path: 'events',
+            loadComponent: () => import('./pages/user/favorite/favorite-events/favorite-events.component').then((m) => m.FavoriteEventsComponent),
+          },
+          {
+            path: 'users',
+            loadComponent: () => import('./pages/user/favorite/favorite-users/favorite-users.component').then((m) => m.FavoriteUsersComponent),
+          },
+          {
+            path: 'companies',
+            loadComponent: () => import('./pages/user/favorite/favorite-company/favorite-company.component').then((m) => m.FavoriteCompanyComponent),
           },
           {
             path: '**',

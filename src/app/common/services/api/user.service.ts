@@ -19,6 +19,7 @@ export class UserService {
   getStudentList(): Observable<Array<ISuccessStudent>> {
     return this.http.get<Array<ISuccessStudent>>(`${this.url}/students`);
   }
+
   createUser(data: IUser): Observable<IUser> {
     return this.http.post<IUser>(`${this.url}/create-user`, data);
   }

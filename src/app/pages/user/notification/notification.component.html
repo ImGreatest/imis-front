@@ -1,36 +1,63 @@
 <div id="notice-page">
   <div id="notice-page-container-header">
-    <span id="notice-page-container-header-span" tuiTitle="m">Уведомления</span>
+    <span
+      id="notice-page-container-header-span"
+      tuiTitle="m"
+    >
+      Уведомления
+    </span>
+    <button
+      id="notice-page-container-filter"
+      appearance="filter"
+      iconLeft="tuiIconFilterLarge"
+      size="m"
+      tuiIconButton
+    ></button>
   </div>
   <div id="notice-page-container-content">
-    <div id="notice-page-container-content-header">
-      <p>pon</p>
-    </div>
     <div id="notice-page-container-content-content">
-      <tui-scrollbar style="width: 100%; height: 28rem">
-        <div style="display: flex; flex-direction: column; padding: 0 1rem; gap: 15px">
+      <tui-scrollbar id="notice-page-container-content-content-scrollbar">
+        <div id="notice-page-container-content-content-scrollbar-box">
           <div
-            id="notice-page-container-content-content-cell"
-            *ngFor="let _ of [].constructor(20); let i = index"
+            id="notice-page-container-content-content-container"
+            *ngFor="let _ of [].constructor(20); let i = index let last = last"
           >
-            <label id="notice-page-container-content-content-cell-label">
+            <button
+              id="notice-page-container-content-content-cell"
+              tuiSurface="elevated"
+              tuiCell
+            >
               <tui-avatar
                 src="tuiIconInfoLarge"
-                size="s"
                 [style.background]="'var(--tui-accent)'"
                 [style.color]="'var(--tui-text-01-night)'"
               ></tui-avatar>
-              <div tuiTitle="s">
-                <strong>Уведомление</strong>
-                <div tuiSubtitle>Available</div>
+              <div tuiTitle>
+                It Can be a button
+                <div tuiSubtitle>In stock</div>
               </div>
-            </label>
+              <div tuiTitle>
+                <div tuiSubtitle>
+                  <button
+                    appearance="icon"
+                    iconLeft="tuiIconTrash2Large"
+                    size="s"
+                    tuiIconButton
+                    (click)="onDelete()"
+                    [style.color]="'var(--tui-base-07)'"
+                  >Delete</button>
+                </div>
+                09-05-2024
+              </div>
+            </button>
           </div>
+          <button
+            id="notice-page-container-content-content-container-last-button"
+            appearance="dropdown-buttons"
+            tuiButton
+          >Load more</button>
         </div>
       </tui-scrollbar>
-    </div>
-    <div id="notice-page-container-content-footer">
-      <p>pon</p>
     </div>
   </div>
 </div>

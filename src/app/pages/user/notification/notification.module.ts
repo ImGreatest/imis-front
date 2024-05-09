@@ -2,7 +2,13 @@ import { NgModule } from "@angular/core";
 import { NotificationComponent } from "./notification.component";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
-import { TuiAvatarModule, TuiTitleModule } from "@taiga-ui/experimental";
+import {
+  TuiAvatarModule,
+  TuiButtonModule,
+  TuiCellModule,
+  TuiSurfaceModule,
+  TuiTitleModule
+} from "@taiga-ui/experimental";
 import { TuiScrollbarModule } from "@taiga-ui/core";
 
 @NgModule({
@@ -14,6 +20,9 @@ import { TuiScrollbarModule } from "@taiga-ui/core";
     TuiTitleModule,
     TuiScrollbarModule,
     TuiAvatarModule,
+    TuiButtonModule,
+    TuiSurfaceModule,
+    TuiCellModule,
   ],
   declarations: [NotificationComponent],
   exports: [NotificationComponent],

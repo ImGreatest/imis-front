@@ -5,7 +5,7 @@ import { Observable, tap } from "rxjs";
 import { IReqCreateNoticeDto, IResNoticeDto, IReqUpdateNoticeDto } from "@interfaces";
 import { ENotificationStatus } from "@enums";
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class NotificationService {
   constructor(
     private http: HttpClient,
@@ -21,7 +21,7 @@ export class NotificationService {
   }
 
   getCurrent(id: number): Observable<IResNoticeDto> {
-    return this.http.get<IResNoticeDto>(`${this.url}/get-current/:${id}`);
+    return this.http.get<IResNoticeDto>(`${this.url}/get-current/${id}`);
   }
 
   getBySender(
