@@ -15,19 +15,53 @@ import {
   share,
   switchMap,
 } from 'rxjs';
-import { PageRes } from '../../common/interfaces/shared/page';
+import { PageRes } from '@interfaces';
 import {
   IPosibleConditions,
   IRole,
   IRolePermissionValue,
   IUpdatePermission,
 } from '@interfaces';
-import { TuiAlertService, TuiDialogService } from '@taiga-ui/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { TuiPromptData, TUI_PROMPT } from '@taiga-ui/kit';
+import {
+  TuiAlertService,
+  TuiButtonModule,
+  TuiDialogService,
+  TuiLoaderModule,
+  TuiTextfieldControllerModule
+} from '@taiga-ui/core';
+import { FormGroup, FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import {
+  TuiPromptData,
+  TUI_PROMPT,
+  TuiInputModule,
+  TuiPaginationModule,
+  TuiMultiSelectModule,
+  TuiDataListWrapperModule
+} from '@taiga-ui/kit';
+import { CommonModule } from "@angular/common";
+import { ScrollingModule } from "@angular/cdk/scrolling";
+import { TuiLetModule } from "@taiga-ui/cdk";
+import { TuiTableModule } from "@taiga-ui/addon-table";
 
 @Component({
   selector: 'roles',
+  standalone: true,
+  imports: [
+    CommonModule,
+    TuiInputModule,
+    ScrollingModule,
+    TuiPaginationModule,
+    TuiLoaderModule,
+    TuiMultiSelectModule,
+    TuiDataListWrapperModule,
+    ReactiveFormsModule,
+    FormsModule,
+    TuiButtonModule,
+    TuiLetModule,
+    TuiTextfieldControllerModule,
+    ReactiveFormsModule,
+    TuiTableModule,
+  ],
   templateUrl: './roles.component.html',
   styleUrls: ['./roles.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,

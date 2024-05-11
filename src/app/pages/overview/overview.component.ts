@@ -1,9 +1,54 @@
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import {FormControl} from "@angular/forms";
-import { TuiDialogService, tuiFadeIn } from "@taiga-ui/core";
+import {
+  TuiDataListModule,
+  TuiDialogService,
+  TuiDropdownModule,
+  tuiFadeIn,
+  TuiHostedDropdownModule,
+  TuiSvgModule
+} from "@taiga-ui/core";
+import { RatingTableModule } from "../../component/rating-table/rating.module";
+import { CommonModule } from "@angular/common";
+import {
+  TuiAutoColorModule,
+  TuiAvatarModule, TuiAvatarOutlineModule, TuiAvatarStackModule,
+  TuiCardModule, TuiCellModule,
+  TuiHeaderModule, TuiInitialsModule,
+  TuiSurfaceModule,
+  TuiTitleModule
+} from "@taiga-ui/experimental";
+import { TuiDataListDropdownManagerModule, TuiItemsWithMoreModule, TuiTagModule } from "@taiga-ui/kit";
+import { TuiActiveZoneModule, TuiRepeatTimesModule } from "@taiga-ui/cdk";
+import { ComponentsModule } from "../../component/components.module";
 
 @Component({
   selector: 'app-overview',
+  standalone: true,
+  imports: [
+    RatingTableModule,
+    CommonModule,
+    TuiCardModule,
+    TuiHeaderModule,
+    TuiSurfaceModule,
+    TuiHostedDropdownModule,
+    TuiTitleModule,
+    TuiItemsWithMoreModule,
+    TuiTagModule,
+    TuiAvatarModule,
+    TuiAvatarOutlineModule,
+    TuiDropdownModule,
+    TuiSvgModule,
+    TuiAvatarStackModule,
+    TuiInitialsModule,
+    TuiAutoColorModule,
+    TuiDataListModule,
+    TuiActiveZoneModule,
+    TuiCellModule,
+    TuiDataListDropdownManagerModule,
+    TuiRepeatTimesModule,
+    ComponentsModule
+  ],
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,3 +1,132 @@
 <div id="profile-page">
-
+  <div id="profile-page-container">
+    <div id="profile-page-row-avatar-container">
+      <div id="profile-page-row-avatar">
+        <tui-badged-content id="profile-page-row-avatar-badged-content">
+          <tui-icon
+            id="profile-page-row-avatar-badged-content-icon"
+            icon="tuiIconCameraLarge"
+            size="xl"
+            tuiBadge
+            tuiSlot="bottom"
+            (mouseover)="selectPhoto = true"
+            (mouseleave)="selectPhoto = false"
+            [style.color]="selectPhoto ? 'var(--tui-base-04)' : 'var(--tui-base-07)'"
+            [style.background]="selectPhoto ? 'var(--tui-base-05)' : 'var(--tui-base-04)' "
+          ></tui-icon>
+          <tui-avatar
+            id="profile-page-row-avatar-badged-content-avatar"
+            size="xxl"
+            avatarUrl="tuiIconUserLarge"
+          >
+          </tui-avatar>
+        </tui-badged-content>
+        <h2
+          id="profile-page-row-avatar-title"
+          tuiTitle="m"
+        >
+          <div
+            id="profile-page-row-avatar-caption"
+            tuiSubtitle
+          >
+            Student
+          </div>
+          <div id="profile-page-row-avatar-title-container">
+            Alex Inkin
+            <div
+              id="profile-page-row-avatar-subtitle"
+              tuiSubtitle
+            >
+              Испк-202-52
+            </div>
+          </div>
+        </h2>
+      </div>
+      <div style="display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end">
+        <div style="display: flex; gap: 15px">
+          <button
+            appearance="outline"
+            iconLeft="tuiIconEditLarge"
+            size="m"
+            tuiIconButton
+            [style.color]="'var(--tui-base-07)'"
+          ></button>
+        </div>
+        <div style="display: flex; flex-direction: column;">
+          <h2 tuiTitle style="display: flex; flex-direction: row; align-items: center; gap: 10px">
+            Skills
+            <tui-icon
+              icon="tuiIconStarLarge"
+            ></tui-icon>
+          </h2>
+          <div style="display: flex; justify-content: flex-end">
+            <tui-tag
+              size="l"
+              [autoColor]="true"
+              [value]="'CSS'"
+            ></tui-tag>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2
+        id="profile-page-row-avatar-about"
+        tuiTitle
+      >
+        Обо мне
+        <div tuiSubtitle>khfgmslkhnmoikhnf</div>
+      </h2>
+    </div>
+    <div style="display: flex; flex-direction: row; justify-content: space-around; gap: 15px">
+      <button
+        tuiAction
+        style="justify-content: flex-start; align-items: center"
+        type="button"
+      >
+        <section>
+          <h3 style="font-weight: bold; margin: 0">PonPOn</h3>
+          <p style="margin: 0">ponponponponponpon</p>
+        </section>
+        <tui-marker-icon
+          size="m"
+          src="tuiIconThumbsUpLarge"
+          class="tui-island__marker"
+        ></tui-marker-icon>
+      </button>
+      <button
+        tuiAction
+        style="justify-content: flex-start; align-items: center"
+        type="button"
+      >
+        <section>
+          <h3 style="font-weight: bold; margin: 0">PonPOn</h3>
+          <p style="margin: 0">ponponponponponpon</p>
+        </section>
+        <tui-marker-icon
+          size="s"
+          src="tuiIconThumbsUpLarge"
+          class="tui-island__marker"
+        ></tui-marker-icon>
+      </button>
+      <button
+        tuiAction
+        style="justify-content: flex-start; align-items: center"
+        type="button"
+      >
+        <section>
+          <h3 style="font-weight: bold; margin: 0">PonPOn</h3>
+          <p style="margin: 0">ponponponponponpon</p>
+        </section>
+        <tui-marker-icon
+          size="s"
+          src="tuiIconThumbsUpLarge"
+          class="tui-island__marker"
+        ></tui-marker-icon>
+      </button>
+    </div>
+  </div>
+  <div id="profile-page-container-outlet">
+    <router-outlet></router-outlet>
+  </div>
 </div>

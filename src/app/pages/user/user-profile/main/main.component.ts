@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from "@angular/common";
 
 @Component({
-  selector: 'app-events',
+  selector: 'app-main',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './events.component.html',
-  styleUrl: './events.component.less'
+  templateUrl: './main.component.html',
+  styleUrl: './main.component.less'
 })
-export class EventsComponent {
+export class MainComponent {
 
 }

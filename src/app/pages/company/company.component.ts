@@ -1,8 +1,15 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {tuiFadeIn} from "@taiga-ui/core";
-import { NgModel } from '@angular/forms';
+import { CommonModule } from "@angular/common";
+import { CompanyCardModule } from "../../component/company-card/company-card.module";
+
 @Component({
   selector: 'app-company',
+  standalone: true,
+  imports: [
+    CommonModule,
+    CompanyCardModule
+  ],
   templateUrl: './company.component.html',
   styleUrls: ['./company.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,7 +27,7 @@ export class CompanyComponent {
   companies = [
     {
       name: 'Компания 1',
-      
+
       industry: 'IT',
       description: 'Описание компании 1',
       techStack: ['JavaScript', 'C#'],

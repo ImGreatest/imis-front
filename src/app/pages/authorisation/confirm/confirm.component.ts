@@ -7,7 +7,7 @@ import { MaskitoOptions } from '@maskito/core';
 import { Router } from "@angular/router";
 import { TuiFieldErrorPipeModule, TuiInputModule } from "@taiga-ui/kit";
 import { TuiButtonModule, TuiCardModule } from "@taiga-ui/experimental";
-import { AsyncPipe } from "@angular/common";
+import { AsyncPipe, CommonModule } from "@angular/common";
 import { MaskitoModule } from "@maskito/angular";
 import { IContextData } from "src/app/pages/authorisation/confirm/interfaces/context-data.interface";
 
@@ -15,6 +15,7 @@ import { IContextData } from "src/app/pages/authorisation/confirm/interfaces/con
   selector: 'app-confirm',
   standalone: true,
   imports: [
+    CommonModule,
     TuiInputModule,
     ReactiveFormsModule,
     TuiCardModule,

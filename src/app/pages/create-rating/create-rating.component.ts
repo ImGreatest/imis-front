@@ -6,9 +6,16 @@ import {
   Injector,
   OnInit,
 } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { tuiInputNumberOptionsProvider } from '@taiga-ui/kit';
-import { TagService } from '../../common/services/api/tag.service';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  TuiCheckboxLabeledModule, TuiDataListWrapperModule,
+  TuiInputModule,
+  TuiInputNumberModule,
+  tuiInputNumberOptionsProvider,
+  TuiIslandModule,
+  TuiSelectModule
+} from '@taiga-ui/kit';
+import { TagService } from '@services';
 import {
   ITreeTagElement,
   ITreeTagShowElement,
@@ -19,14 +26,42 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { RatingService } from '@services';
 
-import { TuiAlertService } from '@taiga-ui/core';
+import {
+  TuiAlertService,
+  TuiButtonModule,
+  TuiDataListModule,
+  TuiRootModule,
+  TuiTextfieldControllerModule
+} from '@taiga-ui/core';
 import { AppDialogService } from 'src/app/component/dialog/app-dialog.service';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { CreateTagComponent } from './create-tag-modal/create-tag.component';
 import { scoringType } from '@enums';
+import { TagsTreeModule } from "./tags-tree/tags-tree.module";
+import { CommonModule } from "@angular/common";
+import { CreateTagModule } from "./create-tag-modal/create-tag.module";
 
 @Component({
   selector: 'app-create-rating',
+  standalone: true,
+  imports: [
+    TagsTreeModule,
+    CommonModule,
+    FormsModule,
+    TuiInputNumberModule,
+    TuiInputModule,
+    TuiButtonModule,
+    TuiIslandModule,
+    FormsModule,
+    CreateTagModule,
+    TuiRootModule,
+    TuiSelectModule,
+    TuiDataListModule,
+    TuiCheckboxLabeledModule,
+    TuiDataListWrapperModule,
+    ReactiveFormsModule,
+    TuiTextfieldControllerModule,
+  ],
   templateUrl: './create-rating.component.html',
   styleUrls: ['./create-rating.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -3,29 +3,65 @@ import {
     ChangeDetectionStrategy,
     Inject,
     OnInit,
-    ChangeDetectorRef,
-    Injectable
+    ChangeDetectorRef
 } from "@angular/core";
-import {TUI_PROMPT, TUI_TREE_CONTENT, TuiPromptData} from "@taiga-ui/kit";
+import {
+  TUI_PROMPT,
+  TUI_TREE_CONTENT, TuiDataListWrapperModule,
+  TuiInputModule,
+  TuiIslandModule,
+  TuiPaginationModule,
+  TuiPromptData, TuiSelectModule, TuiTreeModule
+} from "@taiga-ui/kit";
 import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus';
 import {ExpandModule} from "../create-rating/tags-tree/expand-conponent";
-import {TuiContextWithImplicit, TuiHandler, tuiPure, TuiStringHandler} from "@taiga-ui/cdk";
-import {TuiAlertService, TuiDialogService} from "@taiga-ui/core";
+import { TuiContextWithImplicit, TuiHandler, TuiLetModule, tuiPure, TuiStringHandler } from "@taiga-ui/cdk";
+import {
+  TuiAlertService,
+  TuiButtonModule,
+  TuiDataListModule,
+  TuiDialogService,
+  TuiLoaderModule,
+  TuiTextfieldControllerModule
+} from "@taiga-ui/core";
 import {SkillService} from "@services";
 import {ISkillTypesWithSkills, ISkillUser} from "@interfaces";
-import {FormGroup, FormControl} from "@angular/forms";
+import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { CommonModule } from "@angular/common";
+import { TuiTableModule } from "@taiga-ui/addon-table";
+import { TuiIconModule } from "@taiga-ui/experimental";
 
 @Component({
-    selector: 'skills',
-    templateUrl: './skill.page.component.html',
-    styleUrl: './skill.page.component.less',
-    providers: [
-        {
-            provide: TUI_TREE_CONTENT,
-            useValue: new PolymorpheusComponent(ExpandModule)
-        }
-    ],
-    changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'skills',
+  standalone: true,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    TuiInputModule,
+    TuiPaginationModule,
+    TuiIslandModule,
+    TuiTreeModule,
+    TuiLoaderModule,
+    TuiButtonModule,
+    TuiLetModule,
+    TuiDataListModule,
+    TuiDataListWrapperModule,
+    TuiSelectModule,
+    TuiTextfieldControllerModule,
+    ReactiveFormsModule,
+    TuiTableModule,
+    TuiIconModule,
+  ],
+  templateUrl: './skill.page.component.html',
+  styleUrl: './skill.page.component.less',
+  providers: [
+      {
+          provide: TUI_TREE_CONTENT,
+          useValue: new PolymorpheusComponent(ExpandModule)
+      }
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkillsPageComponent implements OnInit {
     Skills : ISkillTypesWithSkills[] = []
@@ -93,7 +129,7 @@ export class SkillsPageComponent implements OnInit {
                 })
                 .subscribe();
             this._update();
-            
+
 
         }, (error) => {
             this
@@ -158,7 +194,7 @@ export class SkillsPageComponent implements OnInit {
                     .controls
                     .skillTypeSelect
                     .setValue(0);
-                
+
             }, (error) => {
                 this
                     .alerts

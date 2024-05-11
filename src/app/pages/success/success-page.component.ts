@@ -1,7 +1,7 @@
 import {Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef, Injector} from "@angular/core";
-import {FormGroup, FormControl} from "@angular/forms";
+import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {IFilter, ISuccess, ISuccessRes, PageRes} from "@interfaces";
-import {tuiIsFalsy} from "@taiga-ui/cdk";
+import { TuiActiveZoneModule, tuiIsFalsy, TuiLetModule } from "@taiga-ui/cdk";
 import {
     BehaviorSubject,
     combineLatest,
@@ -11,13 +11,43 @@ import {
     share,
     switchMap
 } from "rxjs";
-import {SuccessService} from '../../common/services/api/success.service';
+import {SuccessService} from '@services';
 import {AppDialogService} from "src/app/component/dialog/app-dialog.service";
 import {PolymorpheusComponent} from '@tinkoff/ng-polymorpheus';
 import {CreateUpdateSuccessComponent} from "./create-update-success/create-update-success.component";
 import {AuthService} from '../../auth/auth.service';
+import { CreateUpdateSuccessModule } from "./create-update-success/create-update-success.module";
+import { CommonModule, NgIf } from "@angular/common";
+import { TuiInputModule, TuiPaginationModule, TuiTagModule } from "@taiga-ui/kit";
+import { TuiButtonModule, TuiLabelModule, TuiLoaderModule, TuiTextfieldControllerModule } from "@taiga-ui/core";
+import { TuiTableModule } from "@taiga-ui/addon-table";
+import { TuiIconModule } from "@taiga-ui/experimental";
 
-@Component({selector: 'skills', templateUrl: './success-page.component.html', styleUrl: './success-page.component.less', changeDetection: ChangeDetectionStrategy.OnPush})
+@Component({
+  selector: 'skills',
+  standalone: true,
+  imports: [
+    CreateUpdateSuccessModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    TuiPaginationModule,
+    TuiButtonModule,
+    TuiTagModule,
+    TuiTextfieldControllerModule,
+    TuiTableModule,
+    TuiInputModule,
+    TuiActiveZoneModule,
+    TuiIconModule,
+    TuiLabelModule,
+    TuiLoaderModule,
+    NgIf,
+    TuiLetModule,
+  ],
+  templateUrl: './success-page.component.html',
+  styleUrl: './success-page.component.less',
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
 export class SuccessPageComponent implements OnInit {
     readonly search = new FormGroup({searchStudentSurname: new FormControl(''), searchSuccessName: new FormControl('')});
 
@@ -43,7 +73,7 @@ export class SuccessPageComponent implements OnInit {
                 this.delete = perms['success'].find((perm) => perm.action === 'read') !== null || this.delete
             }
         }
-       
+
         this
             .request$
             .subscribe((success) => {
