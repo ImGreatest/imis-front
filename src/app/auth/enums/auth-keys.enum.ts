@@ -3,5 +3,5 @@ export enum EAuthKeys {
   TOKEN_REFRESH = 'auth-token-refresh',
   DEVICE_ID = 'auth-device-id',
   PERMISSIONS = 'perms',
-  USER_ID = 'Some-number-abra'
+  EMAIL = 'email'
 }

@@ -5,9 +5,9 @@ import {
   ChangeDetectorRef,
   Injector,
 } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IFilter, ISubjectPermissions, ISuccess, ISuccessRes, PageRes } from '@interfaces';
-import { tuiIsFalsy } from '@taiga-ui/cdk';
+import { TuiActiveZoneModule, TuiLetModule } from '@taiga-ui/cdk';
 import {
   BehaviorSubject,
   combineLatest,
@@ -17,18 +17,42 @@ import {
   share,
   switchMap,
 } from 'rxjs';
-import { SuccessService } from '../../common/services/api/success.service';
+import { SuccessService } from '@services';
 import { AppDialogService } from 'src/app/component/dialog/app-dialog.service';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { CreateUpdateSuccessComponent } from './create-update-success/create-update-success.component';
-import { AuthService } from '../../auth/auth.service';
 import { PermissionService } from '../../auth/permission.service';
+import { CreateUpdateSuccessModule } from "./create-update-success/create-update-success.module";
+import { TuiInputModule, TuiPaginationModule, TuiTagModule } from "@taiga-ui/kit";
+import { CommonModule, NgIf } from "@angular/common";
+import { TuiButtonModule, TuiIconModule } from "@taiga-ui/experimental";
+import { TuiLabelModule, TuiLoaderModule, TuiTextfieldControllerModule } from "@taiga-ui/core";
+import { TuiTableModule } from "@taiga-ui/addon-table";
 
 @Component({
-  selector: 'skills',
-  templateUrl: './success-page.component.html',
-  styleUrl: './success-page.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    CreateUpdateSuccessModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    TuiPaginationModule,
+    TuiButtonModule,
+    TuiTagModule,
+    TuiTextfieldControllerModule,
+    TuiTableModule,
+    TuiInputModule,
+    TuiActiveZoneModule,
+    TuiIconModule,
+    TuiLabelModule,
+    TuiLoaderModule,
+    NgIf,
+    TuiLetModule,
+  ],
+  selector: 'skills',
+  standalone: true,
+  styleUrl: './success-page.component.less',
+  templateUrl: './success-page.component.html',
 })
 export class SuccessPageComponent implements OnInit {
   readonly search = new FormGroup({
@@ -113,7 +137,6 @@ export class SuccessPageComponent implements OnInit {
     'actions',
   ];
   success: ISuccess[] = [];
-  statusFilter = false;
   readonly size$ = new BehaviorSubject(10);
   readonly page$ = new BehaviorSubject(0);
   readonly pageCount$ = new BehaviorSubject(0);
@@ -221,7 +244,6 @@ export class SuccessPageComponent implements OnInit {
         })
       );
   }
-  readonly loading$ = this.request$.pipe(map(tuiIsFalsy));
 
   onCreateUpdateSuccess(id: number = -5): void {
     const dataToModal =

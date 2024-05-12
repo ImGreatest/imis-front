@@ -1,8 +1,8 @@
 export interface IResAuthDatas {
-  access: string;
-  refresh: string;
-  permissions: IPermissions;
-  id: number;
+  access : string;
+  refresh : string;
+  permissions : IPermissions,
+  email: string;
 }
 
 export interface IPermissions {

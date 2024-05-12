@@ -7,7 +7,7 @@ import { MaskitoOptions } from '@maskito/core';
 import { Router } from "@angular/router";
 import { TuiFieldErrorPipeModule, TuiInputModule } from "@taiga-ui/kit";
 import { TuiButtonModule, TuiCardModule } from "@taiga-ui/experimental";
-import { AsyncPipe } from "@angular/common";
+import { AsyncPipe, CommonModule } from "@angular/common";
 import { MaskitoModule } from "@maskito/angular";
 import { IContextData } from "src/app/pages/authorisation/confirm/interfaces/context-data.interface";
 
@@ -15,6 +15,7 @@ import { IContextData } from "src/app/pages/authorisation/confirm/interfaces/con
   selector: 'app-confirm',
   standalone: true,
   imports: [
+    CommonModule,
     TuiInputModule,
     ReactiveFormsModule,
     TuiCardModule,
@@ -72,7 +73,6 @@ export class ConfirmComponent {
   }
 
   private async _confirm() {
-    console.log(typeof this.emailCode.toString(), typeof this.unmask(this.code), this.emailCode.toString(), this.unmask(this.code));
     if (this.emailCode.toString() === this.unmask(this.code)) {
       await this.route.navigate(['/auth/new-password']);
     }

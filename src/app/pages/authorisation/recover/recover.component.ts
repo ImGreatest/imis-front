@@ -1,17 +1,48 @@
 import { Component, Inject, Injector } from '@angular/core';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { IResetForm } from "src/app/pages/authorisation/recover/interfaces/reset-form.interface";
 import { emailValidators } from "@validators";
 import { Router } from "@angular/router";
 import { EmailService } from "@services";
-import { TuiDialogService } from "@taiga-ui/core";
+import { TuiAlertModule, TuiDialogService, TuiErrorModule, TuiPrimitiveTextfieldModule } from "@taiga-ui/core";
 import { PolymorpheusComponent } from "@tinkoff/ng-polymorpheus";
 import { ConfirmComponent } from "src/app/pages/authorisation/confirm/confirm.component";
 import { IReqMessageHtml } from "@interfaces";
 import { tuiIconBell } from "@taiga-ui/icons";
+import { CommonModule } from "@angular/common";
+import {
+  TuiButtonModule,
+  TuiCardModule,
+  TuiChipModule,
+  TuiSurfaceModule,
+  TuiTooltipModule
+} from "@taiga-ui/experimental";
+import {
+  TuiCheckboxLabeledModule,
+  TuiFieldErrorPipeModule,
+  TuiInputModule,
+  TuiInputPasswordModule
+} from "@taiga-ui/kit";
 
 @Component({
   selector: 'app-recover',
+  standalone: true,
+  imports: [
+    CommonModule,
+    TuiButtonModule,
+		TuiCardModule,
+		TuiCheckboxLabeledModule,
+		TuiChipModule,
+		TuiErrorModule,
+		TuiFieldErrorPipeModule,
+		TuiInputModule,
+		TuiInputPasswordModule,
+		TuiPrimitiveTextfieldModule,
+		TuiSurfaceModule,
+		ReactiveFormsModule,
+		TuiTooltipModule,
+		TuiAlertModule
+  ],
   templateUrl: './recover.component.html',
   styleUrl: './recover.component.less'
 })

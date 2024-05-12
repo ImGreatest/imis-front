@@ -1,77 +1,82 @@
 
 #page-container {
-    display: flex;
+  display: flex;
 }
 
 #page-container-div-router-outlet {
-    width: calc(100% - 125px);
-    height: calc(100vh - 125px);
-    display: flex;
+  width: calc(100% - 125px);
+  height: calc(100vh - 125px);
+  display: flex;
 }
+
 #page-container-div-router-outlet > * {
-    width: 98%;
-    height: 100vh;
-    margin: 1%;
+  width: 98%;
+  //height: 100vh;
+  margin: 1%;
 }
 
 #page-container-div-router-outlet > router-outlet {
-    width: 0;
-    height: 0;
-    margin: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
 }
 
 #page-container-section-aside {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background: #fff; //f2f2f2
-    border-right: thin solid #D7D7D7;
-    float: left;
-    width: 124px;
-    transition: width 0.3s ease-in;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background: #fff; //f2f2f2
+  border-right: thin solid #D7D7D7;
+  float: left;
+  width: 124px;
+  transition: width 0.3s ease-in;
 }
 
 #page-container-section-aside-tui-scrollbar {
-    @media screen and (max-width: 2560px) {
-        padding: 0.175rem;
-    }
-    @media screen and (max-width: 2048px) {
-        padding: 0.1rem;
-    }
-    @media screen and (max-width: 1680px) {
-        padding: 0.0875rem;
-    }
-    @media screen and (max-width: 1650px) {
-        padding: 0.0825rem;
-    }
-    @media screen and (max-width: 1440px) {
-        padding: 0.0675rem;
-    }
-    @media screen and (max-width: 1280px) {
-        padding: 0.0475rem;
-    }
-    @media screen and (max-width: 1152px) {
-        padding: 0.0325rem;
-    }
-    @media screen and (max-width: 1024px) {
-        padding: 0.0275rem;
-    }
-    @media screen and (max-width: 840px) {
-        padding: 0.0175rem;
-    }
-    @media screen and (max-width: 825px) {
-        padding: 0.0150rem;
-    }
-    @media screen and (max-width: 800px) {
-        padding: 0.0125rem;
-    }
+  @media screen and (max-width: 2560px) {
+      padding: 0.175rem;
+  }
+  @media screen and (max-width: 2048px) {
+      padding: 0.1rem;
+  }
+  @media screen and (max-width: 1680px) {
+      padding: 0.0875rem;
+  }
+  @media screen and (max-width: 1650px) {
+      padding: 0.0825rem;
+  }
+  @media screen and (max-width: 1440px) {
+      padding: 0.0675rem;
+  }
+  @media screen and (max-width: 1280px) {
+      padding: 0.0475rem;
+  }
+  @media screen and (max-width: 1152px) {
+      padding: 0.0325rem;
+  }
+  @media screen and (max-width: 1024px) {
+      padding: 0.0275rem;
+  }
+  @media screen and (max-width: 840px) {
+      padding: 0.0175rem;
+  }
+  @media screen and (max-width: 825px) {
+      padding: 0.0150rem;
+  }
+  @media screen and (max-width: 800px) {
+      padding: 0.0125rem;
+  }
 }
 
 #page-container-section-aside-tui-scrollbar-block-content {
-    margin-top: 1.5rem;
+  margin-top: 1.5rem;
 }
 
 #page-container-section-aside-block-notice {
-    margin-top: auto;
-    border-top: 1px solid #D7D7D7;
+  margin-top: auto;
+  border-top: 1px solid #D7D7D7;
 }

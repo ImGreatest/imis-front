@@ -1,1 +1,131 @@
-<p>user-profile works!</p>
+<div id="profile-page">
+  <div id="profile-page-container">
+    <div id="profile-page-row-avatar-container">
+      <div id="profile-page-row-avatar">
+        <tui-badged-content id="profile-page-row-avatar-badged-content">
+          <tui-icon
+            id="profile-page-row-avatar-badged-content-icon"
+            icon="tuiIconCameraLarge"
+            size="xl"
+            tuiBadge
+            tuiSlot="bottom"
+            (mouseover)="selectPhoto = true"
+            (mouseleave)="selectPhoto = false"
+            [style.color]="selectPhoto ? 'var(--tui-base-04)' : 'var(--tui-base-07)'"
+            [style.background]="selectPhoto ? 'var(--tui-base-05)' : 'var(--tui-base-04)' "
+          ></tui-icon>
+          <tui-avatar
+            id="profile-page-row-avatar-badged-content-avatar"
+            size="xxl"
+            avatarUrl="tuiIconUserLarge"
+          >
+          </tui-avatar>
+        </tui-badged-content>
+        <h2
+          id="profile-page-row-avatar-title"
+          tuiTitle="m"
+        >
+          <div
+            id="profile-page-row-avatar-caption"
+            tuiSubtitle
+          >
+            Student
+          </div>
+          <div id="profile-page-row-avatar-title-container">
+            Alex Inkin
+            <div
+              id="profile-page-row-avatar-subtitle"
+              tuiSubtitle
+            >
+              Испк-202-52
+            </div>
+          </div>
+        </h2>
+      </div>
+      <div id="profile-page-row-specify">
+        <div id="profile-page-row-specify-edit">
+          <button
+            appearance="outline"
+            iconLeft="tuiIconEditLarge"
+            size="m"
+            tuiIconButton
+            [style.color]="'var(--tui-base-07)'"
+          ></button>
+        </div>
+        <div id="profile-page-row-specify-skills">
+          <h2
+            id="profile-page-row-specify-skills-title"
+            tuiTitle
+          >
+            Skills
+            <tui-icon
+              icon="tuiIconStarLarge"
+            ></tui-icon>
+          </h2>
+          <div id="profile-page-row-specify-skills-tag-container">
+            <tui-tag
+              size="l"
+              [autoColor]="true"
+              [value]="'CSS'"
+            ></tui-tag>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="profile-page-row-about">
+      <div id="profile-page-row-about-container">
+        <h2
+          id="profile-page-row-avatar-about"
+          tuiTitle
+        >
+          Обо мне
+          <div
+            id="profile-page-row-avatar-about-desc"
+            tuiSubtitle
+          >
+            ngggoasgdiogndjnignfod;igio;ngdfjagljk;ndiosagn;oisgnoi;sgdnoi;gnaio;sdfign;ofsgasiogniosagnoiansdgoinadsoginginasiognisangoisan;goi
+          </div>
+        </h2>
+      </div>
+      <div id="profile-page-row-about-actions">
+        <button
+          tuiAction
+          style="justify-content: flex-start; align-items: center"
+          type="button"
+          (click)="onChangeEmail()"
+        >
+          <section>
+            <h3 style="font-weight: bold; margin: 0">Сменить Email</h3>
+            <p style="margin: 0">Сменить email на новый</p>
+          </section>
+          <tui-marker-icon
+            style="margin-left: auto"
+            size="s"
+            src="tuiIconMailLarge"
+            class="tui-island__marker"
+          ></tui-marker-icon>
+        </button>
+        <button
+          tuiAction
+          style="justify-content: flex-start; align-items: center"
+          type="button"
+          (click)="onChangePassword()"
+        >
+          <section>
+            <h3 style="font-weight: bold; margin: 0">Смена пароля</h3>
+            <p style="margin: 0">Сменить пароль на новый</p>
+          </section>
+          <tui-marker-icon
+            style="margin-left: auto"
+            size="s"
+            src="tuiIconHashLarge"
+            class="tui-island__marker"
+          ></tui-marker-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="profile-page-container-outlet">
+    <router-outlet></router-outlet>
+  </div>
+</div>

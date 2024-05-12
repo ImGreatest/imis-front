@@ -3,6 +3,30 @@ import { ErrorComponent } from "./pages/error-404/error.component";
 import { SidebarComponent } from "./layout/sidebar/sidebar.component";
 import { AuthGuard } from "./auth/auth.guard";
 import { ProfileComponent } from "./layout/profile/profile.component";
+import { UserProfileComponent } from "./pages/user/user-profile/user-profile.component";
+import { UserProjectsComponent } from "./pages/user/projects/projects.component";
+import { ProjectsComponent } from "./pages/projects/projects.component";
+import { EventsComponent } from "./pages/user/events/events.component";
+import { NotificationComponent } from "./pages/user/notification/notification.component";
+import { FavoriteProjectsComponent } from "./pages/user/favorite/favorite-projects/favorite-projects.component";
+import { FavoriteEventsComponent } from "./pages/user/favorite/favorite-events/favorite-events.component";
+import { FavoriteUsersComponent } from "./pages/user/favorite/favorite-users/favorite-users.component";
+import { FavoriteCompanyComponent } from "./pages/user/favorite/favorite-company/favorite-company.component";
+import { AuthComponent } from "./pages/authorisation/auth/auth.component";
+import { ConfirmComponent } from "./pages/authorisation/confirm/confirm.component";
+import { NewPasswordComponent } from "./pages/authorisation/new-password/new-password.component";
+import { RecoverComponent } from "./pages/authorisation/recover/recover.component";
+import { ChangeEmailComponent } from "./pages/user/user-profile/change-email/change-email.component";
+import { MainComponent } from "./pages/user/user-profile/main/main.component";
+import { ChangePasswordComponent } from "./pages/user/user-profile/change-password/change-password.component";
+import { RolesComponent } from "./pages/roles/roles.component";
+import { CompanyComponent } from "./pages/company/company.component";
+import { CreateRatingComponent } from "./pages/create-rating/create-rating.component";
+import { OverviewComponent } from "./pages/overview/overview.component";
+import { RatingComponent } from "./pages/rating/rating.component";
+import { MathModelsTableComponent } from "./pages/math-model-table/math-models-table.component";
+import { SkillsPageComponent } from "./pages/skills/skill.page.component";
+import { SuccessPageComponent } from "./pages/success/success-page.component";
 
 export const routes: Routes = [
   {
@@ -16,47 +40,47 @@ export const routes: Routes = [
       },
       {
         path: 'overview',
-        loadChildren: () => import('./pages/overview/overview.module').then((m) => m.OverviewModule),
+        component: OverviewComponent,
       },
       {
         path: 'rating',
-        loadChildren: () => import('./pages/rating/rating.module').then((m) => m.RatingModule),
+        component: RatingComponent,
       },
       {
         path: 'projects',
-        loadChildren: () => import('./pages/projects/projects.module').then((m) => m.ProjectsModule),
+        component: ProjectsComponent,
       },
       {
         path: 'events',
-        loadChildren: () => import('./pages/events/events.module').then((m) => m.EventsModule),
+        component: EventsComponent,
       },
       {
         path: 'company',
-        loadChildren: () => import('./pages/company/company.module').then((m) => m.CompanyModule),
+        component: CompanyComponent,
       },
       {
         path: 'skills',
-        loadChildren: () => import('./pages/skills/skills.page.module').then((m) => m.SkillsPageModule),
+        component: SkillsPageComponent,
       },
       {
         path: 'success',
-        loadChildren: () => import('./pages/success/success-page.module').then((m) => m.SuccessPageModule),
+        component: SuccessPageComponent,
       },
       {
         path: 'math-models',
-        loadChildren: () => import('./pages/math-model-table/math-models-table.module').then((m) => m.MathModelsTableModule),
+        component: MathModelsTableComponent,
       },
       {
         path: 'math-models/:id',
-        loadChildren: () => import('./pages/create-rating/create-rating.module').then((m) => m.CreateRatingModule),
+        component: CreateRatingComponent,
       },
       {
         path: 'math-models/create',
-        loadChildren: () => import('./pages/create-rating/create-rating.module').then((m) => m.CreateRatingModule),
+        component: CreateRatingComponent,
       },
       {
         path: 'roles',
-        loadChildren: () => import('./pages/roles/roles.module').then((m) => m.RolesModule),
+        component: RolesComponent,
       },
     ],
     canActivateChild: [AuthGuard],
@@ -72,54 +96,103 @@ export const routes: Routes = [
       },
       {
         path: 'profile',
-        loadChildren: () => import('./pages/user/user-profile/user-profile.module').then((m) => m.UserProfileModule),
+        component: UserProfileComponent,
+        children: [
+          {
+            path: 'profile',
+            redirectTo: '',
+            pathMatch: 'full',
+          },
+          {
+            path: '',
+            component: MainComponent,
+          },
+          {
+            path: 'change-email',
+            component: ChangeEmailComponent,
+          },
+          {
+            path: 'change-password',
+            component: ChangePasswordComponent,
+          },
+        ],
       },
       {
         path: 'favorite',
-        loadChildren: () => import('./pages/user/favorite/favorite.module').then((m) => m.FavoriteModule),
+        children: [
+          {
+            path: 'favorite',
+            redirectTo: '/projects',
+            pathMatch: 'full'
+          },
+          {
+            path: 'projects',
+            component: FavoriteProjectsComponent,
+          },
+          {
+            path: 'events',
+            component: FavoriteEventsComponent,
+          },
+          {
+            path: 'users',
+            component: FavoriteUsersComponent,
+          },
+          {
+            path: 'companies',
+            component: FavoriteCompanyComponent,
+          },
+          {
+            path: '**',
+            redirectTo: 'projects'
+          }
+        ],
       },
       {
         path: 'projects',
-        loadChildren: () => import('./pages/user/projects/projects.module').then((m) => m.ProjectsModule),
+        component: UserProjectsComponent,
       },
       {
         path: 'events',
-        loadChildren: () => import('./pages/user/events/events.module').then((m) => m.EventsModule),
+        component: EventsComponent,
       },
       {
         path: 'notifications',
-        loadChildren: () => import('./pages/user/notification/notification.module').then((m) => m.NotificationModule),
+        component: NotificationComponent,
       },
       {
         path: '**',
-        redirectTo: 'profile'
+        redirectTo: '/profile'
       }
     ],
-    canActivateChild: [AuthGuard],
+    canActivateChild: [AuthGuard]
   },
   {
     path: 'auth',
     children: [
       {
         path: 'login',
-        loadChildren: () => import('src/app/pages/authorisation/auth/auth.module').then(m => m.AuthModule),
+        component: AuthComponent
       },
       {
         path: 'reset',
-        loadChildren: () => import('src/app/pages/authorisation/recover/recover.module').then(m => m.RecoverModule),
+        component: RecoverComponent
       },
       {
         path: 'new-password',
-        loadChildren: () => import('src/app/pages/authorisation/new-password/new-password.module').then(m => m.NewPasswordModule),
+        component: NewPasswordComponent
+      },
+      {
+        path: 'confirm',
+        component: ConfirmComponent
       },
       {
         path: '**',
-        redirectTo: 'login',
+        redirectTo: 'login'
       }
     ]
   },
   {
     path: '**',
-    component: ErrorComponent,
+    component: ErrorComponent
   },
 ];

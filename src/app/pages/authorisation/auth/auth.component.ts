@@ -1,13 +1,47 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { emailValidators, passwordValidators } from "@validators";
 import { IAuthForm } from "src/app/pages/authorisation/auth/interfaces/auth-form.interface";
-import { debounceTime, firstValueFrom, map, Observable, share } from 'rxjs';
+import { debounceTime, firstValueFrom, map, Observable, share, switchMap } from 'rxjs';
 import { Router } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
+import { CommonModule } from "@angular/common";
+import {
+  TuiButtonModule,
+  TuiCardModule,
+  TuiSurfaceModule,
+  TuiTitleModule,
+  TuiTooltipModule
+} from "@taiga-ui/experimental";
+import {
+  TuiCheckboxLabeledModule,
+  TuiFieldErrorPipeModule,
+  TuiInputModule,
+  TuiInputPasswordModule
+} from "@taiga-ui/kit";
+import { TuiDialogModule, TuiErrorModule } from "@taiga-ui/core";
+import { TuiLetModule } from "@taiga-ui/cdk";
 
 @Component({
   selector: 'app-auth',
+  standalone: true,
+  imports: [
+    CommonModule,
+    TuiCardModule,
+		TuiButtonModule,
+		TuiTitleModule,
+		FormsModule,
+		ReactiveFormsModule,
+		TuiInputModule,
+		TuiErrorModule,
+		TuiFieldErrorPipeModule,
+		TuiInputPasswordModule,
+		TuiCheckboxLabeledModule,
+		TuiSurfaceModule,
+		TuiTooltipModule,
+		TuiDialogModule,
+		TuiLetModule,
+  ],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.less'
 })

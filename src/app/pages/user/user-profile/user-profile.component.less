@@ -1,0 +1,116 @@
+
+:host {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#profile-page {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 48px);
+  padding: 24px;
+  background: rgb(253, 253, 253);
+  border: 1.85px solid var(--tui-base-03);
+  border-radius: 24px;
+  box-shadow: var(--tui-shadow-hover);
+  gap: 25px;
+}
+
+#profile-page-container {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border: 1px solid #D7D7D7;
+  border-radius: 24px;
+  gap: 1.5rem;
+}
+
+#profile-page-container-outlet {
+  width: calc(100% - 32px);
+  height: 100%;
+  padding: 16px;
+  border: 1px solid #D7D7D7;
+  border-radius: 24px;
+}
+
+#profile-page-row-avatar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid #D7D7D7;
+}
+
+#profile-page-row-avatar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 35px;
+}
+
+#profile-page-row-specify {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+#profile-page-row-specify-edit {
+  display: flex;
+  gap: 15px;
+}
+
+#profile-page-row-specify-skills {
+  display: flex;
+  flex-direction: column;
+}
+
+#profile-page-row-specify-skills-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+#profile-page-row-specify-skills-tag-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#profile-page-row-about {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+#profile-page-row-avatar-about-desc {
+  word-break: break-all;
+  line-height: 1.25rem;
+  letter-spacing: 0.33px;
+}
+
+#profile-page-row-about-container {
+  flex: 1;
+  padding-right: 16px;
+  border-right: 1px solid #D7D7D7;
+}
+
+#profile-page-row-about-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+#profile-page-row-avatar-caption {
+  color: var(--tui-positive);
+}
+
+#profile-page-row-avatar-subtitle {
+  color: var(--tui-base-05)
+}
+
+#profile-page-row-avatar-title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}

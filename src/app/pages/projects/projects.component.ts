@@ -1,7 +1,18 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import { FormsModule } from "@angular/forms";
+import { CommonModule } from "@angular/common";
+import { ProjectCardModule } from "../../component/project-card/project-card.module";
+import { CompanyCardModule } from "../../component/company-card/company-card.module";
 
 @Component({
   selector: 'app-projects',
+  standalone: true,
+  imports: [
+    FormsModule,
+    CommonModule,
+    ProjectCardModule,
+    CompanyCardModule,
+  ],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,7 +28,7 @@ export class ProjectsComponent {
 
   languages = ['JavaScript', 'Python', 'Java', 'C#', 'PHP'];
   projects = [
-    { 
+    {
       title: 'Тестовый проект',
       description: 'Тестирование вывода проектов',
       avatar: 'tuiIconUserLarge',
@@ -27,7 +38,7 @@ export class ProjectsComponent {
       gitLink: '/git/link1',
       members: ['Jason Statham', 'Silvester Stallone', 'Jackie Chan'],
     },
-    { 
+    {
       title: 'Проект 2',
       description: 'Описание 2',
       avatar: 'tuiIconUserLarge',
@@ -77,7 +88,7 @@ export class ProjectsComponent {
       gitLink: '/git/link6',
       members: ['Роберт Полсон', 'Тайлер Дерден', 'Jamie Foxx'],
     },
-    { 
+    {
       title: 'Тестовый проект',
       description: 'Тестирование вывода проектов',
       avatar: 'tuiIconUserLarge',
@@ -87,7 +98,7 @@ export class ProjectsComponent {
       gitLink: '/git/link1',
       members: ['Jason Statham', 'Silvester Stallone', 'Jackie Chan'],
     },
-    { 
+    {
       title: 'Проект 2',
       description: 'Описание 2',
       avatar: 'tuiIconUserLarge',
@@ -145,11 +156,11 @@ export class ProjectsComponent {
 
   applyFilters() {
     this.projects = [...this.originalProjects]; // сброс к исходным проектам перед фильтрацией
-  
+
     if(this.filters.title) {
       this.projects = this.projects.filter(p => p.title.includes(this.filters.title));
     }
-  
+
     if(this.filters.language) {
       this.projects = this.projects.filter(p => p.usedLanguages.includes(this.filters.language));
     }
@@ -161,9 +172,9 @@ export class ProjectsComponent {
       language: ''
     };
     this.isFilterVisible = false; // скрыть фильтры после очистки
-    this.projects = [...this.originalProjects]; 
+    this.projects = [...this.originalProjects];
   }
-  
+
   hideFilters() {
     this.isFilterVisible = false;
   }

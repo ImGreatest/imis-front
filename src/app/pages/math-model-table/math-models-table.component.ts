@@ -1,5 +1,11 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit} from '@angular/core';
-import {TuiAlertService, tuiFadeIn} from '@taiga-ui/core';
+import {
+  TuiAlertService,
+  TuiButtonModule,
+  tuiFadeIn,
+  TuiLoaderModule,
+  TuiTextfieldControllerModule
+} from '@taiga-ui/core';
 import {
     BehaviorSubject,
     combineLatest,
@@ -11,11 +17,32 @@ import {
 } from 'rxjs';
 import {IRatingTableElement, IFilter, PageRes, IRating} from '@interfaces';
 import {RatingService} from '@services';
-import {tuiIsFalsy} from '@taiga-ui/cdk';
 import {Router} from '@angular/router';
-import {FormControl, FormGroup} from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from "@angular/common";
+import { TuiInputModule, TuiPaginationModule } from "@taiga-ui/kit";
+import { TuiLetModule } from "@taiga-ui/cdk";
+import { TuiTableModule } from "@taiga-ui/addon-table";
 
-@Component({selector: 'math-models-table', templateUrl: './math-models-table.component.html', styleUrl: './math-models-table.component.less', changeDetection: ChangeDetectionStrategy.OnPush, animations: [tuiFadeIn]})
+@Component({
+  selector: 'math-models-table',
+  standalone: true,
+  imports: [
+    CommonModule,
+    TuiInputModule,
+    TuiPaginationModule,
+    TuiLoaderModule,
+    TuiButtonModule,
+    TuiLetModule,
+    TuiTextfieldControllerModule,
+    ReactiveFormsModule,
+    TuiTableModule,
+  ],
+  templateUrl: './math-models-table.component.html',
+  styleUrl: './math-models-table.component.less',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [tuiFadeIn]
+})
 export class MathModelsTableComponent implements OnInit {
     constructor(private cdr : ChangeDetectorRef, private ratingService : RatingService, private router : Router, @Inject(TuiAlertService)private alerts : TuiAlertService) {}
     ratings : IRatingTableElement[] = [];
