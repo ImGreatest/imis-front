@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { emailValidators, passwordValidators } from "@validators";
 import { IAuthForm } from "src/app/pages/authorisation/auth/interfaces/auth-form.interface";
-import { debounceTime, firstValueFrom, map, Observable, share } from 'rxjs';
+import { debounceTime, firstValueFrom, map, Observable, share, switchMap } from 'rxjs';
 import { Router } from "@angular/router";
 import { AuthService } from "src/app/auth/auth.service";
 import { CommonModule } from "@angular/common";
@@ -21,6 +21,7 @@ import {
 } from "@taiga-ui/kit";
 import { TuiDialogModule, TuiErrorModule } from "@taiga-ui/core";
 import { TuiLetModule } from "@taiga-ui/cdk";
+import { filter } from "rxjs/operators";
 
 @Component({
   selector: 'app-auth',

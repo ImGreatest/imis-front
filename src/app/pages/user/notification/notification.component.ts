@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { NotificationService } from "@services";
 import {
   TuiAvatarModule,
@@ -9,6 +9,7 @@ import {
 } from "@taiga-ui/experimental";
 import { TuiScrollbarModule } from "@taiga-ui/core";
 import { CommonModule } from "@angular/common";
+import { IResNoticeDto } from "@interfaces";
 
 @Component({
   selector: 'app-notification',
@@ -26,12 +27,22 @@ import { CommonModule } from "@angular/common";
   styleUrl: './notification.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NotificationComponent {
-  constructor(
-    private notificationService: NotificationService,
-  ) {}
+export class NotificationComponent implements OnInit {
+  notificationList: IResNoticeDto[] = [];
+  constructor(private notificationService: NotificationService) {}
+
+  ngOnInit() {
+    this.notificationService.getBySender(1).subscribe((v: IResNoticeDto[]) => {
+      this.notificationList.push(...v);
+    });
+    console.log(this.notificationList, this.checkOnUnRead());
+  }
+
+  checkOnUnRead(): IResNoticeDto[] {
+    return this.notificationList.filter((v: IResNoticeDto) => v.status === 'unread');
+  }
 
   async onDelete(): Promise<void> {
-    await this.notificationService.getCurrent(7).subscribe(v => console.log(v));
+    this.notificationService.getCurrent(7).subscribe(v => console.log(v));
   }
 }

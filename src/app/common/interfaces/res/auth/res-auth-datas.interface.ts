@@ -1,7 +1,8 @@
 export interface IResAuthDatas {
-    access : string;
-    refresh : string;
-    permissions : IPermissions
+  access : string;
+  refresh : string;
+  permissions : IPermissions,
+  email: string;
 }
 
 export interface IPermissions
@@ -16,13 +17,12 @@ export interface IAction {
 }
 
 export interface ISubjectPermisions{
-  delete: boolean ,
+  delete: boolean,
   create: boolean,
   read: boolean,
   update: boolean,
-  deleteCondition: boolean ,
+  deleteCondition: boolean,
   createCondition: boolean,
   readCondition: boolean,
   updateCondition: boolean,
-  
 }

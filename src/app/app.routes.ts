@@ -100,11 +100,11 @@ export const routes: Routes = [
         children: [
           {
             path: 'profile',
-            redirectTo: 'main',
+            redirectTo: '',
             pathMatch: 'full',
           },
           {
-            path: 'main',
+            path: '',
             component: MainComponent,
           },
           {

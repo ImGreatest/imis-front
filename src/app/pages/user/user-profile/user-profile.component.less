@@ -1,3 +1,9 @@
+
+:host {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 #profile-page {
   display: flex;
   flex-direction: column;
@@ -7,7 +13,7 @@
   border: 1.85px solid var(--tui-base-03);
   border-radius: 24px;
   box-shadow: var(--tui-shadow-hover);
-  gap: 35px;
+  gap: 25px;
 }
 
 #profile-page-container {
@@ -40,6 +46,59 @@
   flex-direction: row;
   align-items: center;
   gap: 35px;
+}
+
+#profile-page-row-specify {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+#profile-page-row-specify-edit {
+  display: flex;
+  gap: 15px;
+}
+
+#profile-page-row-specify-skills {
+  display: flex;
+  flex-direction: column;
+}
+
+#profile-page-row-specify-skills-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+#profile-page-row-specify-skills-tag-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#profile-page-row-about {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+#profile-page-row-avatar-about-desc {
+  word-break: break-all;
+  line-height: 1.25rem;
+  letter-spacing: 0.33px;
+}
+
+#profile-page-row-about-container {
+  flex: 1;
+  padding-right: 16px;
+  border-right: 1px solid #D7D7D7;
+}
+
+#profile-page-row-about-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
 #profile-page-row-avatar-caption {

@@ -24,32 +24,21 @@ export class NotificationService {
     return this.http.get<IResNoticeDto>(`${this.url}/get-current/${id}`);
   }
 
-  getBySender(
-    id: number,
-    date?: string, // .toISOString.slice(0,10)
-    visible?: boolean
-  ): Observable<IResNoticeDto[]> {
-    return this.http.get<IResNoticeDto[]>(`${this.url}/get-by-sender/:${id}?date=${date}&visible=${visible}`).pipe(
-      tap(console.log)
-    );
+  getBySender(id: number): Observable<IResNoticeDto[]> {
+    return this.http.get<IResNoticeDto[]>(`${this.url}/get-by-sender/${id}`).pipe(tap(console.log));
   }
 
-  getByRecipient(
-    id: number,
-    date?: string, // .toISOString.slice(0,10)
-    visible?: boolean
-  ): Observable<IResNoticeDto[]> {
-    return this.http.get<IResNoticeDto[]>(`${this.url}/get-by-recipient/:${id}?date=${date}&visible=${visible}`).pipe(
+  getByRecipient(id: number): Observable<IResNoticeDto[]> {
+    return this.http.get<IResNoticeDto[]>(`${this.url}/get-by-recipient/${id}`).pipe(
       tap(console.log)
     );
   }
 
   getByStatus(
     status: ENotificationStatus,
-    date?: string, // .toISOString.slice(0,10)
     visible?: boolean
   ): Observable<IResNoticeDto[]> {
-    return this.http.get<IResNoticeDto[]>(`${this.url}/get-by-status/:${status}?date=${date}&visible=${visible}`).pipe(
+    return this.http.get<IResNoticeDto[]>(`${this.url}/get-by-status/:${status}?visible=${visible}`).pipe(
       tap(console.log)
     );
   }

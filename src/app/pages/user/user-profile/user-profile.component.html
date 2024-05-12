@@ -42,8 +42,8 @@
           </div>
         </h2>
       </div>
-      <div style="display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end">
-        <div style="display: flex; gap: 15px">
+      <div id="profile-page-row-specify">
+        <div id="profile-page-row-specify-edit">
           <button
             appearance="outline"
             iconLeft="tuiIconEditLarge"
@@ -52,14 +52,17 @@
             [style.color]="'var(--tui-base-07)'"
           ></button>
         </div>
-        <div style="display: flex; flex-direction: column;">
-          <h2 tuiTitle style="display: flex; flex-direction: row; align-items: center; gap: 10px">
+        <div id="profile-page-row-specify-skills">
+          <h2
+            id="profile-page-row-specify-skills-title"
+            tuiTitle
+          >
             Skills
             <tui-icon
               icon="tuiIconStarLarge"
             ></tui-icon>
           </h2>
-          <div style="display: flex; justify-content: flex-end">
+          <div id="profile-page-row-specify-skills-tag-container">
             <tui-tag
               size="l"
               [autoColor]="true"
@@ -69,61 +72,53 @@
         </div>
       </div>
     </div>
-    <div>
-      <h2
-        id="profile-page-row-avatar-about"
-        tuiTitle
-      >
-        Обо мне
-        <div tuiSubtitle>khfgmslkhnmoikhnf</div>
-      </h2>
-    </div>
-    <div style="display: flex; flex-direction: row; justify-content: space-around; gap: 15px">
-      <button
-        tuiAction
-        style="justify-content: flex-start; align-items: center"
-        type="button"
-      >
-        <section>
-          <h3 style="font-weight: bold; margin: 0">PonPOn</h3>
-          <p style="margin: 0">ponponponponponpon</p>
-        </section>
-        <tui-marker-icon
-          size="m"
-          src="tuiIconThumbsUpLarge"
-          class="tui-island__marker"
-        ></tui-marker-icon>
-      </button>
-      <button
-        tuiAction
-        style="justify-content: flex-start; align-items: center"
-        type="button"
-      >
-        <section>
-          <h3 style="font-weight: bold; margin: 0">PonPOn</h3>
-          <p style="margin: 0">ponponponponponpon</p>
-        </section>
-        <tui-marker-icon
-          size="s"
-          src="tuiIconThumbsUpLarge"
-          class="tui-island__marker"
-        ></tui-marker-icon>
-      </button>
-      <button
-        tuiAction
-        style="justify-content: flex-start; align-items: center"
-        type="button"
-      >
-        <section>
-          <h3 style="font-weight: bold; margin: 0">PonPOn</h3>
-          <p style="margin: 0">ponponponponponpon</p>
-        </section>
-        <tui-marker-icon
-          size="s"
-          src="tuiIconThumbsUpLarge"
-          class="tui-island__marker"
-        ></tui-marker-icon>
-      </button>
+    <div id="profile-page-row-about">
+      <div id="profile-page-row-about-container">
+        <h2
+          id="profile-page-row-avatar-about"
+          tuiTitle
+        >
+          Обо мне
+          <div
+            id="profile-page-row-avatar-about-desc"
+            tuiSubtitle
+          >
+            ngggoasgdiogndjnignfod;igio;ngdfjagljk;ndiosagn;oisgnoi;sgdnoi;gnaio;sdfign;ofsgasiogniosagnoiansdgoinadsoginginasiognisangoisan;goi
+          </div>
+        </h2>
+      </div>
+      <div id="profile-page-row-about-actions">
+        <button
+          tuiAction
+          style="justify-content: flex-start; align-items: center"
+          type="button"
+        >
+          <section>
+            <h3 style="font-weight: bold; margin: 0">PonPOn</h3>
+            <p style="margin: 0">ponponponponponpon</p>
+          </section>
+          <tui-marker-icon
+            size="s"
+            src="tuiIconThumbsUpLarge"
+            class="tui-island__marker"
+          ></tui-marker-icon>
+        </button>
+        <button
+          tuiAction
+          style="justify-content: flex-start; align-items: center"
+          type="button"
+        >
+          <section>
+            <h3 style="font-weight: bold; margin: 0">PonPOn</h3>
+            <p style="margin: 0">ponponponponponpon</p>
+          </section>
+          <tui-marker-icon
+            size="s"
+            src="tuiIconThumbsUpLarge"
+            class="tui-island__marker"
+          ></tui-marker-icon>
+        </button>
+      </div>
     </div>
   </div>
   <div id="profile-page-container-outlet">

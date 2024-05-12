@@ -26,10 +26,15 @@ export class AuthService {
     return localStorage.getItem(EAuthKeys.TOKEN_REFRESH);
   }
 
-  get permissions(): IPermissions|null{
+  get permissions(): IPermissions|null {
     const permissionsJson = localStorage.getItem(EAuthKeys.PERMISSIONS);
     return permissionsJson ? JSON.parse(permissionsJson) : null;
   }
+
+  get email(): string | null {
+    return localStorage.getItem(EAuthKeys.EMAIL);
+  }
+
   getPermissionsForSubject(subject: string): ISubjectPermisions {
     const perms = this.permissions || {};
     const getPermissionForAction = (perms: IAction[], action: string) => {
@@ -86,7 +91,6 @@ export class AuthService {
     return subjectPermission;
 }
 
-
   get deviceId(): string {
     let deviceId: string | null = localStorage.getItem(EAuthKeys.DEVICE_ID);
 
@@ -109,21 +113,28 @@ export class AuthService {
   setToken(data: IResAuthDatas): void {
     localStorage.setItem(EAuthKeys.TOKEN, data.access);
     localStorage.setItem(EAuthKeys.TOKEN_REFRESH, data.refresh);
-    localStorage.setItem(EAuthKeys.PERMISSIONS,JSON.stringify(data.permissions))
-
+    localStorage.setItem(EAuthKeys.PERMISSIONS,JSON.stringify(data.permissions));
+    localStorage.setItem(EAuthKeys.EMAIL, data.email);
   }
 
-  signIn(data: IReqSignIn): Observable<IResAuthDatas> {
+  signIn(dataSign: IReqSignIn): Observable<IResAuthDatas> {
     return this._http.post<IResAuthDatas>(`${this.url}/login`, {
-      email: data.email,
-      password: data.password,
+      email: dataSign.email,
+      password: dataSign.password,
       deviceId: this.deviceId,
-    }).pipe(tap((data) => this.setToken(data)));
+    }).pipe(tap((data) => this.setToken({
+      access: data.access,
+      refresh: data.refresh,
+      permissions: data.permissions,
+      email: dataSign.email
+    })));
   }
 
   logout(): void {
     localStorage.removeItem(EAuthKeys.TOKEN);
     localStorage.removeItem(EAuthKeys.TOKEN_REFRESH);
+    localStorage.removeItem(EAuthKeys.PERMISSIONS);
+    localStorage.removeItem(EAuthKeys.EMAIL);
   }
 
   refresh(): Observable<IResAuthDatas> {
