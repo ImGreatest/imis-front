@@ -1,21 +1,23 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { AppService } from "src/app/common/services/app.service";
-import { Observable, tap } from "rxjs";
-import { IUser } from "@entities";
-import { IAction, IPermissions, IReqResetPassword, IReqSignIn, IResAuthDatas, ISubjectPermisions } from "@interfaces";
-import { EAuthKeys } from "src/app/auth/enums/auth-keys.enum";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { AppService } from 'src/app/common/services/app.service';
+import { Observable, tap } from 'rxjs';
+import { IUser } from '@entities';
+import {
+  IPermissions,
+  IReqResetPassword,
+  IReqSignIn,
+  IResAuthDatas,
+} from '@interfaces';
+import { EAuthKeys } from 'src/app/auth/enums/auth-keys.enum';
 import { nanoid } from 'nanoid';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(
-    private _http: HttpClient,
-    private appService: AppService
-  ) {}
+  constructor(private _http: HttpClient, private appService: AppService) {}
 
   get url(): string {
-    return this.appService.apiUserUrl + '/auth'
+    return this.appService.apiUserUrl + '/auth';
   }
 
   get token(): string | null {
@@ -26,7 +28,7 @@ export class AuthService {
     return localStorage.getItem(EAuthKeys.TOKEN_REFRESH);
   }
 
-  get permissions(): IPermissions|null {
+  get permissions(): IPermissions | null {
     const permissionsJson = localStorage.getItem(EAuthKeys.PERMISSIONS);
     return permissionsJson ? JSON.parse(permissionsJson) : null;
   }
@@ -102,6 +104,14 @@ export class AuthService {
     return deviceId;
   }
 
+  get userId(): number | null {
+    const id = localStorage.getItem(EAuthKeys.USER_ID);
+    if (id) {
+      return +id;
+    }
+    return null;
+  }
+
   get authorization(): string {
     return `Bearer ${this.token}`;
   }
@@ -138,13 +148,17 @@ export class AuthService {
   }
 
   refresh(): Observable<IResAuthDatas> {
-    return this._http.post<IResAuthDatas>(`${this.url}/refresh`, {
-      token: this.refreshToken,
-      deviceId: this.deviceId
-    }).pipe(tap((data) => this.setToken(data)));
+    return this._http
+      .post<IResAuthDatas>(`${this.url}/refresh`, {
+        token: this.refreshToken,
+        deviceId: this.deviceId,
+      })
+      .pipe(tap((data) => this.setToken(data)));
   }
 
   reset(data: IReqResetPassword): Observable<IUser> {
-    return this._http.put<IUser>(`${this.url}/reset-password`, data).pipe(tap(console.log));
+    return this._http
+      .put<IUser>(`${this.url}/reset-password`, data)
+      .pipe(tap(console.log));
   }
 }
