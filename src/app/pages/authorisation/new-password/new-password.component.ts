@@ -37,10 +37,7 @@ export class NewPasswordComponent {
     }),
   });
 
-  constructor(
-    private route: Router,
-
-  ) {}
+  constructor(private route: Router,) {}
 
   get password() {
     return this.form.controls.password.value;

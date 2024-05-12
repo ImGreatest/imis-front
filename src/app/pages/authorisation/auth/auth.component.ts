@@ -21,7 +21,6 @@ import {
 } from "@taiga-ui/kit";
 import { TuiDialogModule, TuiErrorModule } from "@taiga-ui/core";
 import { TuiLetModule } from "@taiga-ui/cdk";
-import { filter } from "rxjs/operators";
 
 @Component({
   selector: 'app-auth',

@@ -92,14 +92,16 @@
           tuiAction
           style="justify-content: flex-start; align-items: center"
           type="button"
+          (click)="onChangeEmail()"
         >
           <section>
-            <h3 style="font-weight: bold; margin: 0">PonPOn</h3>
-            <p style="margin: 0">ponponponponponpon</p>
+            <h3 style="font-weight: bold; margin: 0">Сменить Email</h3>
+            <p style="margin: 0">Сменить email на новый</p>
           </section>
           <tui-marker-icon
+            style="margin-left: auto"
             size="s"
-            src="tuiIconThumbsUpLarge"
+            src="tuiIconMailLarge"
             class="tui-island__marker"
           ></tui-marker-icon>
         </button>
@@ -107,14 +109,16 @@
           tuiAction
           style="justify-content: flex-start; align-items: center"
           type="button"
+          (click)="onChangePassword()"
         >
           <section>
-            <h3 style="font-weight: bold; margin: 0">PonPOn</h3>
-            <p style="margin: 0">ponponponponponpon</p>
+            <h3 style="font-weight: bold; margin: 0">Смена пароля</h3>
+            <p style="margin: 0">Сменить пароль на новый</p>
           </section>
           <tui-marker-icon
+            style="margin-left: auto"
             size="s"
-            src="tuiIconThumbsUpLarge"
+            src="tuiIconHashLarge"
             class="tui-island__marker"
           ></tui-marker-icon>
         </button>

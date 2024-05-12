@@ -7,7 +7,7 @@ import {
   TuiTitleModule
 } from "@taiga-ui/experimental";
 import { TuiActionModule, TuiAvatarModule, TuiMarkerIconModule, TuiTagModule } from "@taiga-ui/kit";
-import { RouterOutlet } from "@angular/router";
+import { Router, RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-user-profile',
@@ -34,4 +34,16 @@ import { RouterOutlet } from "@angular/router";
 })
 export class UserProfileComponent {
   selectPhoto: boolean = false;
+
+  constructor(
+    private router: Router
+  ) {}
+
+  onChangeEmail(): void {
+    this.router.navigate(['/user/profile/change-email']).then((r) => '');
+  }
+
+  onChangePassword(): void {
+    this.router.navigate(['/user/profile/change-password']).then((r) => '');
+  }
 }
