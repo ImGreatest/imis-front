@@ -1,6 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-
-
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { TuiThemeNightService } from "@taiga-ui/addon-doc";
 
 @Component({
   selector: 'app-root',
@@ -8,4 +7,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './app.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor(@Inject(TuiThemeNightService) readonly night: TuiThemeNightService) {}
+}

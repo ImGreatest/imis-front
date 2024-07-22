@@ -1,0 +1,137 @@
+<div class="table-placer">
+  <div id="success-table">
+    <div id="success-filters">
+      <form class="input-search-container" [formGroup]="search">
+        <tui-input
+          [tuiTextfieldCleaner]="true"
+          tuiTextfieldSize="m"
+          [formControl]="search.controls.searchSuccessName"
+          tuiTextfieldIconLeft="tuiIconSearch"
+          >Поиск по названию успеха</tui-input
+        >
+        <tui-input
+          [tuiTextfieldCleaner]="true"
+          tuiTextfieldSize="m"
+          [formControl]="search.controls.searchStudentSurname"
+          tuiTextfieldIconLeft="tuiIconSearch"
+          >Поиск по фамилии</tui-input
+        >
+      </form>
+      <div class="filter-container">
+        <button
+          *ngIf="perms.create"
+          tuiButton
+          appearance="primary"
+          tuiMode="onLight"
+          size="m"
+          (click)="onCreateUpdateSuccess()"
+          class="filter-button"
+        >
+          Создать
+        </button>
+      </div>
+    </div>
+    <div class="table-wrapper">
+      <table
+        class="success-table"
+        style="width: 100%"
+        tuiTable
+        [columns]="columns"
+        [direction]="(direction$ | async) || 1"
+        [tuiSortBy]="sorter$ | async"
+        (directionChange)="direction$.next($event)"
+        (tuiSortByChange)="sorter$.next($event ? $event.toString() : null)"
+      >
+        <thead>
+          <tr tuiThGroup>
+            <th *tuiHead="'place'" tuiTh [sorter]="null"></th>
+            <th *tuiHead="'name'" tuiSortable tuiTh>Название</th>
+            <th *tuiHead="'description'" tuiSortable tuiTh>Описание</th>
+            <th *tuiHead="'tags'" tuiTh [sorter]="null">Теги</th>
+            <th *tuiHead="'student'" tuiSortable tuiTh>Студент</th>
+            <th *tuiHead="'studentDirection'" tuiSortable tuiTh>Направление</th>
+            <th *tuiHead="'studentGroup'" tuiSortable tuiTh>Группа</th>
+            <th *tuiHead="'creater'" tuiSortable tuiTh>Создатель</th>
+            <th *tuiHead="'actions'" tuiTh [sorter]="null"></th>
+          </tr>
+        </thead>
+        <tbody
+          *tuiLet="success | tuiTableSort as sortedSuccess"
+          tuiTbody
+          [data]="sortedSuccess"
+        >
+          <tr *ngFor="let item of sortedSuccess; let index = index" tuiTr>
+            <td *tuiCell="'place'" tuiTd>
+              {{ page$.getValue() * size$.getValue() + index + 1 }}
+            </td>
+            <td *tuiCell="'name'" tuiTd>
+              {{ item.name }}
+            </td>
+            <td *tuiCell="'description'" tuiTd>
+              {{ item.description }}
+            </td>
+            <td *tuiCell="'tags'" tuiTd>
+              <div style="display: flex; flex-wrap: wrap; gap: 0.5rem">
+                <tui-tag
+                  *ngFor="let tag of item.tags"
+                  [autoColor]="true"
+                  [value]="tag.name"
+                ></tui-tag>
+              </div>
+            </td>
+            <td *tuiCell="'student'" tuiTd>
+              {{ item.student.surname }} {{ item.student.name }}
+            </td>
+            <td *tuiCell="'studentDirection'" tuiTd>
+              {{ item.student.direction }}
+            </td>
+            <td *tuiCell="'studentGroup'" tuiTd>
+              {{ item.student.group }}
+            </td>
+            <td *tuiCell="'creater'" tuiTd>
+              {{ item.creater.surname }} {{ item.creater.name }}
+            </td>
+            <td *tuiCell="'actions'" class="actions" tuiTd>
+              <button
+                *ngIf="
+                  perms.update &&
+                  (!perms.updateCondition || item.creater.id === perms.userId)
+                "
+                tuiIconButton
+                appearance="flat"
+                tuiMode="onLight"
+                icon="tuiIconPenTool"
+                shape="rounded"
+                size="s"
+                (click)="onCreateUpdateSuccess(item.id)"
+                title="more"
+                class="more-icon"
+              ></button>
+              <button
+                *ngIf="
+                  perms.delete &&
+                  (!perms.deleteCondition || item.creater.id === perms.userId)
+                "
+                tuiIconButton
+                appearance="flat"
+                tuiMode="onLight"
+                icon="tuiIconTrash2"
+                shape="rounded"
+                size="s"
+                title="more"
+                class="more-icon"
+              ></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pagination-offset">
+      <tui-pagination
+        [index]="page$.getValue()"
+        [length]="pageCount$.getValue()"
+        (indexChange)="goToPage($event)"
+      ></tui-pagination>
+    </div>
+  </div>
+</div>

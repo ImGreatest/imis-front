@@ -1,0 +1,37 @@
+
+@button-width: 125px;
+
+#recover-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10rem;
+}
+
+#recover-container-form-card-sme-header {
+  display: flex;
+}
+
+#recover-container-form-card-sme-header-tui-tooltip {
+  margin-left: auto;
+}
+
+#recover-container-form-card-sme-submit-row {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  margin-top: -1rem;
+  gap: 15px;
+}
+
+#recover-container-form-card-sme-submit-row-form__buttons-button {
+  width: @button-width;
+}
+
+#recover-container-form-card-sme-cancel-row-form__buttons-button {
+  width: @button-width;
+
+  @media screen and (max-width: 1024px) {
+    width: 100px;
+  }
+}

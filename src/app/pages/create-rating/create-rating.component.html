@@ -1,0 +1,35 @@
+<form [formGroup]="rating" class="button-container">
+    <div class="row">
+        <tui-input class="rating-credentials-input" formControlName="name">Название</tui-input >
+        <tui-select class="rating-credentials-input" formControlName="type">
+            Тип расчета
+            <input placeholder="Выбери тип расчета" tuiTextfield/>
+            <tui-data-list-wrapper *tuiDataList [items]="types"></tui-data-list-wrapper>
+        </tui-select>
+        <tui-input-number class="rating-credentials-input" formControlName="hours">
+            часы</tui-input-number >
+        <tui-island>
+            <tui-checkbox-labeled formControlName="default">
+                Основной
+                <div class="example">Будет отображаться по умолчанию</div>
+            </tui-checkbox-labeled>
+        </tui-island>
+    </div>
+    <div class="row">
+        <button size="m" (click)="onCreateTag()" tuiButton>Создать тэг</button>
+        <button size="m" (click)="onSave()" tuiButton>Сохранить</button>
+    </div>
+</form>
+<div *ngIf="tagsValue.length > 0" class="tree-center-display">
+    <div class="tree-container">
+        <tags-tree
+            style="width: 100%;
+            display: flex;
+            overflow-y: auto;
+            justify-content: center;
+            align-items: center;"
+            (onDelete)="update()"
+            (onScoreChange)="onScoreChange($event)"
+            [tagsValue]="tagsValue"></tags-tree>
+    </div>
+</div>

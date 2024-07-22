@@ -1,0 +1,49 @@
+<button id="company-card" tuiCardLarge tuiHeader tuiSurface="elevated" tuiHostedDropdownHost>
+  <div id="company-card-title-row">
+    <h1 id="company-card-title" tuiTitle="s">{{ name }}</h1>
+    <tui-avatar
+      id="company-card-avatar"
+      size="l"
+      [src]="avatar | tuiFallbackSrc: 'tuiIconUserLarge' | async"
+      tuiAvatarOutline="var(--tui-neutral-bg)"
+    ></tui-avatar>
+  </div>
+  <p id="company-card-desc">{{ description }}</p>
+  <div id="company-card-row-tags-item-with-more" class="tui-space_top-1"><ng-container *ngFor="let tag of techStack">
+    <tui-tag
+      id="company-card-row-tags-tag"
+      *tuiItem
+      size="m"
+      [value]="tag"
+      [hoverable]="true"
+      class="tui-space_right-1"
+      style="box-shadow: var(--tui-shadow-navigation)"
+    ></tui-tag>
+  </ng-container>
+    <ng-template let-tag tuiMore>
+      <span
+        id="company-card-row-tags-template-span"
+        [tuiDropdown]="hintContentTags"
+        [tuiDropdownMaxHeight]="150"
+        [tuiDropdownHideDelay]="40"
+        tuiDropdownAlign="right"
+        tuiDropdownDirection="bottom"
+        tuiDropdownHover
+      >
+        and {{ getRemaining(tag) }} more
+      </span>
+    </ng-template>
+  </div>
+  <footer id="company-card-footer-row" class="tui-space_top-3">
+    <div id="company-card-footer-row-address">{{ address }}</div>
+    <div id="company-card-footer-row-contacts">{{ contacts }}</div>
+  </footer>
+</button>
+
+<ng-template #hintContentTags>
+  <tui-data-list id="company-card-dropdown" *ngFor="let tag of techStack">
+    <button id="company-card-dropdown-button-option" tuiOption type="button">
+      <span id="company-card-dropdown-span-tag">{{ tag }}</span>
+    </button>
+  </tui-data-list>
+</ng-template>
